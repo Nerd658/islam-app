@@ -1,7 +1,8 @@
 import {  useEffect, useState } from 'react'
 import axios from 'axios'
-import { Input } from "@/components/ui/input"
-import { Search, MapPin, Clock, Star, Sunrise, Sun, Sunset, Moon } from 'lucide-react'
+import SearchInput from './components/SearchInput';
+
+import Header from './components/Header';
 
 
 function App() {
@@ -95,48 +96,20 @@ function App() {
   return (
     <>  
 
-      <div  className='text-white min-h-screen bg-gradient-to-br from-slate-900 via-blue-900 to-violet-900 pr-32 pl-32 flex flex-col items-center justify-center'>
+      <div  className='overflow-hidden text-white min-h-screen bg-gradient-to-br from-slate-900 via-blue-900 to-violet-900 pr-8 pl-8 flex flex-col items-center  pt-28'>
+        < Header />
         
-        <div className='bg-gradient-to-br from-blue-900 to-violet-500/20 rounded-full p-4 shadow-lg  mt-4 animate-pulse'>
-          <Clock  size={32}/>
-        </div>
-      
-
-          <div className='flex flex-col items-center justify-center mt-10 gap-2'>
-
-          <h1>
-            <span className='   text-4xl font-bold bg-gradient-to-r from-blue-300 via-violet-300 to-indigo-300 bg-clip-text text-transparent'>
-              Horaires de Prière
-            </span>
-          </h1>
-
-          <span className='text-sm font-italic '>Trouvez les heures de prière pour votre ville</span>
-
-          </div>
           <form onSubmit={handleSubmit}  className='flex flex-col items-center justify-center mt-10 space-y-2'>
           
-              <div className=''>
-    
+            <SearchInput
+                search={search}
+                setSearch={setSearch}
+                setError={setError}
+                setValue={setValue}
+                setPrayerTimes={setPrayerTimes} 
+            />
 
-                  <Input
-                  className='w-full sm:w-96'
-                  type="text" 
-                  placeholder='Rechercher une ville...'
-                  value={search}
-                  onChange={(e) => setSearch(e.target.value)}
-                  onFocus={() => {
-                    setError('');
-                    setValue('');
-                    setPrayerTimes(null);   
-
-                  }
-                  }
-                    
-
-                  />
-              </div>  
-
-            <div className="mx-64 mt-10 space-y-2">
+            <div className="mx-auto mt-10 space-y-2">
               {result.map((item, index) => (
                 <div
                   key={index}
@@ -162,7 +135,7 @@ function App() {
               ))}
             </div>
 
-            <div className='mx-64 font-semibold text-blue-300  text-sm lg:text-lg'>
+            <div className=' font-semibold text-blue-300  text-sm sm:text-lg  text-center'>
               {value}
 
             </div>
@@ -179,28 +152,25 @@ function App() {
               }
           
 
-            {prayerTimes && (
-            <div className=' '>
+              {prayerTimes && (
+                <div className="w-full px-4 ">
 
-           
-              <div className='pl-4 pr-1 grid grid-cols-2 gap-2 mb-4  gap-x-10'>
-              {
-                Object.entries(prayerTimes).map(([key, value])=> {
-                  return (
-                    <>
-                      <h3 className='text-lg font-semibold text-white'>{key} </h3>
-                      <p>{value}</p>
-                  
-                    </>
-                  )
-                })
-              }
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-6 gap-y-4 max-w-3xl mx-auto mt-4 pb-10">
+                      {Object.entries(prayerTimes).map(([key, value], index) => (
+                        <div
+                          key={index}
+                          className="flex items-center justify-between px-6 py-4 bg-white/10 text-white rounded-xl shadow-md backdrop-blur-sm"
+                        >
+                          {/* Nom de la prière */}
+                          <h3 className="text-md font-semibold capitalize">{key}</h3>
+                          {/* Heure de la prière */}
+                          <p className="text-md font-mono">{value}</p>
+                        </div>
+                      ))}
+                    </div>
+                </div>
+            )}
 
-              </div>
-
-            
-            </div>
-          )}
 
           
           {error && <p>{error} hello </p>}
@@ -211,14 +181,6 @@ function App() {
 
     
       </div>
-
-
-
-
-
-
-  
-
 
     </> 
   )

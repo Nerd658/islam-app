@@ -42,6 +42,10 @@ app.get('/prayer-times', async (req, res) => {
     
 });
 
+// app.listen(port, '0.0.0.0', () => {
+//     console.log(`Backend running on http://0.0.0.0:${port}`);
+// });
+
 
 app.listen(port, () => {
     console.log(`Example app listening on port ${port} on the http://localhost:${port}`);
