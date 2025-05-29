@@ -1,7 +1,7 @@
 import React from 'react'
 import { Input } from "@/components/ui/input"
 
-export default function SearchInput(search, setSearch, setError, setValue, setPrayerTimes) {
+export default function SearchInput({search, setSearch, setError, setValue, setPrayerTimes}) {
 
     return (
     <>
