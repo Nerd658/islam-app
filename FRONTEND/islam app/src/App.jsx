@@ -4,6 +4,7 @@ import LocationSuggestions from './components/LocationSuggestions';
 import Header from './components/Header';
 import PrayerTimesList from './components/PrayerTimesList';
 import AdhkarList from './components/AdhkarList';
+import QuranReader from './components/QuranReader';
 import useLocationSearch from './hooks/useLocationSearch';
 import { fetchPrayerTimes } from './api/fetchPrayerTimes';
 import axios from 'axios';
@@ -157,6 +158,7 @@ function App() {
         </form>
         
         <AdhkarList />
+        <QuranReader />
     
       </div>
 

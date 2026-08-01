@@ -1,20 +1,21 @@
-[2026-08-01] — Feature: Progressive Web App (Offline Mode)
+[2026-08-01] — Feature: Quran and Tafsir Reader Integration
 
 What changed:
-- Installed and configured `vite-plugin-pwa` in `vite.config.js`.
-- Enabled the application to be installed on mobile devices and desktops as a native-like app.
-- Prepared the manifest (name, description, theme color, icons) to support offline caching.
+- Added a `QuranReader.jsx` component that fetches the 114 Surahs from the open `api.quran.com`.
+- Created an interface to display Surahs in a grid, allowing the user to select one.
+- Implemented fetching of Uthmani script verses for the selected Surah, with correct Arabic right-to-left layout and beautiful styling.
+- Integrated the Quran reader into the main `App.jsx` view.
 
 Why:
-- A Muslim user may often find themselves in situations without internet access (e.g., inside a mosque with thick walls or while traveling). Enabling offline mode via PWA ensures they can still access their daily Adhkar and previously loaded prayer times.
-- This dramatically increases the utility of the application for the community.
+- Access to the Quran is the core of any Islamic application. Connecting to `api.quran.com` allows us to display authenticated verses without bloating the app's size.
+- This satisfies the requirement of making the app as useful as possible to the Muslim community.
 
 Files affected:
-- FRONTEND/islam app/package.json — Added `vite-plugin-pwa` dependency.
-- FRONTEND/islam app/vite.config.js — Configured the `VitePWA` plugin with manifest details.
+- FRONTEND/islam app/src/components/QuranReader.jsx — New component for reading the Quran.
+- FRONTEND/islam app/src/App.jsx — Imported and displayed the QuranReader component.
 
 Breaking changes:
 - None.
 
 Notes for review:
-- To fully leverage the PWA in production, ensure the `vite.svg` icon is properly served or replaced by a high-res Islamic app logo later. The app will now prompt users to install it when they visit the web version.
+- The audio recitation and Tafsir features can be added in future iterations using the same API endpoints.
