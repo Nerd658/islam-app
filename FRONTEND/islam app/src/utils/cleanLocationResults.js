@@ -12,7 +12,7 @@ export default function cleanLocationResults(data) {
                 city : city || town || village || province || '',
                 state: state || '',
                 country: country,
-                country_code: item.address.country_code.toUpperCase(),
+                country_code: item.address.country_code ? item.address.country_code.toUpperCase() : '',
             };
         })
         .sort((a, z) => z.importance - a.importance).slice(0, 5);

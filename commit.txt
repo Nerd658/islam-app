@@ -1,20 +1,13 @@
-[2026-08-01] — Refactor: Advanced Responsive Layout (Top Nav on Desktop)
+[2026-08-01] — Fix: handle missing country_code in Nominatim search results
 
 What changed:
-- **Responsive Navigation**: Overhauled `Navigation.jsx` so that on desktop screens (`md:` breakpoint and up), the bottom navigation transforms into a sleek, sticky Top Navigation bar with the logo and horizontal buttons. On mobile, it retains the native app-like bottom navigation.
-- **Adaptive Layouts**: Updated `App.jsx` paddings (`md:pt-20`, `md:pb-8`) to accommodate the new desktop top bar without obstructing content.
-- **Smart Headers**: Configured `Header.jsx` to hide on desktop (`md:hidden`) since the top navigation now handles the logo and branding, keeping the UI minimal and avoiding redundancy.
+- Added a fallback check for `country_code` in `cleanLocationResults.js` before calling `.toUpperCase()`.
 
 Why:
-- The user requested "pense responsive" to ensure a "pro" layout across all devices. This hybrid approach (top nav for desktop, bottom nav for mobile) is the industry standard for modern, professional web apps (e.g., Vercel, Twitter).
+- The Nominatim API occasionally returns location results without a `country_code`, causing a `Cannot read properties of undefined (reading 'toUpperCase')` crash on the frontend when searching for certain locations.
 
 Files affected:
-- FRONTEND/islam app/src/App.jsx
-- FRONTEND/islam app/src/components/Navigation.jsx
-- FRONTEND/islam app/src/components/Header.jsx
+- FRONTEND/islam app/src/utils/cleanLocationResults.js
 
 Breaking changes:
 - None.
-
-Notes for review:
-- Test the application on both mobile and desktop views. The transition should be seamless.
