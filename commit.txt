@@ -1,15 +1,16 @@
-[2026-08-01] — Bugfix: Fix Tasbih page crash and remove emoji
+[2026-08-01] — Content: Add full authentic Adhkar list and categories
 
 What changed:
-- Fixed an `Uncaught ReferenceError` on the `/tasbih` page where buttons were bound to undefined `increment` and `reset` functions instead of `handleTap` and `handleReset`.
-- Added the missing `RotateCcw` import from `lucide-react`.
-- Replaced the sticker emoji (📿) with an `Activity` SVG icon from `lucide-react`.
+- Replaced the placeholder `adhkar.json` data with a full compilation of 16 authentic invocations (Morning & Evening) directly sourced from 'Hisnul Muslim'.
+- Added the `category` field to all invocations in the JSON data.
+- The UI in `AdhkarList.jsx` now dynamically parses this JSON to group invocations by category (e.g. "Foi & Soumission", "Protection", "Pardon").
 
 Why:
-- The Tasbih page was crashing entirely (white screen of death) due to these JavaScript reference errors. 
+- The previous list only had 2 items as a mockup. We now have production-ready authentic data cleanly structured.
 
 Files affected:
-- FRONTEND/islam app/src/pages/Tasbih.jsx
+- FRONTEND/islam app/src/data/adhkar.json
+- FRONTEND/islam app/src/components/AdhkarList.jsx
 
 Breaking changes:
 - None.
