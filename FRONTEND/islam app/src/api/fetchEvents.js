@@ -17,8 +17,7 @@ export const fetchUpcomingEvents = async () => {
     const yyyy = today.getFullYear();
 
     try {
-        // 2. Fetch current Hijri date to know where we are in the lunar year
-        const resDate = await axios.get(`https://api.aladhan.com/v1/gToH?date=${dd}-${mm}-${yyyy}`);
+        const resDate = await axios.get(`${import.meta.env.VITE_ALADHAN_API_URL}/v1/gToH?date=${dd}-${mm}-${yyyy}`);
         const currentHijri = resDate.data.data.hijri;
         const currentHMonth = currentHijri.month.number;
         const currentHYear = parseInt(currentHijri.year);
@@ -36,7 +35,7 @@ export const fetchUpcomingEvents = async () => {
             const targetDateStr = `${String(event.day).padStart(2, '0')}-${String(event.month).padStart(2, '0')}-${targetYear}`;
             
             // 4. Fetch the Gregorian equivalent of the future Hijri date
-            const res = await axios.get(`https://api.aladhan.com/v1/hToG?date=${targetDateStr}`);
+            const res = await axios.get(`${import.meta.env.VITE_ALADHAN_API_URL}/v1/hToG?date=${targetDateStr}`);
             const gregStr = res.data.data.gregorian.date; // DD-MM-YYYY
             const [gDay, gMonth, gYear] = gregStr.split('-');
             const targetGregorian = new Date(`${gYear}-${gMonth}-${gDay}T00:00:00`);

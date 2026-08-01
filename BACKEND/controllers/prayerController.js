@@ -8,9 +8,14 @@ const getPrayerTimes = async (req, res, next) => {
         }
         
         const calcMethod = method || 3;
-        const apiUrl = `http://api.aladhan.com/v1/timingsByCity?city=${encodeURIComponent(city)}&country=${encodeURIComponent(country)}&method=${calcMethod}`;
-        
-        const response = await axios.get(apiUrl);
+        const aladhanUrl = process.env.ALADHAN_API_URL || 'http://api.aladhan.com';
+        const response = await axios.get(`${aladhanUrl}/v1/timingsByCity`, {
+            params: {
+                city: city,
+                country: country,
+                method: calcMethod
+            }
+        });
 
         if (response.data.code != 200) {
             return res.status(response.data.code).json({ error: response.data.message || 'API error' });

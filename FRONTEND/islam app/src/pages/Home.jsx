@@ -32,7 +32,7 @@ export default function Home() {
       const lat = position.coords.latitude;
       const lon = position.coords.longitude;
       try {
-        const response = await axios.get(`https://nominatim.openstreetmap.org/reverse?format=json&lat=${lat}&lon=${lon}&zoom=10`, {
+        const response = await axios.get(`${import.meta.env.VITE_NOMINATIM_API_URL}/reverse?format=json&lat=${lat}&lon=${lon}&zoom=10`, {
             headers: {
                 'Accept-Language': 'fr',
                 'User-Agent': 'IslamApp/1.0 (test@example.com)'

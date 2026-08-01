@@ -32,11 +32,8 @@ const postChat = async (req, res, next) => {
             }
         };
 
-        const response = await axios.post(
-            "https://openrouter.ai/api/v1/chat/completions",
-            payload,
-            config
-        );
+        const openRouterUrl = process.env.OPENROUTER_API_URL || 'https://openrouter.ai';
+        const response = await axios.post(`${openRouterUrl}/api/v1/chat/completions`, payload, config);
 
         const reply = response.data.choices[0].message.content.trim();
         res.json({ reply });

@@ -21,7 +21,7 @@ export default function ChatInterface() {
         setError('');
 
         try {
-            const res = await axios.post('http://localhost:3001/api/chat', {
+            const res = await axios.post(`${import.meta.env.VITE_BACKEND_URL}/api/chat`, {
                 message: userMsg
             });
             

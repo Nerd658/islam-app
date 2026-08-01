@@ -9,7 +9,7 @@ export default function QuranReader() {
 
     // Fetch the list of Surahs (Chapters)
     useEffect(() => {
-        axios.get('https://api.quran.com/api/v4/chapters?language=fr')
+        axios.get(`${import.meta.env.VITE_QURAN_API_URL}/api/v4/chapters?language=fr`)
             .then(res => setChapters(res.data.chapters))
             .catch(err => console.error("Erreur lors du chargement des sourates:", err));
     }, []);
@@ -19,7 +19,7 @@ export default function QuranReader() {
         setLoading(true);
         setSelectedChapter(chapters.find(c => c.id === chapterId));
         try {
-            const res = await axios.get(`https://api.quran.com/api/v4/quran/verses/uthmani?chapter_number=${chapterId}`);
+            const res = await axios.get(`${import.meta.env.VITE_QURAN_API_URL}/api/v4/quran/verses/uthmani?chapter_number=${chapterId}`);
             setVerses(res.data.verses);
         } catch (err) {
             console.error("Erreur lors du chargement des versets:", err);
