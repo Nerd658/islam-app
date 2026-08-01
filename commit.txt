@@ -1,15 +1,14 @@
-[2026-08-01] — UI: Add elegant emerald highlight for active Quran verses
+[2026-08-01] — UI: Add 99 Names to navigation menu
 
 What changed:
-- Updated the active verse styling in `QuranReader.jsx` during audio playback.
-- The active verse now features a smooth transition to an emerald glow (`bg-emerald-950/30`, `border-emerald-500`, `text-emerald-400`).
-- The play button subtly scales up and glows green when playing.
+- Added the `/names` route to the `navItems` array in `Navigation.jsx`.
+- Associated the route with the `Star` icon from `lucide-react`.
 
 Why:
-- The user requested a color change during verse reading to make it easier to follow. Emerald fits the Islamic theme beautifully while maintaining the minimalist dark-mode aesthetic.
+- The 99 Names feature was accessible via routes but missing from the main sidebar/bottom nav, making it hard to discover.
 
 Files affected:
-- FRONTEND/islam app/src/components/QuranReader.jsx
+- FRONTEND/islam app/src/components/Navigation.jsx
 
 Breaking changes:
 - None.
