@@ -1,14 +1,18 @@
-[2026-08-01] — UI/UX: Add search and filter functionality to Quran page
+[2026-08-01] — Feature: Add Daily Suggestions & Goals widget to Sidebar
 
 What changed:
-- Added a search bar to the `QuranReader` component.
-- Implemented real-time filtering allowing users to search for Surahs by their transliterated name, Arabic name, or Surah number.
+- Created `DailySuggestions.jsx` component allowing users to view daily objectives ("Lire 1 Hizb", "Adhkar du jour", "100 Istighfar", "Méditer 1 Nom d'Allah").
+- Included a real-time progress bar and interactive checkboxes saved in `localStorage` per day.
+- Added direct shortcut links (`ArrowUpRight`) to quickly navigate to the page for each objective.
+- Embedded `DailySuggestions` inside the desktop sidebar (`Navigation.jsx`).
 
 Why:
-- With 114 Surahs, finding a specific one by scrolling through a grid can be tedious. A search bar improves the user experience significantly.
+- Increases user engagement by providing clear daily spiritual goals.
+- Provides quick one-click shortcuts to key features directly from the navigation sidebar.
 
 Files affected:
-- FRONTEND/islam app/src/components/QuranReader.jsx
+- FRONTEND/islam app/src/components/DailySuggestions.jsx (Added)
+- FRONTEND/islam app/src/components/Navigation.jsx
 
 Breaking changes:
 - None.
