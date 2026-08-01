@@ -3,8 +3,9 @@ import axios from "axios";
 
 export async function fetchPrayerTimes(city, country) {
     try {
+        const apiUrl = import.meta.env.VITE_API_URL || "http://localhost:3001";
         const response = await axios.get(
-            `http://192.168.148.75:3001/prayer-times?city=${encodeURIComponent(city)}&country=${encodeURIComponent(country)}`
+            `${apiUrl}/prayer-times?city=${encodeURIComponent(city)}&country=${encodeURIComponent(country)}`
         );
         return response.data;
     } catch (error) {
