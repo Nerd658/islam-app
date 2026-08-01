@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { RotateCcw, Activity } from 'lucide-react';
 
 export default function Tasbih() {
     const [count, setCount] = useState(0);
@@ -27,7 +28,9 @@ export default function Tasbih() {
 
     return (
         <div className="flex flex-col items-center justify-center min-h-[80vh] px-4">
-            <h2 className="text-3xl font-bold mb-8">Tasbih Numérique 📿</h2>
+            <h2 className="text-3xl font-bold mb-8 flex items-center gap-3">
+                <Activity className="text-white" size={28} /> Tasbih Numérique
+            </h2>
             
             <div className="bg-[#0a0a0a] border border-[#333] p-8 rounded-[3rem] shadow-2xl flex flex-col items-center w-full max-w-sm">
                 
@@ -49,14 +52,14 @@ export default function Tasbih() {
 
                 <div className="flex flex-col items-center gap-8 w-full">
                     <button 
-                        onClick={increment}
+                        onClick={handleTap}
                         className="w-32 h-32 bg-white hover:bg-gray-200 text-black rounded-full shadow-lg flex items-center justify-center transform active:scale-95 transition-all"
                     >
                         <span className="text-2xl font-bold">Tap</span>
                     </button>
 
                     <button 
-                        onClick={reset}
+                        onClick={handleReset}
                         className="w-16 h-16 bg-[#222] hover:bg-[#333] border border-[#444] text-white rounded-full flex items-center justify-center shadow-md transform active:scale-90 transition-all"
                         title="Réinitialiser"
                     >
