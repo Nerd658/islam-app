@@ -1,21 +1,32 @@
-[2026-08-01] — Feature: Quran and Tafsir Reader Integration
+[2026-08-01] — Major Refactor (v2.0.0): Security, Modularity, UI Navigation, and Tasbih
 
 What changed:
-- Added a `QuranReader.jsx` component that fetches the 114 Surahs from the open `api.quran.com`.
-- Created an interface to display Surahs in a grid, allowing the user to select one.
-- Implemented fetching of Uthmani script verses for the selected Surah, with correct Arabic right-to-left layout and beautiful styling.
-- Integrated the Quran reader into the main `App.jsx` view.
+- **Backend Architecture**: Fully restructured into `routes/`, `controllers/`, and `middlewares/`. Separated concerns for better maintainability.
+- **Backend Security**: Added `helmet` for HTTP headers, `express-rate-limit` to prevent chatbot API abuse (cost control), and `zod` for rigorous input validation.
+- **Frontend Architecture**: Integrated `react-router-dom` to transition from a single long scrollable page to a multi-page app (Home, Quran, Adhkar, Tasbih).
+- **Navigation**: Created a sticky bottom navigation bar (`Navigation.jsx`) optimized for mobile using `lucide-react` icons.
+- **New Feature - Tasbih**: Added a digital rosary page (`Tasbih.jsx`) with counting, reset, and haptic feedback to help users track their Dhikr (Subhanallah, Alhamdulillah, Allahu Akbar).
 
 Why:
-- Access to the Quran is the core of any Islamic application. Connecting to `api.quran.com` allows us to display authenticated verses without bloating the app's size.
-- This satisfies the requirement of making the app as useful as possible to the Muslim community.
+- The previous backend was a single file (`server.js`) making it hard to scale or test. 
+- The Chatbot API is connected to OpenRouter (which can cost money or have limits); rate-limiting is essential for production.
+- A multi-page frontend with a bottom tab bar significantly improves the User Experience on mobile devices, matching standard modern Islamic apps.
+- The Tasbih is one of the most requested features for everyday Muslim users.
 
 Files affected:
-- FRONTEND/islam app/src/components/QuranReader.jsx — New component for reading the Quran.
-- FRONTEND/islam app/src/App.jsx — Imported and displayed the QuranReader component.
+- BACKEND/app.js (New)
+- BACKEND/server.js
+- BACKEND/config/env.js (New)
+- BACKEND/routes/* (New)
+- BACKEND/controllers/* (New)
+- BACKEND/middlewares/* (New)
+- FRONTEND/islam app/src/App.jsx (Refactored to Router)
+- FRONTEND/islam app/src/main.jsx
+- FRONTEND/islam app/src/pages/* (Home, Quran, Adhkar, Tasbih)
+- FRONTEND/islam app/src/components/Navigation.jsx (New)
 
 Breaking changes:
-- None.
+- None for the user, but massive structural improvement for developers.
 
 Notes for review:
-- The audio recitation and Tafsir features can be added in future iterations using the same API endpoints.
+- The backend is now production-ready for deployment on any PaaS (Heroku, Render) with proper environment variable separation.
