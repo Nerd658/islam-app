@@ -1,32 +1,25 @@
-[2026-08-01] — Major Refactor (v2.0.0): Security, Modularity, UI Navigation, and Tasbih
+[2026-08-01] — Security Audit & Hardening (v2.0.1)
 
 What changed:
-- **Backend Architecture**: Fully restructured into `routes/`, `controllers/`, and `middlewares/`. Separated concerns for better maintainability.
-- **Backend Security**: Added `helmet` for HTTP headers, `express-rate-limit` to prevent chatbot API abuse (cost control), and `zod` for rigorous input validation.
-- **Frontend Architecture**: Integrated `react-router-dom` to transition from a single long scrollable page to a multi-page app (Home, Quran, Adhkar, Tasbih).
-- **Navigation**: Created a sticky bottom navigation bar (`Navigation.jsx`) optimized for mobile using `lucide-react` icons.
-- **New Feature - Tasbih**: Added a digital rosary page (`Tasbih.jsx`) with counting, reset, and haptic feedback to help users track their Dhikr (Subhanallah, Alhamdulillah, Allahu Akbar).
+- **Backend**: Resolved all `npm audit` vulnerabilities. Zero vulnerabilities remaining in production dependencies.
+- **Backend**: Added `hpp` (HTTP Parameter Pollution) middleware to protect against array-based query parameter attacks.
+- **Backend**: Configured a strict Global Rate Limiter in `app.js` (100 requests / 10 minutes per IP) to protect the entire API surface from DDoS attacks and scraping, supplementing the strict Chatbot rate limiter.
+- **Backend**: Configured `express.json({ limit: '10kb' })` to prevent large payload attacks.
+- **Backend**: Hardened `cors` to expect a restricted `FRONTEND_URL` in production (defaults to `*` for local dev).
+- **Frontend**: Updated multiple dependencies and ran `npm audit fix --force` to patch deeply nested vulnerabilities (e.g., `glob`, `tar`, `postcss`). Upgraded `react-router-dom` to latest. The remaining audit warnings on `react-router` strictly apply to Server-Side Rendering (SSR) / React Server Components (RSC), which are not used in our Client-Side React SPA.
 
 Why:
-- The previous backend was a single file (`server.js`) making it hard to scale or test. 
-- The Chatbot API is connected to OpenRouter (which can cost money or have limits); rate-limiting is essential for production.
-- A multi-page frontend with a bottom tab bar significantly improves the User Experience on mobile devices, matching standard modern Islamic apps.
-- The Tasbih is one of the most requested features for everyday Muslim users.
+- A rigorous security audit was requested (`/goal audit secu`).
+- Protecting the backend from DDoS, parameter pollution, and excessive payload sizes is critical for stability.
+- Dependency vulnerabilities (even deep transitives) must be patched regularly.
 
 Files affected:
-- BACKEND/app.js (New)
-- BACKEND/server.js
-- BACKEND/config/env.js (New)
-- BACKEND/routes/* (New)
-- BACKEND/controllers/* (New)
-- BACKEND/middlewares/* (New)
-- FRONTEND/islam app/src/App.jsx (Refactored to Router)
-- FRONTEND/islam app/src/main.jsx
-- FRONTEND/islam app/src/pages/* (Home, Quran, Adhkar, Tasbih)
-- FRONTEND/islam app/src/components/Navigation.jsx (New)
+- BACKEND/app.js — Added new security middlewares.
+- BACKEND/package.json & package-lock.json — Updated dependencies.
+- FRONTEND/islam app/package.json & package-lock.json — Updated dependencies.
 
 Breaking changes:
-- None for the user, but massive structural improvement for developers.
+- None.
 
 Notes for review:
-- The backend is now production-ready for deployment on any PaaS (Heroku, Render) with proper environment variable separation.
+- Before deploying to production, make sure to set the `FRONTEND_URL` environment variable in your `.env` so that CORS correctly blocks unknown origins.
