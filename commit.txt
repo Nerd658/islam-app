@@ -1,19 +1,16 @@
-[2026-08-01] — UI/UX: Floating dropdown style for city search suggestions
+[2026-08-01] — Config: Launch Backend server on port 4000 and update Frontend .env
 
 What changed:
-- Redesigned `SearchInput.jsx` with an integrated `Search` icon and Vercel dark styling.
-- Transformed `LocationSuggestions.jsx` into an absolute floating dropdown menu (`absolute top-full z-50`) positioned directly below the search input field.
-- Added `MapPin` icon to each city suggestion item for enhanced clarity and removed old gradient background styles.
-- Updated `Home.jsx` to wrap search input and suggestions in a relative container.
+- Configured backend default port to 4000 in `BACKEND/config/env.js` (port 3001 had conflicts).
+- Updated `VITE_BACKEND_URL` in `FRONTEND/islam app/.env` to `http://localhost:4000`.
+- Started Express backend server process in background.
 
 Why:
-- Previously, search suggestions pushed down page content and used generic gradients.
-- The new floating dropdown provides a smooth, non-intrusive, and modern experience.
+- Allows the virtual Imam chatbot and other API features to communicate properly between frontend and backend.
 
 Files affected:
-- FRONTEND/islam app/src/components/SearchInput.jsx
-- FRONTEND/islam app/src/components/LocationSuggestions.jsx
-- FRONTEND/islam app/src/pages/Home.jsx
+- BACKEND/config/env.js
+- FRONTEND/islam app/.env
 
 Breaking changes:
 - None.

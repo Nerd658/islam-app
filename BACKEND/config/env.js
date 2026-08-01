@@ -1,7 +1,7 @@
 require('dotenv').config();
 
 module.exports = {
-  PORT: process.env.PORT || 3001,
+  PORT: process.env.PORT || 4000,
   OPENROUTER_API_KEY: process.env.OPENROUTER_API_KEY,
   PROMPT_SYSTEM: process.env.PROMPT_SYSTEM || `Tu es un expert en sciences islamiques et histoire islamique. Tes réponses doivent se baser uniquement sur le Coran, la Sunnah authentique (Boukhari, Mouslim, etc.) et l'Histoire vérifiée. 
 Règles strictes :
