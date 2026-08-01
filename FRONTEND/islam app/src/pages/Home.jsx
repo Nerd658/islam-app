@@ -95,8 +95,14 @@ export default function Home() {
 
       <div className='overflow-hidden min-h-screen flex flex-col items-center pt-6'>
         < Header />
+        <div className="text-center mt-12 mb-8 px-4 max-w-lg mx-auto">
+            <h2 className="text-3xl font-bold text-white mb-3">Horaires de Prière</h2>
+            <p className="text-gray-400 text-sm leading-relaxed">
+                Entrez le nom de votre ville ou utilisez la géolocalisation pour obtenir instantanément vos heures de prière exactes.
+            </p>
+        </div>
         
-        <form onSubmit={handleSubmit}  className='flex flex-col items-center justify-center mt-10 space-y-2 w-full'>
+        <form onSubmit={handleSubmit}  className='flex flex-col items-center justify-center mt-2 space-y-2 w-full'>
           
           <button 
              type="button" 

@@ -1,14 +1,13 @@
-[2026-08-01] — UI: Add 99 Names to navigation menu
+[2026-08-01] — UI/UX: Add intuitive instructions on the homepage
 
 What changed:
-- Added the `/names` route to the `navItems` array in `Navigation.jsx`.
-- Associated the route with the `Star` icon from `lucide-react`.
+- Added a Hero section with a clear title and descriptive text ("Entrez le nom de votre ville ou utilisez la géolocalisation...") above the search form in `Home.jsx`.
 
 Why:
-- The 99 Names feature was accessible via routes but missing from the main sidebar/bottom nav, making it hard to discover.
+- Per user feedback, the homepage wasn't instantly intuitive on first load. A clear prompt helps users understand immediately what action to take to get their prayer times.
 
 Files affected:
-- FRONTEND/islam app/src/components/Navigation.jsx
+- FRONTEND/islam app/src/pages/Home.jsx
 
 Breaking changes:
 - None.
