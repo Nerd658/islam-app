@@ -1,16 +1,16 @@
-[2026-08-01] — Content: Add full authentic Adhkar list and categories
+[2026-08-01] — UI/UX: Add search and pagination to 99 Names page
 
 What changed:
-- Replaced the placeholder `adhkar.json` data with a full compilation of 16 authentic invocations (Morning & Evening) directly sourced from 'Hisnul Muslim'.
-- Added the `category` field to all invocations in the JSON data.
-- The UI in `AdhkarList.jsx` now dynamically parses this JSON to group invocations by category (e.g. "Foi & Soumission", "Protection", "Pardon").
+- Added a search bar allowing users to filter names by Arabic text, transliteration (e.g. "Rahman"), or English meaning.
+- Added pagination to the 99 Names page, displaying 20 names per page.
+- Created beautiful pagination controls with `ChevronLeft` and `ChevronRight` from `lucide-react`.
 
 Why:
-- The previous list only had 2 items as a mockup. We now have production-ready authentic data cleanly structured.
+- Scrolling through 99 names on a single page can be overwhelming and bad for performance.
+- Users requested the ability to quickly look up a specific name or its meaning without scrolling indefinitely.
 
 Files affected:
-- FRONTEND/islam app/src/data/adhkar.json
-- FRONTEND/islam app/src/components/AdhkarList.jsx
+- FRONTEND/islam app/src/pages/Names.jsx
 
 Breaking changes:
 - None.
