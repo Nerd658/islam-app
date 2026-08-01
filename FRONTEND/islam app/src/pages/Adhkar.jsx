@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
 import AdhkarList from '../components/AdhkarList';
 import adhkarData from '../data/adhkar.json';
-import { BookOpen } from 'lucide-react';
+import { BookOpen, ChevronDown } from 'lucide-react';
 
 export default function Adhkar() {
-    // Extract unique categories from the JSON dynamically
     const categories = [...new Set(adhkarData.map(a => a.category))];
     const [selectedCategory, setSelectedCategory] = useState(categories[0] || 'Matin');
+    const [isDropdownOpen, setIsDropdownOpen] = useState(false);
 
     return (
         <div className="pt-8 px-4 max-w-3xl mx-auto">
@@ -14,16 +14,31 @@ export default function Adhkar() {
                 <BookOpen size={28} /> Invocations
             </h2>
             
-            <div className="flex overflow-x-auto pb-4 mb-6 hide-scrollbar gap-3 snap-x">
-                {categories.map(cat => (
-                    <button 
-                        key={cat}
-                        onClick={() => setSelectedCategory(cat)}
-                        className={`whitespace-nowrap snap-center py-2 px-6 rounded-full font-bold transition-all ${selectedCategory === cat ? 'bg-white text-black shadow-lg scale-105' : 'bg-[#111] text-gray-500 hover:text-white border border-[#333]'}`}
-                    >
-                        {cat}
-                    </button>
-                ))}
+            <div className="relative w-full max-w-xs mx-auto mb-12 z-20">
+                <button 
+                    onClick={() => setIsDropdownOpen(!isDropdownOpen)}
+                    className="w-full flex items-center justify-between bg-[#111] border border-[#333] hover:border-gray-500 text-white py-4 px-6 rounded-xl transition-all shadow-lg"
+                >
+                    <span className="font-bold text-lg">{selectedCategory}</span>
+                    <ChevronDown size={20} className={`text-gray-400 transition-transform duration-300 ${isDropdownOpen ? 'rotate-180' : ''}`} />
+                </button>
+                
+                {isDropdownOpen && (
+                    <div className="absolute top-full left-0 w-full mt-2 bg-[#0a0a0a] border border-[#333] rounded-xl overflow-hidden shadow-2xl z-30 max-h-64 overflow-y-auto custom-scrollbar">
+                        {categories.map(cat => (
+                            <button
+                                key={cat}
+                                onClick={() => { 
+                                    setSelectedCategory(cat); 
+                                    setIsDropdownOpen(false); 
+                                }}
+                                className={`w-full text-left px-6 py-4 hover:bg-[#1a1a1a] transition-colors border-b border-[#222] last:border-0 ${selectedCategory === cat ? 'bg-[#111] font-bold text-white' : 'text-gray-400'}`}
+                            >
+                                {cat}
+                            </button>
+                        ))}
+                    </div>
+                )}
             </div>
             
             <AdhkarList category={selectedCategory} />

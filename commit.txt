@@ -1,20 +1,16 @@
-[2026-08-01] — Feature: Add Qibla Compass and Chatbot Memory
+[2026-08-01] — UI/UX: Switch Adhkar categories to a Dropdown menu
 
 What changed:
-- Chatbot Memory: Updated `Chat.jsx` to maintain and send the entire conversational history array to the backend. Updated `chatController.js` to parse this history array instead of just a single message, allowing the OpenRouter AI to remember the context of the conversation.
-- Qibla Compass: Created a new `/qibla` page allowing users to find the exact direction of the Kaaba from their current geolocation.
-- Utilized HTML5 Geolocation API to fetch user coordinates and DeviceOrientation events to detect phone rotation and smoothly align the on-screen compass needle.
+- Removed the horizontal scroll chips for Adhkar categories.
+- Implemented a sleek, custom dropdown menu (`select` alternative) using absolute positioning and `lucide-react` icons (ChevronDown).
+- The dropdown adapts automatically to the number of categories and features a custom scrollbar if the list becomes too long.
 
 Why:
-- The virtual Imam couldn't hold a continuous conversation without context.
-- A Qibla compass is an essential tool for an Islamic application, making it easier for users to pray while traveling or in unfamiliar locations.
+- The user requested a "Pro" UI pattern instead of horizontal scrolling.
+- A dropdown menu takes up less horizontal space and is a universally understood interaction pattern for filtering large datasets on both mobile and desktop.
 
 Files affected:
-- FRONTEND/islam app/src/pages/Chat.jsx
-- BACKEND/controllers/chatController.js
-- FRONTEND/islam app/src/pages/Qibla.jsx (Added)
-- FRONTEND/islam app/src/App.jsx
-- FRONTEND/islam app/src/components/Navigation.jsx
+- FRONTEND/islam app/src/pages/Adhkar.jsx
 
 Breaking changes:
 - None.
