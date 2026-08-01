@@ -1,13 +1,18 @@
-[2026-08-01] — Fix: handle missing country_code in Nominatim search results
+[2026-08-01] — UI/UX: Replace all emojis with sleek Lucide icons
 
 What changed:
-- Added a fallback check for `country_code` in `cleanLocationResults.js` before calling `.toUpperCase()`.
+- Removed all text emojis (stickers) from `Home.jsx`, `QuranReader.jsx`, and `fetchEvents.js`.
+- Replaced them with professional, minimalist SVG icons from `lucide-react` (e.g., `<MapPin>`, `<BookOpen>`, `<Moon>`, `<Gift>`).
+- Adjusted container styling in `Events.jsx` to properly align the new SVG elements.
 
 Why:
-- The Nominatim API occasionally returns location results without a `country_code`, causing a `Cannot read properties of undefined (reading 'toUpperCase')` crash on the frontend when searching for certain locations.
+- Per user request, emojis feel less "pro" and can render inconsistently across different operating systems. Using `lucide-react` ensures a uniform, premium Vercel-like aesthetic.
 
 Files affected:
-- FRONTEND/islam app/src/utils/cleanLocationResults.js
+- FRONTEND/islam app/src/pages/Home.jsx
+- FRONTEND/islam app/src/components/QuranReader.jsx
+- FRONTEND/islam app/src/api/fetchEvents.js
+- FRONTEND/islam app/src/pages/Events.jsx
 
 Breaking changes:
 - None.

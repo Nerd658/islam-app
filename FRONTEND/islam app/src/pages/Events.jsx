@@ -26,7 +26,9 @@ export default function Events() {
                 </div>
             ) : (
                 <div className="space-y-4">
-                    {events.map((event, index) => (
+                    {events.map((event, index) => {
+                        const Icon = event.icon;
+                        return (
                         <div key={event.name} className={`relative p-6 rounded-2xl overflow-hidden border ${index === 0 ? 'bg-white text-black' : 'bg-[#0a0a0a] border-[#333] text-white'}`}>
                             {index === 0 && (
                                 <div className="absolute top-0 right-0 bg-gray-200 text-black text-xs font-bold px-3 py-1 rounded-bl-lg">
@@ -35,7 +37,9 @@ export default function Events() {
                             )}
                             <div className="flex items-center justify-between">
                                 <div className="flex items-center gap-4">
-                                    <span className="text-4xl">{event.icon}</span>
+                                    <span className="flex-shrink-0 flex items-center justify-center w-12 h-12">
+                                        <Icon size={32} />
+                                    </span>
                                     <div>
                                         <h3 className="text-xl font-bold">{event.name}</h3>
                                         <p className={`text-sm ${index === 0 ? 'text-gray-700' : 'text-gray-400'}`}>
@@ -51,7 +55,8 @@ export default function Events() {
                                 </div>
                             </div>
                         </div>
-                    ))}
+                        );
+                    })}
                     <p className="text-xs text-center text-gray-400 mt-6 pb-6">
                         * Les dates exactes peuvent varier de +/- 1 jour en fonction de l'observation de la lune.
                     </p>

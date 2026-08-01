@@ -2,7 +2,7 @@ import requests
 import time
 import sys
 
-BASE_URL = "http://127.0.0.1:4000"
+BASE_URL = "http://localhost:4000"
 
 def print_result(name, passed, details=""):
     status = "✅ PASS" if passed else "❌ FAIL"

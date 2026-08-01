@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import axios from 'axios';
-import { PlayCircle, PauseCircle } from 'lucide-react';
+import { PlayCircle, PauseCircle, BookOpen, ChevronLeft } from 'lucide-react';
 
 export default function QuranReader() {
     const [chapters, setChapters] = useState([]);
@@ -92,7 +92,10 @@ export default function QuranReader() {
 
     return (
         <div className="w-full max-w-5xl mx-auto mt-16 mb-24 px-4">
-            <h2 className="text-3xl font-bold text-center mb-8 text-white">Le Noble Coran 📖</h2>
+            <h2 className="text-3xl font-bold text-center mb-8 text-white flex items-center justify-center gap-3">
+                <BookOpen className="text-gray-400" size={28} />
+                Le Noble Coran
+            </h2>
             
             {!selectedChapter ? (
                 <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4 max-h-[60vh] overflow-y-auto p-4 bg-[#0a0a0a] rounded-2xl border border-[#333] custom-scrollbar">
@@ -112,9 +115,9 @@ export default function QuranReader() {
                 <div className="bg-[#0a0a0a] p-6 sm:p-10 rounded-2xl relative border border-[#333]">
                     <button 
                         onClick={() => setSelectedChapter(null)}
-                        className="absolute top-6 left-6 bg-[#222] hover:bg-[#333] border border-[#444] px-4 py-2 rounded-lg text-sm font-medium transition-all text-white"
+                        className="absolute top-6 left-6 bg-[#222] hover:bg-[#333] border border-[#444] px-4 py-2 rounded-lg text-sm font-medium transition-all text-white flex items-center gap-2"
                     >
-                        🔙 Retour
+                        <ChevronLeft size={16} /> Retour
                     </button>
                     <h3 className="text-3xl sm:text-4xl font-bold text-center mb-10 pt-12 text-white font-arabic">
                         {selectedChapter.name_arabic}

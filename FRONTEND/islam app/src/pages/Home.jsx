@@ -7,6 +7,7 @@ import PrayerTimesList from '../components/PrayerTimesList';
 import useLocationSearch from '../hooks/useLocationSearch';
 import { fetchPrayerTimes } from '../api/fetchPrayerTimes';
 import axios from 'axios';
+import { MapPin } from 'lucide-react';
 
 export default function Home() {
   const [search, setSearch] = useState('');
@@ -103,7 +104,7 @@ export default function Home() {
              disabled={loading}
              className="mb-8 bg-white text-black hover:bg-gray-200 font-medium py-3 px-6 rounded-full flex items-center gap-2 transition disabled:opacity-50"
           >
-             📍 Me localiser automatiquement
+             <MapPin className="w-5 h-5 text-gray-700" /> Me localiser automatiquement
           </button>
 
             <SearchInput
