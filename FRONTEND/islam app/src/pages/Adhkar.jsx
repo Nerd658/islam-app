@@ -1,29 +1,32 @@
 import React, { useState } from 'react';
 import AdhkarList from '../components/AdhkarList';
-import { Sun, Moon } from 'lucide-react';
+import adhkarData from '../data/adhkar.json';
+import { BookOpen } from 'lucide-react';
 
 export default function Adhkar() {
-    const [timeOfDay, setTimeOfDay] = useState('morning');
+    // Extract unique categories from the JSON dynamically
+    const categories = [...new Set(adhkarData.map(a => a.category))];
+    const [selectedCategory, setSelectedCategory] = useState(categories[0] || 'Matin');
 
     return (
-        <div className="pt-8 px-4 max-w-2xl mx-auto">
-            <h2 className="text-3xl font-bold text-center mb-8 text-white">Adhkar du {timeOfDay === 'morning' ? 'Matin' : 'Soir'}</h2>
+        <div className="pt-8 px-4 max-w-3xl mx-auto">
+            <h2 className="text-3xl font-bold text-center mb-8 text-white flex justify-center items-center gap-3">
+                <BookOpen size={28} /> Invocations
+            </h2>
             
-            <div className="flex justify-center mb-8 bg-[#111] p-1 rounded-xl border border-[#333]">
-                <button 
-                    onClick={() => setTimeOfDay('morning')}
-                    className={`flex-1 py-3 px-6 rounded-lg font-bold transition-colors flex justify-center items-center gap-2 ${timeOfDay === 'morning' ? 'bg-white text-black shadow' : 'text-gray-500 hover:text-white'}`}
-                >
-                    <Sun size={20} /> Matin
-                </button>
-                <button 
-                    onClick={() => setTimeOfDay('evening')}
-                    className={`flex-1 py-3 px-6 rounded-lg font-bold transition-colors flex justify-center items-center gap-2 ${timeOfDay === 'evening' ? 'bg-white text-black shadow' : 'text-gray-500 hover:text-white'}`}
-                >
-                    <Moon size={20} /> Soir
-                </button>
+            <div className="flex overflow-x-auto pb-4 mb-6 hide-scrollbar gap-3 snap-x">
+                {categories.map(cat => (
+                    <button 
+                        key={cat}
+                        onClick={() => setSelectedCategory(cat)}
+                        className={`whitespace-nowrap snap-center py-2 px-6 rounded-full font-bold transition-all ${selectedCategory === cat ? 'bg-white text-black shadow-lg scale-105' : 'bg-[#111] text-gray-500 hover:text-white border border-[#333]'}`}
+                    >
+                        {cat}
+                    </button>
+                ))}
             </div>
-            <AdhkarList time={timeOfDay} />
+            
+            <AdhkarList category={selectedCategory} />
         </div>
     );
 }

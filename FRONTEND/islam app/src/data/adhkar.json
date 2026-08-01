@@ -1,130 +1,191 @@
 [
   {
     "id": 1,
-    "time": "morning",
-    "category": "Foi & Soumission",
-    "arabic": "أَصْبَحْنَا وَأَصْبَحَ الْمُلْكُ لِلَّهِ، وَالْحَمْدُ لِلَّهِ، لَا إِلَهَ إِلَّا اللَّهُ وَحْدَهُ لَا شَرِيكَ لَهُ، لَهُ الْمُلْكُ وَلَهُ الْحَمْدُ وَهُوَ عَلَى كُلِّ شَيْءٍ قَدِيرٌ.",
-    "translation": "Nous sommes au matin et la royauté appartient à Allah. Louange à Allah. Il n'y a de divinité digne d'être adorée qu'Allah, Seul, sans associé. À Lui la royauté et à Lui la louange, et Il est Omnipotent.",
+    "category": "Matin",
+    "arabic": "أَصْبَحْنَا وَأَصْبَحَ الْمُلْكُ لِلَّهِ، وَالْحَمْدُ لِلَّهِ، لَا إِلَهَ إِلَّا اللَّهُ وَحْدَهُ لَا شَرِيكَ لَهُ، لَهُ الْمُلْكُ وَلَهُ الْحَمْدُ وَهُوَ عَلَى كُلِّ شَيْءٍ قَدِيرٌ",
+    "translation": "Nous sommes au matin et la royauté appartient à Allah. Louange à Allah. Il n'y a de divinité digne d'adoration qu'Allah, Seul et sans associé. À Lui la royauté et à Lui la louange, et Il est Omnipotent.",
     "count": 1
   },
   {
     "id": 2,
-    "time": "morning",
-    "category": "Foi & Soumission",
-    "arabic": "اللَّهُمَّ بِكَ أَصْبَحْنَا، وَبِكَ أَمْسَيْنَا، وَبِكَ نَحْيَا، وَبِكَ نَمُوتُ وَإِلَيْكَ النُّشُورُ.",
-    "translation": "Ô Allah ! C'est par Toi que nous nous retrouvons au matin et c'est par Toi que nous nous retrouvons au soir. C'est par Toi que nous vivons et c'est par Toi que nous mourons, et c'est vers Toi que se fera la résurrection.",
+    "category": "Matin",
+    "arabic": "اللَّهُمَّ بِكَ أَصْبَحْنَا وَبِكَ أَمْسَيْنَا، وَبِكَ نَحْيَا وَبِكَ نَمُوتُ وَإِلَيْكَ النُّشُورُ",
+    "translation": "Ô Allah ! C'est par Toi que nous nous retrouvons au matin et c'est par Toi que nous nous retrouvons au soir. C'est par Toi que nous vivons et c'est par Toi que nous mourons, et c'est vers Toi que sera la résurrection.",
     "count": 1
   },
   {
     "id": 3,
-    "time": "morning",
-    "category": "Pardon (Istighfar)",
-    "arabic": "اللَّهُمَّ أَنْتَ رَبِّي لا إِلَهَ إِلا أَنْتَ، خَلَقْتَنِي وَأَنَا عَبْدُكَ، وَأَنَا عَلَى عَهْدِكَ وَوَعْدِكَ مَا اسْتَطَعْتُ، أَعُوذُ بِكَ مِنْ شَرِّ مَا صَنَعْتُ، أَبُوءُ لَكَ بِنِعْمَتِكَ عَلَيَّ، وَأَبُوءُ بِذَنْبِي فَاغْفِرْ لِي فَإِنَّهُ لا يَغْفِرُ الذُّنُوبَ إِلا أَنْتَ.",
-    "translation": "Ô Allah, Tu es mon Seigneur, il n'y a de divinité digne d'adoration que Toi. Tu m'as créé et je suis Ton serviteur. Je me conforme autant que je peux à mon engagement et à ma promesse envers Toi. Je me réfugie auprès de Toi contre le mal de ce que j'ai fait. Je reconnais Tes bienfaits à mon égard et je reconnais mon péché. Pardonne-moi, car nul autre que Toi ne pardonne les péchés.",
-    "count": 1
+    "category": "Matin",
+    "arabic": "رَضِيتُ بِاللَّهِ رَبّاً، وَبِالْإِسْلَامِ دِيناً، وَبِمُحَمَّدٍ صَلَّى اللَّهُ عَلَيْهِ وَسَلَّمَ نَبِيّاً",
+    "translation": "J'agrée Allah comme Seigneur, l'Islam comme religion et Muhammad (paix et bénédiction sur lui) comme Prophète.",
+    "count": 3
   },
   {
     "id": 4,
-    "time": "morning",
-    "category": "Protection",
-    "arabic": "اللَّهُمَّ إِنِّي أَسْأَلُكَ الْعَافِيَةَ فِي الدُّنْيَا وَالآخِرَةِ، اللَّهُمَّ إِنِّي أَسْأَلُكَ الْعَفْوَ وَالْعَافِيَةَ فِي دِينِي وَدُنْيَايَ وَأَهْلِي وَمَالِي.",
-    "translation": "Ô Allah ! Je Te demande la santé (et le salut) dans cette vie et dans l'au-delà. Ô Allah ! Je Te demande le pardon et la santé dans ma religion, ma vie mondaine, ma famille et mes biens.",
+    "category": "Soir",
+    "arabic": "أَمْسَيْنَا وَأَمْسَى الْمُلْكُ لِلَّهِ، وَالْحَمْدُ لِلَّهِ، لَا إِلَهَ إِلَّا اللَّهُ وَحْدَهُ لَا شَرِيكَ لَهُ...",
+    "translation": "Nous sommes au soir et la royauté appartient à Allah. Louange à Allah. Il n'y a de divinité digne d'adoration qu'Allah, Seul et sans associé...",
     "count": 1
   },
   {
     "id": 5,
-    "time": "morning",
-    "category": "Protection",
-    "arabic": "بِسْمِ اللَّهِ الَّذِي لا يَضُرُّ مَعَ اسْمِهِ شَيْءٌ فِي الأَرْضِ وَلا فِي السَّمَاءِ وَهُوَ السَّمِيعُ الْعَلِيمُ.",
-    "translation": "Au nom d'Allah, tel qu'en compagnie de Son Nom, rien sur terre ni au ciel ne peut nuire, et Il est l'Audient, l'Omniscient.",
-    "count": 3
+    "category": "Soir",
+    "arabic": "اللَّهُمَّ بِكَ أَمْسَيْنَا وَبِكَ أَصْبَحْنَا، وَبِكَ نَحْيَا وَبِكَ نَمُوتُ وَإِلَيْكَ الْمَصِيرُ",
+    "translation": "Ô Allah ! C'est par Toi que nous nous retrouvons au soir et c'est par Toi que nous nous retrouvons au matin. C'est par Toi que nous vivons et c'est par Toi que nous mourons, et c'est vers Toi qu'est la destination.",
+    "count": 1
   },
   {
     "id": 6,
-    "time": "morning",
-    "category": "Foi & Soumission",
-    "arabic": "رَضِيتُ بِاللَّهِ رَبّاً، وَبِالإِسْلامِ دِيناً، وَبِمُحَمَّدٍ صَلَّى اللَّهُ عَلَيْهِ وَسَلَّمَ نَبِيّاً.",
-    "translation": "J'agrée Allah comme Seigneur, l'Islam comme religion et Muhammad (paix et bénédiction sur lui) comme prophète.",
+    "category": "Soir",
+    "arabic": "أَعُوذُ بِكَلِمَاتِ اللَّهِ التَّامَّاتِ مِنْ شَرِّ مَا خَلَقَ",
+    "translation": "Je cherche refuge auprès des paroles parfaites d'Allah contre le mal de ce qu'Il a créé.",
     "count": 3
   },
   {
     "id": 7,
-    "time": "morning",
-    "category": "Protection",
-    "arabic": "يَا حَيُّ يَا قَيُّومُ بِرَحْمَتِكَ أَسْتَغِيثُ أَصْلِحْ لِي شَأْنِي كُلَّهُ وَلا تَكِلْنِي إِلَى نَفْسِي طَرْفَةَ عَيْنٍ.",
-    "translation": "Ô le Vivant, Ô Celui qui subsiste par Lui-même ! J'implore secours par Ta miséricorde. Améliore ma situation tout entière et ne me laisse pas à moi-même ne serait-ce que le temps d'un clin d'œil.",
+    "category": "Sommeil",
+    "arabic": "بِاسْمِكَ رَبِّي وَضَعْتُ جَنْبِي، وَبِكَ أَرْفَعُهُ، فَإِنْ أَمْسَكْتَ نَفْسِي فَارْحَمْهَا، وَإِنْ أَرْسَلْتَهَا فَاحْفَظْهَا بِمَا تَحْفَظُ بِهِ عِبَادَكَ الصَّالِحِينَ",
+    "translation": "En Ton nom, mon Seigneur, je me couche, et par Toi je me lève. Si Tu retiens mon âme, fais-lui miséricorde; et si Tu me la renvoies, protège-la comme Tu protèges Tes serviteurs vertueux.",
     "count": 1
   },
   {
     "id": 8,
-    "time": "morning",
-    "category": "Louanges (Hamd)",
-    "arabic": "سُبْحَانَ اللَّهِ وَبِحَمْدِهِ.",
-    "translation": "Gloire et pureté à Allah et à Lui la louange.",
-    "count": 100
+    "category": "Sommeil",
+    "arabic": "اللَّهُمَّ بِاسْمِكَ أَمُوتُ وَأَحْيَا",
+    "translation": "Ô Allah ! En Ton nom je meurs et je vis.",
+    "count": 1
   },
   {
     "id": 9,
-    "time": "evening",
-    "category": "Foi & Soumission",
-    "arabic": "أَمْسَيْنَا وَأَمْسَى الْمُلْكُ لِلَّهِ، وَالْحَمْدُ لِلَّهِ، لَا إِلَهَ إِلَّا اللَّهُ وَحْدَهُ لَا شَرِيكَ لَهُ، لَهُ الْمُلْكُ وَلَهُ الْحَمْدُ وَهُوَ عَلَى كُلِّ شَيْءٍ قَدِيرٌ.",
-    "translation": "Nous sommes au soir et la royauté appartient à Allah. Louange à Allah. Il n'y a de divinité digne d'être adorée qu'Allah, Seul, sans associé. À Lui la royauté et à Lui la louange, et Il est Omnipotent.",
+    "category": "Sommeil",
+    "arabic": "سُبْحَانَ اللَّهِ، وَالْحَمْدُ لِلَّهِ، وَاللَّهُ أَكْبَرُ",
+    "translation": "Gloire à Allah (33 fois), Louange à Allah (33 fois), Allah est le plus grand (34 fois).",
     "count": 1
   },
   {
     "id": 10,
-    "time": "evening",
-    "category": "Foi & Soumission",
-    "arabic": "اللَّهُمَّ بِكَ أَمْسَيْنَا، وَبِكَ أَصْبَحْنَا، وَبِكَ نَحْيَا، وَبِكَ نَمُوتُ وَإِلَيْكَ الْمَصِيرُ.",
-    "translation": "Ô Allah ! C'est par Toi que nous nous retrouvons au soir et c'est par Toi que nous nous retrouvons au matin. C'est par Toi que nous vivons et c'est par Toi que nous mourons, et c'est vers Toi qu'est le retour.",
+    "category": "Réveil",
+    "arabic": "الْحَمْدُ لِلَّهِ الَّذِي أَحْيَانَا بَعْدَ مَا أَمَاتَنَا وَإِلَيْهِ النُّشُورُ",
+    "translation": "Louange à Allah qui nous a rendu la vie après nous avoir fait mourir, et c'est vers Lui que sera la résurrection.",
     "count": 1
   },
   {
     "id": 11,
-    "time": "evening",
-    "category": "Pardon (Istighfar)",
-    "arabic": "اللَّهُمَّ أَنْتَ رَبِّي لا إِلَهَ إِلا أَنْتَ، خَلَقْتَنِي وَأَنَا عَبْدُكَ، وَأَنَا عَلَى عَهْدِكَ وَوَعْدِكَ مَا اسْتَطَعْتُ، أَعُوذُ بِكَ مِنْ شَرِّ مَا صَنَعْتُ، أَبُوءُ لَكَ بِنِعْمَتِكَ عَلَيَّ، وَأَبُوءُ بِذَنْبِي فَاغْفِرْ لِي فَإِنَّهُ لا يَغْفِرُ الذُّنُوبَ إِلا أَنْتَ.",
-    "translation": "Ô Allah, Tu es mon Seigneur, il n'y a de divinité digne d'adoration que Toi. Tu m'as créé et je suis Ton serviteur. Je me conforme autant que je peux à mon engagement et à ma promesse envers Toi. Je me réfugie auprès de Toi contre le mal de ce que j'ai fait. Je reconnais Tes bienfaits à mon égard et je reconnais mon péché. Pardonne-moi, car nul autre que Toi ne pardonne les péchés.",
+    "category": "Réveil",
+    "arabic": "الْحَمْدُ لِلَّهِ الَّذِي عَافَانِي فِي جَسَدِي، وَرَدَّ عَلَيَّ رُوحِي، وَأَذِنَ لِي بِذِكْرِهِ",
+    "translation": "Louange à Allah qui m'a rendu la santé dans mon corps, m'a restitué mon âme et m'a permis de Le mentionner.",
     "count": 1
   },
   {
     "id": 12,
-    "time": "evening",
-    "category": "Protection",
-    "arabic": "اللَّهُمَّ إِنِّي أَسْأَلُكَ الْعَافِيَةَ فِي الدُّنْيَا وَالآخِرَةِ، اللَّهُمَّ إِنِّي أَسْأَلُكَ الْعَفْوَ وَالْعَافِيَةَ فِي دِينِي وَدُنْيَايَ وَأَهْلِي وَمَالِي.",
-    "translation": "Ô Allah ! Je Te demande la santé (et le salut) dans cette vie et dans l'au-delà. Ô Allah ! Je Te demande le pardon et la santé dans ma religion, ma vie mondaine, ma famille et mes biens.",
+    "category": "Réveil",
+    "arabic": "لَا إِلَهَ إِلَّا اللَّهُ وَحْدَهُ لَا شَرِيكَ لَهُ، لَهُ الْمُلْكُ وَلَهُ الْحَمْدُ، وَهُوَ عَلَى كُلِّ شَيْءٍ قَدِيرٌ",
+    "translation": "Il n'y a de divinité digne d'adoration qu'Allah, Seul, sans associé. À Lui la royauté et à Lui la louange, et Il est Omnipotent.",
     "count": 1
   },
   {
     "id": 13,
-    "time": "evening",
-    "category": "Protection",
-    "arabic": "بِسْمِ اللَّهِ الَّذِي لا يَضُرُّ مَعَ اسْمِهِ شَيْءٌ فِي الأَرْضِ وَلا فِي السَّمَاءِ وَهُوَ السَّمِيعُ الْعَلِيمُ.",
-    "translation": "Au nom d'Allah, tel qu'en compagnie de Son Nom, rien sur terre ni au ciel ne peut nuire, et Il est l'Audient, l'Omniscient.",
-    "count": 3
+    "category": "Repas",
+    "arabic": "بِسْمِ اللَّهِ",
+    "translation": "Au nom d'Allah.",
+    "count": 1
   },
   {
     "id": 14,
-    "time": "evening",
-    "category": "Foi & Soumission",
-    "arabic": "رَضِيتُ بِاللَّهِ رَبّاً، وَبِالإِسْلامِ دِيناً، وَبِمُحَمَّدٍ صَلَّى اللَّهُ عَلَيْهِ وَسَلَّمَ نَبِيّاً.",
-    "translation": "J'agrée Allah comme Seigneur, l'Islam comme religion et Muhammad (paix et bénédiction sur lui) comme prophète.",
-    "count": 3
+    "category": "Repas",
+    "arabic": "بِسْمِ اللَّهِ فِي أَوَّلِهِ وَآخِرِهِ",
+    "translation": "Au nom d'Allah, au début et à la fin (si on l'a oublié au début).",
+    "count": 1
   },
   {
     "id": 15,
-    "time": "evening",
-    "category": "Protection",
-    "arabic": "يَا حَيُّ يَا قَيُّومُ بِرَحْمَتِكَ أَسْتَغِيثُ أَصْلِحْ لِي شَأْنِي كُلَّهُ وَلا تَكِلْنِي إِلَى نَفْسِي طَرْفَةَ عَيْنٍ.",
-    "translation": "Ô le Vivant, Ô Celui qui subsiste par Lui-même ! J'implore secours par Ta miséricorde. Améliore ma situation tout entière et ne me laisse pas à moi-même ne serait-ce que le temps d'un clin d'œil.",
+    "category": "Repas",
+    "arabic": "الْحَمْدُ لِلَّهِ الَّذِي أَطْعَمَنِي هَذَا وَرَزَقَنِيهِ مِنْ غَيْرِ حَوْلٍ مِنِّي وَلَا قُوَّةٍ",
+    "translation": "Louange à Allah qui m'a nourri de cela et me l'a accordé sans aucune force ni puissance de ma part.",
     "count": 1
   },
   {
     "id": 16,
-    "time": "evening",
-    "category": "Protection",
-    "arabic": "أَعُوذُ بِكَلِمَاتِ اللَّهِ التَّامَّاتِ مِنْ شَرِّ مَا خَلَقَ.",
-    "translation": "Je me réfugie auprès des paroles parfaites d'Allah contre le mal de ce qu'Il a créé.",
+    "category": "Voyage",
+    "arabic": "اللَّهُ أَكْبَرُ، اللَّهُ أَكْبَرُ، اللَّهُ أَكْبَرُ، سُبْحَانَ الَّذِي سَخَّرَ لَنَا هَذَا وَمَا كُنَّا لَهُ مُقْرِنِينَ، وَإِنَّا إِلَى رَبِّنَا لَمُنْقَلِبُونَ",
+    "translation": "Allah est le plus grand (3x). Gloire à Celui qui a mis ceci à notre disposition alors que nous n'étions pas capables de le dominer. Et c'est vers notre Seigneur que nous retournerons.",
+    "count": 1
+  },
+  {
+    "id": 17,
+    "category": "Voyage",
+    "arabic": "اللَّهُمَّ إِنَّا نَسْأَلُكَ فِي سَفَرِنَا هَذَا الْبِرَّ وَالتَّقْوَى، وَمِنَ الْعَمَلِ مَا تَرْضَى",
+    "translation": "Ô Allah, nous Te demandons dans ce voyage la bonté et la piété, et des œuvres que Tu agrées.",
+    "count": 1
+  },
+  {
+    "id": 18,
+    "category": "Voyage",
+    "arabic": "آيِبُونَ تَائِبُونَ عَابِدُونَ لِرَبِّنَا حَامِدُونَ",
+    "translation": "Nous voici de retour, repentants, adorateurs et louant notre Seigneur.",
+    "count": 1
+  },
+  {
+    "id": 19,
+    "category": "Prière",
+    "arabic": "أَسْتَغْفِرُ اللَّهَ",
+    "translation": "Je demande pardon à Allah.",
     "count": 3
+  },
+  {
+    "id": 20,
+    "category": "Prière",
+    "arabic": "اللَّهُمَّ أَنْتَ السَّلَامُ وَمِنْكَ السَّلَامُ، تَبَارَكْتَ يَا ذَا الْجَلَالِ وَالْإِكْرَامِ",
+    "translation": "Ô Allah, Tu es la Paix et la paix vient de Toi. Béni sois-Tu, ô Détenteur de la majesté et de la munificence.",
+    "count": 1
+  },
+  {
+    "id": 21,
+    "category": "Prière",
+    "arabic": "اللَّهُمَّ أَعِنِّي عَلَى ذِكْرِكَ، وَشُكْرِكَ، وَحُسْنِ عِبَادَتِكَ",
+    "translation": "Ô Allah, aide-moi à T'invoquer, à Te remercier et à parfaire mon adoration envers Toi.",
+    "count": 1
+  },
+  {
+    "id": 22,
+    "category": "Maison",
+    "arabic": "بِسْمِ اللَّهِ وَلَجْنَا، وَبِسْمِ اللَّهِ خَرَجْنَا، وَعَلَى اللَّهِ رَبِّنَا تَوَكَّلْنَا",
+    "translation": "Au nom d'Allah nous entrons, au nom d'Allah nous sortons, et en notre Seigneur nous plaçons notre confiance.",
+    "count": 1
+  },
+  {
+    "id": 23,
+    "category": "Maison",
+    "arabic": "بِسْمِ اللَّهِ تَوَكَّلْتُ عَلَى اللَّهِ، وَلَا حَوْلَ وَلَا قُوَّةَ إِلَّا بِاللَّهِ",
+    "translation": "Au nom d'Allah, je place ma confiance en Allah. Il n'y a de force ni de puissance qu'en Allah.",
+    "count": 1
+  },
+  {
+    "id": 24,
+    "category": "Maison",
+    "arabic": "اللَّهُمَّ إِنِّي أَسْأَلُكَ خَيْرَ الْمَوْلَجِ وَخَيْرَ الْمَخْرَجِ",
+    "translation": "Ô Allah, je Te demande la meilleure des entrées et la meilleure des sorties.",
+    "count": 1
+  },
+  {
+    "id": 25,
+    "category": "Tristesse",
+    "arabic": "لَا إِلَهَ إِلَّا أَنْتَ سُبْحَانَكَ إِنِّي كُنْتُ مِنَ الظَّالِمِينَ",
+    "translation": "Il n'y a pas d'autre divinité digne d'adoration que Toi. Gloire à Toi ! J'étais du nombre des injustes.",
+    "count": 1
+  },
+  {
+    "id": 26,
+    "category": "Tristesse",
+    "arabic": "اللَّهُمَّ رَحْمَتَكَ أَرْجُو، فَلَا تَكِلْنِي إِلَى نَفْسِي طَرْفَةَ عَيْنٍ، وَأَصْلِحْ لِي شَأْنِي كُلَّهُ، لَا إِلَهَ إِلَّا أَنْتَ",
+    "translation": "Ô Allah, j'espère Ta miséricorde. Ne me laisse donc pas à moi-même ne serait-ce que le temps d'un clin d'œil et arrange toutes mes affaires. Il n'y a pas d'autre divinité digne d'adoration que Toi.",
+    "count": 1
+  },
+  {
+    "id": 27,
+    "category": "Tristesse",
+    "arabic": "اللَّهُمَّ إِنِّي عَبْدُكَ، ابْنُ عَبْدِكَ، ابْنُ أَمَتِكَ، نَاصِيَتِي بِيَدِكَ، مَاضٍ فِيَّ حُكْمُكَ، عَدْلٌ فِيَّ قَضَاؤُكَ",
+    "translation": "Ô Allah, je suis Ton serviteur, fils de Ton serviteur, fils de Ta servante, mon toupet est dans Ta main. Ton jugement s'accomplit sur moi, Ton décret sur moi est juste.",
+    "count": 1
   }
 ]
