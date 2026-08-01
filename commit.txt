@@ -1,13 +1,16 @@
-[2026-08-01] — Fix: handle missing country_code in Nominatim search results
+[2026-08-01] — Layout: switch desktop navigation from top-bar to left sidebar
 
 What changed:
-- Added a fallback check for `country_code` in `cleanLocationResults.js` before calling `.toUpperCase()`.
+- Converted `Navigation.jsx` to act as a fixed left sidebar (`md:w-64`, `md:flex-col`, `md:h-screen`) on desktop and tablet screens instead of a top navigation bar.
+- Updated `App.jsx` to accommodate the sidebar by applying `md:ml-64` to the main content container.
+- Mobile layout remains unchanged as a native-app-style bottom navigation.
 
 Why:
-- The Nominatim API occasionally returns location results without a `country_code`, causing a `Cannot read properties of undefined (reading 'toUpperCase')` crash on the frontend when searching for certain locations.
+- Based on user feedback, a sidebar layout on desktop is preferred over a top navbar. This matches the "Vercel-style" dashboard aesthetic more closely and allows for better vertical scaling of navigation items.
 
 Files affected:
-- FRONTEND/islam app/src/utils/cleanLocationResults.js
+- FRONTEND/islam app/src/App.jsx
+- FRONTEND/islam app/src/components/Navigation.jsx
 
 Breaking changes:
 - None.
