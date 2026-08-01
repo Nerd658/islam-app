@@ -1,4 +1,5 @@
 import {useState } from 'react'
+import { Link } from 'react-router-dom';
 import SearchInput from '../components/SearchInput';
 import LocationSuggestions from '../components/LocationSuggestions';
 import Header from '../components/Header';
@@ -146,13 +147,18 @@ export default function Home() {
 
               {prayerTimes &&  <PrayerTimesList prayerTimes={prayerTimes} /> }
 
-
-          
             {error && <p className="text-red-400 mt-2 bg-red-900/50 p-2 rounded">{error}</p>}
 
-
-
         </form>
+
+        <div className="mt-12 mb-8 w-full max-w-md mx-auto">
+            <Link to="/names" className="block p-6 rounded-3xl bg-gradient-to-r from-amber-600 to-orange-500 hover:from-amber-500 hover:to-orange-400 shadow-xl shadow-orange-900/20 transition-all transform hover:scale-105 border border-amber-400/30 text-center relative overflow-hidden group">
+                <div className="absolute top-0 right-0 -mt-4 -mr-4 text-8xl text-white/10 font-arabic group-hover:rotate-12 transition-transform">الله</div>
+                <h3 className="text-2xl font-bold mb-2">Les 99 Noms d'Allah</h3>
+                <p className="text-amber-100 text-sm">Découvrez leurs sens et méditez sur Ses attributs parfaits.</p>
+            </Link>
+        </div>
+
       </div>
     </> 
   )

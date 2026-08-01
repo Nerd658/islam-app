@@ -7,11 +7,12 @@ import Quran from './pages/Quran';
 import Tasbih from './pages/Tasbih';
 import Events from './pages/Events';
 import Chat from './pages/Chat';
+import Names from './pages/Names';
 
 function App() {
   return (
     <div className='flex flex-col min-h-screen bg-gradient-to-br from-slate-900 via-blue-900 to-violet-900 text-white'>
-      <div className="flex-grow overflow-y-auto pb-24">
+      <div className="flex-grow overflow-y-auto pb-24 custom-scrollbar">
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/adhkar" element={<Adhkar />} />
@@ -19,6 +20,7 @@ function App() {
           <Route path="/tasbih" element={<Tasbih />} />
           <Route path="/events" element={<Events />} />
           <Route path="/chat" element={<Chat />} />
+          <Route path="/names" element={<Names />} />
         </Routes>
       </div>
       <Navigation />

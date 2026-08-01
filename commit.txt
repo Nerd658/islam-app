@@ -1,25 +1,18 @@
-[2026-08-01] — Refactor: Externalize public API URLs to environment variables (v2.1.2)
+[2026-08-01] — Feature: Quran Audio & 99 Names of Allah (v2.2.0)
 
 What changed:
-- Removed all hardcoded URLs for external APIs (Aladhan, OpenRouter, Nominatim OpenStreetMap, and Quran.com) from the Frontend source files (`Home.jsx`, `Chat.jsx`, `fetchEvents.js`, `fetchPrayerTimes.js`, `useLocationSearch.js`, `QuranReader.jsx`).
-- Removed hardcoded URLs from the Backend controllers (`prayerController.js`, `chatController.js`).
-- Created a comprehensive `.env` (and `.env.example`) setup for both the FRONTEND and BACKEND environments to manage all URLs centrally.
+- **Quran Audio**: Implemented full audio recitation support in `QuranReader.jsx`. Users can now listen to the Quran verse by verse (recited by Mishari Rashid al-`Afasy). Features include Play/Pause on individual verses, auto-playing the next verse, and real-time UI highlighting of the currently playing verse.
+- **99 Names of Allah**: Created a beautiful `Names.jsx` gallery that fetches and displays the Asma ul-Husna (Arabic, transliteration, and meaning) using a modern glassmorphism grid.
+- **Home UI**: Added a gorgeous banner on the `Home.jsx` page to access the 99 Names of Allah without cluttering the bottom navigation bar.
 
 Why:
-- Even for public APIs without API keys, hardcoding URLs is a bad practice. It reduces maintainability, makes testing difficult (hard to mock), and forces a code change + full rebuild if an endpoint changes. Using environment variables allows dynamic configuration per environment.
+- Added upon user request (`/goal 1 et 3`) to bring the app closer to a premium, full-featured Islamic companion app. The auto-advancing audio recitation and the 99 Names gallery significantly enrich the spiritual value and user retention of the app.
 
 Files affected:
-- FRONTEND/islam app/.env (New)
-- FRONTEND/islam app/.env.example (New)
-- FRONTEND/islam app/src/api/fetchEvents.js
-- FRONTEND/islam app/src/api/fetchPrayerTimes.js
-- FRONTEND/islam app/src/hooks/useLocationSearch.js
-- FRONTEND/islam app/src/pages/Home.jsx
-- FRONTEND/islam app/src/pages/Chat.jsx
-- FRONTEND/islam app/src/components/QuranReader.jsx
-- BACKEND/.env.example
-- BACKEND/controllers/prayerController.js
-- BACKEND/controllers/chatController.js
+- FRONTEND/islam app/src/components/QuranReader.jsx — Integrated audio API and player states.
+- FRONTEND/islam app/src/pages/Names.jsx (New) — 99 Names feature.
+- FRONTEND/islam app/src/pages/Home.jsx — Added banner link.
+- FRONTEND/islam app/src/App.jsx — Added route.
 
 Breaking changes:
-- None. However, developers must now copy `.env.example` to `.env` in both FRONTEND and BACKEND to successfully run the application locally.
+- None.
