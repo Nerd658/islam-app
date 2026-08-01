@@ -1,18 +1,16 @@
-[2026-08-01] — UI/UX: Replace all emojis with sleek Lucide icons
+[2026-08-01] — Docs: Write comprehensive README.md
 
 What changed:
-- Removed all text emojis (stickers) from `Home.jsx`, `QuranReader.jsx`, and `fetchEvents.js`.
-- Replaced them with professional, minimalist SVG icons from `lucide-react` (e.g., `<MapPin>`, `<BookOpen>`, `<Moon>`, `<Gift>`).
-- Adjusted container styling in `Events.jsx` to properly align the new SVG elements.
+- Wrote a complete, professional `README.md` from scratch.
+- Documented all features (PWA, Quran, Qibla prep, Chatbot, Events, etc.).
+- Documented the exact Tech Stack and the Vercel-like UI/UX design choices.
+- Documented Security measures (Helmet, Rate Limiter) and Automated Testing scripts.
 
 Why:
-- Per user request, emojis feel less "pro" and can render inconsistently across different operating systems. Using `lucide-react` ensures a uniform, premium Vercel-like aesthetic.
+- A clean and structured project needs a proper presentation for developers and contributors, in line with production-level standards.
 
 Files affected:
-- FRONTEND/islam app/src/pages/Home.jsx
-- FRONTEND/islam app/src/components/QuranReader.jsx
-- FRONTEND/islam app/src/api/fetchEvents.js
-- FRONTEND/islam app/src/pages/Events.jsx
+- README.md
 
 Breaking changes:
 - None.
