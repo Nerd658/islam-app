@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import axios from 'axios';
-import { Send, Bot, User, AlertCircle } from 'lucide-react';
+import { Send, Bot, User, AlertCircle, MessageSquare } from 'lucide-react';
 
 export default function ChatInterface() {
     const [messages, setMessages] = useState([
@@ -9,6 +9,15 @@ export default function ChatInterface() {
     const [input, setInput] = useState('');
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState('');
+    const messagesEndRef = useRef(null);
+
+    const scrollToBottom = () => {
+        messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
+    };
+
+    useEffect(() => {
+        scrollToBottom();
+    }, [messages, loading]);
 
     const sendMessage = async (e) => {
         e.preventDefault();
@@ -36,60 +45,56 @@ export default function ChatInterface() {
     };
 
     return (
-        <div className="flex flex-col h-[80vh] max-w-2xl mx-auto px-4 pt-4 pb-20">
-            <div className="flex items-center justify-center gap-3 mb-6">
-                <Bot size={32} className="text-emerald-400" />
-                <h2 className="text-3xl font-bold">Imam Virtuel</h2>
-            </div>
-
-            <div className="flex-grow bg-slate-800/50 backdrop-blur-md rounded-3xl border border-slate-700 p-4 overflow-y-auto mb-4 custom-scrollbar flex flex-col gap-4 shadow-inner">
-                {messages.map((msg, idx) => (
-                    <div key={idx} className={`flex gap-3 max-w-[85%] ${msg.role === 'user' ? 'self-end flex-row-reverse' : 'self-start'}`}>
-                        <div className={`w-8 h-8 rounded-full flex items-center justify-center flex-shrink-0 ${msg.role === 'user' ? 'bg-emerald-500' : 'bg-slate-700'}`}>
-                            {msg.role === 'user' ? <User size={16} /> : <Bot size={16} />}
-                        </div>
-                        <div className={`p-4 rounded-2xl ${msg.role === 'user' ? 'bg-emerald-600 text-white rounded-tr-sm' : 'bg-slate-700 text-gray-100 rounded-tl-sm'}`}>
-                            <p className="whitespace-pre-wrap">{msg.content}</p>
-                        </div>
+        <div className="max-w-2xl mx-auto pt-8 px-4 h-[calc(100vh-100px)] flex flex-col mb-16">
+            <h2 className="text-3xl font-bold text-center mb-6 text-white">Imam Virtuel</h2>
+            
+            <div className="flex-1 bg-[#0a0a0a] border border-[#333] rounded-2xl p-4 overflow-y-auto mb-4 custom-scrollbar">
+                {messages.length === 0 ? (
+                    <div className="h-full flex flex-col justify-center items-center text-gray-500 text-center">
+                        <MessageSquare size={48} className="mb-4 opacity-20" />
+                        <p>Posez vos questions sur l'Islam.</p>
+                        <p className="text-sm mt-2">Les réponses sont basées sur le Coran et la Sunnah.</p>
                     </div>
-                ))}
-                
-                {loading && (
-                    <div className="flex gap-3 self-start max-w-[85%]">
-                        <div className="w-8 h-8 rounded-full flex items-center justify-center bg-slate-700">
-                            <Bot size={16} />
+                ) : (
+                    messages.map((msg, idx) => (
+                        <div key={idx} className={`mb-4 flex ${msg.role === 'user' ? 'justify-end' : 'justify-start'}`}>
+                            <div className={`max-w-[85%] p-4 rounded-2xl ${msg.role === 'user' ? 'bg-white text-black rounded-tr-sm' : 'bg-[#111] border border-[#333] text-gray-200 rounded-tl-sm'}`}>
+                                <p className="whitespace-pre-wrap">{msg.content}</p>
+                            </div>
                         </div>
-                        <div className="p-4 rounded-2xl bg-slate-700 text-gray-100 rounded-tl-sm flex items-center gap-2">
-                            <span className="w-2 h-2 bg-gray-400 rounded-full animate-bounce"></span>
-                            <span className="w-2 h-2 bg-gray-400 rounded-full animate-bounce" style={{ animationDelay: '0.2s' }}></span>
-                            <span className="w-2 h-2 bg-gray-400 rounded-full animate-bounce" style={{ animationDelay: '0.4s' }}></span>
+                    ))
+                )}
+                {loading && (
+                    <div className="flex justify-start mb-4">
+                        <div className="bg-[#111] border border-[#333] text-gray-400 p-4 rounded-2xl rounded-tl-sm animate-pulse">
+                            L'imam réfléchit...
                         </div>
                     </div>
                 )}
-                
                 {error && (
-                    <div className="flex items-center gap-2 text-red-400 bg-red-400/10 p-3 rounded-xl text-sm self-center my-2">
+                    <div className="flex items-center gap-2 text-red-400 bg-[#220000] border border-red-900 p-3 rounded-xl text-sm self-center my-2">
                         <AlertCircle size={16} />
                         <span>{error}</span>
                     </div>
                 )}
+                <div ref={messagesEndRef} />
             </div>
 
-            <form onSubmit={sendMessage} className="relative flex items-center">
-                <input
-                    type="text"
+            <form onSubmit={sendMessage} className="flex gap-2 pb-6">
+                <input 
+                    type="text" 
                     value={input}
                     onChange={(e) => setInput(e.target.value)}
+                    placeholder="Votre question..."
+                    className="flex-1 bg-[#0a0a0a] border border-[#333] text-white px-4 py-3 rounded-xl focus:outline-none focus:border-gray-500 transition-colors"
                     disabled={loading}
-                    placeholder="Posez votre question (ex: Comment faire les ablutions ?)"
-                    className="w-full bg-slate-800 text-white border-2 border-slate-700 rounded-full py-4 pl-6 pr-16 focus:outline-none focus:border-emerald-500 transition disabled:opacity-50"
                 />
                 <button 
                     type="submit" 
                     disabled={loading || !input.trim()}
-                    className="absolute right-2 top-2 bottom-2 bg-emerald-500 hover:bg-emerald-400 text-white p-3 rounded-full flex items-center justify-center disabled:opacity-50 transition"
+                    className="bg-white text-black p-3 rounded-xl hover:bg-gray-200 disabled:opacity-50 transition-colors"
                 >
-                    <Send size={20} />
+                    <Send size={24} />
                 </button>
             </form>
         </div>

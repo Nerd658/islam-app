@@ -92,7 +92,7 @@ export default function Home() {
   return (
     <>  
 
-      <div  className='overflow-hidden text-white min-h-screen bg-gradient-to-br from-slate-900 via-blue-900 to-violet-900 pr-8 pl-8 flex flex-col items-center  pt-20'>
+      <div className='overflow-hidden min-h-screen flex flex-col items-center pt-6'>
         < Header />
         
         <form onSubmit={handleSubmit}  className='flex flex-col items-center justify-center mt-10 space-y-2 w-full'>
@@ -101,7 +101,7 @@ export default function Home() {
              type="button" 
              onClick={handleLocateMe}
              disabled={loading}
-             className="mb-4 bg-emerald-600 hover:bg-emerald-500 text-white font-bold py-2 px-6 rounded-full shadow-lg flex items-center gap-2 transition transform hover:scale-105"
+             className="mb-8 bg-white text-black hover:bg-gray-200 font-medium py-3 px-6 rounded-full flex items-center gap-2 transition disabled:opacity-50"
           >
              📍 Me localiser automatiquement
           </button>
@@ -126,23 +126,19 @@ export default function Home() {
                 setPrayerTimes={setPrayerTimes}
             />
 
-            <div className=' font-semibold text-blue-300  text-sm sm:text-lg  text-center'>
+            <div className='font-medium text-gray-300 text-sm mt-4 text-center'>
               {value}
-
             </div>
 
 
             {/* Bouton de recherche */}
-              { !prayerTimes && (
               <button
                 disabled={loading}
-                className='mt-4 mx-64 bg-gradient-to-r from-blue-600 to-violet-600 hover:from-blue-500 hover:to-violet-500 disabled:from-slate-600 disabled:to-slate-700 text-white font-semibold py-2 px-2 rounded-xl transition-all duration-300 transform hover:scale-[1.02] disabled:scale-100 disabled:cursor-not-allowed shadow-2xl text-base'
+                className='mt-8 mx-auto block bg-[#111] hover:bg-[#222] border border-[#333] text-white font-medium py-3 px-12 rounded-full transition disabled:opacity-50'
                 type="submit"
               >
-                {loading ? 'Chargement...' : 'Rechercher'}
+                {loading ? 'Recherche...' : 'Rechercher'}
               </button>)
-
-              }
           
 
               {prayerTimes &&  <PrayerTimesList prayerTimes={prayerTimes} /> }
@@ -151,11 +147,11 @@ export default function Home() {
 
         </form>
 
-        <div className="mt-12 mb-8 w-full max-w-md mx-auto">
-            <Link to="/names" className="block p-6 rounded-3xl bg-gradient-to-r from-amber-600 to-orange-500 hover:from-amber-500 hover:to-orange-400 shadow-xl shadow-orange-900/20 transition-all transform hover:scale-105 border border-amber-400/30 text-center relative overflow-hidden group">
-                <div className="absolute top-0 right-0 -mt-4 -mr-4 text-8xl text-white/10 font-arabic group-hover:rotate-12 transition-transform">الله</div>
-                <h3 className="text-2xl font-bold mb-2">Les 99 Noms d'Allah</h3>
-                <p className="text-amber-100 text-sm">Découvrez leurs sens et méditez sur Ses attributs parfaits.</p>
+        <div className="mt-16 mb-8 w-full max-w-md mx-auto px-4">
+            <Link to="/names" className="block p-6 rounded-2xl bg-[#0a0a0a] hover:bg-[#111] border border-[#333] hover:border-gray-500 transition-colors text-center relative overflow-hidden group">
+                <div className="absolute top-0 right-0 -mt-2 -mr-2 text-6xl text-white/5 font-arabic group-hover:rotate-12 transition-transform">الله</div>
+                <h3 className="text-xl font-semibold mb-2 text-white">Les 99 Noms d'Allah</h3>
+                <p className="text-gray-400 text-sm">Découvrez leurs sens et méditez sur Ses attributs parfaits.</p>
             </Link>
         </div>
 

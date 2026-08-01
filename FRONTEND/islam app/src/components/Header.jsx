@@ -1,27 +1,16 @@
-import React from "react";
-import { Clock } from 'lucide-react'
+import React from 'react';
+import { Moon } from 'lucide-react';
 
-function Header () {
+export default function Header() {
     return (
-        <>
-        <div className='bg-gradient-to-br from-blue-900 to-violet-500/20 rounded-full p-4 shadow-lg animate-pulse'>
-            <Clock  size={32}/>
-        </div>
-
-        <div className='flex flex-col items-center justify-center mt-10 gap-2'>
-
-            <h1>
-                <span className=' text-3xl sm:text-4xl font-bold bg-gradient-to-r from-blue-300 via-violet-300 to-indigo-300 bg-clip-text text-transparent'>
-                    Horaires de Prière
-                </span>
-            </h1>
-
-            <span className='text-xl font-semibold text-center sm:text-xl'>Trouvez les heures de prière pour votre ville</span>
-
-        </div>
-        
-        </>
-    )
+        <header className="w-full flex items-center justify-between mt-4 px-4 max-w-5xl mx-auto">
+            <div className="flex items-center gap-2 text-white">
+                <Moon size={28} strokeWidth={1.5} />
+                <h1 className="text-xl font-semibold tracking-tight">IslamApp</h1>
+            </div>
+            <div className="text-gray-400 text-xs font-medium uppercase tracking-wider">
+                {new Date().toLocaleDateString('fr-FR', { weekday: 'short', month: 'short', day: 'numeric' })}
+            </div>
+        </header>
+    );
 }
-
-export default Header

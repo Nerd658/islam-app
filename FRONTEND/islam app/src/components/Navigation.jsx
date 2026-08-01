@@ -13,7 +13,7 @@ export default function Navigation() {
     ];
 
     return (
-        <nav className="fixed bottom-0 left-0 right-0 bg-slate-900/90 backdrop-blur-lg border-t border-white/10 px-6 py-3 z-50 shadow-2xl">
+        <nav className="fixed bottom-0 w-full bg-[#0a0a0a] border-t border-[#333] px-2 py-3 z-50">
             <div className="max-w-md mx-auto flex justify-between items-center">
                 {navItems.map((item) => {
                     const Icon = item.icon;
@@ -21,14 +21,16 @@ export default function Navigation() {
                         <NavLink
                             key={item.path}
                             to={item.path}
-                            className={({ isActive }) => 
-                                `flex flex-col items-center p-2 rounded-xl transition-all duration-300 ${
-                                    isActive ? 'text-emerald-400 scale-110' : 'text-gray-400 hover:text-gray-200'
+                            className={({ isActive }) =>
+                                `flex flex-col items-center p-2 rounded-lg transition-colors duration-200 ${
+                                    isActive 
+                                        ? 'text-white' 
+                                        : 'text-gray-500 hover:text-gray-300'
                                 }`
                             }
                         >
-                            <Icon size={24} className="mb-1" />
-                            <span className="text-xs font-semibold">{item.label}</span>
+                            <Icon size={24} strokeWidth={1.5} />
+                            <span className="text-[10px] mt-1 font-medium">{item.label}</span>
                         </NavLink>
                     );
                 })}

@@ -1,18 +1,29 @@
-[2026-08-01] — Feature: Quran Audio & 99 Names of Allah (v2.2.0)
+[2026-08-01] — Refactor & Testing: Vercel Pro UI and Test Suite (v2.3.0)
 
 What changed:
-- **Quran Audio**: Implemented full audio recitation support in `QuranReader.jsx`. Users can now listen to the Quran verse by verse (recited by Mishari Rashid al-`Afasy). Features include Play/Pause on individual verses, auto-playing the next verse, and real-time UI highlighting of the currently playing verse.
-- **99 Names of Allah**: Created a beautiful `Names.jsx` gallery that fetches and displays the Asma ul-Husna (Arabic, transliteration, and meaning) using a modern glassmorphism grid.
-- **Home UI**: Added a gorgeous banner on the `Home.jsx` page to access the 99 Names of Allah without cluttering the bottom navigation bar.
+- **Test Suite**: Created `scripts/` directory with two comprehensive test scripts. `test_backend.py` validates endpoints, Zod schema validation, HPP (Parameter Pollution), and Rate Limiting. `test_frontend.js` validates dependency installation, Vite unit tests, and production build integrity (PWA manifest & HTML generation).
+- **Pro UI / UX (Vercel Style)**: Complete refactoring of the user interface. Removed all flashy gradients, colorful shadows, and glassmorphism in favor of a stark, minimalist, high-contrast monochrome design (Black, Dark Gray, and White) inspired by Vercel and modern professional enterprise apps.
+- **Components Refactored**: `App.jsx`, `Header.jsx`, `Navigation.jsx`, `Home.jsx`, `QuranReader.jsx`, `Names.jsx`, `Events.jsx`, `Tasbih.jsx`, and `Chat.jsx`.
 
 Why:
-- Added upon user request (`/goal 1 et 3`) to bring the app closer to a premium, full-featured Islamic companion app. The auto-advancing audio recitation and the 99 Names gallery significantly enrich the spiritual value and user retention of the app.
+- Added comprehensive testing to guarantee absolute stability across both frontend and backend (`/goal` request).
+- The user requested a "pro" UI like Vercel with simple colors (no mixed gradients) to give the app a more mature, reliable, and premium feel.
 
 Files affected:
-- FRONTEND/islam app/src/components/QuranReader.jsx — Integrated audio API and player states.
-- FRONTEND/islam app/src/pages/Names.jsx (New) — 99 Names feature.
-- FRONTEND/islam app/src/pages/Home.jsx — Added banner link.
-- FRONTEND/islam app/src/App.jsx — Added route.
+- scripts/test_backend.py (New)
+- scripts/test_frontend.js (New)
+- FRONTEND/islam app/src/App.jsx
+- FRONTEND/islam app/src/components/Header.jsx
+- FRONTEND/islam app/src/components/Navigation.jsx
+- FRONTEND/islam app/src/pages/Home.jsx
+- FRONTEND/islam app/src/pages/QuranReader.jsx
+- FRONTEND/islam app/src/pages/Names.jsx
+- FRONTEND/islam app/src/pages/Events.jsx
+- FRONTEND/islam app/src/pages/Tasbih.jsx
+- FRONTEND/islam app/src/pages/Chat.jsx
 
 Breaking changes:
 - None.
+
+Notes for review:
+- You can run `python3 scripts/test_backend.py` (ensure backend is on port 4000) and `node scripts/test_frontend.js` at any time to verify app integrity.

@@ -29,44 +29,38 @@ export default function Tasbih() {
         <div className="flex flex-col items-center justify-center min-h-[80vh] px-4">
             <h2 className="text-3xl font-bold mb-8">Tasbih Numérique 📿</h2>
             
-            <div className="flex flex-wrap justify-center gap-2 mb-10">
-                {phrases.map(p => (
-                    <button
-                        key={p.text}
-                        onClick={() => { setPhrase(p.text); setCount(0); }}
-                        className={`px-4 py-2 rounded-full font-semibold transition ${phrase === p.text ? 'bg-emerald-500 text-white shadow-lg' : 'bg-white/10 text-gray-300 hover:bg-white/20'}`}
-                    >
-                        {p.text}
-                    </button>
-                ))}
-            </div>
-
-            <div className="bg-slate-800/80 p-8 rounded-[3rem] shadow-2xl border-4 border-slate-700 w-full max-w-sm flex flex-col items-center relative">
-                <div className="absolute top-4 right-6 text-emerald-400 font-mono text-xl">
-                    Total: {total}
-                </div>
+            <div className="bg-[#0a0a0a] border border-[#333] p-8 rounded-[3rem] shadow-2xl flex flex-col items-center w-full max-w-sm">
                 
-                <h3 className="text-4xl font-arabic text-amber-300 mt-8 mb-2">
-                    {phrases.find(p => p.text === phrase)?.arabic}
-                </h3>
-                <p className="text-gray-400 mb-8">{phrase}</p>
-
-                <div className="bg-slate-900 w-full rounded-2xl p-6 text-center shadow-inner mb-10">
-                    <span className="text-7xl font-mono font-bold text-white tracking-widest">{count.toString().padStart(3, '0')}</span>
+                <div className="mb-8 w-full">
+                    <select 
+                        onChange={(e) => { setPhrase(e.target.value); setCount(0); }}
+                        className="w-full bg-[#111] border border-[#333] text-white p-3 rounded-lg outline-none"
+                    >
+                        {phrases.map(p => (
+                            <option key={p.text} value={p.text}>{p.text}</option>
+                        ))}
+                    </select>
                 </div>
 
-                <div className="flex gap-4 w-full px-4">
+                <div className="bg-[#111] border border-[#444] w-full h-32 rounded-2xl mb-12 flex flex-col items-center justify-center shadow-inner relative overflow-hidden">
+                    <h3 className="text-2xl font-arabic text-gray-400 mb-1">{phrases.find(p => p.text === phrase)?.arabic}</h3>
+                    <span className="text-5xl font-mono text-white font-bold">{count.toString().padStart(4, '0')}</span>
+                </div>
+
+                <div className="flex flex-col items-center gap-8 w-full">
                     <button 
-                        onClick={handleReset}
-                        className="w-16 h-16 rounded-full bg-red-500/20 text-red-400 hover:bg-red-500/40 flex items-center justify-center font-bold shadow-inner transition active:scale-95"
+                        onClick={increment}
+                        className="w-32 h-32 bg-white hover:bg-gray-200 text-black rounded-full shadow-lg flex items-center justify-center transform active:scale-95 transition-all"
                     >
-                        Reset
+                        <span className="text-2xl font-bold">Tap</span>
                     </button>
+
                     <button 
-                        onClick={handleTap}
-                        className="flex-grow h-24 rounded-[2rem] bg-emerald-500 hover:bg-emerald-400 text-white text-3xl font-bold shadow-[0_10px_0_0_rgba(5,150,105,1)] active:shadow-[0_0px_0_0_rgba(5,150,105,1)] active:translate-y-[10px] transition-all"
+                        onClick={reset}
+                        className="w-16 h-16 bg-[#222] hover:bg-[#333] border border-[#444] text-white rounded-full flex items-center justify-center shadow-md transform active:scale-90 transition-all"
+                        title="Réinitialiser"
                     >
-                        TAP
+                        <RotateCcw size={24} />
                     </button>
                 </div>
             </div>

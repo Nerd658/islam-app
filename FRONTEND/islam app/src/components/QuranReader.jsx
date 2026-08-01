@@ -92,54 +92,54 @@ export default function QuranReader() {
 
     return (
         <div className="w-full max-w-5xl mx-auto mt-16 mb-24 px-4">
-            <h2 className="text-3xl font-bold text-center mb-8">Le Noble Coran 📖</h2>
+            <h2 className="text-3xl font-bold text-center mb-8 text-white">Le Noble Coran 📖</h2>
             
             {!selectedChapter ? (
-                <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4 max-h-[60vh] overflow-y-auto p-4 bg-black/20 rounded-3xl border border-white/5 custom-scrollbar">
+                <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4 max-h-[60vh] overflow-y-auto p-4 bg-[#0a0a0a] rounded-2xl border border-[#333] custom-scrollbar">
                     {chapters.map(chapter => (
                         <button 
                             key={chapter.id}
                             onClick={() => fetchVerses(chapter.id)}
-                            className="flex flex-col items-center justify-center p-4 bg-white/5 hover:bg-emerald-600 rounded-2xl transition-all shadow-md transform hover:scale-105"
+                            className="flex flex-col items-center justify-center p-4 bg-[#111] hover:bg-[#222] border border-[#333] hover:border-gray-500 rounded-xl transition-all"
                         >
-                            <span className="text-emerald-400 font-bold mb-1 text-sm">N° {chapter.id}</span>
-                            <h3 className="font-bold text-lg mb-1">{chapter.name_simple}</h3>
-                            <p className="text-2xl text-amber-300 font-arabic">{chapter.name_arabic}</p>
+                            <span className="text-gray-500 font-bold mb-1 text-xs">N° {chapter.id}</span>
+                            <h3 className="font-bold text-lg mb-1 text-white">{chapter.name_simple}</h3>
+                            <p className="text-2xl text-white font-arabic">{chapter.name_arabic}</p>
                         </button>
                     ))}
                 </div>
             ) : (
-                <div className="bg-white/10 p-6 sm:p-10 rounded-3xl shadow-2xl relative border border-white/10">
+                <div className="bg-[#0a0a0a] p-6 sm:p-10 rounded-2xl relative border border-[#333]">
                     <button 
                         onClick={() => setSelectedChapter(null)}
-                        className="absolute top-6 left-6 bg-slate-800 hover:bg-slate-700 px-6 py-2 rounded-full text-sm font-bold shadow-md transition-all"
+                        className="absolute top-6 left-6 bg-[#222] hover:bg-[#333] border border-[#444] px-4 py-2 rounded-lg text-sm font-medium transition-all text-white"
                     >
                         🔙 Retour
                     </button>
-                    <h3 className="text-3xl sm:text-4xl font-bold text-center mb-10 pt-12 text-emerald-400 font-arabic">
+                    <h3 className="text-3xl sm:text-4xl font-bold text-center mb-10 pt-12 text-white font-arabic">
                         {selectedChapter.name_arabic}
-                        <span className="block text-xl text-gray-300 mt-2 font-sans">Sourate {selectedChapter.name_simple}</span>
+                        <span className="block text-xl text-gray-500 mt-2 font-sans">Sourate {selectedChapter.name_simple}</span>
                     </h3>
                     
                     {loading ? (
                         <div className="flex justify-center items-center h-48">
-                            <p className="text-xl animate-pulse text-emerald-300">Chargement des versets...</p>
+                            <p className="text-xl text-gray-300">Chargement des versets...</p>
                         </div>
                     ) : (
-                        <div className="flex flex-col space-y-6" dir="rtl">
+                        <div className="flex flex-col space-y-4" dir="rtl">
                             {verses.map(v => (
-                                <div key={v.id} className={`p-4 rounded-2xl transition-colors ${playingVerse === v.verse_key ? 'bg-emerald-900/40 border border-emerald-500/30' : 'hover:bg-white/5'}`}>
+                                <div key={v.id} className={`p-4 rounded-xl transition-colors ${playingVerse === v.verse_key ? 'bg-[#111] border-r-4 border-white' : 'hover:bg-[#111] border-r-4 border-transparent'}`}>
                                     <div className="flex items-center gap-4">
                                         <button 
                                             onClick={() => playVerse(v.verse_key)}
-                                            className={`flex-shrink-0 transition-transform hover:scale-110 ${playingVerse === v.verse_key ? 'text-emerald-400' : 'text-slate-400 hover:text-white'}`}
+                                            className={`flex-shrink-0 transition-transform ${playingVerse === v.verse_key ? 'text-white' : 'text-gray-600 hover:text-white'}`}
                                             title="Écouter le verset"
                                         >
-                                            {playingVerse === v.verse_key ? <PauseCircle size={32} /> : <PlayCircle size={32} />}
+                                            {playingVerse === v.verse_key ? <PauseCircle size={28} /> : <PlayCircle size={28} />}
                                         </button>
-                                        <p className="font-arabic text-3xl sm:text-4xl leading-loose flex-grow text-right">
+                                        <p className="font-arabic text-3xl sm:text-4xl leading-loose flex-grow text-right text-white">
                                             {v.text_uthmani}
-                                            <span className="inline-flex items-center justify-center bg-emerald-700/60 text-amber-300 text-lg w-10 h-10 rounded-full mx-3 font-mono shadow-inner border border-emerald-500/50">
+                                            <span className="inline-flex items-center justify-center bg-[#222] text-white text-sm w-8 h-8 rounded-full mx-3 font-mono border border-[#444]">
                                                 {v.verse_key.split(':')[1]}
                                             </span>
                                         </p>
