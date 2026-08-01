@@ -1,6 +1,6 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
-import { Home, BookOpen, Heart, Activity, CalendarDays, MessageCircle, Moon, Star } from 'lucide-react';
+import { Home, BookOpen, Heart, Activity, CalendarDays, MessageCircle, Moon, Star, Compass } from 'lucide-react';
 
 export default function Navigation() {
     const navItems = [
@@ -9,6 +9,7 @@ export default function Navigation() {
         { path: '/adhkar', label: 'Adhkar', icon: Heart },
         { path: '/tasbih', label: 'Tasbih', icon: Activity },
         { path: '/names', label: '99 Noms', icon: Star },
+        { path: '/qibla', label: 'Qibla', icon: Compass },
         { path: '/events', label: 'Dates', icon: CalendarDays },
         { path: '/chat', label: 'Imam', icon: MessageCircle }
     ];

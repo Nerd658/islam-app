@@ -3,9 +3,10 @@ const env = require('../config/env');
 
 const postChat = async (req, res, next) => {
     try {
-        const userMessage = req.body.message;
-        if (!userMessage) {
-            return res.status(400).json({ error: "Vous devez fournir un message" });
+        const history = req.body.history || [];
+        
+        if (history.length === 0) {
+            return res.status(400).json({ error: "Vous devez fournir un historique de messages" });
         }
         if (!env.OPENROUTER_API_KEY) {
             return res.status(503).json({ error: "Le service de chat est momentanément indisponible (Clé API manquante)" });
@@ -18,10 +19,7 @@ const postChat = async (req, res, next) => {
                     "role": "system",
                     "content": env.PROMPT_SYSTEM
                 },
-                {
-                    "role": "user",
-                    "content": userMessage
-                }
+                ...history
             ]
         };
 

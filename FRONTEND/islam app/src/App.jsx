@@ -8,6 +8,7 @@ import Tasbih from './pages/Tasbih';
 import Events from './pages/Events';
 import Chat from './pages/Chat';
 import Names from './pages/Names';
+import Qibla from './pages/Qibla';
 
 function App() {
   return (
@@ -22,6 +23,7 @@ function App() {
           <Route path="/events" element={<Events />} />
           <Route path="/chat" element={<Chat />} />
           <Route path="/names" element={<Names />} />
+          <Route path="/qibla" element={<Qibla />} />
         </Routes>
       </div>
     </div>

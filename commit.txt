@@ -1,20 +1,20 @@
-[2026-08-01] — Refactor: Make Adhkar fully dynamic and DRY
+[2026-08-01] — Feature: Add Qibla Compass and Chatbot Memory
 
 What changed:
-- Extracted the UI logic for an invocation card into a new highly reusable `DhikrCard.jsx` component (DRY principle).
-- Updated `adhkar.json` with a massive list of invocations covering 9 distinct categories (Matin, Soir, Sommeil, Réveil, Repas, Voyage, Prière, Maison, Tristesse).
-- Completely rewrote `Adhkar.jsx`: it now dynamically reads all unique categories from `adhkar.json` and renders a horizontal scrollable menu (chips), abandoning the hardcoded "Matin/Soir" buttons.
-- `AdhkarList.jsx` now strictly filters the dataset based on the selected dynamic category and renders clean `DhikrCard` components.
+- Chatbot Memory: Updated `Chat.jsx` to maintain and send the entire conversational history array to the backend. Updated `chatController.js` to parse this history array instead of just a single message, allowing the OpenRouter AI to remember the context of the conversation.
+- Qibla Compass: Created a new `/qibla` page allowing users to find the exact direction of the Kaaba from their current geolocation.
+- Utilized HTML5 Geolocation API to fetch user coordinates and DeviceOrientation events to detect phone rotation and smoothly align the on-screen compass needle.
 
 Why:
-- The user pointed out the need to support an infinite number of categories (travel, eating, etc.) instead of just morning/evening. 
-- The user explicitly requested to respect DRY by creating reusable components rather than duplicating huge chunks of code.
+- The virtual Imam couldn't hold a continuous conversation without context.
+- A Qibla compass is an essential tool for an Islamic application, making it easier for users to pray while traveling or in unfamiliar locations.
 
 Files affected:
-- FRONTEND/islam app/src/components/DhikrCard.jsx (Added)
-- FRONTEND/islam app/src/components/AdhkarList.jsx
-- FRONTEND/islam app/src/pages/Adhkar.jsx
-- FRONTEND/islam app/src/data/adhkar.json
+- FRONTEND/islam app/src/pages/Chat.jsx
+- BACKEND/controllers/chatController.js
+- FRONTEND/islam app/src/pages/Qibla.jsx (Added)
+- FRONTEND/islam app/src/App.jsx
+- FRONTEND/islam app/src/components/Navigation.jsx
 
 Breaking changes:
 - None.

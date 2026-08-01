@@ -24,14 +24,17 @@ export default function ChatInterface() {
         if (!input.trim()) return;
 
         const userMsg = input.trim();
-        setMessages(prev => [...prev, { role: 'user', content: userMsg }]);
+        const newHistory = [...messages, { role: 'user', content: userMsg }];
+        
+        setMessages(newHistory);
         setInput('');
         setLoading(true);
         setError('');
 
         try {
+            // We slice(1) to avoid sending the initial hardcoded bot greeting to the API
             const res = await axios.post(`${import.meta.env.VITE_BACKEND_URL}/api/chat`, {
-                message: userMsg
+                history: newHistory.slice(1)
             });
             
             setMessages(prev => [...prev, { role: 'assistant', content: res.data.reply }]);
