@@ -1,29 +1,20 @@
-[2026-08-01] — Refactor & Testing: Vercel Pro UI and Test Suite (v2.3.0)
+[2026-08-01] — Refactor: Advanced Responsive Layout (Top Nav on Desktop)
 
 What changed:
-- **Test Suite**: Created `scripts/` directory with two comprehensive test scripts. `test_backend.py` validates endpoints, Zod schema validation, HPP (Parameter Pollution), and Rate Limiting. `test_frontend.js` validates dependency installation, Vite unit tests, and production build integrity (PWA manifest & HTML generation).
-- **Pro UI / UX (Vercel Style)**: Complete refactoring of the user interface. Removed all flashy gradients, colorful shadows, and glassmorphism in favor of a stark, minimalist, high-contrast monochrome design (Black, Dark Gray, and White) inspired by Vercel and modern professional enterprise apps.
-- **Components Refactored**: `App.jsx`, `Header.jsx`, `Navigation.jsx`, `Home.jsx`, `QuranReader.jsx`, `Names.jsx`, `Events.jsx`, `Tasbih.jsx`, and `Chat.jsx`.
+- **Responsive Navigation**: Overhauled `Navigation.jsx` so that on desktop screens (`md:` breakpoint and up), the bottom navigation transforms into a sleek, sticky Top Navigation bar with the logo and horizontal buttons. On mobile, it retains the native app-like bottom navigation.
+- **Adaptive Layouts**: Updated `App.jsx` paddings (`md:pt-20`, `md:pb-8`) to accommodate the new desktop top bar without obstructing content.
+- **Smart Headers**: Configured `Header.jsx` to hide on desktop (`md:hidden`) since the top navigation now handles the logo and branding, keeping the UI minimal and avoiding redundancy.
 
 Why:
-- Added comprehensive testing to guarantee absolute stability across both frontend and backend (`/goal` request).
-- The user requested a "pro" UI like Vercel with simple colors (no mixed gradients) to give the app a more mature, reliable, and premium feel.
+- The user requested "pense responsive" to ensure a "pro" layout across all devices. This hybrid approach (top nav for desktop, bottom nav for mobile) is the industry standard for modern, professional web apps (e.g., Vercel, Twitter).
 
 Files affected:
-- scripts/test_backend.py (New)
-- scripts/test_frontend.js (New)
 - FRONTEND/islam app/src/App.jsx
-- FRONTEND/islam app/src/components/Header.jsx
 - FRONTEND/islam app/src/components/Navigation.jsx
-- FRONTEND/islam app/src/pages/Home.jsx
-- FRONTEND/islam app/src/pages/QuranReader.jsx
-- FRONTEND/islam app/src/pages/Names.jsx
-- FRONTEND/islam app/src/pages/Events.jsx
-- FRONTEND/islam app/src/pages/Tasbih.jsx
-- FRONTEND/islam app/src/pages/Chat.jsx
+- FRONTEND/islam app/src/components/Header.jsx
 
 Breaking changes:
 - None.
 
 Notes for review:
-- You can run `python3 scripts/test_backend.py` (ensure backend is on port 4000) and `node scripts/test_frontend.js` at any time to verify app integrity.
+- Test the application on both mobile and desktop views. The transition should be seamless.

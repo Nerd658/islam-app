@@ -12,7 +12,7 @@ import Names from './pages/Names';
 function App() {
   return (
     <div className='flex flex-col min-h-screen bg-black text-gray-100 font-sans selection:bg-gray-800 selection:text-white'>
-      <div className="flex-grow overflow-y-auto pb-24 custom-scrollbar">
+      <div className="flex-grow overflow-y-auto pb-24 md:pb-8 md:pt-20 custom-scrollbar">
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/adhkar" element={<Adhkar />} />
