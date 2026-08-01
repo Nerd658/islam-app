@@ -1,6 +1,6 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
-import { Home, BookOpen, Heart, Activity, CalendarDays } from 'lucide-react';
+import { Home, BookOpen, Heart, Activity, CalendarDays, MessageCircle } from 'lucide-react';
 
 export default function Navigation() {
     const navItems = [
@@ -8,7 +8,8 @@ export default function Navigation() {
         { path: '/quran', label: 'Coran', icon: BookOpen },
         { path: '/adhkar', label: 'Adhkar', icon: Heart },
         { path: '/tasbih', label: 'Tasbih', icon: Activity },
-        { path: '/events', label: 'Dates', icon: CalendarDays }
+        { path: '/events', label: 'Dates', icon: CalendarDays },
+        { path: '/chat', label: 'Imam', icon: MessageCircle }
     ];
 
     return (

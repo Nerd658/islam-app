@@ -6,6 +6,7 @@ import Adhkar from './pages/Adhkar';
 import Quran from './pages/Quran';
 import Tasbih from './pages/Tasbih';
 import Events from './pages/Events';
+import Chat from './pages/Chat';
 
 function App() {
   return (
@@ -17,6 +18,7 @@ function App() {
           <Route path="/quran" element={<Quran />} />
           <Route path="/tasbih" element={<Tasbih />} />
           <Route path="/events" element={<Events />} />
+          <Route path="/chat" element={<Chat />} />
         </Routes>
       </div>
       <Navigation />

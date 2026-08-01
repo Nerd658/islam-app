@@ -1,16 +1,16 @@
-[2026-08-01] — Feature: Islamic Events Countdown (v2.1.0)
+[2026-08-01] — Fix: Restored Chatbot UI and added .env.example (v2.1.1)
 
 What changed:
-- Added a new `Events.jsx` page to display upcoming major Islamic events (Ramadan, Aïd al-Fitr, Hajj/Arafat, Tabaski, etc.).
-- Created a service `fetchEvents.js` that automatically calculates the number of days remaining. It queries the Aladhan API to get the current Hijri year and dynamically projects the future Gregorian dates for each event.
-- Added a "Dates" tab in the bottom `Navigation.jsx` bar using the `CalendarDays` icon.
+- Created the missing `Chat.jsx` interface for the "Imam Virtuel" (Chatbot).
+- Added the "Imam" icon to the bottom navigation bar.
+- Created `BACKEND/.env.example` to guide developers on setting up the `OPENROUTER_API_KEY`.
 
 Why:
-- Because the Hijri calendar is lunar, it shifts by ~11 days each year relative to the Gregorian calendar. Muslims constantly need to check "how many days left until Ramadan or Eid?". This feature automates that math elegantly.
+- During the React Router refactoring, the Chatbot UI was omitted. It is now fully integrated, responsive, and wired to the secure rate-limited backend `/api/chat` route.
 
 Files affected:
-- FRONTEND/islam app/src/api/fetchEvents.js (New)
-- FRONTEND/islam app/src/pages/Events.jsx (New)
+- BACKEND/.env.example (New)
+- FRONTEND/islam app/src/pages/Chat.jsx (New)
 - FRONTEND/islam app/src/App.jsx (Updated Router)
 - FRONTEND/islam app/src/components/Navigation.jsx (Added tab)
 
@@ -18,4 +18,4 @@ Breaking changes:
 - None.
 
 Notes for review:
-- The dates are based on algorithmic moon calculations (Umm al-Qura or similar via Aladhan). A disclaimer is displayed to remind users that exact dates may vary by +/- 1 day depending on local moon sighting.
+- The Chatbot requires a valid OpenRouter API key. Copy `.env.example` to `.env` in the BACKEND folder and insert your key.
