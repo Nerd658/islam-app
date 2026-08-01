@@ -111,10 +111,6 @@ export default function Home() {
 
             {/* Hero Banner */}
             <div className="text-center mt-8 mb-10 max-w-2xl mx-auto">
-                <div className="inline-flex items-center gap-2 px-4 py-2 bg-[#111] border border-[#333] rounded-full text-xs text-gray-400 font-medium mb-4">
-                    <Sparkles size={14} className="text-gray-200" />
-                    <span>Bienvenue sur votre espace spirituel</span>
-                </div>
                 <h1 className="text-4xl sm:text-5xl font-bold text-white mb-4 tracking-tight">
                     Horaires de Prière & Outils
                 </h1>
