@@ -1,16 +1,14 @@
-[2026-08-01] — UI/UX: Switch Adhkar categories to a Dropdown menu
+[2026-08-01] — UI/UX: Add search and filter functionality to Quran page
 
 What changed:
-- Removed the horizontal scroll chips for Adhkar categories.
-- Implemented a sleek, custom dropdown menu (`select` alternative) using absolute positioning and `lucide-react` icons (ChevronDown).
-- The dropdown adapts automatically to the number of categories and features a custom scrollbar if the list becomes too long.
+- Added a search bar to the `QuranReader` component.
+- Implemented real-time filtering allowing users to search for Surahs by their transliterated name, Arabic name, or Surah number.
 
 Why:
-- The user requested a "Pro" UI pattern instead of horizontal scrolling.
-- A dropdown menu takes up less horizontal space and is a universally understood interaction pattern for filtering large datasets on both mobile and desktop.
+- With 114 Surahs, finding a specific one by scrolling through a grid can be tedious. A search bar improves the user experience significantly.
 
 Files affected:
-- FRONTEND/islam app/src/pages/Adhkar.jsx
+- FRONTEND/islam app/src/components/QuranReader.jsx
 
 Breaking changes:
 - None.

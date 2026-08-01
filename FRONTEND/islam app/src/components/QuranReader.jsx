@@ -1,12 +1,13 @@
 import React, { useState, useEffect, useRef } from 'react';
 import axios from 'axios';
-import { PlayCircle, PauseCircle, BookOpen, ChevronLeft } from 'lucide-react';
+import { PlayCircle, PauseCircle, BookOpen, ChevronLeft, Search } from 'lucide-react';
 
 export default function QuranReader() {
     const [chapters, setChapters] = useState([]);
     const [selectedChapter, setSelectedChapter] = useState(null);
     const [verses, setVerses] = useState([]);
     const [loading, setLoading] = useState(false);
+    const [searchQuery, setSearchQuery] = useState('');
     
     // Audio States
     const [audioFiles, setAudioFiles] = useState({});
@@ -90,6 +91,13 @@ export default function QuranReader() {
         }
     };
 
+    const filteredChapters = chapters.filter(chapter => 
+        chapter.name_simple.toLowerCase().includes(searchQuery.toLowerCase()) ||
+        chapter.name_arabic.includes(searchQuery) ||
+        (chapter.translated_name && chapter.translated_name.name.toLowerCase().includes(searchQuery.toLowerCase())) ||
+        chapter.id.toString() === searchQuery
+    );
+
     return (
         <div className="w-full max-w-5xl mx-auto mt-16 mb-24 px-4">
             <h2 className="text-3xl font-bold text-center mb-8 text-white flex items-center justify-center gap-3">
@@ -98,19 +106,38 @@ export default function QuranReader() {
             </h2>
             
             {!selectedChapter ? (
-                <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4 max-h-[60vh] overflow-y-auto p-4 bg-[#0a0a0a] rounded-2xl border border-[#333] custom-scrollbar">
-                    {chapters.map(chapter => (
-                        <button 
-                            key={chapter.id}
-                            onClick={() => fetchVerses(chapter.id)}
-                            className="flex flex-col items-center justify-center p-4 bg-[#111] hover:bg-[#222] border border-[#333] hover:border-gray-500 rounded-xl transition-all"
-                        >
-                            <span className="text-gray-500 font-bold mb-1 text-xs">N° {chapter.id}</span>
-                            <h3 className="font-bold text-lg mb-1 text-white">{chapter.name_simple}</h3>
-                            <p className="text-2xl text-white font-arabic">{chapter.name_arabic}</p>
-                        </button>
-                    ))}
-                </div>
+                <>
+                    <div className="max-w-md mx-auto mb-10 relative">
+                        <Search className="absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-500" size={20} />
+                        <input 
+                            type="text" 
+                            placeholder="Rechercher une sourate (Nom, Numéro...)" 
+                            className="w-full bg-[#111] border border-[#333] text-white py-3 pl-12 pr-4 rounded-full outline-none focus:border-gray-500 transition-colors shadow-lg"
+                            value={searchQuery}
+                            onChange={(e) => setSearchQuery(e.target.value)}
+                        />
+                    </div>
+                    
+                    {filteredChapters.length === 0 && chapters.length > 0 ? (
+                        <div className="flex justify-center items-center h-48">
+                            <p className="text-gray-500">Aucune sourate trouvée pour "{searchQuery}"</p>
+                        </div>
+                    ) : (
+                        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4 max-h-[60vh] overflow-y-auto p-4 bg-[#0a0a0a] rounded-2xl border border-[#333] custom-scrollbar">
+                            {filteredChapters.map(chapter => (
+                                <button 
+                                    key={chapter.id}
+                                    onClick={() => fetchVerses(chapter.id)}
+                                    className="flex flex-col items-center justify-center p-4 bg-[#111] hover:bg-[#222] border border-[#333] hover:border-gray-500 rounded-xl transition-all shadow-sm"
+                                >
+                                    <span className="text-gray-500 font-bold mb-1 text-xs">N° {chapter.id}</span>
+                                    <h3 className="font-bold text-lg mb-1 text-white">{chapter.name_simple}</h3>
+                                    <p className="text-2xl text-white font-arabic">{chapter.name_arabic}</p>
+                                </button>
+                            ))}
+                        </div>
+                    )}
+                </>
             ) : (
                 <div className="bg-[#0a0a0a] p-6 sm:p-10 rounded-2xl relative border border-[#333]">
                     <button 
