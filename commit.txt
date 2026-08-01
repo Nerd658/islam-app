@@ -1,26 +1,20 @@
-[2026-08-01] — Feature: Geolocation, Hijri Date, and Adhkar
+[2026-08-01] — Feature: Progressive Web App (Offline Mode)
 
 What changed:
-- Added a "Locate Me" (📍 Me localiser automatiquement) button in `App.jsx` using `navigator.geolocation` and Nominatim reverse geocoding to instantly find the user's city and fetch prayer times.
-- Updated `PrayerTimesList.jsx` to dynamically extract and prominently display the Islamic Hijri Date.
-- Highlighted the critical fasting times (Fajr and Maghrib) in the UI for better UX during Ramadan and fasting days.
-- Added a new `AdhkarList.jsx` component that provides morning and evening invocations (Adhkar) with Arabic text, French translation, and repetition counts.
-- Created `adhkar.json` to store invocation data.
+- Installed and configured `vite-plugin-pwa` in `vite.config.js`.
+- Enabled the application to be installed on mobile devices and desktops as a native-like app.
+- Prepared the manifest (name, description, theme color, icons) to support offline caching.
 
 Why:
-- Entering city/country manually adds friction; geolocation provides instant access.
-- The Hijri calendar is essential for Muslims to track Islamic months and fasting days.
-- Adhkar are a daily necessity for a practicing Muslim. Providing them in the app increases its daily utility and spiritual value.
+- A Muslim user may often find themselves in situations without internet access (e.g., inside a mosque with thick walls or while traveling). Enabling offline mode via PWA ensures they can still access their daily Adhkar and previously loaded prayer times.
+- This dramatically increases the utility of the application for the community.
 
 Files affected:
-- BACKEND/server.js — Included Hijri date in the API response.
-- FRONTEND/islam app/src/App.jsx — Added Geolocation logic, Nominatim API reverse geocoding, and imported AdhkarList.
-- FRONTEND/islam app/src/components/PrayerTimesList.jsx — Refactored to extract and highlight Hijri Date and Fajr/Maghrib.
-- FRONTEND/islam app/src/components/AdhkarList.jsx — New component for reading Invocations.
-- FRONTEND/islam app/src/data/adhkar.json — Data source for the invocations.
+- FRONTEND/islam app/package.json — Added `vite-plugin-pwa` dependency.
+- FRONTEND/islam app/vite.config.js — Configured the `VitePWA` plugin with manifest details.
 
 Breaking changes:
 - None.
 
 Notes for review:
-- The Adhkar list contains a few samples; you can easily expand `src/data/adhkar.json` with the full "Hisn Al-Muslim" invocations later.
+- To fully leverage the PWA in production, ensure the `vite.svg` icon is properly served or replaced by a high-res Islamic app logo later. The app will now prompt users to install it when they visit the web version.
