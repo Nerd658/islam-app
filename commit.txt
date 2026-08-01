@@ -1,12 +1,18 @@
-[2026-08-01] — UI: Remove welcome badge from Home page
+[2026-08-01] — UI/UX: Floating dropdown style for city search suggestions
 
 What changed:
-- Removed the "Bienvenue sur votre espace spirituel" pill badge from the hero section in `Home.jsx`.
+- Redesigned `SearchInput.jsx` with an integrated `Search` icon and Vercel dark styling.
+- Transformed `LocationSuggestions.jsx` into an absolute floating dropdown menu (`absolute top-full z-50`) positioned directly below the search input field.
+- Added `MapPin` icon to each city suggestion item for enhanced clarity and removed old gradient background styles.
+- Updated `Home.jsx` to wrap search input and suggestions in a relative container.
 
 Why:
-- User requested to remove this specific text badge to keep the header cleaner and less verbose.
+- Previously, search suggestions pushed down page content and used generic gradients.
+- The new floating dropdown provides a smooth, non-intrusive, and modern experience.
 
 Files affected:
+- FRONTEND/islam app/src/components/SearchInput.jsx
+- FRONTEND/islam app/src/components/LocationSuggestions.jsx
 - FRONTEND/islam app/src/pages/Home.jsx
 
 Breaking changes:

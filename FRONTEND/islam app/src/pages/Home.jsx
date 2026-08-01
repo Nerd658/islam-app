@@ -141,18 +141,18 @@ export default function Home() {
                             setValue={setValue}
                             setPrayerTimes={setPrayerTimes} 
                         />
-                    </div>
 
-                    <LocationSuggestions
-                        result={result}
-                        setValue={setValue}
-                        setResult={setResult}
-                        setSearch={setSearch}
-                        setError={setError}
-                        setCity={setCity}
-                        setCountry_code={setCountry_code}
-                        setPrayerTimes={setPrayerTimes}
-                    />
+                        <LocationSuggestions
+                            result={result}
+                            setValue={setValue}
+                            setResult={setResult}
+                            setSearch={setSearch}
+                            setError={setError}
+                            setCity={setCity}
+                            setCountry_code={setCountry_code}
+                            setPrayerTimes={setPrayerTimes}
+                        />
+                    </div>
 
                     {value && (
                         <div className="font-semibold text-white text-sm text-center bg-[#111] border border-[#333] px-4 py-2 rounded-xl w-full">
