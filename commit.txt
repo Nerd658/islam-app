@@ -1,18 +1,20 @@
-[2026-08-01] — Feature: Add dedicated Goals & Daily Program page (/goals)
+[2026-08-01] — UI/UX: Complete Overhaul of Home Page (Vercel-style Dashboard)
 
 What changed:
-- Created a new dedicated page `Goals.jsx` accessible at `/goals` featuring structured daily spiritual objectives (Reading 1 Hizb, Adhkar, 100 Istighfar, Meditating on Allah's Names).
-- Includes category cards with progress counters, interactive goal completion checkboxes (persisted in `localStorage`), and direct shortcut buttons leading to each respective section (`/quran`, `/adhkar`, `/tasbih`, `/names`).
-- Updated `Navigation.jsx` to add the "Objectifs" menu item (`Target` icon) and cleaned up the sidebar.
-- Added `/goals` route in `App.jsx`.
+- Redesigned `Home.jsx` into a modern, high-contrast Vercel-style dashboard.
+- Added a clean Hero Section with welcoming guidance and badges.
+- Unified the Prayer Times Search card with clear location display and Lucide icons (`MapPin`, `Search`).
+- Refactored `PrayerTimesList.jsx` to remove generic colorful styles & emojis in favor of dark minimal cards with Lucide icons (`Clock`, `Calendar`).
+- Created a Quick Access Feature Grid providing direct links to all key app modules (Coran, Objectifs, Adhkar, Tasbih, 99 Noms, Qibla, Imam Virtuel).
+- Added a Daily Quranic Inspiration section at the bottom (Surah Ar-Ra'd : 28).
 
 Why:
-- Replaced the crammed sidebar widget with a dedicated, spacious, and premium page as requested by the user.
+- The previous home page had layout artifacts (`</button>)`) and lacked visual hierarchy.
+- The new design turns the home page into a central hub guiding the user to all features seamlessly.
 
 Files affected:
-- FRONTEND/islam app/src/pages/Goals.jsx (Added)
-- FRONTEND/islam app/src/components/Navigation.jsx
-- FRONTEND/islam app/src/App.jsx
+- FRONTEND/islam app/src/pages/Home.jsx
+- FRONTEND/islam app/src/components/PrayerTimesList.jsx
 
 Breaking changes:
 - None.
