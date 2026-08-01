@@ -1,13 +1,14 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
-import { Home, BookOpen, Heart, Activity } from 'lucide-react';
+import { Home, BookOpen, Heart, Activity, CalendarDays } from 'lucide-react';
 
 export default function Navigation() {
     const navItems = [
         { path: '/', label: 'Accueil', icon: Home },
         { path: '/quran', label: 'Coran', icon: BookOpen },
         { path: '/adhkar', label: 'Adhkar', icon: Heart },
-        { path: '/tasbih', label: 'Tasbih', icon: Activity }
+        { path: '/tasbih', label: 'Tasbih', icon: Activity },
+        { path: '/events', label: 'Dates', icon: CalendarDays }
     ];
 
     return (
