@@ -1,12 +1,11 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
-import { Home, BookOpen, Heart, Activity, CalendarDays, MessageCircle, Moon, Star, Compass } from 'lucide-react';
-
-import DailySuggestions from './DailySuggestions';
+import { Home, BookOpen, Heart, Activity, CalendarDays, MessageCircle, Moon, Star, Compass, Target } from 'lucide-react';
 
 export default function Navigation() {
     const navItems = [
         { path: '/', label: 'Accueil', icon: Home },
+        { path: '/goals', label: 'Objectifs', icon: Target },
         { path: '/quran', label: 'Coran', icon: BookOpen },
         { path: '/adhkar', label: 'Adhkar', icon: Heart },
         { path: '/tasbih', label: 'Tasbih', icon: Activity },
@@ -18,7 +17,7 @@ export default function Navigation() {
 
     return (
         <nav className="fixed bottom-0 md:top-0 md:bottom-auto md:left-0 w-full md:w-64 md:h-screen bg-[#0a0a0a]/95 md:bg-[#050505] backdrop-blur-md md:backdrop-blur-none border-t md:border-t-0 md:border-r border-[#333] px-2 md:px-4 py-3 md:py-6 z-50 overflow-y-auto custom-scrollbar">
-            <div className="max-w-6xl md:max-w-none mx-auto md:mx-0 flex md:flex-col justify-between md:justify-between items-center md:items-stretch h-full">
+            <div className="max-w-6xl md:max-w-none mx-auto md:mx-0 flex md:flex-col justify-between md:justify-start items-center md:items-stretch h-full">
                 
                 <div className="w-full">
                     {/* Logo Desktop */}
@@ -48,11 +47,6 @@ export default function Navigation() {
                             );
                         })}
                     </div>
-                </div>
-
-                {/* Daily Suggestions Section (Desktop Sidebar) */}
-                <div className="hidden md:block">
-                    <DailySuggestions />
                 </div>
 
             </div>

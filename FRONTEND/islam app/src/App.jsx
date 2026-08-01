@@ -9,6 +9,7 @@ import Events from './pages/Events';
 import Chat from './pages/Chat';
 import Names from './pages/Names';
 import Qibla from './pages/Qibla';
+import Goals from './pages/Goals';
 
 function App() {
   return (
@@ -17,6 +18,7 @@ function App() {
       <div className="flex-grow overflow-y-auto pb-24 md:pb-0 md:ml-64 custom-scrollbar w-full">
         <Routes>
           <Route path="/" element={<Home />} />
+          <Route path="/goals" element={<Goals />} />
           <Route path="/adhkar" element={<Adhkar />} />
           <Route path="/quran" element={<Quran />} />
           <Route path="/tasbih" element={<Tasbih />} />

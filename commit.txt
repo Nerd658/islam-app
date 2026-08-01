@@ -1,18 +1,18 @@
-[2026-08-01] — Feature: Add Daily Suggestions & Goals widget to Sidebar
+[2026-08-01] — Feature: Add dedicated Goals & Daily Program page (/goals)
 
 What changed:
-- Created `DailySuggestions.jsx` component allowing users to view daily objectives ("Lire 1 Hizb", "Adhkar du jour", "100 Istighfar", "Méditer 1 Nom d'Allah").
-- Included a real-time progress bar and interactive checkboxes saved in `localStorage` per day.
-- Added direct shortcut links (`ArrowUpRight`) to quickly navigate to the page for each objective.
-- Embedded `DailySuggestions` inside the desktop sidebar (`Navigation.jsx`).
+- Created a new dedicated page `Goals.jsx` accessible at `/goals` featuring structured daily spiritual objectives (Reading 1 Hizb, Adhkar, 100 Istighfar, Meditating on Allah's Names).
+- Includes category cards with progress counters, interactive goal completion checkboxes (persisted in `localStorage`), and direct shortcut buttons leading to each respective section (`/quran`, `/adhkar`, `/tasbih`, `/names`).
+- Updated `Navigation.jsx` to add the "Objectifs" menu item (`Target` icon) and cleaned up the sidebar.
+- Added `/goals` route in `App.jsx`.
 
 Why:
-- Increases user engagement by providing clear daily spiritual goals.
-- Provides quick one-click shortcuts to key features directly from the navigation sidebar.
+- Replaced the crammed sidebar widget with a dedicated, spacious, and premium page as requested by the user.
 
 Files affected:
-- FRONTEND/islam app/src/components/DailySuggestions.jsx (Added)
+- FRONTEND/islam app/src/pages/Goals.jsx (Added)
 - FRONTEND/islam app/src/components/Navigation.jsx
+- FRONTEND/islam app/src/App.jsx
 
 Breaking changes:
 - None.
