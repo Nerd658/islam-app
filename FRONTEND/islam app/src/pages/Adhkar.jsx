@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import AdhkarList from '../components/AdhkarList';
+import { Sun, Moon } from 'lucide-react';
 
 export default function Adhkar() {
     const [timeOfDay, setTimeOfDay] = useState('morning');
@@ -11,18 +12,18 @@ export default function Adhkar() {
             <div className="flex justify-center mb-8 bg-[#111] p-1 rounded-xl border border-[#333]">
                 <button 
                     onClick={() => setTimeOfDay('morning')}
-                    className={`flex-1 py-3 px-6 rounded-lg font-bold transition-colors ${timeOfDay === 'morning' ? 'bg-white text-black shadow' : 'text-gray-500 hover:text-white'}`}
+                    className={`flex-1 py-3 px-6 rounded-lg font-bold transition-colors flex justify-center items-center gap-2 ${timeOfDay === 'morning' ? 'bg-white text-black shadow' : 'text-gray-500 hover:text-white'}`}
                 >
-                    Matin 🌅
+                    <Sun size={20} /> Matin
                 </button>
                 <button 
                     onClick={() => setTimeOfDay('evening')}
-                    className={`flex-1 py-3 px-6 rounded-lg font-bold transition-colors ${timeOfDay === 'evening' ? 'bg-white text-black shadow' : 'text-gray-500 hover:text-white'}`}
+                    className={`flex-1 py-3 px-6 rounded-lg font-bold transition-colors flex justify-center items-center gap-2 ${timeOfDay === 'evening' ? 'bg-white text-black shadow' : 'text-gray-500 hover:text-white'}`}
                 >
-                    Soir 🌙
+                    <Moon size={20} /> Soir
                 </button>
             </div>
-            <AdhkarList timeOfDay={timeOfDay} />
+            <AdhkarList time={timeOfDay} />
         </div>
     );
 }
