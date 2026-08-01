@@ -131,18 +131,18 @@ export default function QuranReader() {
                     ) : (
                         <div className="flex flex-col space-y-4" dir="rtl">
                             {verses.map(v => (
-                                <div key={v.id} className={`p-4 rounded-xl transition-colors ${playingVerse === v.verse_key ? 'bg-[#111] border-r-4 border-white' : 'hover:bg-[#111] border-r-4 border-transparent'}`}>
+                                <div key={v.id} className={`p-4 rounded-xl transition-all duration-300 ${playingVerse === v.verse_key ? 'bg-emerald-950/30 border-r-4 border-emerald-500' : 'hover:bg-[#111] border-r-4 border-transparent'}`}>
                                     <div className="flex items-center gap-4">
                                         <button 
                                             onClick={() => playVerse(v.verse_key)}
-                                            className={`flex-shrink-0 transition-transform ${playingVerse === v.verse_key ? 'text-white' : 'text-gray-600 hover:text-white'}`}
+                                            className={`flex-shrink-0 transition-all duration-300 ${playingVerse === v.verse_key ? 'text-emerald-500 scale-110' : 'text-gray-600 hover:text-gray-300'}`}
                                             title="Écouter le verset"
                                         >
                                             {playingVerse === v.verse_key ? <PauseCircle size={28} /> : <PlayCircle size={28} />}
                                         </button>
-                                        <p className="font-arabic text-3xl sm:text-4xl leading-loose flex-grow text-right text-white">
+                                        <p className={`font-arabic text-3xl sm:text-4xl leading-loose flex-grow text-right transition-colors duration-300 ${playingVerse === v.verse_key ? 'text-emerald-400' : 'text-white'}`}>
                                             {v.text_uthmani}
-                                            <span className="inline-flex items-center justify-center bg-[#222] text-white text-sm w-8 h-8 rounded-full mx-3 font-mono border border-[#444]">
+                                            <span className={`inline-flex items-center justify-center text-sm w-8 h-8 rounded-full mx-3 font-mono border transition-colors duration-300 ${playingVerse === v.verse_key ? 'bg-emerald-900/50 text-emerald-200 border-emerald-700' : 'bg-[#222] text-white border-[#444]'}`}>
                                                 {v.verse_key.split(':')[1]}
                                             </span>
                                         </p>

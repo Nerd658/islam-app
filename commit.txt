@@ -1,16 +1,15 @@
-[2026-08-01] — Docs: Write comprehensive README.md
+[2026-08-01] — UI: Add elegant emerald highlight for active Quran verses
 
 What changed:
-- Wrote a complete, professional `README.md` from scratch.
-- Documented all features (PWA, Quran, Qibla prep, Chatbot, Events, etc.).
-- Documented the exact Tech Stack and the Vercel-like UI/UX design choices.
-- Documented Security measures (Helmet, Rate Limiter) and Automated Testing scripts.
+- Updated the active verse styling in `QuranReader.jsx` during audio playback.
+- The active verse now features a smooth transition to an emerald glow (`bg-emerald-950/30`, `border-emerald-500`, `text-emerald-400`).
+- The play button subtly scales up and glows green when playing.
 
 Why:
-- A clean and structured project needs a proper presentation for developers and contributors, in line with production-level standards.
+- The user requested a color change during verse reading to make it easier to follow. Emerald fits the Islamic theme beautifully while maintaining the minimalist dark-mode aesthetic.
 
 Files affected:
-- README.md
+- FRONTEND/islam app/src/components/QuranReader.jsx
 
 Breaking changes:
 - None.
