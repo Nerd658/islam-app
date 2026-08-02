@@ -1,14 +1,10 @@
-[2026-08-02] — Feature: Add Word-by-Word Live Audio Synchronization & Auto-Scroll
+[2026-08-02] — Fix: Auto-scroll positioning relative to parent overflow container
 
 What changed:
-- Integrated word breakdown API (`/verses/by_chapter/${id}?words=true`) into `QuranReader.jsx`.
-- Added real-time `timeupdate` listener to compute exact `currentWordIndex` based on audio playback progress.
-- Added live word highlighting: the exact word being spoken by the reciter (Mishary) glows brightly in emerald with scaling and background pulse.
-- Added top audio progress bar inside active verse card.
-- Added smooth auto-scrolling (`scrollIntoView`) to follow the active verse as recitation progresses.
+- Updated `useEffect` in `QuranReader.jsx` to locate the parent `.overflow-y-auto` container in `App.jsx` and calculate exact relative scroll offsets (`scrollTop + relativeTop - (containerHeight / 2)`).
 
 Why:
-- Allows users to follow the recitation word-by-word with precision, making it easy to learn correct pronunciation and stay focused.
+- Standard `scrollIntoView()` on inner elements can fail inside nested flex layout containers (`overflow-y-auto`). Calculating the parent offset guarantees smooth centering on all browsers and devices.
 
 Files affected:
 - FRONTEND/islam app/src/components/QuranReader.jsx

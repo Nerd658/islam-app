@@ -50,12 +50,34 @@ export default function QuranReader() {
         };
     }, []);
 
-    // Auto-scroll to active playing verse
+    // Robust Auto-scroll to active playing verse inside parent overflow container
     useEffect(() => {
-        if (playingVerse && verseRefs.current[playingVerse]) {
-            verseRefs.current[playingVerse].scrollIntoView({
+        if (!playingVerse || !verseRefs.current[playingVerse]) return;
+
+        const el = verseRefs.current[playingVerse];
+        
+        // Strategy A: Standard scrollIntoView
+        try {
+            el.scrollIntoView({
                 behavior: 'smooth',
-                block: 'center'
+                block: 'center',
+                inline: 'nearest'
+            });
+        } catch (e) {
+            console.error(e);
+        }
+
+        // Strategy B: Explicit scroll calculation on scrollable container
+        const scrollableParent = el.closest('.overflow-y-auto') || document.querySelector('.overflow-y-auto');
+        if (scrollableParent) {
+            const parentRect = scrollableParent.getBoundingClientRect();
+            const elRect = el.getBoundingClientRect();
+            const relativeTop = elRect.top - parentRect.top;
+            const targetScroll = scrollableParent.scrollTop + relativeTop - (scrollableParent.clientHeight / 2) + (elRect.height / 2);
+            
+            scrollableParent.scrollTo({
+                top: Math.max(0, targetScroll),
+                behavior: 'smooth'
             });
         }
     }, [playingVerse]);
