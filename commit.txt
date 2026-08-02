@@ -1,28 +1,20 @@
-[2026-08-02] — Refactor: Split Arabic learning into dedicated standalone page components
+[2026-08-02] — Feature: 5-Level Pedagogical Arabic Learning System in ArabicAlphabet.jsx
 
 What changed:
-- Created `src/pages/arabic/` directory containing 5 dedicated standalone sub-page components:
-  1. `ArabicAlphabet.jsx` (`/arabic/alphabet`) — 28 letters, writing forms & audio.
-  2. `ArabicVocabulary.jsx` (`/arabic/vocabulary`) — 80% Quranic vocabulary flashcards & audio.
-  3. `ArabicTajweed.jsx` (`/arabic/tajweed`) — Tajweed rules reference & audio examples.
-  4. `ArabicQuiz.jsx` (`/arabic/quiz`) — Interactive QCM quiz mode with score tracking.
-  5. `ArabicGrammar.jsx` (`/arabic/grammar`) — Nahw grammar basics (Ism, Fi'l, Harf).
-- Updated `App.jsx` to register `/arabic` sub-routes with `React.lazy()` code splitting.
-- Updated `Navigation.jsx` to link sidebar sub-items directly to their dedicated routes.
-- Removed monolithic `Arabic.jsx`.
+- **ArabicAlphabet.jsx**:
+  - Implemented 5 professional learning levels:
+    1. **Formes d'écriture** (Isolée, Début, Milieu, Fin).
+    2. **Voyelles Courtes (*Al-Harakat*)** (Fatha, Kasra, Damma, Sukun).
+    3. **Voyelles Longues (*Al-Madd*)** (Madd Alif, Madd Ya, Madd Waw).
+    4. **Le Tanween (Nounisation)** (Fathatan, Kasratan, Dammatan).
+    5. **La Shaddah (Redoublement)** (Shaddah + Fatha, Kasra, Damma).
+  - Added interactive audio declination buttons for every vocalized combination with native Web Speech synthesis.
 
 Why:
-- Improves code maintainability, reduces per-page bundle size, and establishes a clean modular architecture.
+- Transforms the alphabet module from a simple static list into a complete, professional, interactive Arabic learning course.
 
 Files affected:
 - FRONTEND/islam app/src/pages/arabic/ArabicAlphabet.jsx
-- FRONTEND/islam app/src/pages/arabic/ArabicVocabulary.jsx
-- FRONTEND/islam app/src/pages/arabic/ArabicTajweed.jsx
-- FRONTEND/islam app/src/pages/arabic/ArabicQuiz.jsx
-- FRONTEND/islam app/src/pages/arabic/ArabicGrammar.jsx
-- FRONTEND/islam app/src/App.jsx
-- FRONTEND/islam app/src/components/Navigation.jsx
-- FRONTEND/islam app/src/pages/Arabic.jsx (deleted)
 
 Breaking changes:
 - None.
