@@ -3,12 +3,12 @@
     { "id": 1, "name": "Alif", "letter": "أ", "phonetic": "A / I / U", "example": "أَللَّٰه", "exampleFr": "Allah", "isolated": "ا", "initial": "اـ", "medial": "ـاـ", "final": "ـا" },
     { "id": 2, "name": "Ba", "letter": "ب", "phonetic": "B", "example": "بِسْمِ", "exampleFr": "Au nom de", "isolated": "ب", "initial": "بـ", "medial": "ـبـ", "final": "ـب" },
     { "id": 3, "name": "Ta", "letter": "ت", "phonetic": "T", "example": "تَوْبَة", "exampleFr": "Repentir", "isolated": "ت", "initial": "تـ", "medial": "ـتـ", "final": "ـت" },
-    { "id": 4, "name": "Tha", "letter": "ث", "phonetic": "Th (comme in 'think')", "example": "ثَوَاب", "exampleFr": "Récompense", "isolated": "ث", "initial": "ثـ", "medial": "ـثـ", "final": "ـث" },
+    { "id": 4, "name": "Tha", "letter": "ث", "phonetic": "Th (comme dans 'think')", "example": "ثَوَاب", "exampleFr": "Récompense", "isolated": "ث", "initial": "ثـ", "medial": "ـثـ", "final": "ـث" },
     { "id": 5, "name": "Jim", "letter": "ج", "phonetic": "J", "example": "جَنَّة", "exampleFr": "Paradis", "isolated": "ج", "initial": "جـ", "medial": "ـجـ", "final": "ـج" },
     { "id": 6, "name": "Ha", "letter": "ح", "phonetic": "H (expiré profond)", "example": "حَقّ", "exampleFr": "Vérité", "isolated": "ح", "initial": "حـ", "medial": "ـحـ", "final": "ـح" },
     { "id": 7, "name": "Kha", "letter": "خ", "phonetic": "Kh (râclé)", "example": "خَيْر", "exampleFr": "Bien", "isolated": "خ", "initial": "خـ", "medial": "ـخـ", "final": "ـخ" },
     { "id": 8, "name": "Dal", "letter": "د", "phonetic": "D", "example": "دِين", "exampleFr": "Religion", "isolated": "د", "initial": "دـ", "medial": "ـدـ", "final": "ـد" },
-    { "id": 9, "name": "Dhal", "letter": "ذ", "phonetic": "Dh (comme in 'that')", "example": "ذِكْر", "exampleFr": "Rappel", "isolated": "ذ", "initial": "ذـ", "medial": "ـذـ", "final": "ـذ" },
+    { "id": 9, "name": "Dhal", "letter": "ذ", "phonetic": "Dh (comme dans 'that')", "example": "ذِكْر", "exampleFr": "Rappel", "isolated": "ذ", "initial": "ذـ", "medial": "ـذـ", "final": "ـذ" },
     { "id": 10, "name": "Ra", "letter": "ر", "phonetic": "R (roulé)", "example": "رَحْمَة", "exampleFr": "Miséricorde", "isolated": "ر", "initial": "رـ", "medial": "ـرـ", "final": "ـر" },
     { "id": 11, "name": "Zay", "letter": "ز", "phonetic": "Z", "example": "زَكَاة", "exampleFr": "Aumône", "isolated": "ز", "initial": "زـ", "medial": "ـزـ", "final": "ـز" },
     { "id": 12, "name": "Sin", "letter": "س", "phonetic": "S", "example": "سَلاَم", "exampleFr": "Paix", "isolated": "س", "initial": "سـ", "medial": "ـسـ", "final": "ـس" },
@@ -49,7 +49,12 @@
     { "id": 17, "arabic": "عَزِيز", "transliteration": "'Aziz", "french": "Puissant / Incomparable", "occurrences": 99 },
     { "id": 18, "arabic": "قَلْب", "transliteration": "Qalb", "french": "Cœur", "occurrences": 168 },
     { "id": 19, "arabic": "آَمَنُوا", "transliteration": "Amanu", "french": "Ils ont cru", "occurrences": 537 },
-    { "id": 20, "arabic": "عَمِلُوا", "transliteration": "'Amilu", "french": "Ils ont œuvré", "occurrences": 360 }
+    { "id": 20, "arabic": "عَمِلُوا", "transliteration": "'Amilu", "french": "Ils ont œuvré", "occurrences": 360 },
+    { "id": 21, "arabic": "يَوْم", "transliteration": "Yawm", "french": "Jour", "occurrences": 405 },
+    { "id": 22, "arabic": "نَاس", "transliteration": "Nas", "french": "Les Hommes / Les gens", "occurrences": 241 },
+    { "id": 23, "arabic": "عَبْد", "transliteration": "'Abd", "french": "Serviteur", "occurrences": 275 },
+    { "id": 24, "arabic": "حَقّ", "transliteration": "Haqq", "french": "Vérité / Droit", "occurrences": 247 },
+    { "id": 25, "arabic": "نُور", "transliteration": "Nur", "french": "Lumière", "occurrences": 43 }
   ],
   "tajweedRules": [
     {
@@ -99,6 +104,32 @@
       "hex": "#06b6d4",
       "description": "La conversion du Nun sakin (نْ) ou Tanween en un Mim (م) devant la lettre Ba (ب) avec Ghunna.",
       "example": "مِن بَعْدِ"
+    }
+  ],
+  "grammar": [
+    {
+      "id": 1,
+      "title": "Le Nom (أَلاِسْمُ - Al-Ism)",
+      "definition": "Désigne une personne, un objet, un endroit ou une qualité sans notion de temps.",
+      "characteristics": "Peut porter l'article défini (الْـ), le Tanween (ـٌ ـٍ ـً) ou un cas sujet/objet.",
+      "exampleArabic": "الْكِتَابُ / رَجُلٌ",
+      "exampleFr": "Le livre / Un homme"
+    },
+    {
+      "id": 2,
+      "title": "Le Verbe (َالْفِعْلُ - Al-Fi'l)",
+      "definition": "Indique une action accomplie liée à un temps (passé, présent/futur, ou impératif).",
+      "characteristics": "Se conjugue selon le pronom (Passé: Madi, Présent: Mudari', Ordre: Amr).",
+      "exampleArabic": "قَالَ / يَعْلَمُونَ",
+      "exampleFr": "Il a dit / Ils savent"
+    },
+    {
+      "id": 3,
+      "title": "La Particule (َالْحَرْفُ - Al-Harf)",
+      "definition": "Un mot qui n'a de sens complet que lorsqu'il est relié à un nom ou à un verbe.",
+      "characteristics": "Comprend les prépositions (مِنْ, إِلَى, فِي, عَلَى) et les conjonctions (وَ, فـ, ثُمَّ).",
+      "exampleArabic": "فِي / مِن / عَلَى",
+      "exampleFr": "Dans / De / Sur"
     }
   ]
 }
