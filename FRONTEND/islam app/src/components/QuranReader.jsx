@@ -221,15 +221,15 @@ export default function QuranReader() {
     );
 
     return (
-        <div className="w-full max-w-5xl mx-auto mt-16 mb-24 px-4">
-            <h2 className="text-3xl font-bold text-center mb-8 text-white flex items-center justify-center gap-3">
+        <div className="w-full max-w-5xl mx-auto py-6 px-4 flex flex-col min-h-[calc(100vh-2rem)] md:min-h-screen">
+            <h2 className="text-3xl font-bold text-center mb-6 text-white flex items-center justify-center gap-3 flex-shrink-0">
                 <BookOpen className="text-gray-400" size={28} />
                 Le Noble Coran
             </h2>
             
             {!selectedChapter ? (
                 <>
-                    <div className="max-w-md mx-auto mb-10 relative">
+                    <div className="max-w-md mx-auto mb-8 relative flex-shrink-0">
                         <Search className="absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-500" size={20} />
                         <input 
                             type="text" 
@@ -245,7 +245,7 @@ export default function QuranReader() {
                             <p className="text-gray-500">Aucune sourate trouvée pour "{searchQuery}"</p>
                         </div>
                     ) : (
-                        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4 max-h-[60vh] overflow-y-auto p-4 bg-[#0a0a0a] rounded-2xl border border-[#333] custom-scrollbar">
+                        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4 flex-1 overflow-y-auto p-4 bg-[#0a0a0a] rounded-2xl border border-[#333] custom-scrollbar max-h-[70vh]">
                             {filteredChapters.map(chapter => {
                                 const isSavedOffline = !!localStorage.getItem(`offline_surah_${chapter.id}`);
                                 return (
@@ -269,9 +269,9 @@ export default function QuranReader() {
                     )}
                 </>
             ) : (
-                <div className="bg-[#0a0a0a] p-4 sm:p-8 rounded-2xl border border-[#333] flex flex-col">
+                <div className="bg-[#0a0a0a] p-4 sm:p-8 rounded-2xl border border-[#333] flex flex-col flex-1 overflow-hidden shadow-2xl">
                     {/* Sticky Reader Header (Buttons + Tajweed Legend + Title) */}
-                    <div className="sticky top-0 z-30 bg-[#0a0a0a]/95 backdrop-blur-md pb-4 pt-2 border-b border-[#222] mb-6">
+                    <div className="sticky top-0 z-30 bg-[#0a0a0a]/95 backdrop-blur-md pb-4 pt-2 border-b border-[#222] mb-6 flex-shrink-0">
                         {/* Top Control Bar */}
                         <div className="flex flex-wrap items-center justify-between gap-4 mb-4">
                             <button 
@@ -335,7 +335,7 @@ export default function QuranReader() {
                         /* Isolated Scrollable Verses List */
                         <div 
                             ref={versesListContainerRef}
-                            className="flex flex-col space-y-6 sm:space-y-8 max-h-[calc(100vh-320px)] overflow-y-auto pr-2 custom-scrollbar" 
+                            className="flex flex-col space-y-6 sm:space-y-8 flex-1 overflow-y-auto pr-2 custom-scrollbar" 
                             dir="rtl"
                         >
                             {verses.map(v => {

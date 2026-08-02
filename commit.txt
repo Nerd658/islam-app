@@ -1,13 +1,11 @@
-[2026-08-02] — UI/UX: Implement Sticky Reader Header & Isolated Verses Scroll
+[2026-08-02] — UI/UX: Optimize full-height layout on Quran page to eliminate bottom whitespace
 
 What changed:
-- Made the reader header (Return button, Tajweed toggle, Download button, Tajweed legend, and Surah title) sticky (`sticky top-0 z-30 backdrop-blur-md`).
-- Isolated the verses list into its own dedicated scrollable container (`versesListContainerRef`).
-- Removed the "Récitation en cours..." badge from verse cards.
-- Auto-scroll now targets the isolated verses list container smoothly.
+- Updated outer wrapper and card container in `QuranReader.jsx` to use flex-1 vertical layout (`min-h-[calc(100vh-2rem)] md:min-h-screen` and `flex-1 overflow-y-auto`).
+- The verses list now dynamically expands to fill 100% of available screen height down to the bottom without leaving blank empty space below the card.
 
 Why:
-- Keeps controls and Surah title permanently visible while reading/reciting, without scrolling away the controls.
+- Fixes layout gap on `/quran` route so the reader card seamlessly fits full viewport height across mobile and desktop.
 
 Files affected:
 - FRONTEND/islam app/src/components/QuranReader.jsx
