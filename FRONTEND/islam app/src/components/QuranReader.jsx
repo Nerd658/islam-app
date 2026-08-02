@@ -374,7 +374,28 @@ export default function QuranReader() {
                                             </button>
 
                                             <div className="flex-grow text-right">
-                                                {tajweedMode ? (
+                                                {/* Word-by-Word sync with preserved Tajweed colors & glowing underline */}
+                                                {isPlaying ? (
+                                                    <p className={`tajweed-text font-arabic text-3xl sm:text-4xl leading-[2.5] sm:leading-[2.8] tracking-wide text-white`}>
+                                                        {((v.text_tajweed || v.text_uthmani || '').match(/((?:<[^>]+>|[^<>\s])+)/g) || []).map((wHtml, idx) => {
+                                                            const isCurrentWord = isPlaying && idx === audioProgress.currentWordIndex;
+                                                            return (
+                                                                <span 
+                                                                    key={idx} 
+                                                                    className={`mx-1.5 px-1.5 py-0.5 rounded-xl transition-all duration-200 inline-block ${
+                                                                        isCurrentWord 
+                                                                            ? 'bg-emerald-950/80 border-b-4 border-emerald-400 scale-110 shadow-lg shadow-emerald-500/30' 
+                                                                            : ''
+                                                                    }`}
+                                                                    dangerouslySetInnerHTML={{ __html: wHtml }}
+                                                                />
+                                                            );
+                                                        })}
+                                                        <span className="inline-flex items-center justify-center text-xs w-7 h-7 rounded-full mx-2 font-mono border bg-emerald-900/50 text-emerald-200 border-emerald-700">
+                                                            {v.verse_key.split(':')[1]}
+                                                        </span>
+                                                    </p>
+                                                ) : tajweedMode ? (
                                                     <p 
                                                         className="tajweed-text font-arabic text-3xl sm:text-4xl leading-[2.5] sm:leading-[2.8] tracking-wide text-white"
                                                         dangerouslySetInnerHTML={{ __html: v.text_tajweed || v.text_uthmani }}

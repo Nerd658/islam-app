@@ -1,11 +1,11 @@
-[2026-08-02] — Fix: Prevent raw HTML attribute leaking in Tajweed rendering
+[2026-08-02] — UI/UX: HTML-safe word-by-word Tajweed tokenization with glowing underline
 
 What changed:
-- Removed string splitting logic on `text_tajweed` HTML in `QuranReader.jsx`.
-- Render intact Tajweed HTML using `dangerouslySetInnerHTML` for complete structural integrity without corrupting `<tajweed class=...>` tags into visible plain text.
+- Applied regex tokenizer `/((?:<[^>]+>|[^<>\s])+)/g` to extract individual word HTML strings without breaking embedded `<tajweed class=...>` tags.
+- Re-enabled live word-by-word highlighting: active word gets a prominent glowing emerald underline (`border-b-4 border-emerald-400 scale-110 shadow-lg shadow-emerald-500/30`), while preserving all underlying Tajweed letter colors 100% intact.
 
 Why:
-- Splitting HTML strings by whitespace cut open custom `<tajweed class=...>` tags across words, leaking raw strings like `class=qalaqah>` as text. Keeping HTML intact resolves the bug completely.
+- Allows users to see word-by-word audio progress with glowing underlines while maintaining all authentic Tajweed letter rules visible.
 
 Files affected:
 - FRONTEND/islam app/src/components/QuranReader.jsx
