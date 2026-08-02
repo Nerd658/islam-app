@@ -11,8 +11,8 @@ export default function ArabicAlphabet() {
     const canvasRef = useRef(null);
     const [isDrawing, setIsDrawing] = useState(false);
 
-    const playAudio = (text) => {
-        playArabicAudio(text);
+    const playAudio = (text, fallback = "") => {
+        playArabicAudio(text, fallback);
     };
 
     // Canvas drawing helpers
@@ -161,7 +161,7 @@ export default function ArabicAlphabet() {
                                         key={letter.id}
                                         onClick={() => {
                                             setSelectedLetter(letter);
-                                            playAudio(letter.nameAr || letter.letter);
+                                            playAudio(letter.nameAr || letter.letter, letter.name);
                                         }}
                                         className={`flex flex-col items-center justify-center p-2.5 rounded-xl border transition-all ${
                                             isSelected 
@@ -206,7 +206,7 @@ export default function ArabicAlphabet() {
                             </div>
 
                             <button
-                                onClick={() => playAudio(selectedLetter.nameAr || selectedLetter.letter)}
+                                onClick={() => playAudio(selectedLetter.nameAr || selectedLetter.letter, selectedLetter.name)}
                                 className="p-3 bg-[#111] hover:bg-[#222] border border-[#333] text-emerald-400 hover:text-emerald-300 rounded-xl transition-all flex items-center gap-2 text-xs font-semibold"
                                 title="Écouter la lettre"
                             >

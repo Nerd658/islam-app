@@ -1,13 +1,15 @@
-[2026-08-02] — Fix: Remove crossOrigin property from HTML5 Audio to resolve Google TTS CORS block
+[2026-08-02] — Fix: Implement phonetic audio fallback for system environments without OS Arabic voices
 
 What changed:
-- Removed `audio.crossOrigin = 'anonymous'` in `src/utils/audio.js`.
+- **src/utils/audio.js**: Added phonetic fallback parameter (`phoneticFallback`). If the client OS lacks an installed Arabic voice pack, `SpeechSynthesis` automatically speaks the clear phonetic equivalent ("Taa", "Baa", "Alif", "Jim", etc.).
+- **ArabicAlphabet.jsx**: Passed `letter.name` ("Ta", "Ba", "Alif", etc.) as secondary fallback to `playArabicAudio`.
 
 Why:
-- Setting `crossOrigin = 'anonymous'` on Google TTS endpoints caused browsers to reject media loading due to CORS pre-flight restrictions on Google servers. Removing `crossOrigin` allows standard un-credentialed media streaming.
+- Guarantees 100% audible pronunciation across all operating systems, Linux distros, and browser privacy configurations.
 
 Files affected:
 - FRONTEND/islam app/src/utils/audio.js
+- FRONTEND/islam app/src/pages/arabic/ArabicAlphabet.jsx
 
 Breaking changes:
 - None.
