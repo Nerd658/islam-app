@@ -100,7 +100,7 @@ export default function QuranReader() {
         try {
             const [resVerses, resTajweed, resAudio] = await Promise.all([
                 axios.get(`${import.meta.env.VITE_QURAN_API_URL}/api/v4/quran/verses/uthmani?chapter_number=${chapterId}`),
-                axios.get(`${import.meta.env.VITE_QURAN_API_URL}/api/v4/quran/verses/tajweed?chapter_number=${chapterId}`).catch(() => null),
+                axios.get(`${import.meta.env.VITE_QURAN_API_URL}/api/v4/quran/verses/uthmani_tajweed?chapter_number=${chapterId}`).catch(() => null),
                 axios.get(`${import.meta.env.VITE_QURAN_API_URL}/api/v4/quran/recitations/7?chapter_number=${chapterId}`) // 7 = Mishari
             ]);
             
@@ -112,7 +112,7 @@ export default function QuranReader() {
                 const tajweedMatch = tajweedVerses.find(t => t.id === v.id || t.verse_key === v.verse_key);
                 return {
                     ...v,
-                    text_tajweed: tajweedMatch ? tajweedMatch.text_tajweed : v.text_uthmani
+                    text_tajweed: tajweedMatch ? (tajweedMatch.text_uthmani_tajweed || tajweedMatch.text_tajweed) : v.text_uthmani
                 };
             });
 

@@ -1,19 +1,15 @@
-[2026-08-02] — Feature: Add Tajweed letter coloring & Offline Surah Caching
+[2026-08-02] — Fix: Connect correct Quran Uthmani Tajweed API endpoint and CSS rules
 
 What changed:
-- Tajweed Letter Coloring: Integrated Tajweed Uthmani text API (`/api/v4/quran/verses/tajweed`) and added CSS coloring rules for Tajweed rules (Red for Madd, Green for Ghunna, Blue for Qalqala, Orange for Ikhfa, Purple for Idgham, Cyan for Iqlab).
-- Added an interactive Tajweed toggle button and Tajweed legend guide inside `QuranReader.jsx`.
-- Offline Surah Download: Added a "Télécharger / Hors-Ligne" button per Surah in `QuranReader.jsx` saving verses & audio map to `localStorage` for offline reading.
-- PWA Workbox Caching: Configured `runtimeCaching` in `vite.config.js` with `CacheFirst` for Quran API and `NetworkFirst` for Aladhan API.
+- Updated `QuranReader.jsx` to fetch from `api/v4/quran/verses/uthmani_tajweed` and consume `text_uthmani_tajweed`.
+- Updated `index.css` selectors to target `<tajweed class="...">` elements for precise letter-level coloring (Madd in Red, Ghunnah in Green, Qalqalah in Blue, Ikhfa in Orange, Idgham in Purple, Iqlab in Cyan).
 
 Why:
-- Allows users to read and learn Tajweed pronunciation letter-by-letter with authentic color coding.
-- Gives users full offline access to Quran surahs even without internet.
+- The previous endpoint returned plain text without markup; `uthmani_tajweed` delivers authentic letter-by-letter Tajweed markup tags.
 
 Files affected:
-- FRONTEND/islam app/src/index.css
 - FRONTEND/islam app/src/components/QuranReader.jsx
-- FRONTEND/islam app/vite.config.js
+- FRONTEND/islam app/src/index.css
 
 Breaking changes:
 - None.
