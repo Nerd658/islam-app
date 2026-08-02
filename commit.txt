@@ -1,18 +1,18 @@
-[2026-08-02] — Fix: Pre-warm speech synthesis voices and implement multi-CDN audio fallback
+[2026-08-02] — Fix: Resolve Javascript Garbage Collector Audio Destruction Bug
 
 What changed:
-- Created `src/utils/audio.js` with pre-warmed voice caching on browser initialization (`window.speechSynthesis.onvoiceschanged`).
-- Implemented multi-CDN audio fallback (Google TTS stream + Youdao TTS fallback) so audio triggers reliably even under restrictive browser autoplay or CORS policies.
-- Updated `ArabicAlphabet.jsx`, `ArabicVocabulary.jsx`, and `ArabicTajweed.jsx` to use the shared `playArabicAudio` utility.
+- **src/utils/audio.js**:
+  - Bound `Audio` object to persistent global `window._activeArabicAudio` reference to prevent JavaScript Garbage Collector from destroying the audio instance mid-stream.
+  - Added explicit previous audio cleanup (`pause()` and `currentTime = 0`).
+- **ArabicAlphabet.jsx**:
+  - Bound letter click handlers to pronounce the exact letter sound (`selectedLetter.letter`).
 
 Why:
-- Fixes issue where SpeechSynthesis `getVoices()` was returning an empty array on cold-start click, resulting in silent playback.
+- Fixes issue where `new Audio()` was silently destroyed by browser Garbage Collector mid-stream without throwing console errors.
 
 Files affected:
 - FRONTEND/islam app/src/utils/audio.js
 - FRONTEND/islam app/src/pages/arabic/ArabicAlphabet.jsx
-- FRONTEND/islam app/src/pages/arabic/ArabicVocabulary.jsx
-- FRONTEND/islam app/src/pages/arabic/ArabicTajweed.jsx
 
 Breaking changes:
 - None.

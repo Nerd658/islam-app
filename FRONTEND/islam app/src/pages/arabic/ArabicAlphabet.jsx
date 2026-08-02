@@ -161,7 +161,7 @@ export default function ArabicAlphabet() {
                                         key={letter.id}
                                         onClick={() => {
                                             setSelectedLetter(letter);
-                                            playAudio(letter.example);
+                                            playAudio(letter.letter);
                                         }}
                                         className={`flex flex-col items-center justify-center p-2.5 rounded-xl border transition-all ${
                                             isSelected 
@@ -206,7 +206,7 @@ export default function ArabicAlphabet() {
                             </div>
 
                             <button
-                                onClick={() => playAudio(selectedLetter.example)}
+                                onClick={() => playAudio(selectedLetter.letter)}
                                 className="p-3 bg-[#111] hover:bg-[#222] border border-[#333] text-emerald-400 hover:text-emerald-300 rounded-xl transition-all flex items-center gap-2 text-xs font-semibold"
                                 title="Écouter la lettre"
                             >
