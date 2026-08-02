@@ -18,6 +18,7 @@ export default function QuranReader() {
     const [audioProgress, setAudioProgress] = useState({ currentTime: 0, duration: 0, percentage: 0, currentWordIndex: 0 });
     const audioRef = useRef(null);
     const verseRefs = useRef({});
+    const versesListContainerRef = useRef(null);
 
     // Fetch the list of Surahs (Chapters)
     useEffect(() => {
@@ -49,11 +50,21 @@ export default function QuranReader() {
         };
     }, []);
 
-    // Dedicated Auto-scroll to active verse element
+    // Dedicated Auto-scroll inside isolated verses container
     useEffect(() => {
-        if (!playingVerse || !verseRefs.current[playingVerse]) return;
+        if (!playingVerse || !verseRefs.current[playingVerse] || !versesListContainerRef.current) return;
         const el = verseRefs.current[playingVerse];
-        el.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        const container = versesListContainerRef.current;
+        
+        const containerRect = container.getBoundingClientRect();
+        const elRect = el.getBoundingClientRect();
+        const relativeTop = elRect.top - containerRect.top;
+        const targetScroll = container.scrollTop + relativeTop - (container.clientHeight / 2) + (elRect.height / 2);
+        
+        container.scrollTo({
+            top: Math.max(0, targetScroll),
+            behavior: 'smooth'
+        });
     }, [playingVerse]);
 
     // Handle Audio TimeUpdate and End events for Word-by-Word sync
@@ -210,20 +221,22 @@ export default function QuranReader() {
     );
 
     return (
-        <div className="w-full max-w-5xl mx-auto py-6 px-4">
-            <h2 className="text-3xl font-bold text-center mb-6 text-white flex items-center justify-center gap-3">
-                <BookOpen className="text-gray-400" size={28} />
+        <div className="w-full max-w-5xl mx-auto py-4 px-4 flex flex-col h-[calc(100vh-4rem)] md:h-[calc(100vh-2rem)] overflow-hidden">
+            {/* Page Header */}
+            <h2 className="text-2xl sm:text-3xl font-bold text-center mb-4 text-white flex items-center justify-center gap-3 flex-shrink-0">
+                <BookOpen className="text-gray-400" size={26} />
                 Le Noble Coran
             </h2>
             
             {!selectedChapter ? (
-                <>
-                    <div className="max-w-md mx-auto mb-8 relative">
+                /* SURAH SELECTION VIEW */
+                <div className="flex flex-col flex-1 overflow-hidden bg-[#0a0a0a] p-4 rounded-2xl border border-[#333] shadow-2xl">
+                    <div className="max-w-md mx-auto mb-4 relative flex-shrink-0 w-full">
                         <Search className="absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-500" size={20} />
                         <input 
                             type="text" 
                             placeholder="Rechercher une sourate (Nom, Numéro...)" 
-                            className="w-full bg-[#111] border border-[#333] text-white py-3 pl-12 pr-4 rounded-full outline-none focus:border-gray-500 transition-colors shadow-lg text-sm"
+                            className="w-full bg-[#111] border border-[#333] text-white py-2.5 pl-12 pr-4 rounded-full outline-none focus:border-gray-500 transition-colors shadow-lg text-sm"
                             value={searchQuery}
                             onChange={(e) => setSearchQuery(e.target.value)}
                         />
@@ -234,7 +247,7 @@ export default function QuranReader() {
                             <p className="text-gray-500">Aucune sourate trouvée pour "{searchQuery}"</p>
                         </div>
                     ) : (
-                        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4 p-4 bg-[#0a0a0a] rounded-2xl border border-[#333] custom-scrollbar">
+                        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4 flex-1 overflow-y-auto p-2 custom-scrollbar">
                             {filteredChapters.map(chapter => {
                                 const isSavedOffline = !!localStorage.getItem(`offline_surah_${chapter.id}`);
                                 return (
@@ -256,58 +269,59 @@ export default function QuranReader() {
                             })}
                         </div>
                     )}
-                </>
+                </div>
             ) : (
-                <div className="bg-[#0a0a0a] rounded-2xl border border-[#333] shadow-2xl p-4 sm:p-8">
-                    {/* 100% STICKY / FIXED HEADER ON SCROLL */}
-                    <div className="sticky top-0 z-50 bg-[#0a0a0a]/95 backdrop-blur-md pt-2 pb-6 border-b border-[#222] mb-8 -mx-4 sm:-mx-8 px-4 sm:px-8 shadow-xl">
+                /* SURAH READER VIEW - 2 SEPARATE PHYSICAL CONTAINERS */
+                <div className="flex flex-col flex-1 overflow-hidden">
+                    {/* CONTAINER 1: PHYSICAL SEPARATE FIXED HEADER (NO SCROLL, CANNOT MOVE) */}
+                    <div className="flex-shrink-0 bg-[#0a0a0a] p-4 sm:p-6 rounded-2xl border border-[#333] mb-4 shadow-xl">
                         {/* Top Control Bar */}
-                        <div className="flex flex-wrap items-center justify-between gap-4 mb-4">
+                        <div className="flex flex-wrap items-center justify-between gap-3 mb-3">
                             <button 
                                 onClick={() => setSelectedChapter(null)}
-                                className="bg-[#222] hover:bg-[#333] border border-[#444] px-4 py-2 rounded-xl text-sm font-medium transition-all text-white flex items-center gap-2"
+                                className="bg-[#222] hover:bg-[#333] border border-[#444] px-3.5 py-1.5 rounded-xl text-xs sm:text-sm font-medium transition-all text-white flex items-center gap-2"
                             >
                                 <ChevronLeft size={16} /> Retour aux Sourates
                             </button>
 
-                            <div className="flex items-center gap-3">
+                            <div className="flex items-center gap-2.5">
                                 {/* Translation FR Toggle */}
                                 <button
                                     onClick={() => setShowTranslation(!showTranslation)}
-                                    className={`px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold transition-all border flex items-center gap-2 ${
+                                    className={`px-3 py-1.5 rounded-xl text-xs font-semibold transition-all border flex items-center gap-1.5 ${
                                         showTranslation 
                                             ? 'bg-emerald-900/50 border-emerald-700 text-emerald-300' 
                                             : 'bg-[#111] text-gray-400 border-[#333] hover:text-white'
                                     }`}
                                 >
-                                    <Languages size={16} />
+                                    <Languages size={14} />
                                     <span>FR : {showTranslation ? 'Activée' : 'Masquée'}</span>
                                 </button>
 
                                 {/* Tajweed Toggle */}
                                 <button
                                     onClick={() => setTajweedMode(!tajweedMode)}
-                                    className={`px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold transition-all border flex items-center gap-2 ${
+                                    className={`px-3 py-1.5 rounded-xl text-xs font-semibold transition-all border flex items-center gap-1.5 ${
                                         tajweedMode 
                                             ? 'bg-white text-black border-white shadow-md' 
                                             : 'bg-[#111] text-gray-400 border-[#333] hover:text-white'
                                     }`}
                                 >
-                                    <Palette size={16} />
+                                    <Palette size={14} />
                                     <span>Tajweed : {tajweedMode ? 'Activé' : 'Désactivé'}</span>
                                 </button>
 
                                 {/* Download / Offline Toggle */}
                                 <button
                                     onClick={toggleDownload}
-                                    className={`px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold transition-all border flex items-center gap-2 ${
+                                    className={`px-3 py-1.5 rounded-xl text-xs font-semibold transition-all border flex items-center gap-1.5 ${
                                         isDownloaded 
                                             ? 'bg-emerald-950/60 border-emerald-700 text-emerald-300' 
                                             : 'bg-[#111] border-[#333] text-gray-300 hover:border-gray-500'
                                     }`}
                                     title={isDownloaded ? "Disponible Hors-Ligne (Cliquer pour supprimer)" : "Télécharger pour lire hors-ligne"}
                                 >
-                                    {isDownloaded ? <Check size={16} className="text-emerald-400" /> : <Download size={16} />}
+                                    {isDownloaded ? <Check size={14} className="text-emerald-400" /> : <Download size={14} />}
                                     <span>{isDownloaded ? 'Hors-Ligne OK' : 'Télécharger'}</span>
                                 </button>
                             </div>
@@ -315,7 +329,7 @@ export default function QuranReader() {
 
                         {/* Tajweed Legend Bar */}
                         {tajweedMode && (
-                            <div className="mb-4 p-2.5 bg-[#111] border border-[#222] rounded-xl flex flex-wrap items-center justify-center gap-4 text-xs font-medium">
+                            <div className="mb-3 p-2 bg-[#111] border border-[#222] rounded-xl flex flex-wrap items-center justify-center gap-3 text-xs font-medium">
                                 <span className="text-gray-400 font-bold">Règles Tajweed :</span>
                                 <span className="flex items-center gap-1.5"><span className="w-2.5 h-2.5 rounded-full bg-rose-500"></span><span className="text-rose-400 font-bold">Madd (Élongation)</span></span>
                                 <span className="flex items-center gap-1.5"><span className="w-2.5 h-2.5 rounded-full bg-emerald-500"></span><span className="text-emerald-400 font-bold">Ghunna (Nasalisation)</span></span>
@@ -327,92 +341,98 @@ export default function QuranReader() {
                         {/* Surah Title */}
                         <h3 className="text-2xl sm:text-3xl font-bold text-center text-white font-arabic">
                             {selectedChapter.name_arabic}
-                            <span className="block text-base text-gray-500 mt-1 font-sans">Sourate {selectedChapter.name_simple} ({selectedChapter.verses_count} versets)</span>
+                            <span className="block text-sm text-gray-500 mt-0.5 font-sans">Sourate {selectedChapter.name_simple} ({selectedChapter.verses_count} versets)</span>
                         </h3>
                     </div>
 
-                    {loading ? (
-                        <div className="flex justify-center items-center h-48">
-                            <p className="text-xl text-gray-300">Chargement des versets...</p>
-                        </div>
-                    ) : (
-                        /* Verses List Scrolling beneath sticky header */
-                        <div className="flex flex-col space-y-6 sm:space-y-8" dir="rtl">
-                            {verses.map(v => {
-                                const isPlaying = playingVerse === v.verse_key;
+                    {/* CONTAINER 2: PHYSICAL SEPARATE SCROLLABLE VERSES CONTAINER (THE ONLY SCROLLING ELEMENT) */}
+                    <div className="flex-1 overflow-hidden bg-[#0a0a0a] p-4 sm:p-6 rounded-2xl border border-[#333] shadow-2xl flex flex-col">
+                        {loading ? (
+                            <div className="flex justify-center items-center h-48">
+                                <p className="text-xl text-gray-300">Chargement des versets...</p>
+                            </div>
+                        ) : (
+                            <div 
+                                ref={versesListContainerRef}
+                                className="flex-1 overflow-y-auto min-h-0 pr-2 space-y-6 custom-scrollbar" 
+                                dir="rtl"
+                            >
+                                {verses.map(v => {
+                                    const isPlaying = playingVerse === v.verse_key;
 
-                                return (
-                                    <div 
-                                        key={v.id} 
-                                        ref={el => verseRefs.current[v.verse_key] = el}
-                                        className={`p-6 sm:p-8 rounded-2xl transition-all duration-300 relative overflow-hidden ${
-                                            isPlaying 
-                                                ? 'bg-[#121212] border border-gray-700 shadow-lg' 
-                                                : 'hover:bg-[#111] border border-[#222]'
-                                        }`}
-                                    >
-                                        <div className="flex items-start gap-4 sm:gap-6">
-                                            <button 
-                                                onClick={() => playVerse(v.verse_key)}
-                                                className={`flex-shrink-0 mt-3 transition-all duration-300 ${
-                                                    isPlaying ? 'text-white scale-110' : 'text-gray-600 hover:text-gray-300'
-                                                }`}
-                                                title="Écouter le verset"
-                                            >
-                                                {isPlaying ? <PauseCircle size={34} /> : <PlayCircle size={34} />}
-                                            </button>
+                                    return (
+                                        <div 
+                                            key={v.id} 
+                                            ref={el => verseRefs.current[v.verse_key] = el}
+                                            className={`p-6 sm:p-8 rounded-2xl transition-all duration-300 relative overflow-hidden ${
+                                                isPlaying 
+                                                    ? 'bg-[#121212] border border-gray-700 shadow-lg' 
+                                                    : 'hover:bg-[#111] border border-[#222]'
+                                            }`}
+                                        >
+                                            <div className="flex items-start gap-4 sm:gap-6">
+                                                <button 
+                                                    onClick={() => playVerse(v.verse_key)}
+                                                    className={`flex-shrink-0 mt-3 transition-all duration-300 ${
+                                                        isPlaying ? 'text-white scale-110' : 'text-gray-600 hover:text-gray-300'
+                                                    }`}
+                                                    title="Écouter le verset"
+                                                >
+                                                    {isPlaying ? <PauseCircle size={34} /> : <PlayCircle size={34} />}
+                                                </button>
 
-                                            <div className="flex-grow text-right">
-                                                {/* Word-by-Word sync with preserved Tajweed colors */}
-                                                {isPlaying ? (
-                                                    <p className={`tajweed-text font-arabic text-3xl sm:text-4xl leading-[2.5] sm:leading-[2.8] tracking-wide text-white`}>
-                                                        {((v.text_tajweed || v.text_uthmani || '').match(/((?:<[^>]+>|[^<>\s])+)/g) || []).map((wHtml, idx) => {
-                                                            const isCurrentWord = isPlaying && idx === audioProgress.currentWordIndex;
-                                                            return (
-                                                                <span 
-                                                                    key={idx} 
-                                                                    className={`mx-1.5 px-1.5 py-0.5 rounded-xl transition-all duration-200 inline-block ${
-                                                                        isCurrentWord 
-                                                                            ? 'bg-white/10 border-b-2 border-white' 
-                                                                            : ''
-                                                                    }`}
-                                                                    dangerouslySetInnerHTML={{ __html: wHtml }}
-                                                                />
-                                                            );
-                                                        })}
-                                                        <span className="inline-flex items-center justify-center text-xs w-7 h-7 rounded-full mx-2 font-mono border bg-emerald-900/50 text-emerald-200 border-emerald-700">
-                                                            {v.verse_key.split(':')[1]}
-                                                        </span>
-                                                    </p>
-                                                ) : tajweedMode ? (
-                                                    <p 
-                                                        className="tajweed-text font-arabic text-3xl sm:text-4xl leading-[2.5] sm:leading-[2.8] tracking-wide text-white"
-                                                        dangerouslySetInnerHTML={{ __html: v.text_tajweed || v.text_uthmani }}
-                                                    />
-                                                ) : (
-                                                    <p className="font-arabic text-3xl sm:text-4xl leading-[2.5] sm:leading-[2.8] tracking-wide text-white">
-                                                        {v.text_uthmani || v.text_tajweed}
-                                                        <span className="inline-flex items-center justify-center text-xs w-7 h-7 rounded-full mx-2 font-mono border bg-[#222] text-gray-400 border-[#444]">
-                                                            {v.verse_key.split(':')[1]}
-                                                        </span>
-                                                    </p>
-                                                )}
+                                                <div className="flex-grow text-right">
+                                                    {/* Word-by-Word sync with preserved Tajweed colors */}
+                                                    {isPlaying ? (
+                                                        <p className={`tajweed-text font-arabic text-3xl sm:text-4xl leading-[2.5] sm:leading-[2.8] tracking-wide text-white`}>
+                                                            {((v.text_tajweed || v.text_uthmani || '').match(/((?:<[^>]+>|[^<>\s])+)/g) || []).map((wHtml, idx) => {
+                                                                const isCurrentWord = isPlaying && idx === audioProgress.currentWordIndex;
+                                                                return (
+                                                                    <span 
+                                                                        key={idx} 
+                                                                        className={`mx-1.5 px-1.5 py-0.5 rounded-xl transition-all duration-200 inline-block ${
+                                                                            isCurrentWord 
+                                                                                ? 'bg-white/10 border-b-2 border-white' 
+                                                                                : ''
+                                                                        }`}
+                                                                        dangerouslySetInnerHTML={{ __html: wHtml }}
+                                                                    />
+                                                                );
+                                                            })}
+                                                            <span className="inline-flex items-center justify-center text-xs w-7 h-7 rounded-full mx-2 font-mono border bg-emerald-900/50 text-emerald-200 border-emerald-700">
+                                                                {v.verse_key.split(':')[1]}
+                                                            </span>
+                                                        </p>
+                                                    ) : tajweedMode ? (
+                                                        <p 
+                                                            className="tajweed-text font-arabic text-3xl sm:text-4xl leading-[2.5] sm:leading-[2.8] tracking-wide text-white"
+                                                            dangerouslySetInnerHTML={{ __html: v.text_tajweed || v.text_uthmani }}
+                                                        />
+                                                    ) : (
+                                                        <p className="font-arabic text-3xl sm:text-4xl leading-[2.5] sm:leading-[2.8] tracking-wide text-white">
+                                                            {v.text_uthmani || v.text_tajweed}
+                                                            <span className="inline-flex items-center justify-center text-xs w-7 h-7 rounded-full mx-2 font-mono border bg-[#222] text-gray-400 border-[#444]">
+                                                                {v.verse_key.split(':')[1]}
+                                                            </span>
+                                                        </p>
+                                                    )}
 
-                                                {/* French Translation Display */}
-                                                {showTranslation && v.translation && (
-                                                    <p 
-                                                        className="text-gray-300 text-sm sm:text-base leading-relaxed mt-4 font-sans text-left border-t border-[#222] pt-3" 
-                                                        dir="ltr"
-                                                        dangerouslySetInnerHTML={{ __html: v.translation }}
-                                                    />
-                                                )}
+                                                    {/* French Translation Display */}
+                                                    {showTranslation && v.translation && (
+                                                        <p 
+                                                            className="text-gray-300 text-sm sm:text-base leading-relaxed mt-4 font-sans text-left border-t border-[#222] pt-3" 
+                                                            dir="ltr"
+                                                            dangerouslySetInnerHTML={{ __html: v.translation }}
+                                                        />
+                                                    )}
+                                                </div>
                                             </div>
                                         </div>
-                                    </div>
-                                );
-                            })}
-                        </div>
-                    )}
+                                    );
+                                })}
+                            </div>
+                        )}
+                    </div>
                 </div>
             )}
         </div>

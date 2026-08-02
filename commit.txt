@@ -1,11 +1,13 @@
-[2026-08-02] — UI/UX: Make Quran reader header 100% sticky on page scroll
+[2026-08-02] — UI/UX: Re-architect Quran Reader into two physically separate DOM containers
 
 What changed:
-- Configured `sticky top-0 z-50 bg-[#0a0a0a]/95 backdrop-blur-md` directly attached to the main scrolling document flow.
-- "Retour aux Sourates", "FR", "Tajweed", "Télécharger", "Règles Tajweed", and "Surah Title" now stick frozen to the top of the browser viewport when scrolling through verses.
+- Separated `QuranReader.jsx` into 2 distinct physical DOM containers:
+  1. Container 1 (Header Box): `flex-shrink-0` containing "Retour aux Sourates", "FR", "Tajweed", "Télécharger", "Règles Tajweed", and "Surah Title". This box has no scrollbar and CANNOT move.
+  2. Container 2 (Verses Box): `flex-1 overflow-y-auto min-h-0`. This box is the ONLY scrolling container for verses.
+- Restricted outer parent wrapper to `h-[calc(100vh-4rem)] overflow-hidden` to prevent page-level scrolling.
 
 Why:
-- Fixes issue where nested scroll overflow prevented sticky positioning from locking to the top of the page.
+- Guarantees 100% physical separation so the header box never scrolls or disappears, while verses scroll independently in their dedicated box.
 
 Files affected:
 - FRONTEND/islam app/src/components/QuranReader.jsx
