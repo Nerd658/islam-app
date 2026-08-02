@@ -10,15 +10,27 @@ export default function ArabicAlphabet() {
         if (!text) return;
         try {
             const ttsUrl = `https://translate.google.com/translate_tts?ie=UTF-8&q=${encodeURIComponent(text)}&tl=ar&client=tw-ob`;
-            const audio = new Audio(ttsUrl);
-            audio.play().catch(() => {
-                if ('speechSynthesis' in window) {
-                    window.speechSynthesis.cancel();
-                    const utterance = new SpeechSynthesisUtterance(text);
-                    utterance.lang = 'ar-SA';
-                    window.speechSynthesis.speak(utterance);
-                }
-            });
+            const audio = new Audio();
+            audio.src = ttsUrl;
+            audio.volume = 1.0;
+            
+            const playPromise = audio.play();
+            if (playPromise !== undefined) {
+                playPromise.catch((err) => {
+                    console.warn("Audio stream error, falling back to SpeechSynthesis:", err);
+                    if ('speechSynthesis' in window) {
+                        window.speechSynthesis.cancel();
+                        const utterance = new SpeechSynthesisUtterance(text);
+                        const voices = window.speechSynthesis.getVoices();
+                        const arVoice = voices.find(v => v.lang.startsWith('ar'));
+                        if (arVoice) utterance.voice = arVoice;
+                        utterance.lang = 'ar-SA';
+                        utterance.volume = 1.0;
+                        utterance.rate = 0.75;
+                        window.speechSynthesis.speak(utterance);
+                    }
+                });
+            }
         } catch (e) {
             console.error("Audio error:", e);
         }

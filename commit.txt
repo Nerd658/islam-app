@@ -1,10 +1,10 @@
-[2026-08-02] — Fix: Implement robust Google TTS MP3 audio stream for Arabic pronunciation
+[2026-08-02] — Fix: Enhance audio play promise and volume handling for Arabic TTS
 
 What changed:
-- Updated `playAudio` helper in `ArabicAlphabet.jsx`, `ArabicVocabulary.jsx`, and `ArabicTajweed.jsx` to stream direct Google TTS MP3 audio (`https://translate.google.com/translate_tts?ie=UTF-8&q=...&tl=ar&client=tw-ob`) with SpeechSynthesis fallback.
+- Updated audio element initialization in `ArabicAlphabet.jsx`, `ArabicVocabulary.jsx`, and `ArabicTajweed.jsx` to explicitly set `audio.volume = 1.0` and handle async `play()` promise rejection with voice selection fallback.
 
 Why:
-- Fixes issue where `speechSynthesis` failed to play sound on browsers without locally installed OS Arabic TTS voices.
+- Fixes issue where audio playback promise was silently rejected or unmuted by browser audio policies.
 
 Files affected:
 - FRONTEND/islam app/src/pages/arabic/ArabicAlphabet.jsx
