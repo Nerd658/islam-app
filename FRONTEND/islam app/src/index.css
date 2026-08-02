@@ -15,6 +15,20 @@
   font-family: 'Amiri', 'Traditional Arabic', 'Scheherazade New', serif;
 }
 
+/* Tajweed Letter Coloring Rules */
+.tajweed-text rule.ham_wasl { color: #888888; }
+.tajweed-text rule.slnt { color: #666666; }
+.tajweed-text rule.madd_necessary,
+.tajweed-text rule.madd_obligatory,
+.tajweed-text rule.madd_permissible,
+.tajweed-text rule.madd_normal { color: #f43f5e; font-weight: bold; } /* Red for Madd */
+.tajweed-text rule.ghunnah { color: #10b981; font-weight: bold; } /* Emerald Green for Ghunnah */
+.tajweed-text rule.qalaqah { color: #3b82f6; font-weight: bold; } /* Blue for Qalqala */
+.tajweed-text rule.ikhafa { color: #f97316; font-weight: bold; } /* Orange for Ikhfa */
+.tajweed-text rule.idgham_with_ghunnah,
+.tajweed-text rule.idgham_without_ghunnah { color: #a855f7; font-weight: bold; } /* Purple for Idgham */
+.tajweed-text rule.iqlab { color: #06b6d4; font-weight: bold; } /* Cyan for Iqlab */
+
 @layer base {
   :root {
     --background: 0 0% 100%;
