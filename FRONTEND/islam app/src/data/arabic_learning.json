@@ -1,0 +1,104 @@
+{
+  "alphabet": [
+    { "id": 1, "name": "Alif", "letter": "أ", "phonetic": "A / I / U", "example": "أَللَّٰه", "exampleFr": "Allah", "isolated": "ا", "initial": "اـ", "medial": "ـاـ", "final": "ـا" },
+    { "id": 2, "name": "Ba", "letter": "ب", "phonetic": "B", "example": "بِسْمِ", "exampleFr": "Au nom de", "isolated": "ب", "initial": "بـ", "medial": "ـبـ", "final": "ـب" },
+    { "id": 3, "name": "Ta", "letter": "ت", "phonetic": "T", "example": "تَوْبَة", "exampleFr": "Repentir", "isolated": "ت", "initial": "تـ", "medial": "ـتـ", "final": "ـت" },
+    { "id": 4, "name": "Tha", "letter": "ث", "phonetic": "Th (comme in 'think')", "example": "ثَوَاب", "exampleFr": "Récompense", "isolated": "ث", "initial": "ثـ", "medial": "ـثـ", "final": "ـث" },
+    { "id": 5, "name": "Jim", "letter": "ج", "phonetic": "J", "example": "جَنَّة", "exampleFr": "Paradis", "isolated": "ج", "initial": "جـ", "medial": "ـجـ", "final": "ـج" },
+    { "id": 6, "name": "Ha", "letter": "ح", "phonetic": "H (expiré profond)", "example": "حَقّ", "exampleFr": "Vérité", "isolated": "ح", "initial": "حـ", "medial": "ـحـ", "final": "ـح" },
+    { "id": 7, "name": "Kha", "letter": "خ", "phonetic": "Kh (râclé)", "example": "خَيْر", "exampleFr": "Bien", "isolated": "خ", "initial": "خـ", "medial": "ـخـ", "final": "ـخ" },
+    { "id": 8, "name": "Dal", "letter": "د", "phonetic": "D", "example": "دِين", "exampleFr": "Religion", "isolated": "د", "initial": "دـ", "medial": "ـدـ", "final": "ـد" },
+    { "id": 9, "name": "Dhal", "letter": "ذ", "phonetic": "Dh (comme in 'that')", "example": "ذِكْر", "exampleFr": "Rappel", "isolated": "ذ", "initial": "ذـ", "medial": "ـذـ", "final": "ـذ" },
+    { "id": 10, "name": "Ra", "letter": "ر", "phonetic": "R (roulé)", "example": "رَحْمَة", "exampleFr": "Miséricorde", "isolated": "ر", "initial": "رـ", "medial": "ـرـ", "final": "ـر" },
+    { "id": 11, "name": "Zay", "letter": "ز", "phonetic": "Z", "example": "زَكَاة", "exampleFr": "Aumône", "isolated": "ز", "initial": "زـ", "medial": "ـزـ", "final": "ـز" },
+    { "id": 12, "name": "Sin", "letter": "س", "phonetic": "S", "example": "سَلاَم", "exampleFr": "Paix", "isolated": "س", "initial": "سـ", "medial": "ـسـ", "final": "ـس" },
+    { "id": 13, "name": "Shin", "letter": "ش", "phonetic": "Sh (Ch)", "example": "شَمْس", "exampleFr": "Soleil", "isolated": "ش", "initial": "شـ", "medial": "ـشـ", "final": "ـش" },
+    { "id": 14, "name": "Sad", "letter": "ص", "phonetic": "S (Emphatique)", "example": "صَلاَة", "exampleFr": "Prière", "isolated": "ص", "initial": "صـ", "medial": "ـصـ", "final": "ـص" },
+    { "id": 15, "name": "Dhad", "letter": "ض", "phonetic": "Dh (Emphatique)", "example": "ضُحَى", "exampleFr": "Matinée", "isolated": "ض", "initial": "ضـ", "medial": "ـضـ", "final": "ـض" },
+    { "id": 16, "name": "Ta (Emphatique)", "letter": "ط", "phonetic": "T (Emphatique)", "example": "طَيِّب", "exampleFr": "Bon/Pur", "isolated": "ط", "initial": "طـ", "medial": "ـطـ", "final": "ـط" },
+    { "id": 17, "name": "Dha (Emphatique)", "letter": "ظ", "phonetic": "Dh (Emphatique)", "example": "ظُلْم", "exampleFr": "Injustice", "isolated": "ظ", "initial": "ظـ", "medial": "ـظـ", "final": "ـظ" },
+    { "id": 18, "name": "Ayn", "letter": "ع", "phonetic": "'A (Guttural)", "example": "عِلْم", "exampleFr": "Savoir", "isolated": "ع", "initial": "عـ", "medial": "ـعـ", "final": "ـع" },
+    { "id": 19, "name": "Ghayn", "letter": "غ", "phonetic": "Gh (Guttural)", "example": "غَفُور", "exampleFr": "Pardonneur", "isolated": "غ", "initial": "غـ", "medial": "ـغـ", "final": "ـغ" },
+    { "id": 20, "name": "Fa", "letter": "ف", "phonetic": "F", "example": "فَضْل", "exampleFr": "Grâce", "isolated": "ف", "initial": "فـ", "medial": "ـفـ", "final": "ـف" },
+    { "id": 21, "name": "Qaf", "letter": "ق", "phonetic": "Q (Profond)", "example": "قُرْآن", "exampleFr": "Coran", "isolated": "ق", "initial": "قـ", "medial": "ـقـ", "final": "ـق" },
+    { "id": 22, "name": "Kaf", "letter": "ك", "phonetic": "K", "example": "كِتَاب", "exampleFr": "Livre", "isolated": "ك", "initial": "كـ", "medial": "ـكـ", "final": "ـك" },
+    { "id": 23, "name": "Lam", "letter": "ل", "phonetic": "L", "example": "لَيْل", "exampleFr": "Nuit", "isolated": "ل", "initial": "لـ", "medial": "ـلـ", "final": "ـل" },
+    { "id": 24, "name": "Mim", "letter": "م", "phonetic": "M", "example": "مَالِك", "exampleFr": "Souverain", "isolated": "م", "initial": "مـ", "medial": "ـمـ", "final": "ـم" },
+    { "id": 25, "name": "Nun", "letter": "ن", "phonetic": "N", "example": "نُور", "exampleFr": "Lumière", "isolated": "ن", "initial": "نـ", "medial": "ـنـ", "final": "ـن" },
+    { "id": 26, "name": "Ha", "letter": "ه", "phonetic": "H (Doux)", "example": "هُدًى", "exampleFr": "Guidée", "isolated": "ه", "initial": "هـ", "medial": "ـهـ", "final": "ـه" },
+    { "id": 27, "name": "Waw", "letter": "و", "phonetic": "W / OU", "example": "وَدُود", "exampleFr": "Affectueux", "isolated": "و", "initial": "وـ", "medial": "ـوـ", "final": "ـو" },
+    { "id": 28, "name": "Ya", "letter": "ي", "phonetic": "Y / I", "example": "يَوْم", "exampleFr": "Jour", "isolated": "ي", "initial": "يـ", "medial": "ـيـ", "final": "ـي" }
+  ],
+  "vocabulary": [
+    { "id": 1, "arabic": "اللَّه", "transliteration": "Allah", "french": "Dieu / Le Créateur", "occurrences": 2699 },
+    { "id": 2, "arabic": "مِنْ", "transliteration": "Min", "french": "De / De la part de", "occurrences": 3226 },
+    { "id": 3, "arabic": "إِنَّ", "transliteration": "Inna", "french": "Certes / En vérité", "occurrences": 1582 },
+    { "id": 4, "arabic": "الَّذِي", "transliteration": "Al-ladhi", "french": "Celui qui / Ceux qui", "occurrences": 1464 },
+    { "id": 5, "arabic": "فِي", "transliteration": "Fi", "french": "Dans / En", "occurrences": 1701 },
+    { "id": 6, "arabic": "مَا", "transliteration": "Ma", "french": "Ce qui / Ne... pas", "occurrences": 2617 },
+    { "id": 7, "arabic": "لاَ", "transliteration": "La", "french": "Non / Ne... pas", "occurrences": 1728 },
+    { "id": 8, "arabic": "إِلَى", "transliteration": "Ila", "french": "Vers / Jusqu'à", "occurrences": 742 },
+    { "id": 9, "arabic": "عَلَى", "transliteration": "Ala", "french": "Sur / Au-dessus de", "occurrences": 1445 },
+    { "id": 10, "arabic": "قَالَ", "transliteration": "Qala", "french": "Il a dit", "occurrences": 1618 },
+    { "id": 11, "arabic": "رَبّ", "transliteration": "Rabb", "french": "Seigneur / Maître", "occurrences": 970 },
+    { "id": 12, "arabic": "أَرْض", "transliteration": "Ard", "french": "Terre", "occurrences": 461 },
+    { "id": 13, "arabic": "سَمَاء", "transliteration": "Sama'", "french": "Ciel", "occurrences": 310 },
+    { "id": 14, "arabic": "عَلِيم", "transliteration": "'Alim", "french": "Omniscient / Sachant tout", "occurrences": 162 },
+    { "id": 15, "arabic": "حَكِيم", "transliteration": "Hakim", "french": "Sage", "occurrences": 97 },
+    { "id": 16, "arabic": "رَحِيم", "transliteration": "Rahim", "french": "Très Miséricordieux", "occurrences": 114 },
+    { "id": 17, "arabic": "عَزِيز", "transliteration": "'Aziz", "french": "Puissant / Incomparable", "occurrences": 99 },
+    { "id": 18, "arabic": "قَلْب", "transliteration": "Qalb", "french": "Cœur", "occurrences": 168 },
+    { "id": 19, "arabic": "آَمَنُوا", "transliteration": "Amanu", "french": "Ils ont cru", "occurrences": 537 },
+    { "id": 20, "arabic": "عَمِلُوا", "transliteration": "'Amilu", "french": "Ils ont œuvré", "occurrences": 360 }
+  ],
+  "tajweedRules": [
+    {
+      "id": 1,
+      "name": "Madd (Élongation)",
+      "color": "rose",
+      "hex": "#f43f5e",
+      "description": "L'élongation de la voyelle longue (Alif, Waw, Ya) de 2, 4, 5 ou 6 temps selon le type de Madd.",
+      "example": "جَآءَ / ٱلرَّحْمَٰنِ"
+    },
+    {
+      "id": 2,
+      "name": "Ghunna (Nasalisation)",
+      "color": "emerald",
+      "hex": "#10b981",
+      "description": "Le son nasal provenant du nez d'une durée de 2 temps sur le Nun (نّ) ou Mim (مّ) shaddah.",
+      "example": "إِنَّ / ثُمَّ"
+    },
+    {
+      "id": 3,
+      "name": "Qalqala (Rebond)",
+      "color": "blue",
+      "hex": "#3b82f6",
+      "description": "Le rebond sonore provoqué par l'arrêt sur l'une des 5 lettres de Qalqala (ق, ط, ب, ج, د) lorsqu'elles portent un sukun.",
+      "example": "قُلْ هُوَ ٱللَّهُ أَحَدٌ (د)"
+    },
+    {
+      "id": 4,
+      "name": "Ikhfa (Dissimulation)",
+      "color": "orange",
+      "hex": "#f97316",
+      "description": "La dissimulation partielle du Nun sakin (نْ) ou Tanween devant l'une des 15 lettres d'Ikhfa avec Ghunna.",
+      "example": "مِن قَبْلُ / كِتَٰبٌ كَرِيمٌ"
+    },
+    {
+      "id": 5,
+      "name": "Idgham (Fusion)",
+      "color": "purple",
+      "hex": "#a855f7",
+      "description": "La fusion du Nun sakin (نْ) ou Tanween dans la lettre suivante (ي, ر, م, ل, و, ن).",
+      "example": "مَن يَقُولُ / مِن رَّبِّهِمْ"
+    },
+    {
+      "id": 6,
+      "name": "Iqlab (Conversion)",
+      "color": "cyan",
+      "hex": "#06b6d4",
+      "description": "La conversion du Nun sakin (نْ) ou Tanween en un Mim (م) devant la lettre Ba (ب) avec Ghunna.",
+      "example": "مِن بَعْدِ"
+    }
+  ]
+}

@@ -11,6 +11,8 @@ const Events = lazy(() => import('./pages/Events'));
 const Chat = lazy(() => import('./pages/Chat'));
 const Names = lazy(() => import('./pages/Names'));
 const Qibla = lazy(() => import('./pages/Qibla'));
+const Hadiths = lazy(() => import('./pages/Hadiths'));
+const Arabic = lazy(() => import('./pages/Arabic'));
 
 function App() {
   return (
@@ -32,6 +34,8 @@ function App() {
             <Route path="/chat" element={<Chat />} />
             <Route path="/names" element={<Names />} />
             <Route path="/qibla" element={<Qibla />} />
+            <Route path="/hadiths" element={<Hadiths />} />
+            <Route path="/arabic" element={<Arabic />} />
           </Routes>
         </Suspense>
       </div>

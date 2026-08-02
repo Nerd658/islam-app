@@ -18,7 +18,9 @@ import {
     MessageCircle, 
     Sparkles, 
     ArrowRight,
-    Search
+    Search,
+    Scroll,
+    Languages
 } from 'lucide-react';
 
 export default function Home() {
@@ -97,6 +99,8 @@ export default function Home() {
 
     const quickLinks = [
         { title: 'Le Noble Coran', desc: '114 sourates avec récitations audio', path: '/quran', icon: BookOpen },
+        { title: 'Hadiths Authentiques', desc: 'Les 40 Hadiths d\'An-Nawawi expliqués', path: '/hadiths', icon: Scroll },
+        { title: 'Arabe Coranique', desc: 'Alphabet, 80% du vocabulaire et Tajweed', path: '/arabic', icon: Languages },
         { title: 'Vos Objectifs', desc: 'Programme quotidien et suivi des actes', path: '/goals', icon: Target },
         { title: 'Adhkar & Invocations', desc: 'La Citadelle du Musulman classée', path: '/adhkar', icon: Heart },
         { title: 'Tasbih Virtuel', desc: 'Compteur digital et Istighfar', path: '/tasbih', icon: Activity },
