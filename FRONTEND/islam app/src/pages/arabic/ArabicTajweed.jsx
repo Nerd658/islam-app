@@ -5,29 +5,39 @@ import { Sparkles, Volume2 } from 'lucide-react';
 export default function ArabicTajweed() {
     const playAudio = (text) => {
         if (!text) return;
+
+        // 1. Web Speech Synthesis with voice picker
+        if ('speechSynthesis' in window) {
+            try {
+                window.speechSynthesis.cancel();
+                const utterance = new SpeechSynthesisUtterance(text);
+                utterance.lang = 'ar-SA';
+                utterance.rate = 0.8;
+                utterance.volume = 1.0;
+
+                const voices = window.speechSynthesis.getVoices();
+                const arVoice = voices.find(v => v.lang && (v.lang.startsWith('ar') || v.lang.includes('ar')));
+                if (arVoice) {
+                    utterance.voice = arVoice;
+                }
+
+                window.speechSynthesis.speak(utterance);
+            } catch (e) {
+                console.warn("SpeechSynthesis error:", e);
+            }
+        }
+
+        // 2. Google TTS Stream with no-referrer policy
         try {
-            const ttsUrl = `https://translate.google.com/translate_tts?ie=UTF-8&q=${encodeURIComponent(text)}&tl=ar&client=tw-ob`;
+            const encodedText = encodeURIComponent(text);
+            const ttsUrl = `https://translate.google.com/translate_tts?ie=UTF-8&q=${encodedText}&tl=ar&client=tw-ob`;
             const audio = new Audio();
+            audio.referrerPolicy = 'no-referrer';
             audio.src = ttsUrl;
             audio.volume = 1.0;
-            
-            const playPromise = audio.play();
-            if (playPromise !== undefined) {
-                playPromise.catch((err) => {
-                    console.warn("Audio stream error, falling back to SpeechSynthesis:", err);
-                    if ('speechSynthesis' in window) {
-                        window.speechSynthesis.cancel();
-                        const utterance = new SpeechSynthesisUtterance(text);
-                        const voices = window.speechSynthesis.getVoices();
-                        const arVoice = voices.find(v => v.lang.startsWith('ar'));
-                        if (arVoice) utterance.voice = arVoice;
-                        utterance.lang = 'ar-SA';
-                        utterance.volume = 1.0;
-                        utterance.rate = 0.8;
-                        window.speechSynthesis.speak(utterance);
-                    }
-                });
-            }
+            audio.play().catch(err => {
+                console.warn("Audio play notice:", err);
+            });
         } catch (e) {
             console.error("Audio error:", e);
         }

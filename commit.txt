@@ -1,21 +1,16 @@
-[2026-08-02] — Feature: Add Makhraj points, Solar/Lunar badges, Drawing Canvas, and Sound Comparator to ArabicAlphabet
+[2026-08-02] — Fix: Resolve browser audio block with no-referrer policy and dual TTS speech synthesis
 
 What changed:
-- **arabic_learning.json**:
-  - Enriched all 28 letters with `makhraj` (exact point of articulation) and `type` (`solar` vs `lunar`).
-  - Added `confusedPairs` dataset for sound comparison pairs (ت vs ط, س vs ص, د vs ض, ك vs ق, هـ vs ح).
-- **ArabicAlphabet.jsx**:
-  - Added **Makhraj Info Card** detailing exact articulation zone (*Al-Halq*, *Al-Lisan*, *Ash-Shafatayn*).
-  - Added **Solar (☀️) vs Lunar (🌙) Badges**.
-  - Added **Interactive HTML5 Drawing Canvas** for drawing letter strokes by hand/touch with erase button.
-  - Added **Sound Comparator Tab (Level 6)** for side-by-side listening of easily confused letter pairs with audio.
+- Configured `audio.referrerPolicy = 'no-referrer'` on HTML5 Audio elements across `ArabicAlphabet.jsx`, `ArabicVocabulary.jsx`, and `ArabicTajweed.jsx`.
+- Dual-engine playback: invokes `SpeechSynthesis` with Arabic voice picker and streams `Google TTS` without sending domain origin referrer headers.
 
 Why:
-- Delivers a complete, professional, interactive Arabic alphabet learning experience aligned with Madinah Arabic & Tajweed standards.
+- Fixes `NotSupportedError: Failed to load because no supported source was found` caused by browser referrer security restrictions on Google TTS endpoints.
 
 Files affected:
-- FRONTEND/islam app/src/data/arabic_learning.json
 - FRONTEND/islam app/src/pages/arabic/ArabicAlphabet.jsx
+- FRONTEND/islam app/src/pages/arabic/ArabicVocabulary.jsx
+- FRONTEND/islam app/src/pages/arabic/ArabicTajweed.jsx
 
 Breaking changes:
 - None.
