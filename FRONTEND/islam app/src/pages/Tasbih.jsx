@@ -83,19 +83,11 @@ export default function Tasbih() {
 
     const handleReset = () => {
         setCount(0);
-        localStorage.setItem('tasbih_count', '0');
-        if (navigator.vibrate) {
-            navigator.vibrate(80);
-        }
-    };
-
-    const handleResetTotal = () => {
-        setCount(0);
         setTotal(0);
         localStorage.setItem('tasbih_count', '0');
         localStorage.setItem('tasbih_total', '0');
         if (navigator.vibrate) {
-            navigator.vibrate([80, 40, 80]);
+            navigator.vibrate(80);
         }
     };
 
@@ -115,7 +107,7 @@ export default function Tasbih() {
                         <span className="text-xs text-gray-400 font-mono">Total session : {total}</span>
                         {total > 0 && (
                             <button 
-                                onClick={handleResetTotal}
+                                onClick={handleReset}
                                 className="text-gray-600 hover:text-red-400 transition-colors p-1" 
                                 title="Réinitialiser la session complète"
                             >
@@ -143,8 +135,10 @@ export default function Tasbih() {
                             const newP = e.target.value;
                             setPhrase(newP); 
                             setCount(0); 
+                            setTotal(0);
                             localStorage.setItem('tasbih_phrase', newP);
                             localStorage.setItem('tasbih_count', '0');
+                            localStorage.setItem('tasbih_total', '0');
                         }}
                         className="w-full bg-[#111] border border-[#333] text-white p-3 rounded-xl outline-none font-semibold text-sm cursor-pointer"
                     >

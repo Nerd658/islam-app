@@ -1,10 +1,10 @@
-[2026-08-02] — Fix: Synchronize reset actions directly with localStorage in Tasbih
+[2026-08-02] — Fix: Complete coherence between count and total session reset in Tasbih
 
 What changed:
-- Updated `handleReset` and `onChange` (phrase selector) in `Tasbih.jsx` to explicitly write `localStorage.setItem('tasbih_count', '0')`.
+- Synchronized `handleReset` and phrase changes in `Tasbih.jsx` to reset both `count` and `total` to `0`, persisting both to `localStorage`.
 
 Why:
-- Ensures pressing the reset button immediately syncs `tasbih_count` to 0 in `localStorage`, so reloads stay at 0 after a reset.
+- Eliminates UI incoherence where `Total session` showed non-zero values when `Count` was `0000`.
 
 Files affected:
 - FRONTEND/islam app/src/pages/Tasbih.jsx
