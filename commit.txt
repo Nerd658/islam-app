@@ -1,17 +1,14 @@
-[2026-08-02] — Feature: Connect Authentic Human Recitation MP3 CDN (Quran.com) for Vocabulary and Examples
+[2026-08-02] — Fix: Smart URL detection in playArabicAudio resolves parameter mismatch
 
 What changed:
-- **arabic_learning.json**: Attached direct human recitation MP3 URLs (`https://audio.qurancdn.com/wbw/...`) to all Quranic examples and vocabulary words.
-- **src/utils/audio.js**: Updated `playArabicAudio` to play direct human recitation MP3s via Howler.js when provided.
-- **ArabicVocabulary.jsx**: Connected `currentVocab.audio` to flashcards for authentic human qari audio.
+- **src/utils/audio.js**: Implemented smart parameter detection (`param2.startsWith('http')`) so string fallbacks (like "Ta") are never misinterpreted as broken audio file paths in Howler.js.
+- **ArabicAlphabet.jsx**: Passed `letter.exampleAudio` to `playAudio` for direct human MP3 recitation playback.
 
 Why:
-- Replaces robot synthesis with authentic, crystal-clear human Quranic recitations.
+- Fixes issue where non-URL string fallbacks passed to Howler.js caused silent HTTP load failures.
 
 Files affected:
-- FRONTEND/islam app/src/data/arabic_learning.json
 - FRONTEND/islam app/src/utils/audio.js
-- FRONTEND/islam app/src/pages/arabic/ArabicVocabulary.jsx
 - FRONTEND/islam app/src/pages/arabic/ArabicAlphabet.jsx
 
 Breaking changes:
