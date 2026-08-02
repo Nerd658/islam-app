@@ -1,15 +1,21 @@
-[2026-08-02] — Fix: Enhance audio play promise and volume handling for Arabic TTS
+[2026-08-02] — Feature: Add Makhraj points, Solar/Lunar badges, Drawing Canvas, and Sound Comparator to ArabicAlphabet
 
 What changed:
-- Updated audio element initialization in `ArabicAlphabet.jsx`, `ArabicVocabulary.jsx`, and `ArabicTajweed.jsx` to explicitly set `audio.volume = 1.0` and handle async `play()` promise rejection with voice selection fallback.
+- **arabic_learning.json**:
+  - Enriched all 28 letters with `makhraj` (exact point of articulation) and `type` (`solar` vs `lunar`).
+  - Added `confusedPairs` dataset for sound comparison pairs (ت vs ط, س vs ص, د vs ض, ك vs ق, هـ vs ح).
+- **ArabicAlphabet.jsx**:
+  - Added **Makhraj Info Card** detailing exact articulation zone (*Al-Halq*, *Al-Lisan*, *Ash-Shafatayn*).
+  - Added **Solar (☀️) vs Lunar (🌙) Badges**.
+  - Added **Interactive HTML5 Drawing Canvas** for drawing letter strokes by hand/touch with erase button.
+  - Added **Sound Comparator Tab (Level 6)** for side-by-side listening of easily confused letter pairs with audio.
 
 Why:
-- Fixes issue where audio playback promise was silently rejected or unmuted by browser audio policies.
+- Delivers a complete, professional, interactive Arabic alphabet learning experience aligned with Madinah Arabic & Tajweed standards.
 
 Files affected:
+- FRONTEND/islam app/src/data/arabic_learning.json
 - FRONTEND/islam app/src/pages/arabic/ArabicAlphabet.jsx
-- FRONTEND/islam app/src/pages/arabic/ArabicVocabulary.jsx
-- FRONTEND/islam app/src/pages/arabic/ArabicTajweed.jsx
 
 Breaking changes:
 - None.
