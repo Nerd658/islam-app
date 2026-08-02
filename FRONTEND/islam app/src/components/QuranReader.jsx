@@ -135,11 +135,13 @@ export default function QuranReader() {
         if (savedData) {
             try {
                 const parsed = JSON.parse(savedData);
-                setVerses(parsed.verses || []);
-                setAudioFiles(parsed.audioFiles || {});
-                setIsDownloaded(true);
-                setLoading(false);
-                return;
+                if (parsed.verses && parsed.verses.length > 0 && parsed.verses[0].translation) {
+                    setVerses(parsed.verses || []);
+                    setAudioFiles(parsed.audioFiles || {});
+                    setIsDownloaded(true);
+                    setLoading(false);
+                    return;
+                }
             } catch (e) {
                 console.error("Offline parse error:", e);
             }
@@ -426,9 +428,11 @@ export default function QuranReader() {
 
                                                 {/* French Translation Display */}
                                                 {showTranslation && v.translation && (
-                                                    <p className="text-gray-300 text-sm sm:text-base leading-relaxed mt-4 font-sans text-left border-t border-[#222] pt-3" dir="ltr">
-                                                        {v.translation}
-                                                    </p>
+                                                    <p 
+                                                        className="text-gray-300 text-sm sm:text-base leading-relaxed mt-4 font-sans text-left border-t border-[#222] pt-3" 
+                                                        dir="ltr"
+                                                        dangerouslySetInnerHTML={{ __html: v.translation }}
+                                                    />
                                                 )}
                                             </div>
                                         </div>

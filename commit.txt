@@ -1,12 +1,11 @@
-[2026-08-02] — UI/UX: Replace green glowing borders with sleek minimalist Vercel style
+[2026-08-02] — Fix: Refresh stale offline cache when missing French translation data
 
 What changed:
-- Removed green glowing borders (`border-emerald-500`, `shadow-emerald-950`) from active verse cards in `QuranReader.jsx`.
-- Replaced active verse card styling with a sleek dark border (`border-gray-700 bg-[#121212]`).
-- Replaced green glowing word underline with a subtle white underline (`border-b-2 border-white bg-white/10`).
+- Updated `fetchVerses` cache validator in `QuranReader.jsx` to verify that cached items include `v.translation`. Stale cache entries lacking translation will automatically re-fetch live data.
+- Switched translation JSX element to use `dangerouslySetInnerHTML={{ __html: v.translation }}` for HTML formatting support.
 
 Why:
-- Matches Vercel's clean, minimalist, dark-mode design aesthetic without loud glowing effects.
+- Resolves issue where previously cached Surahs without translation fields prevented French text from rendering.
 
 Files affected:
 - FRONTEND/islam app/src/components/QuranReader.jsx
