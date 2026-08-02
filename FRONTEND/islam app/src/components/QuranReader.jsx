@@ -312,7 +312,7 @@ export default function QuranReader() {
                         {/* Tajweed Legend Bar */}
                         {tajweedMode && (
                             <div className="mb-4 p-2.5 bg-[#111] border border-[#222] rounded-xl flex flex-wrap items-center justify-center gap-4 text-xs font-medium">
-                                <span className="text-gray-400 flex items-center gap-1 font-bold"><Sparkles size={12} /> Règles Tajweed :</span>
+                                <span className="text-gray-400 font-bold">Règles Tajweed :</span>
                                 <span className="flex items-center gap-1.5"><span className="w-2.5 h-2.5 rounded-full bg-rose-500"></span><span className="text-rose-400 font-bold">Madd (Élongation)</span></span>
                                 <span className="flex items-center gap-1.5"><span className="w-2.5 h-2.5 rounded-full bg-emerald-500"></span><span className="text-emerald-400 font-bold">Ghunna (Nasalisation)</span></span>
                                 <span className="flex items-center gap-1.5"><span className="w-2.5 h-2.5 rounded-full bg-blue-500"></span><span className="text-blue-400 font-bold">Qalqala (Rebond)</span></span>
@@ -340,7 +340,7 @@ export default function QuranReader() {
                         >
                             {verses.map(v => {
                                 const isPlaying = playingVerse === v.verse_key;
-                                const wordsList = v.words ? v.words.filter(w => w.char_type_name === 'word') : [];
+                                const tajweedWordTokens = (v.text_tajweed || v.text_uthmani || '').trim().split(/\s+/);
 
                                 return (
                                     <div 
@@ -374,22 +374,21 @@ export default function QuranReader() {
                                             </button>
 
                                             <div className="flex-grow text-right">
-                                                {/* Word-by-Word sync rendering when playing or when words available */}
-                                                {isPlaying && wordsList.length > 0 ? (
-                                                    <p className="font-arabic text-3xl sm:text-4xl leading-[2.5] sm:leading-[2.8] tracking-wide text-white">
-                                                        {wordsList.map((w, idx) => {
+                                                {/* Word-by-Word sync with preserved Tajweed colors */}
+                                                {isPlaying ? (
+                                                    <p className={`tajweed-text font-arabic text-3xl sm:text-4xl leading-[2.5] sm:leading-[2.8] tracking-wide text-white`}>
+                                                        {tajweedWordTokens.map((wHtml, idx) => {
                                                             const isCurrentWord = isPlaying && idx === audioProgress.currentWordIndex;
                                                             return (
                                                                 <span 
-                                                                    key={w.id || idx} 
-                                                                    className={`mx-1.5 px-1.5 py-0.5 rounded-lg transition-all duration-200 inline-block ${
+                                                                    key={idx} 
+                                                                    className={`mx-1.5 px-1 py-0.5 rounded-lg transition-all duration-200 inline-block ${
                                                                         isCurrentWord 
-                                                                            ? 'bg-emerald-400 text-black font-extrabold scale-110 shadow-lg shadow-emerald-500/50' 
-                                                                            : 'text-white'
+                                                                            ? 'bg-emerald-950/70 border-b-2 border-emerald-400 scale-105 shadow-md shadow-emerald-500/20' 
+                                                                            : ''
                                                                     }`}
-                                                                >
-                                                                    {w.text_uthmani || w.text}
-                                                                </span>
+                                                                    dangerouslySetInnerHTML={{ __html: wHtml }}
+                                                                />
                                                             );
                                                         })}
                                                         <span className="inline-flex items-center justify-center text-xs w-7 h-7 rounded-full mx-2 font-mono border bg-emerald-900/50 text-emerald-200 border-emerald-700">

@@ -1,11 +1,12 @@
-[2026-08-02] — UI/UX: Optimize full-height layout on Quran page to eliminate bottom whitespace
+[2026-08-02] — UI/UX: Preserve Tajweed letter colors on active word highlight & remove icon
 
 What changed:
-- Updated outer wrapper and card container in `QuranReader.jsx` to use flex-1 vertical layout (`min-h-[calc(100vh-2rem)] md:min-h-screen` and `flex-1 overflow-y-auto`).
-- The verses list now dynamically expands to fill 100% of available screen height down to the bottom without leaving blank empty space below the card.
+- Removed the Sparkles icon next to "Règles Tajweed :".
+- Refactored active word highlight in `QuranReader.jsx` to render individual Tajweed HTML tokens (`dangerouslySetInnerHTML={{ __html: wHtml }}`).
+- The active word now uses a subtle glowing green underline (`border-b-2 border-emerald-400`) and dark emerald backdrop (`bg-emerald-950/70`), preserving all letter-level Tajweed colors (Madd, Ghunna, Qalqala, Ikhfa, etc.) completely visible during recitation.
 
 Why:
-- Fixes layout gap on `/quran` route so the reader card seamlessly fits full viewport height across mobile and desktop.
+- Fixes Tajweed color occlusion so users can observe Tajweed pronunciation rules while tracking word-by-word recitation.
 
 Files affected:
 - FRONTEND/islam app/src/components/QuranReader.jsx
