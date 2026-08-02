@@ -161,7 +161,7 @@ export default function ArabicAlphabet() {
                                         key={letter.id}
                                         onClick={() => {
                                             setSelectedLetter(letter);
-                                            playAudio(letter.nameAr || letter.letter, letter.exampleAudio, letter.name);
+                                            playAudio(letter.nameAr || letter.letter, null, letter.name);
                                         }}
                                         className={`flex flex-col items-center justify-center p-2.5 rounded-xl border transition-all ${
                                             isSelected 
@@ -206,7 +206,7 @@ export default function ArabicAlphabet() {
                             </div>
 
                             <button
-                                onClick={() => playAudio(selectedLetter.nameAr || selectedLetter.letter, selectedLetter.exampleAudio, selectedLetter.name)}
+                                onClick={() => playAudio(selectedLetter.nameAr || selectedLetter.letter, null, selectedLetter.name)}
                                 className="p-3 bg-[#111] hover:bg-[#222] border border-[#333] text-emerald-400 hover:text-emerald-300 rounded-xl transition-all flex items-center gap-2 text-xs font-semibold"
                                 title="Écouter la lettre"
                             >
@@ -222,6 +222,25 @@ export default function ArabicAlphabet() {
                                 <span className="font-bold text-gray-300 block mb-0.5">Point d'articulation (Makhraj) :</span>
                                 <span className="text-gray-400 font-sans">{selectedLetter.makhraj}</span>
                             </div>
+                        </div>
+
+                        {/* QURANIC EXAMPLE WITH AUTHENTIC HUMAN RECITATION */}
+                        <div className="bg-[#111] p-3.5 rounded-xl border border-[#222] flex items-center justify-between gap-3">
+                            <div className="flex items-center gap-3">
+                                <span className="text-2xl font-arabic text-emerald-400 font-bold">{selectedLetter.example}</span>
+                                <div className="text-xs">
+                                    <span className="font-bold text-gray-200 block">{selectedLetter.exampleFr}</span>
+                                    <span className="text-[10px] text-gray-500 font-mono">Exemple du Coran</span>
+                                </div>
+                            </div>
+                            <button
+                                onClick={() => playAudio(selectedLetter.example, selectedLetter.exampleAudio, selectedLetter.exampleFr)}
+                                className="px-3 py-1.5 bg-emerald-950/80 hover:bg-emerald-900 border border-emerald-700 text-emerald-300 rounded-lg text-xs font-semibold flex items-center gap-1.5 transition-all"
+                                title="Écouter le mot coranique récité par un Qari humain"
+                            >
+                                <Volume2 size={14} />
+                                <span>Écouter le mot (Récitation Humaine)</span>
+                            </button>
                         </div>
 
                         {/* CONTENT LEVEL 1: FORMS */}
