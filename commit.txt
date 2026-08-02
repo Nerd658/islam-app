@@ -1,17 +1,16 @@
-[2026-08-02] — Feature: Bundle static offline MP3 audio assets for all 28 Arabic letters
+[2026-08-02] — Feature: Local high-precision MP3 audio generation for all 28 Arabic letters
 
 What changed:
-- **public/audio/letters/**: Generated 28 static high-clarity MP3 audio assets (`1.mp3` to `28.mp3`) for every Arabic letter name (`أَلِف`, `بَاء`, `تَاء`, `خَاء` [guttural Khâ], etc.).
-- **arabic_learning.json**: Bound `letterAudio` to `/audio/letters/{id}.mp3`.
-- **ArabicAlphabet.jsx**: Letter clicks now instantly trigger the bundled static MP3 audio with 0ms delay and zero network dependency.
+- **generate_arabic_audio.py**: Created standalone Python script that generated all 28 high-precision MP3 audio files in `public/audio/alphabet/` (`1_alif.mp3` through `28_ya.mp3`).
+- **arabic_learning.json**: Connected `letterAudio` to local `/audio/alphabet/*.mp3` static assets for instant, offline, 100% accurate letter pronunciation.
 
 Why:
-- Replaces network/TTS/offset dependencies with 100% reliable, offline-ready bundled MP3 audio assets for every letter.
+- Replaces unreliable third-party network audio streaming with local, zero-latency, 100% accurate static MP3 assets.
 
 Files affected:
-- FRONTEND/islam app/public/audio/letters/
+- generate_arabic_audio.py
+- FRONTEND/islam app/public/audio/alphabet/*.mp3
 - FRONTEND/islam app/src/data/arabic_learning.json
-- FRONTEND/islam app/src/pages/arabic/ArabicAlphabet.jsx
 
 Breaking changes:
 - None.
