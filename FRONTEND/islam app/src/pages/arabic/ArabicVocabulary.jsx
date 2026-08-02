@@ -9,8 +9,8 @@ export default function ArabicVocabulary() {
 
     const currentVocab = arabicData.vocabulary[flashcardIndex];
 
-    const playAudio = (text) => {
-        playArabicAudio(text);
+    const playAudio = (text, directAudioUrl = null, fallback = "") => {
+        playArabicAudio(text, directAudioUrl, fallback);
     };
 
     const nextCard = () => {
@@ -53,9 +53,9 @@ export default function ArabicVocabulary() {
                     </span>
 
                     <button 
-                        onClick={(e) => { e.stopPropagation(); playAudio(currentVocab.arabic); }}
+                        onClick={(e) => { e.stopPropagation(); playAudio(currentVocab.arabic, currentVocab.audio, currentVocab.transliteration); }}
                         className="absolute top-4 left-4 p-2 bg-[#111] hover:bg-[#222] border border-[#333] text-emerald-400 rounded-xl transition-all"
-                        title="Écouter la prononciation"
+                        title="Écouter la prononciation authentique"
                     >
                         <Volume2 size={18} />
                     </button>

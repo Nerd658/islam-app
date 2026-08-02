@@ -11,8 +11,8 @@ export default function ArabicAlphabet() {
     const canvasRef = useRef(null);
     const [isDrawing, setIsDrawing] = useState(false);
 
-    const playAudio = (text, fallback = "") => {
-        playArabicAudio(text, fallback);
+    const playAudio = (text, directAudioUrl = null, fallback = "") => {
+        playArabicAudio(text, directAudioUrl, fallback);
     };
 
     // Canvas drawing helpers

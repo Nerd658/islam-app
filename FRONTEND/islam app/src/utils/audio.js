@@ -2,7 +2,7 @@ import { Howl } from 'howler';
 
 /**
  * Industrial Howler.js Powered Arabic Audio Engine
- * Combines Howler.js HTML5 audio context unlocking with pre-warmed SpeechSynthesis and Phonetic Fallbacks.
+ * Prioritizes Authentic Human Recitation MP3 URLs with fallbacks to SpeechSynthesis and Phonetic Reader.
  */
 
 let currentHowl = null;
@@ -35,8 +35,8 @@ const fallbackSpeech = (text, phoneticFallback) => {
     }
 };
 
-export const playArabicAudio = (text, phoneticFallback = "") => {
-    if (!text || typeof window === 'undefined') return;
+export const playArabicAudio = (text, directAudioUrl = null, phoneticFallback = "") => {
+    if (typeof window === 'undefined') return;
 
     try {
         // Stop and unload previous Howler instance
@@ -46,12 +46,28 @@ export const playArabicAudio = (text, phoneticFallback = "") => {
             currentHowl = null;
         }
 
+        // Tier 1: Authentic Human MP3 Recitation URL if provided
+        if (directAudioUrl) {
+            currentHowl = new Howl({
+                src: [directAudioUrl],
+                html5: true, // HTML5 audio streaming for cross-domain CDN
+                format: ['mp3'],
+                volume: 1.0,
+                onplayerror: () => {
+                    fallbackSpeech(text, phoneticFallback);
+                }
+            });
+            currentHowl.play();
+            return;
+        }
+
+        // Tier 2: Google TTS Stream / SpeechSynthesis
         const encodedText = encodeURIComponent(text);
         const ttsUrl = `https://translate.google.com/translate_tts?ie=UTF-8&q=${encodedText}&tl=ar&client=tw-ob`;
 
         currentHowl = new Howl({
             src: [ttsUrl],
-            html5: true, // Forces HTML5 Audio streaming which works across CORS boundaries
+            html5: true,
             format: ['mp3'],
             volume: 1.0,
             onplayerror: () => {
