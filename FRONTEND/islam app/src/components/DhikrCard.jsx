@@ -3,7 +3,7 @@ import React from 'react';
 export default function DhikrCard({ arabic, translation, count }) {
     return (
         <div className="bg-[#0a0a0a] p-6 sm:p-8 rounded-2xl border border-[#333] transition-colors hover:border-gray-500">
-            <p className="text-2xl sm:text-3xl text-right font-arabic leading-loose mb-6 text-white" dir="rtl">
+            <p className="text-2xl sm:text-3xl text-right font-arabic leading-[2.4] sm:leading-[2.6] tracking-wide mb-6 text-white" dir="rtl">
                 {arabic}
             </p>
             <p className="text-sm sm:text-base text-gray-400 mb-6 leading-relaxed">

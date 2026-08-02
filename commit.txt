@@ -1,15 +1,16 @@
-[2026-08-02] — Fix: Connect correct Quran Uthmani Tajweed API endpoint and CSS rules
+[2026-08-02] — UI/UX: Increase Arabic line height and spacing across Quran & Adhkar
 
 What changed:
-- Updated `QuranReader.jsx` to fetch from `api/v4/quran/verses/uthmani_tajweed` and consume `text_uthmani_tajweed`.
-- Updated `index.css` selectors to target `<tajweed class="...">` elements for precise letter-level coloring (Madd in Red, Ghunnah in Green, Qalqalah in Blue, Ikhfa in Orange, Idgham in Purple, Iqlab in Cyan).
+- Increased Arabic text line height (`leading-[2.5] sm:leading-[2.8]`) and tracking in `QuranReader.jsx` for optimal readability of Tajweed letters and vocalizations (Tashkeel).
+- Increased spacing between verse cards (`space-y-6 sm:space-y-8`).
+- Increased Arabic text line height (`leading-[2.4] sm:leading-[2.6]`) in `DhikrCard.jsx`.
 
 Why:
-- The previous endpoint returned plain text without markup; `uthmani_tajweed` delivers authentic letter-by-letter Tajweed markup tags.
+- Prevents vocalizations (Tashkeel) and Tajweed letter tags from overlapping across adjacent lines, ensuring a spacious, elegant reading experience.
 
 Files affected:
 - FRONTEND/islam app/src/components/QuranReader.jsx
-- FRONTEND/islam app/src/index.css
+- FRONTEND/islam app/src/components/DhikrCard.jsx
 
 Breaking changes:
 - None.

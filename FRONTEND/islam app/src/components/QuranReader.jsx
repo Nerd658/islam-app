@@ -279,26 +279,26 @@ export default function QuranReader() {
                             <p className="text-xl text-gray-300">Chargement des versets...</p>
                         </div>
                     ) : (
-                        <div className="flex flex-col space-y-4" dir="rtl">
+                        <div className="flex flex-col space-y-6 sm:space-y-8" dir="rtl">
                             {verses.map(v => (
-                                <div key={v.id} className={`p-5 rounded-2xl transition-all duration-300 ${playingVerse === v.verse_key ? 'bg-emerald-950/30 border-r-4 border-emerald-500' : 'hover:bg-[#111] border-r-4 border-transparent'}`}>
-                                    <div className="flex items-start gap-4">
+                                <div key={v.id} className={`p-6 sm:p-8 rounded-2xl transition-all duration-300 ${playingVerse === v.verse_key ? 'bg-emerald-950/30 border-r-4 border-emerald-500' : 'hover:bg-[#111] border-r-4 border-transparent'}`}>
+                                    <div className="flex items-start gap-4 sm:gap-6">
                                         <button 
                                             onClick={() => playVerse(v.verse_key)}
-                                            className={`flex-shrink-0 mt-2 transition-all duration-300 ${playingVerse === v.verse_key ? 'text-emerald-500 scale-110' : 'text-gray-600 hover:text-gray-300'}`}
+                                            className={`flex-shrink-0 mt-3 transition-all duration-300 ${playingVerse === v.verse_key ? 'text-emerald-500 scale-110' : 'text-gray-600 hover:text-gray-300'}`}
                                             title="Écouter le verset"
                                         >
-                                            {playingVerse === v.verse_key ? <PauseCircle size={28} /> : <PlayCircle size={28} />}
+                                            {playingVerse === v.verse_key ? <PauseCircle size={32} /> : <PlayCircle size={32} />}
                                         </button>
 
                                         <div className="flex-grow text-right">
                                             {tajweedMode ? (
                                                 <p 
-                                                    className="tajweed-text font-arabic text-3xl sm:text-4xl leading-loose text-white"
+                                                    className="tajweed-text font-arabic text-3xl sm:text-4xl leading-[2.5] sm:leading-[2.8] tracking-wide text-white"
                                                     dangerouslySetInnerHTML={{ __html: v.text_tajweed || v.text_uthmani }}
                                                 />
                                             ) : (
-                                                <p className="font-arabic text-3xl sm:text-4xl leading-loose text-white">
+                                                <p className="font-arabic text-3xl sm:text-4xl leading-[2.5] sm:leading-[2.8] tracking-wide text-white">
                                                     {v.text_uthmani || v.text_tajweed}
                                                 </p>
                                             )}
