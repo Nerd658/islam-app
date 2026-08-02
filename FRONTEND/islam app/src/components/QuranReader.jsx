@@ -272,9 +272,9 @@ export default function QuranReader() {
                     )}
                 </>
             ) : (
-                <div className="bg-[#0a0a0a] p-4 sm:p-8 rounded-2xl border border-[#333] flex flex-col flex-1 overflow-hidden shadow-2xl">
-                    {/* Sticky Reader Header (Buttons + Tajweed Legend + Title) */}
-                    <div className="sticky top-0 z-30 bg-[#0a0a0a]/95 backdrop-blur-md pb-4 pt-2 border-b border-[#222] mb-6 flex-shrink-0">
+                <div className="bg-[#0a0a0a] p-4 sm:p-8 rounded-2xl border border-[#333] flex flex-col flex-1 overflow-hidden shadow-2xl h-[calc(100vh-8rem)]">
+                    {/* Fixed Reader Header (Buttons + Tajweed Legend + Title) */}
+                    <div className="flex-shrink-0 bg-[#0a0a0a] pb-4 pt-2 border-b border-[#222] mb-6">
                         {/* Top Control Bar */}
                         <div className="flex flex-wrap items-center justify-between gap-4 mb-4">
                             <button 
@@ -350,10 +350,10 @@ export default function QuranReader() {
                             <p className="text-xl text-gray-300">Chargement des versets...</p>
                         </div>
                     ) : (
-                        /* Isolated Scrollable Verses List */
+                        /* Isolated Scrollable Verses List Only */
                         <div 
                             ref={versesListContainerRef}
-                            className="flex flex-col space-y-6 sm:space-y-8 flex-1 overflow-y-auto pr-2 custom-scrollbar" 
+                            className="flex flex-col space-y-6 sm:space-y-8 flex-1 overflow-y-auto min-h-0 pr-2 custom-scrollbar" 
                             dir="rtl"
                         >
                             {verses.map(v => {
@@ -369,16 +369,6 @@ export default function QuranReader() {
                                                 : 'hover:bg-[#111] border border-[#222]'
                                         }`}
                                     >
-                                        {/* Audio Progress Bar at top of active verse card */}
-                                        {isPlaying && (
-                                            <div className="absolute top-0 left-0 right-0 h-1 bg-[#222]">
-                                                <div 
-                                                    className="h-full bg-gray-400 transition-all duration-200" 
-                                                    style={{ width: `${audioProgress.percentage}%` }}
-                                                />
-                                            </div>
-                                        )}
-
                                         <div className="flex items-start gap-4 sm:gap-6">
                                             <button 
                                                 onClick={() => playVerse(v.verse_key)}

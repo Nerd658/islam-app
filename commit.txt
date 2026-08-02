@@ -1,11 +1,12 @@
-[2026-08-02] — Fix: Refresh stale offline cache when missing French translation data
+[2026-08-02] — UI/UX: Enforce 100% fixed header bar and remove audio progress line from verse card
 
 What changed:
-- Updated `fetchVerses` cache validator in `QuranReader.jsx` to verify that cached items include `v.translation`. Stale cache entries lacking translation will automatically re-fetch live data.
-- Switched translation JSX element to use `dangerouslySetInnerHTML={{ __html: v.translation }}` for HTML formatting support.
+- Removed the top audio progress line component that animated across active verse cards.
+- Restructured `QuranReader.jsx` with strict flex layout (`h-[calc(100vh-8rem)]`, `flex-shrink-0` header, `flex-1 overflow-y-auto min-h-0` verses list).
+- Guaranteed that "Retour aux Sourates", "FR", "Tajweed", "Télécharger", "Règles Tajweed", and "Surah Title" remain 100% fixed and immovable during scrolling.
 
 Why:
-- Resolves issue where previously cached Surahs without translation fields prevented French text from rendering.
+- Fulfills exact UI design request: fixed controls header + clean card styling without moving top progress lines.
 
 Files affected:
 - FRONTEND/islam app/src/components/QuranReader.jsx
