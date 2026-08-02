@@ -1,15 +1,16 @@
-[2026-08-02] — Feature: Add /api/tts Proxy Endpoint for Crystal Clear Arabic Letter Audio Streaming
+[2026-08-02] — Fix: Restart backend with /api/tts proxy route and cross-origin Helmet policy
 
 What changed:
-- **BACKEND/app.js**: Added `/api/tts` proxy route that streams Google TTS audio with server-side User-Agent headers, completely bypassing browser CORS restrictions.
-- **src/utils/audio.js**: Connected `playArabicAudio` to the backend `/api/tts` proxy for clear, natural MP3 streaming for all letters and vowels.
+- **BACKEND/app.js**:
+  - Configured `helmet` with `crossOriginResourcePolicy: { policy: 'cross-origin' }` to resolve `ERR_BLOCKED_BY_RESPONSE.NotSameOrigin`.
+  - Added missing `hpp` and `rateLimit` module imports.
+  - Restarted backend server process on port 4000.
 
 Why:
-- Eliminates robotic browser Web Speech voices and resolves CORS blocking by serving clean audio MP3 streams directly from the backend.
+- Fixes the 404 and CORS NotSameOrigin errors on `http://localhost:4000/api/tts` so crystal-clear Arabic audio streams cleanly to the frontend.
 
 Files affected:
 - BACKEND/app.js
-- FRONTEND/islam app/src/utils/audio.js
 
 Breaking changes:
 - None.
