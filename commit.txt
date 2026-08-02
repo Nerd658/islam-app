@@ -1,15 +1,13 @@
-[2026-08-02] — Fix: Add vocalized Arabic letter names (nameAr) for clear 100% TTS letter audio
+[2026-08-02] — Fix: Remove crossOrigin property from HTML5 Audio to resolve Google TTS CORS block
 
 What changed:
-- **arabic_learning.json**: Added `nameAr` (vocalized Arabic name like "تَاء", "بَاء", "ثَاء", "جِيم") for all 28 letters of the alphabet.
-- **ArabicAlphabet.jsx**: Updated letter click and Listen button handlers to send `letter.nameAr` to `playAudio`.
+- Removed `audio.crossOrigin = 'anonymous'` in `src/utils/audio.js`.
 
 Why:
-- Fixes issue where isolated unvocalized consonants like bare "ت" or "ث" were silent in TTS engines because unvocalized consonants cannot be spoken without vowels or full names.
+- Setting `crossOrigin = 'anonymous'` on Google TTS endpoints caused browsers to reject media loading due to CORS pre-flight restrictions on Google servers. Removing `crossOrigin` allows standard un-credentialed media streaming.
 
 Files affected:
-- FRONTEND/islam app/src/data/arabic_learning.json
-- FRONTEND/islam app/src/pages/arabic/ArabicAlphabet.jsx
+- FRONTEND/islam app/src/utils/audio.js
 
 Breaking changes:
 - None.
