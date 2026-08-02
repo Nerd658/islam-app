@@ -98,7 +98,11 @@ export default function QuranReader() {
                 const textStr = activeVerseObj.text_tajweed || activeVerseObj.text_uthmani || '';
                 const tokens = textStr.match(/((?:<[^>]+>|[^<>\s])+)/g) || [];
                 if (tokens.length > 0) {
-                    wordIdx = Math.min(tokens.length - 1, Math.floor((cur / dur) * tokens.length));
+                    // Calibrate audio lead-in silence (~0.25s) and trailing silence (~0.25s)
+                    const startOffset = 0.25;
+                    const effectiveDur = Math.max(0.4, dur - 0.5);
+                    const effectiveCur = Math.max(0, cur - startOffset);
+                    wordIdx = Math.min(tokens.length - 1, Math.floor((effectiveCur / effectiveDur) * tokens.length));
                 }
             }
 

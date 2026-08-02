@@ -1,10 +1,10 @@
-[2026-08-02] — Fix: Synchronize audio timeupdate wordIdx directly with rendered Tajweed tokens
+[2026-08-02] — Audio Sync: Calibrate audio lead-in and trailing silence offsets
 
 What changed:
-- Updated `handleTimeUpdate` in `QuranReader.jsx` to compute `currentWordIndex` directly from the tokenized Tajweed HTML string tokens.
+- Added `startOffset = 0.25s` and `effectiveDur = dur - 0.5s` in `QuranReader.jsx`'s `handleTimeUpdate` function.
 
 Why:
-- Previously `handleTimeUpdate` looked for `activeVerseObj.words` which could be undefined or mismatched with rendered Tajweed tokens, locking `currentWordIndex` at 0. Calculating from rendered tokens makes the green underline advance fluidly from word 0 to 1 to 2 to 3 across every verse.
+- Accounts for initial breath silence and trailing MP3 silence in Mishary's recitation files, aligning word highlight with voice onset.
 
 Files affected:
 - FRONTEND/islam app/src/components/QuranReader.jsx
