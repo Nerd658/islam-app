@@ -1,10 +1,10 @@
-[2026-08-02] — Fix: Correct word index audio URL for Ta in arabic_learning.json
+[2026-08-02] — Fix: Set Ta example to Tabbat (111_001_001.mp3) for 100% indisputable Quranic Audio
 
 What changed:
-- **arabic_learning.json**: Updated `exampleAudio` and `letterAudio` for Ta (`ت`) to point to Quranic word 009_003_016 (`تُبْتُمْ` - "Tubtum") instead of 009_003_018 (`فَهُوَ` - "Fahuwa").
+- **arabic_learning.json**: Set Ta (`ت`) example to **`تَبَّتْ`** ("Tabbat") with audio `https://audio.qurancdn.com/wbw/111_001_001.mp3` (Surah Al-Masad 111:1 Word 1).
 
 Why:
-- Fixes index offset issue where Ta was triggering the audio for "Fahuwa" instead of the word starting with Ta ("Tubtum").
+- Fixes word offset issue by using Word 1 of Surah 111, guaranteeing 100% indisputable audio recitation for Ta ("Tabbat").
 
 Files affected:
 - FRONTEND/islam app/src/data/arabic_learning.json
