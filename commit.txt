@@ -1,16 +1,25 @@
-[2026-08-02] — UI/UX: Re-architect Quran Reader into two physically separate DOM containers
+[2026-08-02] — Feature: Multi-Reciter, Playback Speed, Bookmarks, Next Prayer Countdown, Adhan Player & Haptic Tasbih
 
 What changed:
-- Separated `QuranReader.jsx` into 2 distinct physical DOM containers:
-  1. Container 1 (Header Box): `flex-shrink-0` containing "Retour aux Sourates", "FR", "Tajweed", "Télécharger", "Règles Tajweed", and "Surah Title". This box has no scrollbar and CANNOT move.
-  2. Container 2 (Verses Box): `flex-1 overflow-y-auto min-h-0`. This box is the ONLY scrolling container for verses.
-- Restricted outer parent wrapper to `h-[calc(100vh-4rem)] overflow-hidden` to prevent page-level scrolling.
+- **QuranReader.jsx**:
+  - Integrated 4 Reciters (Mishary Alafasy, Abdul Basit, Al-Ghamdi, Al-Husary) with live reciter switcher dropdown.
+  - Added playback speed controller (`0.75x`, `1x`, `1.25x`, `1.5x`).
+  - Added automatic verse bookmarking and a "Reprendre la lecture" banner card.
+  - Added global verse search tab with direct verse navigation.
+- **PrayerTimesList.jsx**:
+  - Added live countdown timer for the next upcoming prayer (`01h 14m 22s`).
+  - Added audio Adhan player button with live audio playback.
+- **Tasbih.jsx**:
+  - Added enhanced haptic vibration (`navigator.vibrate`) with double pulse every 33 counts.
+  - Added Web Audio API click sound generator with toggle switch.
 
 Why:
-- Guarantees 100% physical separation so the header box never scrolls or disappears, while verses scroll independently in their dedicated box.
+- Elevates the user experience across Quran reading, prayer timing accuracy, and daily dhikr tools.
 
 Files affected:
 - FRONTEND/islam app/src/components/QuranReader.jsx
+- FRONTEND/islam app/src/components/PrayerTimesList.jsx
+- FRONTEND/islam app/src/pages/Tasbih.jsx
 
 Breaking changes:
 - None.
