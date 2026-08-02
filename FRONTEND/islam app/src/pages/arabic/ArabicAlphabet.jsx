@@ -1,5 +1,6 @@
 import React, { useState, useRef, useEffect } from 'react';
 import arabicData from '../../data/arabic_learning.json';
+import { playArabicAudio } from '../../utils/audio';
 import { BookOpen, Volume2, Sparkles, Layers, Sun, Moon, Edit3, Eraser, VolumeX, Split, Info } from 'lucide-react';
 
 export default function ArabicAlphabet() {
@@ -11,43 +12,7 @@ export default function ArabicAlphabet() {
     const [isDrawing, setIsDrawing] = useState(false);
 
     const playAudio = (text) => {
-        if (!text) return;
-
-        // 1. Web Speech Synthesis with voice picker
-        if ('speechSynthesis' in window) {
-            try {
-                window.speechSynthesis.cancel();
-                const utterance = new SpeechSynthesisUtterance(text);
-                utterance.lang = 'ar-SA';
-                utterance.rate = 0.8;
-                utterance.volume = 1.0;
-
-                const voices = window.speechSynthesis.getVoices();
-                const arVoice = voices.find(v => v.lang && (v.lang.startsWith('ar') || v.lang.includes('ar')));
-                if (arVoice) {
-                    utterance.voice = arVoice;
-                }
-
-                window.speechSynthesis.speak(utterance);
-            } catch (e) {
-                console.warn("SpeechSynthesis error:", e);
-            }
-        }
-
-        // 2. Google TTS Stream with no-referrer policy
-        try {
-            const encodedText = encodeURIComponent(text);
-            const ttsUrl = `https://translate.google.com/translate_tts?ie=UTF-8&q=${encodedText}&tl=ar&client=tw-ob`;
-            const audio = new Audio();
-            audio.referrerPolicy = 'no-referrer';
-            audio.src = ttsUrl;
-            audio.volume = 1.0;
-            audio.play().catch(err => {
-                console.warn("Audio play notice:", err);
-            });
-        } catch (e) {
-            console.error("Audio error:", e);
-        }
+        playArabicAudio(text);
     };
 
     // Canvas drawing helpers
