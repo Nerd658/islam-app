@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import axios from 'axios';
-import { PlayCircle, PauseCircle, BookOpen, ChevronLeft, Search, Palette, Download, Check, Sparkles, Languages } from 'lucide-react';
+import { PlayCircle, PauseCircle, BookOpen, ChevronLeft, Search, Palette, Download, Check, Languages } from 'lucide-react';
 
 export default function QuranReader() {
     const [chapters, setChapters] = useState([]);
@@ -18,7 +18,6 @@ export default function QuranReader() {
     const [audioProgress, setAudioProgress] = useState({ currentTime: 0, duration: 0, percentage: 0, currentWordIndex: 0 });
     const audioRef = useRef(null);
     const verseRefs = useRef({});
-    const versesListContainerRef = useRef(null);
 
     // Fetch the list of Surahs (Chapters)
     useEffect(() => {
@@ -50,27 +49,14 @@ export default function QuranReader() {
         };
     }, []);
 
-    // Dedicated Auto-scroll inside isolated verses container
+    // Dedicated Auto-scroll to active verse element
     useEffect(() => {
         if (!playingVerse || !verseRefs.current[playingVerse]) return;
-
         const el = verseRefs.current[playingVerse];
-        const container = versesListContainerRef.current;
-        
-        if (container) {
-            const containerRect = container.getBoundingClientRect();
-            const elRect = el.getBoundingClientRect();
-            const relativeTop = elRect.top - containerRect.top;
-            const targetScroll = container.scrollTop + relativeTop - (container.clientHeight / 2) + (elRect.height / 2);
-            
-            container.scrollTo({
-                top: Math.max(0, targetScroll),
-                behavior: 'smooth'
-            });
-        }
+        el.scrollIntoView({ behavior: 'smooth', block: 'center' });
     }, [playingVerse]);
 
-    // Handle Audio TimeUpdate and End events for Word-by-Word sync & progress
+    // Handle Audio TimeUpdate and End events for Word-by-Word sync
     useEffect(() => {
         const audio = audioRef.current;
         if (!audio) return;
@@ -224,15 +210,15 @@ export default function QuranReader() {
     );
 
     return (
-        <div className="w-full max-w-5xl mx-auto py-6 px-4 flex flex-col min-h-[calc(100vh-2rem)] md:min-h-screen">
-            <h2 className="text-3xl font-bold text-center mb-6 text-white flex items-center justify-center gap-3 flex-shrink-0">
+        <div className="w-full max-w-5xl mx-auto py-6 px-4">
+            <h2 className="text-3xl font-bold text-center mb-6 text-white flex items-center justify-center gap-3">
                 <BookOpen className="text-gray-400" size={28} />
                 Le Noble Coran
             </h2>
             
             {!selectedChapter ? (
                 <>
-                    <div className="max-w-md mx-auto mb-8 relative flex-shrink-0">
+                    <div className="max-w-md mx-auto mb-8 relative">
                         <Search className="absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-500" size={20} />
                         <input 
                             type="text" 
@@ -248,7 +234,7 @@ export default function QuranReader() {
                             <p className="text-gray-500">Aucune sourate trouvée pour "{searchQuery}"</p>
                         </div>
                     ) : (
-                        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4 flex-1 overflow-y-auto p-4 bg-[#0a0a0a] rounded-2xl border border-[#333] custom-scrollbar max-h-[70vh]">
+                        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4 p-4 bg-[#0a0a0a] rounded-2xl border border-[#333] custom-scrollbar">
                             {filteredChapters.map(chapter => {
                                 const isSavedOffline = !!localStorage.getItem(`offline_surah_${chapter.id}`);
                                 return (
@@ -272,9 +258,9 @@ export default function QuranReader() {
                     )}
                 </>
             ) : (
-                <div className="bg-[#0a0a0a] p-4 sm:p-8 rounded-2xl border border-[#333] flex flex-col flex-1 overflow-hidden shadow-2xl h-[calc(100vh-8rem)]">
-                    {/* Fixed Reader Header (Buttons + Tajweed Legend + Title) */}
-                    <div className="flex-shrink-0 bg-[#0a0a0a] pb-4 pt-2 border-b border-[#222] mb-6">
+                <div className="bg-[#0a0a0a] rounded-2xl border border-[#333] shadow-2xl p-4 sm:p-8">
+                    {/* 100% STICKY / FIXED HEADER ON SCROLL */}
+                    <div className="sticky top-0 z-50 bg-[#0a0a0a]/95 backdrop-blur-md pt-2 pb-6 border-b border-[#222] mb-8 -mx-4 sm:-mx-8 px-4 sm:px-8 shadow-xl">
                         {/* Top Control Bar */}
                         <div className="flex flex-wrap items-center justify-between gap-4 mb-4">
                             <button 
@@ -350,12 +336,8 @@ export default function QuranReader() {
                             <p className="text-xl text-gray-300">Chargement des versets...</p>
                         </div>
                     ) : (
-                        /* Isolated Scrollable Verses List Only */
-                        <div 
-                            ref={versesListContainerRef}
-                            className="flex flex-col space-y-6 sm:space-y-8 flex-1 overflow-y-auto min-h-0 pr-2 custom-scrollbar" 
-                            dir="rtl"
-                        >
+                        /* Verses List Scrolling beneath sticky header */
+                        <div className="flex flex-col space-y-6 sm:space-y-8" dir="rtl">
                             {verses.map(v => {
                                 const isPlaying = playingVerse === v.verse_key;
 
@@ -365,7 +347,7 @@ export default function QuranReader() {
                                         ref={el => verseRefs.current[v.verse_key] = el}
                                         className={`p-6 sm:p-8 rounded-2xl transition-all duration-300 relative overflow-hidden ${
                                             isPlaying 
-                                                ? 'bg-[#121212] border border-gray-700' 
+                                                ? 'bg-[#121212] border border-gray-700 shadow-lg' 
                                                 : 'hover:bg-[#111] border border-[#222]'
                                         }`}
                                     >
