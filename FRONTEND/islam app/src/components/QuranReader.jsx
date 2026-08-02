@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import axios from 'axios';
-import { PlayCircle, PauseCircle, BookOpen, ChevronLeft, Search, Palette, Download, Check, Sparkles } from 'lucide-react';
+import { PlayCircle, PauseCircle, BookOpen, ChevronLeft, Search, Palette, Download, Check, Sparkles, Languages } from 'lucide-react';
 
 export default function QuranReader() {
     const [chapters, setChapters] = useState([]);
@@ -9,6 +9,7 @@ export default function QuranReader() {
     const [loading, setLoading] = useState(false);
     const [searchQuery, setSearchQuery] = useState('');
     const [tajweedMode, setTajweedMode] = useState(true);
+    const [showTranslation, setShowTranslation] = useState(true);
     const [isDownloaded, setIsDownloaded] = useState(false);
     
     // Audio States & Sync
@@ -119,7 +120,7 @@ export default function QuranReader() {
         };
     }, [playingVerse, verses]);
 
-    // Fast Fetch: Only 2 light endpoints (uthmani_tajweed + audio)
+    // Fast Fetch: Tajweed + Official French Translation (Hamidullah ID 31) + Audio
     const fetchVerses = async (chapterId) => {
         setLoading(true);
         const chapterObj = chapters.find(c => c.id === chapterId);
@@ -147,18 +148,25 @@ export default function QuranReader() {
         setIsDownloaded(false);
 
         try {
-            const [resTajweed, resAudio] = await Promise.all([
+            const [resTajweed, resTranslation, resAudio] = await Promise.all([
                 axios.get(`${import.meta.env.VITE_QURAN_API_URL}/api/v4/quran/verses/uthmani_tajweed?chapter_number=${chapterId}`),
+                axios.get(`${import.meta.env.VITE_QURAN_API_URL}/api/v4/quran/translations/31?chapter_number=${chapterId}`).catch(() => null),
                 axios.get(`${import.meta.env.VITE_QURAN_API_URL}/api/v4/quran/recitations/7?chapter_number=${chapterId}`)
             ]);
             
             const tajweedVerses = resTajweed?.data?.verses || [];
+            const translationVerses = resTranslation?.data?.translations || [];
             
-            const mergedVerses = tajweedVerses.map(v => ({
-                ...v,
-                text_tajweed: v.text_uthmani_tajweed || v.text_uthmani,
-                text_uthmani: v.text_uthmani || v.text_uthmani_tajweed
-            }));
+            const mergedVerses = tajweedVerses.map((v, idx) => {
+                const rawTranslation = translationVerses[idx]?.text || '';
+                const cleanTranslation = rawTranslation.replace(/<sup[^>]*>.*?<\/sup>/g, '').trim();
+                return {
+                    ...v,
+                    text_tajweed: v.text_uthmani_tajweed || v.text_uthmani,
+                    text_uthmani: v.text_uthmani || v.text_uthmani_tajweed,
+                    translation: cleanTranslation
+                };
+            });
 
             setVerses(mergedVerses);
             
@@ -275,6 +283,20 @@ export default function QuranReader() {
                             </button>
 
                             <div className="flex items-center gap-3">
+                                {/* Translation FR Toggle */}
+                                <button
+                                    onClick={() => setShowTranslation(!showTranslation)}
+                                    className={`px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold transition-all border flex items-center gap-2 ${
+                                        showTranslation 
+                                            ? 'bg-emerald-900/50 border-emerald-700 text-emerald-300' 
+                                            : 'bg-[#111] text-gray-400 border-[#333] hover:text-white'
+                                    }`}
+                                >
+                                    <Languages size={16} />
+                                    <span>FR : {showTranslation ? 'Activée' : 'Masquée'}</span>
+                                </button>
+
+                                {/* Tajweed Toggle */}
                                 <button
                                     onClick={() => setTajweedMode(!tajweedMode)}
                                     className={`px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold transition-all border flex items-center gap-2 ${
@@ -284,9 +306,10 @@ export default function QuranReader() {
                                     }`}
                                 >
                                     <Palette size={16} />
-                                    <span>Tajweed Coloré : {tajweedMode ? 'Activé' : 'Désactivé'}</span>
+                                    <span>Tajweed : {tajweedMode ? 'Activé' : 'Désactivé'}</span>
                                 </button>
 
+                                {/* Download / Offline Toggle */}
                                 <button
                                     onClick={toggleDownload}
                                     className={`px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold transition-all border flex items-center gap-2 ${
@@ -333,7 +356,6 @@ export default function QuranReader() {
                         >
                             {verses.map(v => {
                                 const isPlaying = playingVerse === v.verse_key;
-                                const tajweedWordTokens = (v.text_tajweed || v.text_uthmani || '').trim().split(/\s+/);
 
                                 return (
                                     <div 
@@ -399,6 +421,13 @@ export default function QuranReader() {
                                                         <span className="inline-flex items-center justify-center text-xs w-7 h-7 rounded-full mx-2 font-mono border bg-[#222] text-gray-400 border-[#444]">
                                                             {v.verse_key.split(':')[1]}
                                                         </span>
+                                                    </p>
+                                                )}
+
+                                                {/* French Translation Display */}
+                                                {showTranslation && v.translation && (
+                                                    <p className="text-gray-300 text-sm sm:text-base leading-relaxed mt-4 font-sans text-left border-t border-[#222] pt-3" dir="ltr">
+                                                        {v.translation}
                                                     </p>
                                                 )}
                                             </div>

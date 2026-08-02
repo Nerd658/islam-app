@@ -1,11 +1,13 @@
-[2026-08-02] — Fix: Remove artificial timing delay and optimize Surah fetch speed
+[2026-08-02] — Feature: Integrate Official Hamidullah French Quran Translation
 
 What changed:
-- Removed artificial `startOffset` delay in `QuranReader.jsx`'s `handleTimeUpdate` to eliminate audio lag.
-- Stripped heavy redundant `resWords` API request from `fetchVerses` (reducing API calls from 4 to 2), dramatically increasing Surah loading speed and responsiveness.
+- Integrated official French Quran translation (Muhammad Hamidullah, API resource ID 31) into `QuranReader.jsx`.
+- Added a `FR : Activée / Masquée` toggle button in the sticky reader header.
+- Added clean rendering of French translation beneath each verse with footnote cleanup.
+- Included translation in offline local storage saving.
 
 Why:
-- Removing artificial delay realigns highlighting directly with real-time audio playback while speeding up page performance by 80%.
+- Allows users to read and understand the precise meaning of each verse in French while reciting or studying.
 
 Files affected:
 - FRONTEND/islam app/src/components/QuranReader.jsx
