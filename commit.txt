@@ -1,31 +1,13 @@
-[2026-08-02] — Feature: Authentic Hadiths Reader and Quranic Arabic Learning Modules
+[2026-08-02] — Feature: Complete 40 Hadiths An-Nawawi Dataset Integration
 
 What changed:
-- **Hadiths Reader (`/hadiths`)**:
-  - Created `Hadiths.jsx` and dataset `hadiths.json` with the 40 Hadiths of An-Nawawi (*Al-Arba'in An-Nawawiyyah*).
-  - Included vocalized Arabic text, French translation, category filtering, search, copy-to-clipboard, and local storage favorites bookmarking.
-- **Quranic Arabic Learning (`/arabic`)**:
-  - Created `Arabic.jsx` and dataset `arabic_learning.json`.
-  - Added 3 interactive learning tabs:
-    1. **Alphabet & Writing Forms**: 28 letters with isolated, initial, medial, and final forms, phonetics, and Quranic examples.
-    2. **High-Frequency Vocabulary (80% of Quran)**: Interactive flashcards with Arabic word, transliteration, French translation, and occurrence count in the Quran.
-    3. **Tajweed Rules Guide**: Visual rules for Madd, Ghunna, Qalqala, Ikhfa, Idgham, and Iqlab with exact color codes and recitation examples.
-- **Routing & Navigation**:
-  - Registered `/hadiths` and `/arabic` lazy-loaded routes in `App.jsx`.
-  - Added navigation sidebar links in `Navigation.jsx`.
-  - Added Quick Access cards in `Home.jsx`.
+- Updated `hadiths.json` with the full 40 Hadiths of An-Nawawi (*Al-Arba'in An-Nawawiyyah*), complete with vocalized Arabic text, authentic French translations, narrators, and spiritual takeaways.
 
 Why:
-- Expands IslamApp into a comprehensive Islamic education and spiritual hub for Hadith study and Quranic Arabic vocabulary.
+- Delivers the complete 40 Hadith collection as promised for a rich educational experience.
 
 Files affected:
 - FRONTEND/islam app/src/data/hadiths.json
-- FRONTEND/islam app/src/data/arabic_learning.json
-- FRONTEND/islam app/src/pages/Hadiths.jsx
-- FRONTEND/islam app/src/pages/Arabic.jsx
-- FRONTEND/islam app/src/App.jsx
-- FRONTEND/islam app/src/components/Navigation.jsx
-- FRONTEND/islam app/src/pages/Home.jsx
 
 Breaking changes:
 - None.
