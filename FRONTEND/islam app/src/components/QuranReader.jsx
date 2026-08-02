@@ -94,10 +94,11 @@ export default function QuranReader() {
             
             const activeVerseObj = verses.find(v => v.verse_key === playingVerse);
             let wordIdx = 0;
-            if (activeVerseObj && activeVerseObj.words && activeVerseObj.words.length > 0) {
-                const actualWords = activeVerseObj.words.filter(w => w.char_type_name === 'word');
-                if (actualWords.length > 0) {
-                    wordIdx = Math.min(actualWords.length - 1, Math.floor((cur / dur) * actualWords.length));
+            if (activeVerseObj) {
+                const textStr = activeVerseObj.text_tajweed || activeVerseObj.text_uthmani || '';
+                const tokens = textStr.match(/((?:<[^>]+>|[^<>\s])+)/g) || [];
+                if (tokens.length > 0) {
+                    wordIdx = Math.min(tokens.length - 1, Math.floor((cur / dur) * tokens.length));
                 }
             }
 

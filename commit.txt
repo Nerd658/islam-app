@@ -1,11 +1,10 @@
-[2026-08-02] — UI/UX: HTML-safe word-by-word Tajweed tokenization with glowing underline
+[2026-08-02] — Fix: Synchronize audio timeupdate wordIdx directly with rendered Tajweed tokens
 
 What changed:
-- Applied regex tokenizer `/((?:<[^>]+>|[^<>\s])+)/g` to extract individual word HTML strings without breaking embedded `<tajweed class=...>` tags.
-- Re-enabled live word-by-word highlighting: active word gets a prominent glowing emerald underline (`border-b-4 border-emerald-400 scale-110 shadow-lg shadow-emerald-500/30`), while preserving all underlying Tajweed letter colors 100% intact.
+- Updated `handleTimeUpdate` in `QuranReader.jsx` to compute `currentWordIndex` directly from the tokenized Tajweed HTML string tokens.
 
 Why:
-- Allows users to see word-by-word audio progress with glowing underlines while maintaining all authentic Tajweed letter rules visible.
+- Previously `handleTimeUpdate` looked for `activeVerseObj.words` which could be undefined or mismatched with rendered Tajweed tokens, locking `currentWordIndex` at 0. Calculating from rendered tokens makes the green underline advance fluidly from word 0 to 1 to 2 to 3 across every verse.
 
 Files affected:
 - FRONTEND/islam app/src/components/QuranReader.jsx
