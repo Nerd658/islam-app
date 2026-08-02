@@ -1,15 +1,13 @@
-[2026-08-02] — Fix: Separate letter pronunciation audio from Quranic example human recitations
+[2026-08-02] — Fix: Implement zero-latency dual-tier audio engine for instant letter sound playback
 
 What changed:
-- **ArabicAlphabet.jsx**:
-  - Clicking on a letter (Alif, Ba, Ta, Tha) now plays the pure letter name audio (Alif, Ba'a, Ta'a, Tha'a).
-  - Added a dedicated "Écouter le mot (Récitation Humaine)" button on the Quranic example card to play the authentic human Qari recitation MP3 (Allahi, Bismi, Tawbah, etc.).
+- **src/utils/audio.js**: Separated audio into Tier 1 (Howler.js for real human Qari MP3 URLs) and Tier 2 (Instant zero-latency SpeechSynthesis for individual letters and vocalization marks).
 
 Why:
-- Resolves confusion where clicking on a letter played its example word instead of the letter's own name.
+- Fixes issue where network TTS endpoints failed to load over HTML5 CORS streams, ensuring letter taps trigger instantaneous sound on every browser and device.
 
 Files affected:
-- FRONTEND/islam app/src/pages/arabic/ArabicAlphabet.jsx
+- FRONTEND/islam app/src/utils/audio.js
 
 Breaking changes:
 - None.
