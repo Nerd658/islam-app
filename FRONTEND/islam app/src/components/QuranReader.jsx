@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import axios from 'axios';
-import { PlayCircle, PauseCircle, BookOpen, ChevronLeft, Search, Palette, Download, Check, Sparkles, Volume2 } from 'lucide-react';
+import { PlayCircle, PauseCircle, BookOpen, ChevronLeft, Search, Palette, Download, Check, Sparkles } from 'lucide-react';
 
 export default function QuranReader() {
     const [chapters, setChapters] = useState([]);
@@ -17,10 +17,10 @@ export default function QuranReader() {
     const [audioProgress, setAudioProgress] = useState({ currentTime: 0, duration: 0, percentage: 0, currentWordIndex: 0 });
     const audioRef = useRef(null);
     const verseRefs = useRef({});
+    const versesListContainerRef = useRef(null);
 
     // Fetch the list of Surahs (Chapters)
     useEffect(() => {
-        // Try local storage cache for chapters first
         const cachedChapters = localStorage.getItem('quran_chapters_cache');
         if (cachedChapters) {
             try {
@@ -37,7 +37,6 @@ export default function QuranReader() {
             })
             .catch(err => console.error("Erreur lors du chargement des sourates:", err));
             
-        // Initialize Audio element
         if (!audioRef.current) {
             audioRef.current = new Audio();
         }
@@ -50,32 +49,20 @@ export default function QuranReader() {
         };
     }, []);
 
-    // Robust Auto-scroll to active playing verse inside parent overflow container
+    // Dedicated Auto-scroll inside isolated verses container
     useEffect(() => {
         if (!playingVerse || !verseRefs.current[playingVerse]) return;
 
         const el = verseRefs.current[playingVerse];
+        const container = versesListContainerRef.current;
         
-        // Strategy A: Standard scrollIntoView
-        try {
-            el.scrollIntoView({
-                behavior: 'smooth',
-                block: 'center',
-                inline: 'nearest'
-            });
-        } catch (e) {
-            console.error(e);
-        }
-
-        // Strategy B: Explicit scroll calculation on scrollable container
-        const scrollableParent = el.closest('.overflow-y-auto') || document.querySelector('.overflow-y-auto');
-        if (scrollableParent) {
-            const parentRect = scrollableParent.getBoundingClientRect();
+        if (container) {
+            const containerRect = container.getBoundingClientRect();
             const elRect = el.getBoundingClientRect();
-            const relativeTop = elRect.top - parentRect.top;
-            const targetScroll = scrollableParent.scrollTop + relativeTop - (scrollableParent.clientHeight / 2) + (elRect.height / 2);
+            const relativeTop = elRect.top - containerRect.top;
+            const targetScroll = container.scrollTop + relativeTop - (container.clientHeight / 2) + (elRect.height / 2);
             
-            scrollableParent.scrollTo({
+            container.scrollTo({
                 top: Math.max(0, targetScroll),
                 behavior: 'smooth'
             });
@@ -141,7 +128,6 @@ export default function QuranReader() {
             audioRef.current.pause();
         }
 
-        // Check if saved offline
         const offlineKey = `offline_surah_${chapterId}`;
         const savedData = localStorage.getItem(offlineKey);
         if (savedData) {
@@ -164,7 +150,7 @@ export default function QuranReader() {
                 axios.get(`${import.meta.env.VITE_QURAN_API_URL}/api/v4/quran/verses/uthmani?chapter_number=${chapterId}`),
                 axios.get(`${import.meta.env.VITE_QURAN_API_URL}/api/v4/quran/verses/uthmani_tajweed?chapter_number=${chapterId}`).catch(() => null),
                 axios.get(`${import.meta.env.VITE_QURAN_API_URL}/api/v4/verses/by_chapter/${chapterId}?words=true&word_fields=text_uthmani`).catch(() => null),
-                axios.get(`${import.meta.env.VITE_QURAN_API_URL}/api/v4/quran/recitations/7?chapter_number=${chapterId}`) // 7 = Mishari
+                axios.get(`${import.meta.env.VITE_QURAN_API_URL}/api/v4/quran/recitations/7?chapter_number=${chapterId}`)
             ]);
             
             const uthmaniVerses = resVerses.data.verses;
@@ -183,7 +169,6 @@ export default function QuranReader() {
 
             setVerses(mergedVerses);
             
-            // Map audio URLs by verse_key
             const audioMap = {};
             if (resAudio?.data?.audio_files) {
                 resAudio.data.audio_files.forEach(a => {
@@ -284,68 +269,75 @@ export default function QuranReader() {
                     )}
                 </>
             ) : (
-                <div className="bg-[#0a0a0a] p-6 sm:p-10 rounded-2xl relative border border-[#333]">
-                    {/* Top Control Bar */}
-                    <div className="flex flex-wrap items-center justify-between gap-4 mb-8">
-                        <button 
-                            onClick={() => setSelectedChapter(null)}
-                            className="bg-[#222] hover:bg-[#333] border border-[#444] px-4 py-2 rounded-xl text-sm font-medium transition-all text-white flex items-center gap-2"
-                        >
-                            <ChevronLeft size={16} /> Retour aux Sourates
-                        </button>
-
-                        <div className="flex items-center gap-3">
-                            {/* Tajweed Toggle */}
-                            <button
-                                onClick={() => setTajweedMode(!tajweedMode)}
-                                className={`px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold transition-all border flex items-center gap-2 ${
-                                    tajweedMode 
-                                        ? 'bg-white text-black border-white shadow-md' 
-                                        : 'bg-[#111] text-gray-400 border-[#333] hover:text-white'
-                                }`}
+                <div className="bg-[#0a0a0a] p-4 sm:p-8 rounded-2xl border border-[#333] flex flex-col">
+                    {/* Sticky Reader Header (Buttons + Tajweed Legend + Title) */}
+                    <div className="sticky top-0 z-30 bg-[#0a0a0a]/95 backdrop-blur-md pb-4 pt-2 border-b border-[#222] mb-6">
+                        {/* Top Control Bar */}
+                        <div className="flex flex-wrap items-center justify-between gap-4 mb-4">
+                            <button 
+                                onClick={() => setSelectedChapter(null)}
+                                className="bg-[#222] hover:bg-[#333] border border-[#444] px-4 py-2 rounded-xl text-sm font-medium transition-all text-white flex items-center gap-2"
                             >
-                                <Palette size={16} />
-                                <span>Tajweed Coloré : {tajweedMode ? 'Activé' : 'Désactivé'}</span>
+                                <ChevronLeft size={16} /> Retour aux Sourates
                             </button>
 
-                            {/* Download / Offline Toggle */}
-                            <button
-                                onClick={toggleDownload}
-                                className={`px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold transition-all border flex items-center gap-2 ${
-                                    isDownloaded 
-                                        ? 'bg-emerald-950/60 border-emerald-700 text-emerald-300' 
-                                        : 'bg-[#111] border-[#333] text-gray-300 hover:border-gray-500'
-                                }`}
-                                title={isDownloaded ? "Disponible Hors-Ligne (Cliquer pour supprimer)" : "Télécharger pour lire hors-ligne"}
-                            >
-                                {isDownloaded ? <Check size={16} className="text-emerald-400" /> : <Download size={16} />}
-                                <span>{isDownloaded ? 'Hors-Ligne OK' : 'Télécharger'}</span>
-                            </button>
+                            <div className="flex items-center gap-3">
+                                <button
+                                    onClick={() => setTajweedMode(!tajweedMode)}
+                                    className={`px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold transition-all border flex items-center gap-2 ${
+                                        tajweedMode 
+                                            ? 'bg-white text-black border-white shadow-md' 
+                                            : 'bg-[#111] text-gray-400 border-[#333] hover:text-white'
+                                    }`}
+                                >
+                                    <Palette size={16} />
+                                    <span>Tajweed Coloré : {tajweedMode ? 'Activé' : 'Désactivé'}</span>
+                                </button>
+
+                                <button
+                                    onClick={toggleDownload}
+                                    className={`px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold transition-all border flex items-center gap-2 ${
+                                        isDownloaded 
+                                            ? 'bg-emerald-950/60 border-emerald-700 text-emerald-300' 
+                                            : 'bg-[#111] border-[#333] text-gray-300 hover:border-gray-500'
+                                    }`}
+                                    title={isDownloaded ? "Disponible Hors-Ligne (Cliquer pour supprimer)" : "Télécharger pour lire hors-ligne"}
+                                >
+                                    {isDownloaded ? <Check size={16} className="text-emerald-400" /> : <Download size={16} />}
+                                    <span>{isDownloaded ? 'Hors-Ligne OK' : 'Télécharger'}</span>
+                                </button>
+                            </div>
                         </div>
+
+                        {/* Tajweed Legend Bar */}
+                        {tajweedMode && (
+                            <div className="mb-4 p-2.5 bg-[#111] border border-[#222] rounded-xl flex flex-wrap items-center justify-center gap-4 text-xs font-medium">
+                                <span className="text-gray-400 flex items-center gap-1 font-bold"><Sparkles size={12} /> Règles Tajweed :</span>
+                                <span className="flex items-center gap-1.5"><span className="w-2.5 h-2.5 rounded-full bg-rose-500"></span><span className="text-rose-400 font-bold">Madd (Élongation)</span></span>
+                                <span className="flex items-center gap-1.5"><span className="w-2.5 h-2.5 rounded-full bg-emerald-500"></span><span className="text-emerald-400 font-bold">Ghunna (Nasalisation)</span></span>
+                                <span className="flex items-center gap-1.5"><span className="w-2.5 h-2.5 rounded-full bg-blue-500"></span><span className="text-blue-400 font-bold">Qalqala (Rebond)</span></span>
+                                <span className="flex items-center gap-1.5"><span className="w-2.5 h-2.5 rounded-full bg-orange-500"></span><span className="text-orange-400 font-bold">Ikhfa</span></span>
+                            </div>
+                        )}
+
+                        {/* Surah Title */}
+                        <h3 className="text-2xl sm:text-3xl font-bold text-center text-white font-arabic">
+                            {selectedChapter.name_arabic}
+                            <span className="block text-base text-gray-500 mt-1 font-sans">Sourate {selectedChapter.name_simple} ({selectedChapter.verses_count} versets)</span>
+                        </h3>
                     </div>
 
-                    {/* Tajweed Legend Bar */}
-                    {tajweedMode && (
-                        <div className="mb-8 p-3 bg-[#111] border border-[#222] rounded-xl flex flex-wrap items-center justify-center gap-4 text-xs font-medium">
-                            <span className="text-gray-400 flex items-center gap-1 font-bold"><Sparkles size={12} /> Règles Tajweed :</span>
-                            <span className="flex items-center gap-1.5"><span className="w-2.5 h-2.5 rounded-full bg-rose-500"></span><span className="text-rose-400 font-bold">Madd (Élongation)</span></span>
-                            <span className="flex items-center gap-1.5"><span className="w-2.5 h-2.5 rounded-full bg-emerald-500"></span><span className="text-emerald-400 font-bold">Ghunna (Nasalisation)</span></span>
-                            <span className="flex items-center gap-1.5"><span className="w-2.5 h-2.5 rounded-full bg-blue-500"></span><span className="text-blue-400 font-bold">Qalqala (Rebond)</span></span>
-                            <span className="flex items-center gap-1.5"><span className="w-2.5 h-2.5 rounded-full bg-orange-500"></span><span className="text-orange-400 font-bold">Ikhfa</span></span>
-                        </div>
-                    )}
-
-                    <h3 className="text-3xl sm:text-4xl font-bold text-center mb-10 text-white font-arabic">
-                        {selectedChapter.name_arabic}
-                        <span className="block text-xl text-gray-500 mt-2 font-sans">Sourate {selectedChapter.name_simple} ({selectedChapter.verses_count} versets)</span>
-                    </h3>
-                    
                     {loading ? (
                         <div className="flex justify-center items-center h-48">
                             <p className="text-xl text-gray-300">Chargement des versets...</p>
                         </div>
                     ) : (
-                        <div className="flex flex-col space-y-6 sm:space-y-8" dir="rtl">
+                        /* Isolated Scrollable Verses List */
+                        <div 
+                            ref={versesListContainerRef}
+                            className="flex flex-col space-y-6 sm:space-y-8 max-h-[calc(100vh-320px)] overflow-y-auto pr-2 custom-scrollbar" 
+                            dir="rtl"
+                        >
                             {verses.map(v => {
                                 const isPlaying = playingVerse === v.verse_key;
                                 const wordsList = v.words ? v.words.filter(w => w.char_type_name === 'word') : [];
@@ -382,13 +374,6 @@ export default function QuranReader() {
                                             </button>
 
                                             <div className="flex-grow text-right">
-                                                {/* Active Récitation Badge */}
-                                                {isPlaying && (
-                                                    <div className="inline-flex items-center gap-1.5 px-2.5 py-1 bg-emerald-900/40 border border-emerald-700/60 rounded-full text-emerald-300 text-xs font-sans font-medium mb-3 animate-pulse">
-                                                        <Volume2 size={12} className="animate-spin" /> Récitation en cours...
-                                                    </div>
-                                                )}
-
                                                 {/* Word-by-Word sync rendering when playing or when words available */}
                                                 {isPlaying && wordsList.length > 0 ? (
                                                     <p className="font-arabic text-3xl sm:text-4xl leading-[2.5] sm:leading-[2.8] tracking-wide text-white">

@@ -1,10 +1,13 @@
-[2026-08-02] — Fix: Auto-scroll positioning relative to parent overflow container
+[2026-08-02] — UI/UX: Implement Sticky Reader Header & Isolated Verses Scroll
 
 What changed:
-- Updated `useEffect` in `QuranReader.jsx` to locate the parent `.overflow-y-auto` container in `App.jsx` and calculate exact relative scroll offsets (`scrollTop + relativeTop - (containerHeight / 2)`).
+- Made the reader header (Return button, Tajweed toggle, Download button, Tajweed legend, and Surah title) sticky (`sticky top-0 z-30 backdrop-blur-md`).
+- Isolated the verses list into its own dedicated scrollable container (`versesListContainerRef`).
+- Removed the "Récitation en cours..." badge from verse cards.
+- Auto-scroll now targets the isolated verses list container smoothly.
 
 Why:
-- Standard `scrollIntoView()` on inner elements can fail inside nested flex layout containers (`overflow-y-auto`). Calculating the parent offset guarantees smooth centering on all browsers and devices.
+- Keeps controls and Surah title permanently visible while reading/reciting, without scrolling away the controls.
 
 Files affected:
 - FRONTEND/islam app/src/components/QuranReader.jsx
