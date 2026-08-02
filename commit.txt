@@ -1,13 +1,15 @@
-[2026-08-02] — Fix: Set Ta example to Tabbat (111_001_001.mp3) for 100% indisputable Quranic Audio
+[2026-08-02] — Fix: Stream pure vocalized letter names on letter click and reserve exampleAudio for Quranic example button
 
 What changed:
-- **arabic_learning.json**: Set Ta (`ت`) example to **`تَبَّتْ`** ("Tabbat") with audio `https://audio.qurancdn.com/wbw/111_001_001.mp3` (Surah Al-Masad 111:1 Word 1).
+- **arabic_learning.json**: Cleaned dataset to ensure `exampleAudio` is used exclusively for the Quranic example word button.
+- **ArabicAlphabet.jsx**: Clicking on a letter (Alif, Ba, Ta, Tha, Kha, etc.) streams its exact vocalized letter name (Alif, Ba'a, Ta'a, Kha'a). Clicking "Écouter le mot (Récitation Humaine)" streams the real human Qari MP3 recitation (Allah, Bismi, Tabbat, Khayr).
 
 Why:
-- Fixes word offset issue by using Word 1 of Surah 111, guaranteeing 100% indisputable audio recitation for Ta ("Tabbat").
+- Fixes architecture overlap between isolated letter names and Quranic example words.
 
 Files affected:
 - FRONTEND/islam app/src/data/arabic_learning.json
+- FRONTEND/islam app/src/pages/arabic/ArabicAlphabet.jsx
 
 Breaking changes:
 - None.
