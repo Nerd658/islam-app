@@ -83,6 +83,7 @@ export default function Tasbih() {
 
     const handleReset = () => {
         setCount(0);
+        localStorage.setItem('tasbih_count', '0');
         if (navigator.vibrate) {
             navigator.vibrate(80);
         }
@@ -138,7 +139,13 @@ export default function Tasbih() {
                 <div className="mb-6 w-full">
                     <select 
                         value={phrase}
-                        onChange={(e) => { setPhrase(e.target.value); setCount(0); }}
+                        onChange={(e) => { 
+                            const newP = e.target.value;
+                            setPhrase(newP); 
+                            setCount(0); 
+                            localStorage.setItem('tasbih_phrase', newP);
+                            localStorage.setItem('tasbih_count', '0');
+                        }}
                         className="w-full bg-[#111] border border-[#333] text-white p-3 rounded-xl outline-none font-semibold text-sm cursor-pointer"
                     >
                         {phrases.map(p => (
