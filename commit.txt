@@ -1,25 +1,13 @@
-[2026-08-02] — Feature: Multi-Reciter, Playback Speed, Bookmarks, Next Prayer Countdown, Adhan Player & Haptic Tasbih
+[2026-08-02] — Fix: Strip raw Tajweed HTML tags when Tajweed mode is disabled
 
 What changed:
-- **QuranReader.jsx**:
-  - Integrated 4 Reciters (Mishary Alafasy, Abdul Basit, Al-Ghamdi, Al-Husary) with live reciter switcher dropdown.
-  - Added playback speed controller (`0.75x`, `1x`, `1.25x`, `1.5x`).
-  - Added automatic verse bookmarking and a "Reprendre la lecture" banner card.
-  - Added global verse search tab with direct verse navigation.
-- **PrayerTimesList.jsx**:
-  - Added live countdown timer for the next upcoming prayer (`01h 14m 22s`).
-  - Added audio Adhan player button with live audio playback.
-- **Tasbih.jsx**:
-  - Added enhanced haptic vibration (`navigator.vibrate`) with double pulse every 33 counts.
-  - Added Web Audio API click sound generator with toggle switch.
+- Updated `QuranReader.jsx` to strip HTML tags (`.replace(/<[^>]+>/g, '')`) whenever `tajweedMode` is toggled OFF (disabled).
 
 Why:
-- Elevates the user experience across Quran reading, prayer timing accuracy, and daily dhikr tools.
+- Fixes bug where disabling Tajweed rules caused raw unparsed HTML tags like `<tajweed class=madda_necessary>` to appear as plain text on screen.
 
 Files affected:
 - FRONTEND/islam app/src/components/QuranReader.jsx
-- FRONTEND/islam app/src/components/PrayerTimesList.jsx
-- FRONTEND/islam app/src/pages/Tasbih.jsx
 
 Breaking changes:
 - None.

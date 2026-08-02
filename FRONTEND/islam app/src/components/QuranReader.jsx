@@ -610,6 +610,7 @@ export default function QuranReader() {
                                                         <p className={`tajweed-text font-arabic text-3xl sm:text-4xl leading-[2.5] sm:leading-[2.8] tracking-wide text-white`}>
                                                             {((v.text_tajweed || v.text_uthmani || '').match(/((?:<[^>]+>|[^<>\s])+)/g) || []).map((wHtml, idx) => {
                                                                 const isCurrentWord = isPlaying && idx === audioProgress.currentWordIndex;
+                                                                const wordContent = tajweedMode ? wHtml : wHtml.replace(/<[^>]+>/g, '');
                                                                 return (
                                                                     <span 
                                                                         key={idx} 
@@ -618,7 +619,7 @@ export default function QuranReader() {
                                                                                 ? 'bg-white/10 border-b-2 border-white' 
                                                                                 : ''
                                                                         }`}
-                                                                        dangerouslySetInnerHTML={{ __html: wHtml }}
+                                                                        dangerouslySetInnerHTML={{ __html: wordContent }}
                                                                     />
                                                                 );
                                                             })}
@@ -633,7 +634,7 @@ export default function QuranReader() {
                                                         />
                                                     ) : (
                                                         <p className="font-arabic text-3xl sm:text-4xl leading-[2.5] sm:leading-[2.8] tracking-wide text-white">
-                                                            {v.text_uthmani || v.text_tajweed}
+                                                            {(v.text_uthmani || v.text_tajweed || '').replace(/<[^>]+>/g, '')}
                                                             <span className="inline-flex items-center justify-center text-xs w-7 h-7 rounded-full mx-2 font-mono border bg-[#222] text-gray-400 border-[#444]">
                                                                 {v.verse_key.split(':')[1]}
                                                             </span>
