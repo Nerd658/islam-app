@@ -1,12 +1,14 @@
-[2026-08-02] — Fix: Implement zero-latency dual-tier audio engine for instant letter sound playback
+[2026-08-02] — Feature: Add /api/tts Proxy Endpoint for Crystal Clear Arabic Letter Audio Streaming
 
 What changed:
-- **src/utils/audio.js**: Separated audio into Tier 1 (Howler.js for real human Qari MP3 URLs) and Tier 2 (Instant zero-latency SpeechSynthesis for individual letters and vocalization marks).
+- **BACKEND/app.js**: Added `/api/tts` proxy route that streams Google TTS audio with server-side User-Agent headers, completely bypassing browser CORS restrictions.
+- **src/utils/audio.js**: Connected `playArabicAudio` to the backend `/api/tts` proxy for clear, natural MP3 streaming for all letters and vowels.
 
 Why:
-- Fixes issue where network TTS endpoints failed to load over HTML5 CORS streams, ensuring letter taps trigger instantaneous sound on every browser and device.
+- Eliminates robotic browser Web Speech voices and resolves CORS blocking by serving clean audio MP3 streams directly from the backend.
 
 Files affected:
+- BACKEND/app.js
 - FRONTEND/islam app/src/utils/audio.js
 
 Breaking changes:

@@ -1,9 +1,10 @@
 import { Howl } from 'howler';
 
 /**
- * Bulletproof Dual-Tier Arabic Audio Engine
+ * Industrial Howler.js Powered Arabic Audio Engine
  * Tier 1: Real Human Qari Recitation MP3 (Howler.js) for Quranic words.
- * Tier 2: Instant Zero-Latency Speech Synthesis for Letters and Vocalizations.
+ * Tier 2: Backend Audio Proxy (/api/tts) for crystal-clear letter audio streaming.
+ * Tier 3: SpeechSynthesis fallback.
  */
 
 let currentHowl = null;
@@ -76,9 +77,20 @@ export const playArabicAudio = (text, directAudioUrl = null, phoneticFallback = 
             return;
         }
 
-        // Tier 2: Instant Zero-Latency Speech Synthesis for Letters & Vowels
-        speakVoice(text, fallback);
+        // Tier 2: Backend Audio Streaming Proxy (Bypasses CORS & streams clear MP3 audio)
+        const backendBase = import.meta.env.VITE_BACKEND_URL || 'http://localhost:4000';
+        const proxyUrl = `${backendBase}/api/tts?text=${encodeURIComponent(text)}`;
 
+        currentHowl = new Howl({
+            src: [proxyUrl],
+            html5: true,
+            format: ['mp3'],
+            volume: 1.0,
+            onplayerror: () => { speakVoice(text, fallback); },
+            onloaderror: () => { speakVoice(text, fallback); }
+        });
+
+        currentHowl.play();
     } catch (e) {
         console.error("Audio engine error:", e);
         speakVoice(text, fallback);
