@@ -1,10 +1,10 @@
-[2026-08-02] — Audio Sync: Calibrate audio lead-in and trailing silence offsets
+[2026-08-02] — Audio Sync: Slightly increase startOffset to 0.35s
 
 What changed:
-- Added `startOffset = 0.25s` and `effectiveDur = dur - 0.5s` in `QuranReader.jsx`'s `handleTimeUpdate` function.
+- Updated `startOffset` in `QuranReader.jsx` to 0.35s.
 
 Why:
-- Accounts for initial breath silence and trailing MP3 silence in Mishary's recitation files, aligning word highlight with voice onset.
+- Fine-tunes audio synchronization for an even more seamless alignment with Mishary's recitation voice.
 
 Files affected:
 - FRONTEND/islam app/src/components/QuranReader.jsx
