@@ -363,15 +363,15 @@ export default function QuranReader() {
                                         ref={el => verseRefs.current[v.verse_key] = el}
                                         className={`p-6 sm:p-8 rounded-2xl transition-all duration-300 relative overflow-hidden ${
                                             isPlaying 
-                                                ? 'bg-emerald-950/30 border-2 border-emerald-500 shadow-xl shadow-emerald-950/40' 
+                                                ? 'bg-[#121212] border border-gray-700' 
                                                 : 'hover:bg-[#111] border border-[#222]'
                                         }`}
                                     >
                                         {/* Audio Progress Bar at top of active verse card */}
                                         {isPlaying && (
-                                            <div className="absolute top-0 left-0 right-0 h-1 bg-emerald-950">
+                                            <div className="absolute top-0 left-0 right-0 h-1 bg-[#222]">
                                                 <div 
-                                                    className="h-full bg-emerald-400 transition-all duration-200" 
+                                                    className="h-full bg-gray-400 transition-all duration-200" 
                                                     style={{ width: `${audioProgress.percentage}%` }}
                                                 />
                                             </div>
@@ -381,7 +381,7 @@ export default function QuranReader() {
                                             <button 
                                                 onClick={() => playVerse(v.verse_key)}
                                                 className={`flex-shrink-0 mt-3 transition-all duration-300 ${
-                                                    isPlaying ? 'text-emerald-400 scale-110' : 'text-gray-600 hover:text-gray-300'
+                                                    isPlaying ? 'text-white scale-110' : 'text-gray-600 hover:text-gray-300'
                                                 }`}
                                                 title="Écouter le verset"
                                             >
@@ -389,7 +389,7 @@ export default function QuranReader() {
                                             </button>
 
                                             <div className="flex-grow text-right">
-                                                {/* Word-by-Word sync with preserved Tajweed colors & glowing underline */}
+                                                {/* Word-by-Word sync with preserved Tajweed colors */}
                                                 {isPlaying ? (
                                                     <p className={`tajweed-text font-arabic text-3xl sm:text-4xl leading-[2.5] sm:leading-[2.8] tracking-wide text-white`}>
                                                         {((v.text_tajweed || v.text_uthmani || '').match(/((?:<[^>]+>|[^<>\s])+)/g) || []).map((wHtml, idx) => {
@@ -399,7 +399,7 @@ export default function QuranReader() {
                                                                     key={idx} 
                                                                     className={`mx-1.5 px-1.5 py-0.5 rounded-xl transition-all duration-200 inline-block ${
                                                                         isCurrentWord 
-                                                                            ? 'bg-emerald-950/80 border-b-4 border-emerald-400 scale-110 shadow-lg shadow-emerald-500/30' 
+                                                                            ? 'bg-white/10 border-b-2 border-white' 
                                                                             : ''
                                                                     }`}
                                                                     dangerouslySetInnerHTML={{ __html: wHtml }}
