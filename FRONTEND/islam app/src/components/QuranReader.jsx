@@ -98,11 +98,7 @@ export default function QuranReader() {
                 const textStr = activeVerseObj.text_tajweed || activeVerseObj.text_uthmani || '';
                 const tokens = textStr.match(/((?:<[^>]+>|[^<>\s])+)/g) || [];
                 if (tokens.length > 0) {
-                    // Calibrate audio lead-in silence (~0.35s) and trailing silence (~0.25s)
-                    const startOffset = 0.35;
-                    const effectiveDur = Math.max(0.4, dur - 0.5);
-                    const effectiveCur = Math.max(0, cur - startOffset);
-                    wordIdx = Math.min(tokens.length - 1, Math.floor((effectiveCur / effectiveDur) * tokens.length));
+                    wordIdx = Math.min(tokens.length - 1, Math.floor((cur / dur) * tokens.length));
                 }
             }
 
@@ -123,7 +119,7 @@ export default function QuranReader() {
         };
     }, [playingVerse, verses]);
 
-    // Fetch the Arabic verses of a specific Surah + Audio + Words + Tajweed
+    // Fast Fetch: Only 2 light endpoints (uthmani_tajweed + audio)
     const fetchVerses = async (chapterId) => {
         setLoading(true);
         const chapterObj = chapters.find(c => c.id === chapterId);
@@ -151,26 +147,18 @@ export default function QuranReader() {
         setIsDownloaded(false);
 
         try {
-            const [resVerses, resTajweed, resWords, resAudio] = await Promise.all([
-                axios.get(`${import.meta.env.VITE_QURAN_API_URL}/api/v4/quran/verses/uthmani?chapter_number=${chapterId}`),
-                axios.get(`${import.meta.env.VITE_QURAN_API_URL}/api/v4/quran/verses/uthmani_tajweed?chapter_number=${chapterId}`).catch(() => null),
-                axios.get(`${import.meta.env.VITE_QURAN_API_URL}/api/v4/verses/by_chapter/${chapterId}?words=true&word_fields=text_uthmani`).catch(() => null),
+            const [resTajweed, resAudio] = await Promise.all([
+                axios.get(`${import.meta.env.VITE_QURAN_API_URL}/api/v4/quran/verses/uthmani_tajweed?chapter_number=${chapterId}`),
                 axios.get(`${import.meta.env.VITE_QURAN_API_URL}/api/v4/quran/recitations/7?chapter_number=${chapterId}`)
             ]);
             
-            const uthmaniVerses = resVerses.data.verses;
             const tajweedVerses = resTajweed?.data?.verses || [];
-            const wordVerses = resWords?.data?.verses || [];
             
-            const mergedVerses = uthmaniVerses.map(v => {
-                const tajweedMatch = tajweedVerses.find(t => t.id === v.id || t.verse_key === v.verse_key);
-                const wordMatch = wordVerses.find(w => w.id === v.id || w.verse_key === v.verse_key);
-                return {
-                    ...v,
-                    text_tajweed: tajweedMatch ? (tajweedMatch.text_uthmani_tajweed || tajweedMatch.text_tajweed) : v.text_uthmani,
-                    words: wordMatch ? wordMatch.words : []
-                };
-            });
+            const mergedVerses = tajweedVerses.map(v => ({
+                ...v,
+                text_tajweed: v.text_uthmani_tajweed || v.text_uthmani,
+                text_uthmani: v.text_uthmani || v.text_uthmani_tajweed
+            }));
 
             setVerses(mergedVerses);
             

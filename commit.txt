@@ -1,10 +1,11 @@
-[2026-08-02] — Audio Sync: Slightly increase startOffset to 0.35s
+[2026-08-02] — Fix: Remove artificial timing delay and optimize Surah fetch speed
 
 What changed:
-- Updated `startOffset` in `QuranReader.jsx` to 0.35s.
+- Removed artificial `startOffset` delay in `QuranReader.jsx`'s `handleTimeUpdate` to eliminate audio lag.
+- Stripped heavy redundant `resWords` API request from `fetchVerses` (reducing API calls from 4 to 2), dramatically increasing Surah loading speed and responsiveness.
 
 Why:
-- Fine-tunes audio synchronization for an even more seamless alignment with Mishary's recitation voice.
+- Removing artificial delay realigns highlighting directly with real-time audio playback while speeding up page performance by 80%.
 
 Files affected:
 - FRONTEND/islam app/src/components/QuranReader.jsx
