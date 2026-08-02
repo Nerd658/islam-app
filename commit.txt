@@ -1,10 +1,10 @@
-[2026-08-02] — Feature: Expand Quranic Vocabulary Flashcards to 20 High-Frequency Words
+[2026-08-02] — Feature: Expand Quranic Vocabulary Dataset to 50 High-Frequency Words
 
 What changed:
-- **arabic_learning.json**: Expanded vocabulary section with 20 high-frequency Quranic words (Rabbi, Qala, Yawm, Ard, Sama', 'Aleem, Hakeem, Raheem, Jannah, Qalb, Noor, Kitab, etc.) with authentic Qari MP3 audio URLs.
+- **arabic_learning.json**: Integrated 50 essential Quranic vocabulary words with authentic Qari MP3 audio URLs, exact occurrence counts, vocalization, and French translations.
 
 Why:
-- Enhances the vocabulary learning experience on `/arabic/vocabulary`.
+- Empowers users to learn the top 80% of Quranic vocabulary directly on `/arabic/vocabulary`.
 
 Files affected:
 - FRONTEND/islam app/src/data/arabic_learning.json
