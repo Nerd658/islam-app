@@ -44,7 +44,19 @@
     { "id": 5, "arabic": "فِي", "transliteration": "Fi", "french": "Dans / En", "occurrences": 1701, "audio": "https://audio.qurancdn.com/wbw/002_010_001.mp3" },
     { "id": 6, "arabic": "مَا", "transliteration": "Ma", "french": "Ce qui / Ne... pas", "occurrences": 2617, "audio": "https://audio.qurancdn.com/wbw/002_026_005.mp3" },
     { "id": 7, "arabic": "لاَ", "transliteration": "La", "french": "Non / Ne... pas", "occurrences": 1728, "audio": "https://audio.qurancdn.com/wbw/002_002_003.mp3" },
-    { "id": 8, "arabic": "إِلَى", "transliteration": "Ila", "french": "Vers / Jusqu'à", "occurrences": 742, "audio": "https://audio.qurancdn.com/wbw/002_014_011.mp3" }
+    { "id": 8, "arabic": "إِلَى", "transliteration": "Ila", "french": "Vers / Jusqu'à", "occurrences": 742, "audio": "https://audio.qurancdn.com/wbw/002_014_011.mp3" },
+    { "id": 9, "arabic": "رَبِّ", "transliteration": "Rabbi", "french": "Seigneur / Maître", "occurrences": 970, "audio": "https://audio.qurancdn.com/wbw/001_002_003.mp3" },
+    { "id": 10, "arabic": "قَالَ", "transliteration": "Qala", "french": "Il a dit", "occurrences": 529, "audio": "https://audio.qurancdn.com/wbw/002_030_003.mp3" },
+    { "id": 11, "arabic": "يَوْم", "transliteration": "Yawm", "french": "Jour / Jour du Jugement", "occurrences": 405, "audio": "https://audio.qurancdn.com/wbw/001_004_002.mp3" },
+    { "id": 12, "arabic": "أَرْض", "transliteration": "Ard", "french": "Terre / Sol", "occurrences": 461, "audio": "https://audio.qurancdn.com/wbw/002_011_006.mp3" },
+    { "id": 13, "arabic": "سَمَاء", "transliteration": "Sama'", "french": "Ciel / Cieux", "occurrences": 310, "audio": "https://audio.qurancdn.com/wbw/002_022_006.mp3" },
+    { "id": 14, "arabic": "عَلِيم", "transliteration": "'Aleem", "french": "Omniscient / Le Sachant", "occurrences": 160, "audio": "https://audio.qurancdn.com/wbw/002_029_022.mp3" },
+    { "id": 15, "arabic": "حَكِيم", "transliteration": "Hakeem", "french": "Sage / Infini en Sagesse", "occurrences": 97, "audio": "https://audio.qurancdn.com/wbw/002_032_012.mp3" },
+    { "id": 16, "arabic": "رَحِيم", "transliteration": "Raheem", "french": "Très Miséricordieux", "occurrences": 114, "audio": "https://audio.qurancdn.com/wbw/001_001_004.mp3" },
+    { "id": 17, "arabic": "جَنَّة", "transliteration": "Jannah", "french": "Jardin / Paradis", "occurrences": 147, "audio": "https://audio.qurancdn.com/wbw/002_035_007.mp3" },
+    { "id": 18, "arabic": "قَلْب", "transliteration": "Qalb", "french": "Cœur / Esprit", "occurrences": 168, "audio": "https://audio.qurancdn.com/wbw/002_010_001.mp3" },
+    { "id": 19, "arabic": "نُور", "transliteration": "Noor", "french": "Lumière", "occurrences": 43, "audio": "https://audio.qurancdn.com/wbw/024_035_002.mp3" },
+    { "id": 20, "arabic": "كِتَاب", "transliteration": "Kitab", "french": "Livre / Écriture", "occurrences": 261, "audio": "https://audio.qurancdn.com/wbw/002_002_002.mp3" }
   ],
   "tajweedRules": [
     { "id": 1, "name": "Ghunna (Nasalisation)", "description": "Nasalisation de 2 temps sur les lettres Nun (ن) ou Mim (م) portant une Shaddah.", "example": "إِنَّ أَنزَلْنَٰهُ", "hex": "#10b981", "audio": "https://audio.qurancdn.com/wbw/097_001_001.mp3" },

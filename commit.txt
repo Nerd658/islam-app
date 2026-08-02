@@ -1,15 +1,12 @@
-[2026-08-02] — Feature: Local high-precision MP3 audio generation for all 28 Arabic letters
+[2026-08-02] — Feature: Expand Quranic Vocabulary Flashcards to 20 High-Frequency Words
 
 What changed:
-- **generate_arabic_audio.py**: Created standalone Python script that generated all 28 high-precision MP3 audio files in `public/audio/alphabet/` (`1_alif.mp3` through `28_ya.mp3`).
-- **arabic_learning.json**: Connected `letterAudio` to local `/audio/alphabet/*.mp3` static assets for instant, offline, 100% accurate letter pronunciation.
+- **arabic_learning.json**: Expanded vocabulary section with 20 high-frequency Quranic words (Rabbi, Qala, Yawm, Ard, Sama', 'Aleem, Hakeem, Raheem, Jannah, Qalb, Noor, Kitab, etc.) with authentic Qari MP3 audio URLs.
 
 Why:
-- Replaces unreliable third-party network audio streaming with local, zero-latency, 100% accurate static MP3 assets.
+- Enhances the vocabulary learning experience on `/arabic/vocabulary`.
 
 Files affected:
-- generate_arabic_audio.py
-- FRONTEND/islam app/public/audio/alphabet/*.mp3
 - FRONTEND/islam app/src/data/arabic_learning.json
 
 Breaking changes:
