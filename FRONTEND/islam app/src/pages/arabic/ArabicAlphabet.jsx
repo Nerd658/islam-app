@@ -161,7 +161,7 @@ export default function ArabicAlphabet() {
                                         key={letter.id}
                                         onClick={() => {
                                             setSelectedLetter(letter);
-                                            playAudio(letter.letter);
+                                            playAudio(letter.nameAr || letter.letter);
                                         }}
                                         className={`flex flex-col items-center justify-center p-2.5 rounded-xl border transition-all ${
                                             isSelected 
@@ -190,7 +190,7 @@ export default function ArabicAlphabet() {
                                 </div>
                                 <div>
                                     <div className="flex items-center gap-2 mb-1">
-                                        <h3 className="text-2xl font-bold text-white">{selectedLetter.name}</h3>
+                                        <h3 className="text-2xl font-bold text-white">{selectedLetter.name} ({selectedLetter.nameAr})</h3>
                                         {selectedLetter.type === 'solar' ? (
                                             <span className="bg-amber-950/80 border border-amber-700 text-amber-300 px-2 py-0.5 rounded-full text-[10px] font-bold flex items-center gap-1">
                                                 <Sun size={11} /> Solaire
@@ -206,7 +206,7 @@ export default function ArabicAlphabet() {
                             </div>
 
                             <button
-                                onClick={() => playAudio(selectedLetter.letter)}
+                                onClick={() => playAudio(selectedLetter.nameAr || selectedLetter.letter)}
                                 className="p-3 bg-[#111] hover:bg-[#222] border border-[#333] text-emerald-400 hover:text-emerald-300 rounded-xl transition-all flex items-center gap-2 text-xs font-semibold"
                                 title="Écouter la lettre"
                             >

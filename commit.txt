@@ -1,17 +1,14 @@
-[2026-08-02] — Fix: Resolve Javascript Garbage Collector Audio Destruction Bug
+[2026-08-02] — Fix: Add vocalized Arabic letter names (nameAr) for clear 100% TTS letter audio
 
 What changed:
-- **src/utils/audio.js**:
-  - Bound `Audio` object to persistent global `window._activeArabicAudio` reference to prevent JavaScript Garbage Collector from destroying the audio instance mid-stream.
-  - Added explicit previous audio cleanup (`pause()` and `currentTime = 0`).
-- **ArabicAlphabet.jsx**:
-  - Bound letter click handlers to pronounce the exact letter sound (`selectedLetter.letter`).
+- **arabic_learning.json**: Added `nameAr` (vocalized Arabic name like "تَاء", "بَاء", "ثَاء", "جِيم") for all 28 letters of the alphabet.
+- **ArabicAlphabet.jsx**: Updated letter click and Listen button handlers to send `letter.nameAr` to `playAudio`.
 
 Why:
-- Fixes issue where `new Audio()` was silently destroyed by browser Garbage Collector mid-stream without throwing console errors.
+- Fixes issue where isolated unvocalized consonants like bare "ت" or "ث" were silent in TTS engines because unvocalized consonants cannot be spoken without vowels or full names.
 
 Files affected:
-- FRONTEND/islam app/src/utils/audio.js
+- FRONTEND/islam app/src/data/arabic_learning.json
 - FRONTEND/islam app/src/pages/arabic/ArabicAlphabet.jsx
 
 Breaking changes:
