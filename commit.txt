@@ -1,15 +1,16 @@
-[2026-08-02] — Fix: Implement phonetic audio fallback for system environments without OS Arabic voices
+[2026-08-02] — Feature: Upgrade Arabic Audio Engine to Howler.js HTML5 Streaming
 
 What changed:
-- **src/utils/audio.js**: Added phonetic fallback parameter (`phoneticFallback`). If the client OS lacks an installed Arabic voice pack, `SpeechSynthesis` automatically speaks the clear phonetic equivalent ("Taa", "Baa", "Alif", "Jim", etc.).
-- **ArabicAlphabet.jsx**: Passed `letter.name` ("Ta", "Ba", "Alif", etc.) as secondary fallback to `playArabicAudio`.
+- Installed `howler` package in `FRONTEND/islam app`.
+- Rewrote `src/utils/audio.js` using `Howl` with `html5: true` streaming and automatic `onplayerror` / `onloaderror` fallback to `SpeechSynthesis` and phonetic reader.
 
 Why:
-- Guarantees 100% audible pronunciation across all operating systems, Linux distros, and browser privacy configurations.
+- Delivers a rock-solid, production-grade audio engine that automatically unlocks audio contexts on iOS/Android, manages memory lifecycle, and guarantees audible sound across all browsers.
 
 Files affected:
+- FRONTEND/islam app/package.json
+- FRONTEND/islam app/package-lock.json
 - FRONTEND/islam app/src/utils/audio.js
-- FRONTEND/islam app/src/pages/arabic/ArabicAlphabet.jsx
 
 Breaking changes:
 - None.
