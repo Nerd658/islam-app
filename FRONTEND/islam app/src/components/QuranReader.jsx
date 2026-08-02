@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import axios from 'axios';
-import { PlayCircle, PauseCircle, BookOpen, ChevronLeft, Search, Palette, Download, Check, Sparkles } from 'lucide-react';
+import { PlayCircle, PauseCircle, BookOpen, ChevronLeft, Search, Palette, Download, Check, Sparkles, Volume2 } from 'lucide-react';
 
 export default function QuranReader() {
     const [chapters, setChapters] = useState([]);
@@ -11,10 +11,12 @@ export default function QuranReader() {
     const [tajweedMode, setTajweedMode] = useState(true);
     const [isDownloaded, setIsDownloaded] = useState(false);
     
-    // Audio States
+    // Audio States & Sync
     const [audioFiles, setAudioFiles] = useState({});
     const [playingVerse, setPlayingVerse] = useState(null);
+    const [audioProgress, setAudioProgress] = useState({ currentTime: 0, duration: 0, percentage: 0, currentWordIndex: 0 });
     const audioRef = useRef(null);
+    const verseRefs = useRef({});
 
     // Fetch the list of Surahs (Chapters)
     useEffect(() => {
@@ -48,9 +50,20 @@ export default function QuranReader() {
         };
     }, []);
 
-    // Handle Audio End to play next verse automatically
+    // Auto-scroll to active playing verse
     useEffect(() => {
-        if (!audioRef.current) return;
+        if (playingVerse && verseRefs.current[playingVerse]) {
+            verseRefs.current[playingVerse].scrollIntoView({
+                behavior: 'smooth',
+                block: 'center'
+            });
+        }
+    }, [playingVerse]);
+
+    // Handle Audio TimeUpdate and End events for Word-by-Word sync & progress
+    useEffect(() => {
+        const audio = audioRef.current;
+        if (!audio) return;
         
         const handleAudioEnd = () => {
             if (!playingVerse) return;
@@ -60,16 +73,43 @@ export default function QuranReader() {
                 playVerse(nextVerseKey);
             } else {
                 setPlayingVerse(null);
+                setAudioProgress({ currentTime: 0, duration: 0, percentage: 0, currentWordIndex: 0 });
             }
         };
 
-        audioRef.current.addEventListener('ended', handleAudioEnd);
+        const handleTimeUpdate = () => {
+            if (!audio || !playingVerse) return;
+            const cur = audio.currentTime || 0;
+            const dur = audio.duration || 1;
+            const pct = (cur / dur) * 100;
+            
+            const activeVerseObj = verses.find(v => v.verse_key === playingVerse);
+            let wordIdx = 0;
+            if (activeVerseObj && activeVerseObj.words && activeVerseObj.words.length > 0) {
+                const actualWords = activeVerseObj.words.filter(w => w.char_type_name === 'word');
+                if (actualWords.length > 0) {
+                    wordIdx = Math.min(actualWords.length - 1, Math.floor((cur / dur) * actualWords.length));
+                }
+            }
+
+            setAudioProgress({
+                currentTime: cur,
+                duration: dur,
+                percentage: pct,
+                currentWordIndex: wordIdx
+            });
+        };
+
+        audio.addEventListener('ended', handleAudioEnd);
+        audio.addEventListener('timeupdate', handleTimeUpdate);
+
         return () => {
-            audioRef.current.removeEventListener('ended', handleAudioEnd);
+            audio.removeEventListener('ended', handleAudioEnd);
+            audio.removeEventListener('timeupdate', handleTimeUpdate);
         };
     }, [playingVerse, verses]);
 
-    // Fetch the Arabic verses of a specific Surah + Audio + Tajweed
+    // Fetch the Arabic verses of a specific Surah + Audio + Words + Tajweed
     const fetchVerses = async (chapterId) => {
         setLoading(true);
         const chapterObj = chapters.find(c => c.id === chapterId);
@@ -98,21 +138,24 @@ export default function QuranReader() {
         setIsDownloaded(false);
 
         try {
-            const [resVerses, resTajweed, resAudio] = await Promise.all([
+            const [resVerses, resTajweed, resWords, resAudio] = await Promise.all([
                 axios.get(`${import.meta.env.VITE_QURAN_API_URL}/api/v4/quran/verses/uthmani?chapter_number=${chapterId}`),
                 axios.get(`${import.meta.env.VITE_QURAN_API_URL}/api/v4/quran/verses/uthmani_tajweed?chapter_number=${chapterId}`).catch(() => null),
+                axios.get(`${import.meta.env.VITE_QURAN_API_URL}/api/v4/verses/by_chapter/${chapterId}?words=true&word_fields=text_uthmani`).catch(() => null),
                 axios.get(`${import.meta.env.VITE_QURAN_API_URL}/api/v4/quran/recitations/7?chapter_number=${chapterId}`) // 7 = Mishari
             ]);
             
-            // Merge Uthmani & Tajweed
             const uthmaniVerses = resVerses.data.verses;
             const tajweedVerses = resTajweed?.data?.verses || [];
+            const wordVerses = resWords?.data?.verses || [];
             
             const mergedVerses = uthmaniVerses.map(v => {
                 const tajweedMatch = tajweedVerses.find(t => t.id === v.id || t.verse_key === v.verse_key);
+                const wordMatch = wordVerses.find(w => w.id === v.id || w.verse_key === v.verse_key);
                 return {
                     ...v,
-                    text_tajweed: tajweedMatch ? (tajweedMatch.text_uthmani_tajweed || tajweedMatch.text_tajweed) : v.text_uthmani
+                    text_tajweed: tajweedMatch ? (tajweedMatch.text_uthmani_tajweed || tajweedMatch.text_tajweed) : v.text_uthmani,
+                    words: wordMatch ? wordMatch.words : []
                 };
             });
 
@@ -155,6 +198,7 @@ export default function QuranReader() {
         if (playingVerse === verseKey) {
             audioRef.current.pause();
             setPlayingVerse(null);
+            setAudioProgress({ currentTime: 0, duration: 0, percentage: 0, currentWordIndex: 0 });
         } else {
             audioRef.current.src = audioFiles[verseKey];
             audioRef.current.play();
@@ -280,35 +324,89 @@ export default function QuranReader() {
                         </div>
                     ) : (
                         <div className="flex flex-col space-y-6 sm:space-y-8" dir="rtl">
-                            {verses.map(v => (
-                                <div key={v.id} className={`p-6 sm:p-8 rounded-2xl transition-all duration-300 ${playingVerse === v.verse_key ? 'bg-emerald-950/30 border-r-4 border-emerald-500' : 'hover:bg-[#111] border-r-4 border-transparent'}`}>
-                                    <div className="flex items-start gap-4 sm:gap-6">
-                                        <button 
-                                            onClick={() => playVerse(v.verse_key)}
-                                            className={`flex-shrink-0 mt-3 transition-all duration-300 ${playingVerse === v.verse_key ? 'text-emerald-500 scale-110' : 'text-gray-600 hover:text-gray-300'}`}
-                                            title="Écouter le verset"
-                                        >
-                                            {playingVerse === v.verse_key ? <PauseCircle size={32} /> : <PlayCircle size={32} />}
-                                        </button>
+                            {verses.map(v => {
+                                const isPlaying = playingVerse === v.verse_key;
+                                const wordsList = v.words ? v.words.filter(w => w.char_type_name === 'word') : [];
 
-                                        <div className="flex-grow text-right">
-                                            {tajweedMode ? (
-                                                <p 
-                                                    className="tajweed-text font-arabic text-3xl sm:text-4xl leading-[2.5] sm:leading-[2.8] tracking-wide text-white"
-                                                    dangerouslySetInnerHTML={{ __html: v.text_tajweed || v.text_uthmani }}
+                                return (
+                                    <div 
+                                        key={v.id} 
+                                        ref={el => verseRefs.current[v.verse_key] = el}
+                                        className={`p-6 sm:p-8 rounded-2xl transition-all duration-300 relative overflow-hidden ${
+                                            isPlaying 
+                                                ? 'bg-emerald-950/30 border-2 border-emerald-500 shadow-xl shadow-emerald-950/40' 
+                                                : 'hover:bg-[#111] border border-[#222]'
+                                        }`}
+                                    >
+                                        {/* Audio Progress Bar at top of active verse card */}
+                                        {isPlaying && (
+                                            <div className="absolute top-0 left-0 right-0 h-1 bg-emerald-950">
+                                                <div 
+                                                    className="h-full bg-emerald-400 transition-all duration-200" 
+                                                    style={{ width: `${audioProgress.percentage}%` }}
                                                 />
-                                            ) : (
-                                                <p className="font-arabic text-3xl sm:text-4xl leading-[2.5] sm:leading-[2.8] tracking-wide text-white">
-                                                    {v.text_uthmani || v.text_tajweed}
-                                                </p>
-                                            )}
-                                            <span className={`inline-flex items-center justify-center text-xs w-7 h-7 rounded-full mx-2 font-mono border transition-colors duration-300 ${playingVerse === v.verse_key ? 'bg-emerald-900/50 text-emerald-200 border-emerald-700' : 'bg-[#222] text-gray-400 border-[#444]'}`}>
-                                                {v.verse_key.split(':')[1]}
-                                            </span>
+                                            </div>
+                                        )}
+
+                                        <div className="flex items-start gap-4 sm:gap-6">
+                                            <button 
+                                                onClick={() => playVerse(v.verse_key)}
+                                                className={`flex-shrink-0 mt-3 transition-all duration-300 ${
+                                                    isPlaying ? 'text-emerald-400 scale-110' : 'text-gray-600 hover:text-gray-300'
+                                                }`}
+                                                title="Écouter le verset"
+                                            >
+                                                {isPlaying ? <PauseCircle size={34} /> : <PlayCircle size={34} />}
+                                            </button>
+
+                                            <div className="flex-grow text-right">
+                                                {/* Active Récitation Badge */}
+                                                {isPlaying && (
+                                                    <div className="inline-flex items-center gap-1.5 px-2.5 py-1 bg-emerald-900/40 border border-emerald-700/60 rounded-full text-emerald-300 text-xs font-sans font-medium mb-3 animate-pulse">
+                                                        <Volume2 size={12} className="animate-spin" /> Récitation en cours...
+                                                    </div>
+                                                )}
+
+                                                {/* Word-by-Word sync rendering when playing or when words available */}
+                                                {isPlaying && wordsList.length > 0 ? (
+                                                    <p className="font-arabic text-3xl sm:text-4xl leading-[2.5] sm:leading-[2.8] tracking-wide text-white">
+                                                        {wordsList.map((w, idx) => {
+                                                            const isCurrentWord = isPlaying && idx === audioProgress.currentWordIndex;
+                                                            return (
+                                                                <span 
+                                                                    key={w.id || idx} 
+                                                                    className={`mx-1.5 px-1.5 py-0.5 rounded-lg transition-all duration-200 inline-block ${
+                                                                        isCurrentWord 
+                                                                            ? 'bg-emerald-400 text-black font-extrabold scale-110 shadow-lg shadow-emerald-500/50' 
+                                                                            : 'text-white'
+                                                                    }`}
+                                                                >
+                                                                    {w.text_uthmani || w.text}
+                                                                </span>
+                                                            );
+                                                        })}
+                                                        <span className="inline-flex items-center justify-center text-xs w-7 h-7 rounded-full mx-2 font-mono border bg-emerald-900/50 text-emerald-200 border-emerald-700">
+                                                            {v.verse_key.split(':')[1]}
+                                                        </span>
+                                                    </p>
+                                                ) : tajweedMode ? (
+                                                    <p 
+                                                        className="tajweed-text font-arabic text-3xl sm:text-4xl leading-[2.5] sm:leading-[2.8] tracking-wide text-white"
+                                                        dangerouslySetInnerHTML={{ __html: v.text_tajweed || v.text_uthmani }}
+                                                    />
+                                                ) : (
+                                                    <p className="font-arabic text-3xl sm:text-4xl leading-[2.5] sm:leading-[2.8] tracking-wide text-white">
+                                                        {v.text_uthmani || v.text_tajweed}
+                                                        <span className="inline-flex items-center justify-center text-xs w-7 h-7 rounded-full mx-2 font-mono border bg-[#222] text-gray-400 border-[#444]">
+                                                            {v.verse_key.split(':')[1]}
+                                                        </span>
+                                                    </p>
+                                                )}
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
-                            ))}
+                                );
+                            })}
                         </div>
                     )}
                 </div>

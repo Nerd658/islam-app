@@ -1,16 +1,17 @@
-[2026-08-02] — UI/UX: Increase Arabic line height and spacing across Quran & Adhkar
+[2026-08-02] — Feature: Add Word-by-Word Live Audio Synchronization & Auto-Scroll
 
 What changed:
-- Increased Arabic text line height (`leading-[2.5] sm:leading-[2.8]`) and tracking in `QuranReader.jsx` for optimal readability of Tajweed letters and vocalizations (Tashkeel).
-- Increased spacing between verse cards (`space-y-6 sm:space-y-8`).
-- Increased Arabic text line height (`leading-[2.4] sm:leading-[2.6]`) in `DhikrCard.jsx`.
+- Integrated word breakdown API (`/verses/by_chapter/${id}?words=true`) into `QuranReader.jsx`.
+- Added real-time `timeupdate` listener to compute exact `currentWordIndex` based on audio playback progress.
+- Added live word highlighting: the exact word being spoken by the reciter (Mishary) glows brightly in emerald with scaling and background pulse.
+- Added top audio progress bar inside active verse card.
+- Added smooth auto-scrolling (`scrollIntoView`) to follow the active verse as recitation progresses.
 
 Why:
-- Prevents vocalizations (Tashkeel) and Tajweed letter tags from overlapping across adjacent lines, ensuring a spacious, elegant reading experience.
+- Allows users to follow the recitation word-by-word with precision, making it easy to learn correct pronunciation and stay focused.
 
 Files affected:
 - FRONTEND/islam app/src/components/QuranReader.jsx
-- FRONTEND/islam app/src/components/DhikrCard.jsx
 
 Breaking changes:
 - None.
