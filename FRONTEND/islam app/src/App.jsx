@@ -1,5 +1,5 @@
 import React, { lazy, Suspense } from 'react';
-import { Routes, Route } from 'react-router-dom';
+import { Routes, Route, Navigate } from 'react-router-dom';
 import Navigation from './components/Navigation';
 
 const Home = lazy(() => import('./pages/Home'));
@@ -12,7 +12,13 @@ const Chat = lazy(() => import('./pages/Chat'));
 const Names = lazy(() => import('./pages/Names'));
 const Qibla = lazy(() => import('./pages/Qibla'));
 const Hadiths = lazy(() => import('./pages/Hadiths'));
-const Arabic = lazy(() => import('./pages/Arabic'));
+
+// Dedicated Standalone Arabic Sub-pages
+const ArabicAlphabet = lazy(() => import('./pages/arabic/ArabicAlphabet'));
+const ArabicVocabulary = lazy(() => import('./pages/arabic/ArabicVocabulary'));
+const ArabicTajweed = lazy(() => import('./pages/arabic/ArabicTajweed'));
+const ArabicQuiz = lazy(() => import('./pages/arabic/ArabicQuiz'));
+const ArabicGrammar = lazy(() => import('./pages/arabic/ArabicGrammar'));
 
 function App() {
   return (
@@ -35,7 +41,14 @@ function App() {
             <Route path="/names" element={<Names />} />
             <Route path="/qibla" element={<Qibla />} />
             <Route path="/hadiths" element={<Hadiths />} />
-            <Route path="/arabic" element={<Arabic />} />
+
+            {/* Arabic Dedicated Standalone Routes */}
+            <Route path="/arabic" element={<Navigate to="/arabic/alphabet" replace />} />
+            <Route path="/arabic/alphabet" element={<ArabicAlphabet />} />
+            <Route path="/arabic/vocabulary" element={<ArabicVocabulary />} />
+            <Route path="/arabic/tajweed" element={<ArabicTajweed />} />
+            <Route path="/arabic/quiz" element={<ArabicQuiz />} />
+            <Route path="/arabic/grammar" element={<ArabicGrammar />} />
           </Routes>
         </Suspense>
       </div>

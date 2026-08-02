@@ -13,16 +13,16 @@ export default function Navigation() {
         { path: '/quran', label: 'Coran', icon: BookOpen },
         { path: '/hadiths', label: 'Hadiths', icon: Scroll },
         { 
-            path: '/arabic', 
+            path: '/arabic/alphabet', 
             label: 'Arabe', 
             icon: Languages,
             hasSubmenu: true,
             subItems: [
-                { path: '/arabic?tab=alphabet', label: 'Alphabet', icon: BookOpen },
-                { path: '/arabic?tab=vocabulary', label: 'Vocabulaire', icon: Layers },
-                { path: '/arabic?tab=tajweed', label: 'Tajweed', icon: Sparkles },
-                { path: '/arabic?tab=quiz', label: 'Quiz Test', icon: HelpCircle },
-                { path: '/arabic?tab=grammar', label: 'Grammaire', icon: GraduationCap }
+                { path: '/arabic/alphabet', label: 'Alphabet', icon: BookOpen },
+                { path: '/arabic/vocabulary', label: 'Vocabulaire', icon: Layers },
+                { path: '/arabic/tajweed', label: 'Tajweed', icon: Sparkles },
+                { path: '/arabic/quiz', label: 'Quiz Test', icon: HelpCircle },
+                { path: '/arabic/grammar', label: 'Grammaire', icon: GraduationCap }
             ]
         },
         { path: '/adhkar', label: 'Adhkar', icon: Heart },
@@ -76,7 +76,7 @@ export default function Navigation() {
                                             <div className="hidden md:flex flex-col pl-7 pr-2 py-1 space-y-1 border-l border-[#222] ml-4 mt-1">
                                                 {item.subItems.map(sub => {
                                                     const SubIcon = sub.icon;
-                                                    const isSubActive = location.search.includes(sub.path.split('?')[1]) || (sub.path.includes('alphabet') && !location.search);
+                                                    const isSubActive = location.pathname === sub.path;
                                                     return (
                                                         <NavLink
                                                             key={sub.path}

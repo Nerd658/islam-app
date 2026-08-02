@@ -1,21 +1,28 @@
-[2026-08-02] — Feature: Collapsible Sidebar Subsections for Arabic with Quiz and Grammar
+[2026-08-02] — Refactor: Split Arabic learning into dedicated standalone page components
 
 What changed:
-- **Navigation.jsx**:
-  - Transformed **Arabe** into an expandable accordion with 5 sub-navigation links: *Alphabet*, *Vocabulaire*, *Tajweed*, *Quiz*, *Grammaire*.
-- **Arabic.jsx**:
-  - Connected `useSearchParams` URL parameter routing (`?tab=...`) so sidebar sub-items jump directly to the target tab.
-  - Added native Web Speech API audio pronunciation (<Volume2 />) for Arabic letters, words, and Tajweed examples.
-  - Built an interactive **Quiz Mode** with random QCM questions, score counter, and instant visual corrections.
-  - Built a **Grammar Section** introducing *Ism*, *Fi'l*, and *Harf* with Quranic examples.
+- Created `src/pages/arabic/` directory containing 5 dedicated standalone sub-page components:
+  1. `ArabicAlphabet.jsx` (`/arabic/alphabet`) — 28 letters, writing forms & audio.
+  2. `ArabicVocabulary.jsx` (`/arabic/vocabulary`) — 80% Quranic vocabulary flashcards & audio.
+  3. `ArabicTajweed.jsx` (`/arabic/tajweed`) — Tajweed rules reference & audio examples.
+  4. `ArabicQuiz.jsx` (`/arabic/quiz`) — Interactive QCM quiz mode with score tracking.
+  5. `ArabicGrammar.jsx` (`/arabic/grammar`) — Nahw grammar basics (Ism, Fi'l, Harf).
+- Updated `App.jsx` to register `/arabic` sub-routes with `React.lazy()` code splitting.
+- Updated `Navigation.jsx` to link sidebar sub-items directly to their dedicated routes.
+- Removed monolithic `Arabic.jsx`.
 
 Why:
-- Implements nested sidebar navigation for Arabic learning and expands interactive learning tools.
+- Improves code maintainability, reduces per-page bundle size, and establishes a clean modular architecture.
 
 Files affected:
+- FRONTEND/islam app/src/pages/arabic/ArabicAlphabet.jsx
+- FRONTEND/islam app/src/pages/arabic/ArabicVocabulary.jsx
+- FRONTEND/islam app/src/pages/arabic/ArabicTajweed.jsx
+- FRONTEND/islam app/src/pages/arabic/ArabicQuiz.jsx
+- FRONTEND/islam app/src/pages/arabic/ArabicGrammar.jsx
+- FRONTEND/islam app/src/App.jsx
 - FRONTEND/islam app/src/components/Navigation.jsx
-- FRONTEND/islam app/src/pages/Arabic.jsx
-- FRONTEND/islam app/src/data/arabic_learning.json
+- FRONTEND/islam app/src/pages/Arabic.jsx (deleted)
 
 Breaking changes:
 - None.
