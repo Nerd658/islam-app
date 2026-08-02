@@ -1,15 +1,13 @@
-[2026-08-02] — Feature: Connect authentic Qari human reciter MP3s to all 28 Arabic letters
+[2026-08-02] — Fix: Correct word index audio URL for Ta in arabic_learning.json
 
 What changed:
-- **arabic_learning.json**: Attached authentic Qari MP3 URLs (`letterAudio`) for all 28 letters.
-- **ArabicAlphabet.jsx**: Letter clicks now trigger authentic human Qari recitation MP3s.
+- **arabic_learning.json**: Updated `exampleAudio` and `letterAudio` for Ta (`ت`) to point to Quranic word 009_003_016 (`تُبْتُمْ` - "Tubtum") instead of 009_003_018 (`فَهُوَ` - "Fahuwa").
 
 Why:
-- Replaces robot synthesis with authentic human Qari recitations, accurately reflecting true guttural Makhraj sounds (Kha, Ha, 'Ayn, Qaf, Sad, Dhad, etc.).
+- Fixes index offset issue where Ta was triggering the audio for "Fahuwa" instead of the word starting with Ta ("Tubtum").
 
 Files affected:
 - FRONTEND/islam app/src/data/arabic_learning.json
-- FRONTEND/islam app/src/pages/arabic/ArabicAlphabet.jsx
 
 Breaking changes:
 - None.
