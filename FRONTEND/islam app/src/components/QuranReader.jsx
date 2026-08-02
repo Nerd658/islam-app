@@ -24,6 +24,13 @@ export default function QuranReader() {
         if (!audioRef.current) {
             audioRef.current = new Audio();
         }
+
+        return () => {
+            if (audioRef.current) {
+                audioRef.current.pause();
+                audioRef.current.src = '';
+            }
+        };
     }, []);
 
     // Handle Audio End to play next verse automatically

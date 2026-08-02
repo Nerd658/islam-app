@@ -2,8 +2,7 @@ const express = require('express');
 const cors = require('cors');
 const helmet = require('helmet');
 const morgan = require('morgan');
-const hpp = require('hpp');
-const rateLimit = require('express-rate-limit');
+const xss = require('xss-clean');
 
 const prayerRoutes = require('./routes/prayerRoutes');
 const chatRoutes = require('./routes/chatRoutes');
@@ -11,11 +10,15 @@ const errorHandler = require('./middlewares/errorHandler');
 
 const app = express();
 
+// Trust reverse proxy for rate limiting behind Vercel/Render/Heroku/NGINX
+app.set('trust proxy', 1);
+
 // Security and Logging middlewares
 app.use(helmet());
 app.use(cors({ origin: process.env.FRONTEND_URL || '*' })); // Set strictly in production
 app.use(express.json({ limit: '10kb' })); // Limit body payload
 app.use(hpp()); // Prevent HTTP Parameter Pollution
+app.use(xss()); // Prevent XSS attacks
 
 // Global Rate Limiting
 const limiter = rateLimit({

@@ -67,7 +67,7 @@ export default function Home() {
                 }
             } catch (err) {
                 setError("Erreur lors de la géolocalisation.");
-            } flex: {
+            } finally {
                 setLoading(false);
             }
         }, () => {

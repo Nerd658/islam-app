@@ -1,16 +1,24 @@
-[2026-08-01] — Config: Launch Backend server on port 4000 and update Frontend .env
+[2026-08-02] — Fix & Audit: Apply Security, Performance & Code Quality recommendations
 
 What changed:
-- Configured backend default port to 4000 in `BACKEND/config/env.js` (port 3001 had conflicts).
-- Updated `VITE_BACKEND_URL` in `FRONTEND/islam app/.env` to `http://localhost:4000`.
-- Started Express backend server process in background.
+1. Syntax & Code Quality: Fixed `flex:` typo in `Home.jsx` to `finally { setLoading(false); }`.
+2. Backend Security & Validation: Updated `chatSchema` in `validators.js` to validate `history` payload from frontend. Added `app.set('trust proxy', 1)` and `xss-clean` middleware in `app.js`. Masked 500 error stack traces in `errorHandler.js` for production.
+3. Performance & Memory Leak: Added unmount cleanup logic to pause and reset audio playback in `QuranReader.jsx`.
+4. Typography & Aesthetics: Added Google Fonts `Amiri` and `Inter` in `index.html` and configured `.font-arabic` utility class in `index.css` for authentic Arabic text rendering.
+5. Code Splitting: Implemented `React.lazy()` and `Suspense` for all page routes in `App.jsx` to optimize initial bundle size.
 
 Why:
-- Allows the virtual Imam chatbot and other API features to communicate properly between frontend and backend.
+- Addressed audit findings across security, performance, typography, and code quality while keeping third-party API calls client-side to maintain a lightweight backend.
 
 Files affected:
-- BACKEND/config/env.js
-- FRONTEND/islam app/.env
+- FRONTEND/islam app/src/pages/Home.jsx
+- BACKEND/middlewares/validators.js
+- BACKEND/app.js
+- BACKEND/middlewares/errorHandler.js
+- FRONTEND/islam app/src/components/QuranReader.jsx
+- FRONTEND/islam app/index.html
+- FRONTEND/islam app/src/index.css
+- FRONTEND/islam app/src/App.jsx
 
 Breaking changes:
 - None.

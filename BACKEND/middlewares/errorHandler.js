@@ -1,7 +1,8 @@
 const errorHandler = (err, req, res, next) => {
-    console.error(`[Error] ${err.message}`);
+    console.error(`[Error] ${err.stack || err.message}`);
     const status = err.status || 500;
-    const message = err.message || 'Erreur interne du serveur';
+    const isProd = process.env.NODE_ENV === 'production';
+    const message = (status === 500 && isProd) ? 'Erreur interne du serveur' : (err.message || 'Erreur interne du serveur');
     res.status(status).json({ error: message });
 };
 

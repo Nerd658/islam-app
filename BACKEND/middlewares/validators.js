@@ -10,7 +10,13 @@ const prayerSchema = z.object({
 
 const chatSchema = z.object({
     body: z.object({
-        message: z.string().min(1, "Le message est requis")
+        history: z.array(z.object({
+            role: z.string(),
+            content: z.string()
+        })).optional(),
+        message: z.string().optional()
+    }).refine(data => (data.history && data.history.length > 0) || !!data.message, {
+        message: "Vous devez fournir un message ou un historique de messages"
     })
 });
 
