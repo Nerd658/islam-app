@@ -7,12 +7,20 @@ export default function ArabicAlphabet() {
     const [selectedLetter, setSelectedLetter] = useState(arabicData.alphabet[0]);
 
     const playAudio = (text) => {
-        if ('speechSynthesis' in window) {
-            window.speechSynthesis.cancel();
-            const utterance = new SpeechSynthesisUtterance(text);
-            utterance.lang = 'ar-SA';
-            utterance.rate = 0.75;
-            window.speechSynthesis.speak(utterance);
+        if (!text) return;
+        try {
+            const ttsUrl = `https://translate.google.com/translate_tts?ie=UTF-8&q=${encodeURIComponent(text)}&tl=ar&client=tw-ob`;
+            const audio = new Audio(ttsUrl);
+            audio.play().catch(() => {
+                if ('speechSynthesis' in window) {
+                    window.speechSynthesis.cancel();
+                    const utterance = new SpeechSynthesisUtterance(text);
+                    utterance.lang = 'ar-SA';
+                    window.speechSynthesis.speak(utterance);
+                }
+            });
+        } catch (e) {
+            console.error("Audio error:", e);
         }
     };
 
