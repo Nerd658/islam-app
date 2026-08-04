@@ -1,6 +1,8 @@
 import React, { useState, useEffect, useRef } from 'react';
 import axios from 'axios';
 import { PlayCircle, PauseCircle, BookOpen, ChevronLeft, Search, Palette, Download, Check, Languages, Bookmark, Gauge, Mic, BookmarkCheck } from 'lucide-react';
+import { useQuranOffline } from '../hooks/useQuranOffline';
+import { getSurahMeta } from '../utils/quranOfflineStorage';
 
 const RECITERS = [
     { id: 7, name: 'Mishary Rashid Alafasy' },
@@ -27,15 +29,28 @@ export default function QuranReader() {
     const [selectedReciter, setSelectedReciter] = useState(7);
     const [playbackSpeed, setPlaybackSpeed] = useState(1);
     const [lastRead, setLastRead] = useState(null);
-    const [isDownloaded, setIsDownloaded] = useState(false);
     
     // Audio States & Sync
     const [audioFiles, setAudioFiles] = useState({});
     const [playingVerse, setPlayingVerse] = useState(null);
-    const [audioProgress, setAudioProgress] = useState({ currentTime: 0, duration: 0, percentage: 0, currentWordIndex: 0 });
+    const audioProgressDefault = { currentTime: 0, duration: 0, percentage: 0, currentWordIndex: 0 };
+    const [audioProgress, setAudioProgress] = useState(audioProgressDefault);
     const audioRef = useRef(null);
     const verseRefs = useRef({});
     const versesListContainerRef = useRef(null);
+
+    const {
+        isDownloaded,
+        isDownloading,
+        downloadProgress,
+        startDownload,
+        deleteOffline,
+        getOfflineAudioUrl,
+        loadFromOffline,
+        setIsDownloaded
+    } = useQuranOffline(selectedChapter, verses, audioFiles);
+
+    const [offlineSurahsCache, setOfflineSurahsCache] = useState({});
 
     // Load initial Chapters & Last Read Bookmark
     useEffect(() => {
@@ -82,6 +97,23 @@ export default function QuranReader() {
             audioRef.current.playbackRate = playbackSpeed;
         }
     }, [playbackSpeed]);
+
+    // Update offline cache list
+    useEffect(() => {
+        const updateOfflineList = async () => {
+            const cache = {};
+            for (let c of chapters) {
+                const meta = await getSurahMeta(c.id);
+                if (meta) {
+                    cache[c.id] = true;
+                }
+            }
+            setOfflineSurahsCache(cache);
+        };
+        if (chapters.length > 0) {
+            updateOfflineList();
+        }
+    }, [chapters, isDownloaded]);
 
     // Re-fetch recitations when reciter changes
     useEffect(() => {
@@ -196,28 +228,20 @@ export default function QuranReader() {
             audioRef.current.pause();
         }
 
-        const offlineKey = `offline_surah_${chapterId}`;
-        const savedData = localStorage.getItem(offlineKey);
-        if (savedData) {
-            try {
-                const parsed = JSON.parse(savedData);
-                if (parsed.verses && parsed.verses.length > 0 && parsed.verses[0].translation) {
-                    setVerses(parsed.verses || []);
-                    setAudioFiles(parsed.audioFiles || {});
-                    setIsDownloaded(true);
-                    setLoading(false);
-                    if (targetVerseKey) {
-                        setTimeout(() => {
-                            if (verseRefs.current[targetVerseKey]) {
-                                verseRefs.current[targetVerseKey].scrollIntoView({ behavior: 'smooth', block: 'center' });
-                            }
-                        }, 300);
+        const offlineData = await loadFromOffline(chapterId);
+        if (offlineData) {
+            setVerses(offlineData.verses || []);
+            setAudioFiles(offlineData.audioObjectUrls || {});
+            setIsDownloaded(true);
+            setLoading(false);
+            if (targetVerseKey) {
+                setTimeout(() => {
+                    if (verseRefs.current[targetVerseKey]) {
+                        verseRefs.current[targetVerseKey].scrollIntoView({ behavior: 'smooth', block: 'center' });
                     }
-                    return;
-                }
-            } catch (e) {
-                console.error("Offline parse error:", e);
+                }, 300);
             }
+            return;
         }
 
         setIsDownloaded(false);
@@ -283,21 +307,15 @@ export default function QuranReader() {
 
     const toggleDownload = () => {
         if (!selectedChapter) return;
-        const offlineKey = `offline_surah_${selectedChapter.id}`;
         if (isDownloaded) {
-            localStorage.removeItem(offlineKey);
-            setIsDownloaded(false);
+            deleteOffline();
         } else {
-            localStorage.setItem(offlineKey, JSON.stringify({
-                verses,
-                audioFiles
-            }));
-            setIsDownloaded(true);
+            startDownload();
         }
     };
 
-    const playVerse = (verseKey) => {
-        if (!audioFiles[verseKey] || !audioRef.current) return;
+    const playVerse = async (verseKey) => {
+        if (!audioRef.current) return;
         
         // Save bookmark automatically on verse play
         saveBookmark(verseKey);
@@ -307,7 +325,14 @@ export default function QuranReader() {
             setPlayingVerse(null);
             setAudioProgress({ currentTime: 0, duration: 0, percentage: 0, currentWordIndex: 0 });
         } else {
-            audioRef.current.src = audioFiles[verseKey];
+            let audioSrc = await getOfflineAudioUrl(verseKey);
+            if (!audioSrc) {
+                audioSrc = audioFiles[verseKey];
+            }
+            
+            if (!audioSrc) return;
+            
+            audioRef.current.src = audioSrc;
             audioRef.current.playbackRate = playbackSpeed;
             audioRef.current.play();
             setPlayingVerse(verseKey);
@@ -396,7 +421,7 @@ export default function QuranReader() {
                         ) : (
                             <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4 flex-1 overflow-y-auto p-2 custom-scrollbar">
                                 {filteredChapters.map(chapter => {
-                                    const isSavedOffline = !!localStorage.getItem(`offline_surah_${chapter.id}`);
+                                    const isSavedOffline = !!offlineSurahsCache[chapter.id];
                                     return (
                                         <button 
                                             key={chapter.id}
@@ -522,18 +547,24 @@ export default function QuranReader() {
                                 </button>
 
                                 {/* Download / Offline Toggle */}
-                                <button
-                                    onClick={toggleDownload}
-                                    className={`px-3 py-1.5 rounded-xl text-xs font-semibold transition-all border flex items-center gap-1.5 ${
-                                        isDownloaded 
-                                            ? 'bg-emerald-950/60 border-emerald-700 text-emerald-300' 
-                                            : 'bg-[#111] border-[#333] text-gray-300 hover:border-gray-500'
-                                    }`}
-                                    title={isDownloaded ? "Disponible Hors-Ligne (Cliquer pour supprimer)" : "Télécharger pour lire hors-ligne"}
-                                >
-                                    {isDownloaded ? <Check size={14} className="text-emerald-400" /> : <Download size={14} />}
-                                    <span>{isDownloaded ? 'Hors-Ligne OK' : 'Télécharger'}</span>
-                                </button>
+                                {isDownloading ? (
+                                    <div className="flex items-center gap-2 px-3 py-1.5 rounded-xl border border-blue-500 bg-blue-900/30 text-blue-300 text-xs font-semibold">
+                                        <span className="animate-pulse">Téléchargement {downloadProgress?.downloaded}/{downloadProgress?.total}...</span>
+                                    </div>
+                                ) : (
+                                    <button
+                                        onClick={toggleDownload}
+                                        className={`px-3 py-1.5 rounded-xl text-xs font-semibold transition-all border flex items-center gap-1.5 ${
+                                            isDownloaded 
+                                                ? 'bg-emerald-950/60 border-emerald-700 text-emerald-300' 
+                                                : 'bg-[#111] border-[#333] text-gray-300 hover:border-gray-500'
+                                        }`}
+                                        title={isDownloaded ? "Disponible Hors-Ligne (Cliquer pour supprimer)" : "Télécharger pour lire hors-ligne"}
+                                    >
+                                        {isDownloaded ? <Check size={14} className="text-emerald-400" /> : <Download size={14} />}
+                                        <span>{isDownloaded ? 'Hors-Ligne OK' : 'Télécharger'}</span>
+                                    </button>
+                                )}
                             </div>
                         </div>
 

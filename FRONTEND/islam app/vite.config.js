@@ -61,6 +61,20 @@ export default defineConfig({
                 statuses: [0, 200]
               }
             }
+          },
+          {
+            urlPattern: /^https:\/\/verses\.quran\.com\/.*/i,
+            handler: 'CacheFirst',
+            options: {
+              cacheName: 'quran-audio-sw-cache',
+              expiration: {
+                maxEntries: 500,
+                maxAgeSeconds: 90 * 24 * 60 * 60
+              },
+              cacheableResponse: {
+                statuses: [0, 200]
+              }
+            }
           }
         ]
       }
