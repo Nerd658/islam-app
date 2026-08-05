@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import axios from 'axios';
-import { PlayCircle, PauseCircle, BookOpen, ChevronLeft, Search, Palette, Download, Check, Languages, Bookmark, Gauge, Mic, BookmarkCheck, Settings, Info, X } from 'lucide-react';
+import { PlayCircle, PauseCircle, BookOpen, ChevronLeft, Search, Palette, Download, Check, Languages, Bookmark, Gauge, Mic, BookmarkCheck, Menu, Info, X } from 'lucide-react';
 import { useQuranOffline } from '../hooks/useQuranOffline';
 import { getSurahMeta } from '../utils/quranOfflineStorage';
 
@@ -570,7 +570,7 @@ export default function QuranReader() {
                                 onClick={() => setShowSettings(!showSettings)}
                                 className="sm:hidden bg-[#222] hover:bg-[#333] border border-[#444] p-2 rounded-xl text-gray-300 transition-colors"
                             >
-                                <Settings size={18} />
+                                <Menu size={20} />
                             </button>
                         </div>
 
