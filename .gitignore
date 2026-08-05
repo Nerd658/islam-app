@@ -32,3 +32,9 @@ dist-ssr
 .next/
 out/
 build/
+
+# Firebase
+.firebase/
+firebase-debug.log*
+.firebaserc
+

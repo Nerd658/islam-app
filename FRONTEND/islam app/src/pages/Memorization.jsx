@@ -272,30 +272,59 @@ export default function Memorization() {
                     </div>
 
                     {/* Recitation Area */}
-                    <div className="bg-[#0a0a0a] border border-[#333] rounded-3xl p-8 text-center relative overflow-hidden">
+                    <div className="bg-[#0a0a0a] border border-[#333] rounded-3xl p-8 relative overflow-hidden">
                         {/* Audio Wave Animation Effect (Pure CSS) */}
                         {listening && (
-                            <div className="absolute inset-0 pointer-events-none opacity-5 flex items-center justify-center">
-                                <div className="w-64 h-64 bg-emerald-500 rounded-full animate-ping"></div>
+                            <div className="absolute inset-0 pointer-events-none opacity-5 flex items-center justify-center z-0">
+                                <div className="w-96 h-96 bg-emerald-500 rounded-full animate-ping"></div>
                             </div>
                         )}
 
-                        <div className="mb-10">
-                            {showHint ? (
-                                <p className="text-4xl sm:text-5xl font-arabic text-white leading-loose" dir="rtl">
-                                    {verses[currentVerseIndex].text_uthmani}
-                                </p>
-                            ) : (
-                                <div className="py-8">
-                                    <p className="text-gray-500 mb-2">Verset masqué</p>
-                                    <div className="flex justify-center gap-2" dir="rtl">
-                                        {/* Show dotted lines representing words to give a visual cue of verse length */}
-                                        {verses[currentVerseIndex].text_uthmani.split(' ').map((_, i) => (
-                                            <span key={i} className="h-2 w-8 bg-[#222] rounded-full inline-block"></span>
-                                        ))}
+                        <div className="mb-10 max-h-[50vh] overflow-y-auto pr-2 relative z-10 space-y-6 scrollbar-thin scrollbar-thumb-[#333] scrollbar-track-transparent">
+                            {verses.map((verse, idx) => {
+                                const isCompleted = idx < currentVerseIndex;
+                                const isActive = idx === currentVerseIndex;
+                                const isFuture = idx > currentVerseIndex;
+
+                                return (
+                                    <div 
+                                        key={verse.id} 
+                                        className={`p-6 rounded-2xl border transition-all duration-500 ${
+                                            isActive 
+                                                ? 'bg-[#111] border-emerald-500/50 shadow-[0_0_15px_rgba(16,185,129,0.1)]' 
+                                                : isCompleted 
+                                                    ? 'bg-emerald-950/10 border-[#222] opacity-70' 
+                                                    : 'bg-[#0a0a0a] border-[#222] opacity-50'
+                                        }`}
+                                        ref={isActive ? (el) => { if (el) el.scrollIntoView({ behavior: 'smooth', block: 'center' }) } : null}
+                                    >
+                                        <div className="flex justify-between items-start mb-4">
+                                            <span className={`text-xs font-bold px-2 py-1 rounded-md ${isActive ? 'bg-emerald-500/20 text-emerald-400' : 'bg-[#222] text-gray-500'}`}>
+                                                Verset {verse.verse_key.split(':')[1]}
+                                            </span>
+                                            {isCompleted && <CheckCircle2 size={16} className="text-emerald-500" />}
+                                        </div>
+
+                                        <div className="min-h-[3rem]" dir="rtl">
+                                            {isCompleted ? (
+                                                <p className="text-2xl sm:text-3xl font-arabic text-emerald-50 leading-loose">
+                                                    {verse.text_uthmani}
+                                                </p>
+                                            ) : isActive && showHint ? (
+                                                <p className="text-2xl sm:text-3xl font-arabic text-emerald-400 leading-loose">
+                                                    {verse.text_uthmani}
+                                                </p>
+                                            ) : (
+                                                <div className="flex flex-wrap gap-2 justify-start">
+                                                    {verse.text_uthmani.split(' ').map((_, i) => (
+                                                        <span key={i} className={`h-3 bg-[#222] rounded-full inline-block ${isActive ? 'animate-pulse bg-[#333]' : ''}`} style={{ width: `${Math.max(2, Math.random() * 4 + 2)}rem` }}></span>
+                                                    ))}
+                                                </div>
+                                            )}
+                                        </div>
                                     </div>
-                                </div>
-                            )}
+                                );
+                            })}
                         </div>
 
                         <div className="flex justify-center mb-8">
