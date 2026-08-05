@@ -123,8 +123,9 @@ export default function Memorization() {
         if (similarity > 75) {
             // Verse recited correctly
             setFeedback(`Macha'Allah ! Précision : ${similarity}%`);
+            setShowHint(true); // REVEAL IMMEDIATELY
             
-            // Move to next verse after a short delay
+            // Move to next verse after a delay to let user see it
             setTimeout(() => {
                 setTranscript('');
                 setShowHint(false);
@@ -139,7 +140,7 @@ export default function Memorization() {
                     }
                     setFeedback('Félicitations, vous avez complété cette sourate !');
                 }
-            }, 1000);
+            }, 2500); // 2.5 seconds delay for better UX
         } else if (transcript.trim().length > 10) {
             // Provide live feedback on accuracy if they've spoken a bit
             setFeedback(`En cours... (Précision: ${similarity}%)`);
@@ -305,17 +306,17 @@ export default function Memorization() {
                                             {isCompleted && <CheckCircle2 size={16} className="text-emerald-500" />}
                                         </div>
 
-                                        <div className="min-h-[2.5rem] sm:min-h-[3rem]" dir="rtl">
+                                        <div className="min-h-[2.5rem] sm:min-h-[3rem] transition-all duration-700 ease-in-out" dir="rtl">
                                             {isCompleted ? (
-                                                <p className="text-xl sm:text-3xl font-arabic text-emerald-50 leading-loose">
+                                                <p className="text-xl sm:text-3xl font-arabic text-emerald-50 leading-loose transition-all duration-500">
                                                     {verse.text_uthmani}
                                                 </p>
                                             ) : isActive && showHint ? (
-                                                <p className="text-xl sm:text-3xl font-arabic text-emerald-400 leading-loose">
+                                                <p className="text-xl sm:text-3xl font-arabic text-emerald-400 leading-loose drop-shadow-[0_0_12px_rgba(16,185,129,0.8)] transform scale-[1.02] transition-all duration-500">
                                                     {verse.text_uthmani}
                                                 </p>
                                             ) : (
-                                                <div className="flex flex-wrap gap-1.5 sm:gap-2 justify-start">
+                                                <div className="flex flex-wrap gap-1.5 sm:gap-2 justify-start transition-all duration-300">
                                                     {verse.text_uthmani.split(' ').map((_, i) => (
                                                         <span key={i} className={`h-2 sm:h-3 bg-[#222] rounded-full inline-block ${isActive ? 'animate-pulse bg-[#333]' : ''}`} style={{ width: `${Math.max(1.5, Math.random() * 3 + 1.5)}rem` }}></span>
                                                     ))}
