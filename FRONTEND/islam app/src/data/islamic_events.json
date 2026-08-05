@@ -1,0 +1,90 @@
+[
+  {
+    "id": 1,
+    "name": "Nouvel An Islamique",
+    "hijri_month": 1,
+    "hijri_day": 1,
+    "description": "Début de l'année hégirienne. Occasion de réflexion et de renouveau spirituel.",
+    "category": "Fête"
+  },
+  {
+    "id": 2,
+    "name": "Achoura",
+    "hijri_month": 1,
+    "hijri_day": 10,
+    "description": "Jour de jeûne commémorant le salut de Moïse.",
+    "category": "Sunnah"
+  },
+  {
+    "id": 3,
+    "name": "Mawlid",
+    "hijri_month": 3,
+    "hijri_day": 12,
+    "description": "Naissance du Prophète Muhammad.",
+    "category": "Historique"
+  },
+  {
+    "id": 4,
+    "name": "Al-Isra wal-Mi'raj",
+    "hijri_month": 7,
+    "hijri_day": 27,
+    "description": "Voyage nocturne et ascension du Prophète.",
+    "category": "Historique"
+  },
+  {
+    "id": 5,
+    "name": "Laylat al-Baraat",
+    "hijri_month": 8,
+    "hijri_day": 15,
+    "description": "Nuit du pardon et de la miséricorde.",
+    "category": "Sunnah"
+  },
+  {
+    "id": 6,
+    "name": "Début du Ramadan",
+    "hijri_month": 9,
+    "hijri_day": 1,
+    "description": "Début du mois sacré de jeûne.",
+    "category": "Fête"
+  },
+  {
+    "id": 7,
+    "name": "Laylat al-Qadr",
+    "hijri_month": 9,
+    "hijri_day": 27,
+    "description": "La Nuit du Destin, meilleure que mille mois.",
+    "category": "Sunnah"
+  },
+  {
+    "id": 8,
+    "name": "Aïd al-Fitr",
+    "hijri_month": 10,
+    "hijri_day": 1,
+    "description": "Fête de la rupture du jeûne.",
+    "category": "Fête"
+  },
+  {
+    "id": 9,
+    "name": "Jour d'Arafa",
+    "hijri_month": 12,
+    "hijri_day": 9,
+    "description": "Journée de prière et de pardon, sommet du pèlerinage.",
+    "category": "Sunnah"
+  },
+  {
+    "id": 10,
+    "name": "Aïd al-Adha",
+    "hijri_month": 12,
+    "hijri_day": 10,
+    "description": "Fête du sacrifice.",
+    "category": "Fête"
+  },
+  {
+    "id": 11,
+    "name": "Aïd al-Ghadir",
+    "hijri_month": 12,
+    "hijri_day": 18,
+    "description": "Événement historique important.",
+    "category": "Historique"
+  }
+]

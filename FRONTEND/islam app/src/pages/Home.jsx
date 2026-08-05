@@ -21,7 +21,8 @@ import {
     Search,
     Scroll,
     Languages,
-    BookMarked
+    BookMarked,
+    Mic
 } from 'lucide-react';
 
 export default function Home() {
@@ -141,6 +142,7 @@ export default function Home() {
     const quickLinks = [
         { title: 'Le Noble Coran', desc: '114 sourates avec récitations audio', path: '/quran', icon: BookOpen },
         { title: 'Wird Quotidien', desc: 'Programme Juz par jour — Coran en 30 jours', path: '/wird', icon: BookMarked },
+        { title: 'Test de Mémorisation', desc: 'Récitez et l\'IA vérifie vos erreurs', path: '/memorization', icon: Mic },
         { title: 'Hadiths Authentiques', desc: 'Les 40 Hadiths d\'An-Nawawi expliqués', path: '/hadiths', icon: Scroll },
         { title: 'Arabe Coranique', desc: 'Alphabet, 80% du vocabulaire et Tajweed', path: '/arabic', icon: Languages },
         { title: 'Vos Objectifs', desc: 'Programme quotidien et suivi des actes', path: '/goals', icon: Target },
