@@ -130,7 +130,7 @@ export default function Memorization() {
 
     // Check similarity on transcript change
     useEffect(() => {
-        if (!quizStarted || !verses.length || currentVerseIndex >= verses.length || !transcript) return;
+        if (!quizStarted || !verses.length || currentVerseIndex >= verses.length || !transcript || showHint) return;
         
         const targetVerse = verses[currentVerseIndex].text_uthmani;
         
@@ -149,6 +149,11 @@ export default function Memorization() {
                 if (currentVerseIndex + 1 < verses.length) {
                     setCurrentVerseIndex(prev => prev + 1);
                     setFeedback('Récitez le verset suivant...');
+                    // Stop recognition briefly to clear its internal transcript buffer. 
+                    // The auto-restart useEffect will turn it back on.
+                    if (recognitionRef.current) {
+                        recognitionRef.current.stop();
+                    }
                 } else {
                     setCompleted(true);
                     setQuizStarted(false);
