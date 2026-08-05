@@ -477,19 +477,19 @@ export default function QuranReader() {
                 /* SURAH READER VIEW - 2 SEPARATE PHYSICAL CONTAINERS */
                 <div className="flex flex-col flex-1 overflow-hidden">
                     {/* CONTAINER 1: PHYSICAL SEPARATE FIXED HEADER */}
-                    <div className="flex-shrink-0 bg-[#0a0a0a] p-4 sm:p-6 rounded-2xl border border-[#333] mb-4 shadow-xl">
+                    <div className="flex-shrink-0 bg-[#0a0a0a] p-3 sm:p-6 rounded-2xl border border-[#333] mb-3 shadow-xl">
                         {/* Top Control Bar */}
-                        <div className="flex flex-wrap items-center justify-between gap-3 mb-3">
+                        <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 mb-3">
                             <button 
                                 onClick={() => setSelectedChapter(null)}
-                                className="bg-[#222] hover:bg-[#333] border border-[#444] px-3.5 py-1.5 rounded-xl text-xs sm:text-sm font-medium transition-all text-white flex items-center gap-2"
+                                className="bg-[#222] hover:bg-[#333] border border-[#444] px-3.5 py-1.5 rounded-xl text-xs sm:text-sm font-medium transition-all text-white flex items-center gap-2 w-full sm:w-auto justify-center sm:justify-start"
                             >
                                 <ChevronLeft size={16} /> Retour aux Sourates
                             </button>
 
-                            <div className="flex flex-wrap items-center gap-2.5">
+                            <div className="flex overflow-x-auto w-full sm:w-auto pb-1 sm:pb-0 items-center gap-2.5 hide-scrollbar">
                                 {/* Reciter Selector */}
-                                <div className="flex items-center gap-1 bg-[#111] border border-[#333] px-2.5 py-1 rounded-xl text-xs text-gray-300">
+                                <div className="flex-shrink-0 flex items-center gap-1 bg-[#111] border border-[#333] px-2.5 py-1 rounded-xl text-xs text-gray-300">
                                     <Mic size={14} className="text-gray-400" />
                                     <select
                                         value={selectedReciter}
@@ -505,7 +505,7 @@ export default function QuranReader() {
                                 </div>
 
                                 {/* Speed Control Selector */}
-                                <div className="flex items-center gap-1 bg-[#111] border border-[#333] px-2 py-1 rounded-xl text-xs text-gray-300">
+                                <div className="flex-shrink-0 flex items-center gap-1 bg-[#111] border border-[#333] px-2 py-1 rounded-xl text-xs text-gray-300">
                                     <Gauge size={14} className="text-gray-400" />
                                     {SPEEDS.map(s => (
                                         <button
@@ -523,7 +523,7 @@ export default function QuranReader() {
                                 {/* Translation FR Toggle */}
                                 <button
                                     onClick={() => setShowTranslation(!showTranslation)}
-                                    className={`px-3 py-1.5 rounded-xl text-xs font-semibold transition-all border flex items-center gap-1.5 ${
+                                    className={`flex-shrink-0 px-3 py-1.5 rounded-xl text-xs font-semibold transition-all border flex items-center gap-1.5 ${
                                         showTranslation 
                                             ? 'bg-emerald-900/50 border-emerald-700 text-emerald-300' 
                                             : 'bg-[#111] text-gray-400 border-[#333] hover:text-white'
@@ -536,25 +536,25 @@ export default function QuranReader() {
                                 {/* Tajweed Toggle */}
                                 <button
                                     onClick={() => setTajweedMode(!tajweedMode)}
-                                    className={`px-3 py-1.5 rounded-xl text-xs font-semibold transition-all border flex items-center gap-1.5 ${
+                                    className={`flex-shrink-0 px-3 py-1.5 rounded-xl text-xs font-semibold transition-all border flex items-center gap-1.5 ${
                                         tajweedMode 
                                             ? 'bg-white text-black border-white shadow-md' 
                                             : 'bg-[#111] text-gray-400 border-[#333] hover:text-white'
                                     }`}
                                 >
                                     <Palette size={14} />
-                                    <span>Tajweed : {tajweedMode ? 'Activé' : 'Désactivé'}</span>
+                                    <span>Tajweed : {tajweedMode ? 'Activé' : 'Off'}</span>
                                 </button>
 
                                 {/* Download / Offline Toggle */}
                                 {isDownloading ? (
-                                    <div className="flex items-center gap-2 px-3 py-1.5 rounded-xl border border-blue-500 bg-blue-900/30 text-blue-300 text-xs font-semibold">
+                                    <div className="flex-shrink-0 flex items-center gap-2 px-3 py-1.5 rounded-xl border border-blue-500 bg-blue-900/30 text-blue-300 text-xs font-semibold">
                                         <span className="animate-pulse">Téléchargement {downloadProgress?.downloaded}/{downloadProgress?.total}...</span>
                                     </div>
                                 ) : (
                                     <button
                                         onClick={toggleDownload}
-                                        className={`px-3 py-1.5 rounded-xl text-xs font-semibold transition-all border flex items-center gap-1.5 ${
+                                        className={`flex-shrink-0 px-3 py-1.5 rounded-xl text-xs font-semibold transition-all border flex items-center gap-1.5 ${
                                             isDownloaded 
                                                 ? 'bg-emerald-950/60 border-emerald-700 text-emerald-300' 
                                                 : 'bg-[#111] border-[#333] text-gray-300 hover:border-gray-500'
