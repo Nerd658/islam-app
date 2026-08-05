@@ -582,7 +582,10 @@ export default function QuranReader() {
                                         <Mic size={12} className="text-gray-400" />
                                         <select
                                             value={selectedReciter}
-                                            onChange={(e) => setSelectedReciter(Number(e.target.value))}
+                                            onChange={(e) => {
+                                                setSelectedReciter(Number(e.target.value));
+                                                setShowSettings(false);
+                                            }}
                                             className="bg-transparent text-white outline-none"
                                         >
                                             {RECITERS.map(r => (
@@ -597,7 +600,7 @@ export default function QuranReader() {
                                         {SPEEDS.map(s => (
                                             <button
                                                 key={s}
-                                                onClick={() => setPlaybackSpeed(s)}
+                                                onClick={() => { setPlaybackSpeed(s); setShowSettings(false); }}
                                                 className={`px-1.5 py-0.5 rounded text-[10px] font-bold ${
                                                     playbackSpeed === s ? 'bg-white text-black' : 'text-gray-400'
                                                 }`}
@@ -609,7 +612,7 @@ export default function QuranReader() {
                                 </div>
                                 <div className="grid grid-cols-2 gap-2 mt-1">
                                     <button
-                                        onClick={() => setShowTranslation(!showTranslation)}
+                                        onClick={() => { setShowTranslation(!showTranslation); setShowSettings(false); }}
                                         className={`px-2 py-1.5 rounded-lg text-xs font-semibold border flex items-center justify-center gap-1.5 ${
                                             showTranslation ? 'bg-emerald-900/50 border-emerald-700 text-emerald-300' : 'bg-[#222] border-[#444] text-gray-400'
                                         }`}
@@ -617,7 +620,7 @@ export default function QuranReader() {
                                         <Languages size={12} /> FR : {showTranslation ? 'Oui' : 'Non'}
                                     </button>
                                     <button
-                                        onClick={handleTajweedToggle}
+                                        onClick={() => { handleTajweedToggle(); setShowSettings(false); }}
                                         className={`px-2 py-1.5 rounded-lg text-xs font-semibold border flex items-center justify-center gap-1.5 ${
                                             tajweedMode ? 'bg-white text-black border-white' : 'bg-[#222] border-[#444] text-gray-400'
                                         }`}
@@ -631,7 +634,7 @@ export default function QuranReader() {
                                     </div>
                                 ) : (
                                     <button
-                                        onClick={toggleDownload}
+                                        onClick={() => { toggleDownload(); setShowSettings(false); }}
                                         className={`px-3 py-1.5 rounded-lg text-xs font-semibold border flex items-center justify-center gap-1.5 w-full mt-1 ${
                                             isDownloaded ? 'bg-emerald-950/60 border-emerald-700 text-emerald-300' : 'bg-[#222] border-[#444] text-gray-300'
                                         }`}

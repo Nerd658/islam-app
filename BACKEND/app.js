@@ -2,7 +2,6 @@ const express = require('express');
 const cors = require('cors');
 const helmet = require('helmet');
 const morgan = require('morgan');
-const xss = require('xss-clean');
 const hpp = require('hpp');
 const rateLimit = require('express-rate-limit');
 
@@ -22,7 +21,6 @@ app.use(helmet({
 app.use(cors({ origin: process.env.FRONTEND_URL || '*' })); // Set strictly in production
 app.use(express.json({ limit: '10kb' })); // Limit body payload
 app.use(hpp()); // Prevent HTTP Parameter Pollution
-app.use(xss()); // Prevent XSS attacks
 
 // Global Rate Limiting
 const limiter = rateLimit({
