@@ -92,8 +92,8 @@ export function usePrayerTimes() {
                 try {
                     const { latitude: lat, longitude: lon } = position.coords;
                     const response = await axios.get(
-                        `${import.meta.env.VITE_NOMINATIM_API_URL}/reverse?format=json&lat=${lat}&lon=${lon}&zoom=10`,
-                        { headers: { 'Accept-Language': 'fr', 'User-Agent': 'IslamApp/1.0 (contact@islamapp.fr)' } }
+                        `${import.meta.env.VITE_NOMINATIM_API_URL}/reverse?format=json&lat=${lat}&lon=${lon}&zoom=10&email=contact@islam1811.web.app`,
+                        { headers: { 'Accept-Language': 'fr' } }
                     );
                     const address = response.data.address;
                     const resolvedCity = address.city || address.town || address.village || address.county;

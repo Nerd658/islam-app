@@ -10,10 +10,9 @@ function useLocationSearch( search, setResult, setError) {
       return;
     } 
     try {
-      const response = await axios.get(`${import.meta.env.VITE_NOMINATIM_API_URL}/search?q=${encodeURIComponent(search)}&format=json&addressdetails=1&limit=10`, {
+      const response = await axios.get(`${import.meta.env.VITE_NOMINATIM_API_URL}/search?q=${encodeURIComponent(search)}&format=json&addressdetails=1&limit=10&email=contact@islam1811.web.app`, {
         headers: {
-            'Accept-Language': 'fr',
-            'User-Agent': 'IslamApp/1.0 (test@example.com)'
+            'Accept-Language': 'fr'
         }
       });
 
