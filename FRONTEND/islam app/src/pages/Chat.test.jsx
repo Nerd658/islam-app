@@ -28,8 +28,8 @@ describe('ChatInterface component', () => {
     });
 
     it('submit button is disabled when input is empty', () => {
-        render(<ChatInterface />);
-        const submitBtn = screen.getByRole('button');
+        const { container } = render(<ChatInterface />);
+        const submitBtn = container.querySelector('button[type="submit"]');
         
         // Initially empty
         expect(submitBtn).toBeDisabled();
@@ -48,9 +48,9 @@ describe('ChatInterface component', () => {
     it('after form submit, user message appears in the chat and mock response is handled', async () => {
         axios.post.mockResolvedValueOnce({ data: { reply: 'Les conditions sont nombreuses...' } });
         
-        render(<ChatInterface />);
+        const { container } = render(<ChatInterface />);
         const input = screen.getByPlaceholderText('Votre question...');
-        const submitBtn = screen.getByRole('button');
+        const submitBtn = container.querySelector('button[type="submit"]');
         
         fireEvent.change(input, { target: { value: 'Quelles sont les conditions ?' } });
         fireEvent.click(submitBtn);

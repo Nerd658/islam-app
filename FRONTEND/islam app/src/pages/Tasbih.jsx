@@ -1,19 +1,13 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useRef } from 'react';
 import { RotateCcw, Activity, Volume2, VolumeX, Sparkles, Trash2 } from 'lucide-react';
+import useLocalStorage from '../hooks/useLocalStorage';
+import PageHeader from '../components/PageHeader';
 
 export default function Tasbih() {
-    const [count, setCount] = useState(() => {
-        return parseInt(localStorage.getItem('tasbih_count') || '0', 10);
-    });
-    const [total, setTotal] = useState(() => {
-        return parseInt(localStorage.getItem('tasbih_total') || '0', 10);
-    });
-    const [phrase, setPhrase] = useState(() => {
-        return localStorage.getItem('tasbih_phrase') || "Subhanallah";
-    });
-    const [soundEnabled, setSoundEnabled] = useState(() => {
-        return localStorage.getItem('tasbih_sound') !== 'false';
-    });
+    const [count, setCount] = useLocalStorage('tasbih_count', 0);
+    const [total, setTotal] = useLocalStorage('tasbih_total', 0);
+    const [phrase, setPhrase] = useLocalStorage('tasbih_phrase', "Subhanallah");
+    const [soundEnabled, setSoundEnabled] = useLocalStorage('tasbih_sound', true);
 
     const phrases = [
         { text: "Subhanallah", arabic: "سُبْحَانَ ٱللَّٰهِ" },
@@ -25,22 +19,7 @@ export default function Tasbih() {
 
     const audioCtxRef = useRef(null);
 
-    // Persist session states to localStorage
-    useEffect(() => {
-        localStorage.setItem('tasbih_count', count.toString());
-    }, [count]);
-
-    useEffect(() => {
-        localStorage.setItem('tasbih_total', total.toString());
-    }, [total]);
-
-    useEffect(() => {
-        localStorage.setItem('tasbih_phrase', phrase);
-    }, [phrase]);
-
-    useEffect(() => {
-        localStorage.setItem('tasbih_sound', soundEnabled.toString());
-    }, [soundEnabled]);
+    // Session states are automatically persisted by useLocalStorage
 
     const playClickSound = () => {
         if (!soundEnabled) return;
@@ -84,8 +63,6 @@ export default function Tasbih() {
     const handleReset = () => {
         setCount(0);
         setTotal(0);
-        localStorage.setItem('tasbih_count', '0');
-        localStorage.setItem('tasbih_total', '0');
         if (navigator.vibrate) {
             navigator.vibrate(80);
         }
@@ -94,10 +71,11 @@ export default function Tasbih() {
     const currentArabic = phrases.find(p => p.text === phrase)?.arabic;
 
     return (
-        <div className="flex flex-col items-center justify-center min-h-[80vh] px-4">
-            <h2 className="text-3xl font-bold mb-6 flex items-center gap-3 text-white">
-                <Activity className="text-[#aaa]" size={28} /> Tasbih Numérique
-            </h2>
+        <div className="flex flex-col items-center justify-center min-h-[80vh] px-4 pt-8 pb-24">
+            <PageHeader 
+                icon={<Activity size={32} />}
+                title="Tasbih Numérique"
+            />
             
             <div className="bg-[#0a0a0a] border border-[#333] p-8 rounded-[3rem] shadow-2xl flex flex-col items-center w-full max-w-sm">
                 
@@ -136,9 +114,6 @@ export default function Tasbih() {
                             setPhrase(newP); 
                             setCount(0); 
                             setTotal(0);
-                            localStorage.setItem('tasbih_phrase', newP);
-                            localStorage.setItem('tasbih_count', '0');
-                            localStorage.setItem('tasbih_total', '0');
                         }}
                         className="w-full bg-[#111] border border-[#333] text-white p-3 rounded-xl outline-none font-semibold text-sm cursor-pointer"
                     >

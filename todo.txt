@@ -1,5 +1,2 @@
-// TODO: factoriser la partie prayertimeslist
-
-// FIXME: 
-
-// HACK: 
+// All items resolved — see commit history for details
+// 2026-08-05: PrayerTimesList logic extracted to usePrayerCountdown hook

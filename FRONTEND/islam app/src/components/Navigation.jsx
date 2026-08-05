@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { NavLink, useLocation } from 'react-router-dom';
-import { Home, BookOpen, Heart, Activity, CalendarDays, MessageCircle, Moon, Star, Compass, Target, Scroll, Languages, ChevronDown, ChevronRight, Layers, Sparkles, HelpCircle, GraduationCap } from 'lucide-react';
+import { Home, BookOpen, Heart, Activity, CalendarDays, MessageCircle, Moon, Star, Compass, Target, Scroll, Languages, ChevronDown, ChevronRight, Layers, Sparkles, HelpCircle, GraduationCap, BookMarked } from 'lucide-react';
 
 export default function Navigation() {
     const location = useLocation();
@@ -12,6 +12,7 @@ export default function Navigation() {
         { path: '/goals', label: 'Objectifs', icon: Target },
         { path: '/quran', label: 'Coran', icon: BookOpen },
         { path: '/hadiths', label: 'Hadiths', icon: Scroll },
+        { path: '/wird', label: 'Wird', icon: BookMarked },
         { 
             path: '/arabic/alphabet', 
             label: 'Arabe', 

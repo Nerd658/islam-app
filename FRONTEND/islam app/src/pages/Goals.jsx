@@ -1,10 +1,11 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import { useNavigate } from 'react-router-dom';
+import useLocalStorage from '../hooks/useLocalStorage';
+import PageHeader from '../components/PageHeader';
 import { Target, BookOpen, Heart, Activity, Star, CheckCircle2, Circle, ArrowRight, Sparkles, Award } from 'lucide-react';
 
 export default function Goals() {
     const navigate = useNavigate();
-    const todayStr = new Date().toISOString().split('T')[0];
 
     const goalCategories = [
         {
@@ -62,31 +63,7 @@ export default function Goals() {
 
     const allGoalsCount = goalCategories.reduce((acc, cat) => acc + cat.goals.length, 0);
 
-    const [completed, setCompleted] = useState(() => {
-        try {
-            const saved = localStorage.getItem('daily_goals_page_status');
-            if (saved) {
-                const parsed = JSON.parse(saved);
-                if (parsed.date === todayStr) {
-                    return parsed.completed || {};
-                }
-            }
-        } catch (e) {
-            console.error('Error reading goals:', e);
-        }
-        return {};
-    });
-
-    useEffect(() => {
-        try {
-            localStorage.setItem('daily_goals_page_status', JSON.stringify({
-                date: todayStr,
-                completed
-            }));
-        } catch (e) {
-            console.error('Error saving goals:', e);
-        }
-    }, [completed, todayStr]);
+    const [completed, setCompleted] = useLocalStorage('daily_goals_completed', {}, { ttl: 86400000 });
 
     const toggleGoal = (id) => {
         setCompleted(prev => ({
@@ -101,15 +78,11 @@ export default function Goals() {
     return (
         <div className="pt-8 px-4 max-w-4xl mx-auto mb-24">
             {/* Header */}
-            <div className="text-center mb-10">
-                <div className="inline-flex items-center justify-center p-3 bg-[#111] border border-[#333] rounded-2xl mb-4 text-white">
-                    <Target size={32} />
-                </div>
-                <h2 className="text-3xl sm:text-4xl font-bold text-white mb-3">Programme & Objectifs du Jour</h2>
-                <p className="text-gray-400 max-w-xl mx-auto text-sm sm:text-base">
-                    Organisez votre journée spirituelle. Accomplissez vos objectifs quotidiens de lecture, d'invocations et de rappel.
-                </p>
-            </div>
+            <PageHeader 
+                icon={<Target size={32} />}
+                title="Programme & Objectifs du Jour"
+                subtitle="Organisez votre journée spirituelle. Accomplissez vos objectifs quotidiens de lecture, d'invocations et de rappel."
+            />
 
             {/* Overall Progress Card */}
             <div className="bg-[#0a0a0a] border border-[#333] p-6 sm:p-8 rounded-3xl mb-10 shadow-xl relative overflow-hidden">

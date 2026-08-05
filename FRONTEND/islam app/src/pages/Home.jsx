@@ -1,10 +1,11 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import SearchInput from '../components/SearchInput';
 import LocationSuggestions from '../components/LocationSuggestions';
 import Header from '../components/Header';
 import PrayerTimesList from '../components/PrayerTimesList';
 import useLocationSearch from '../hooks/useLocationSearch';
+import useDailyVerse from '../hooks/useDailyVerse';
 import { fetchPrayerTimes } from '../api/fetchPrayerTimes';
 import axios from 'axios';
 import { 
@@ -16,11 +17,11 @@ import {
     Target, 
     Compass, 
     MessageCircle, 
-    Sparkles, 
     ArrowRight,
     Search,
     Scroll,
-    Languages
+    Languages,
+    BookMarked
 } from 'lucide-react';
 
 export default function Home() {
@@ -34,6 +35,31 @@ export default function Home() {
     const [value, setValue] = useState('');
 
     useLocationSearch(search, setResult, setError);
+    const { arabic, translation, reference } = useDailyVerse();
+    const todayDate = new Date().toLocaleDateString('fr-FR', { day: 'numeric', month: 'long', year: 'numeric' });
+
+    useEffect(() => {
+        const savedData = localStorage.getItem('last_city_data');
+        if (savedData) {
+            try {
+                const parsed = JSON.parse(savedData);
+                const now = new Date().getTime();
+                if (now - parsed.timestamp < 6 * 60 * 60 * 1000) {
+                    setCity(parsed.city);
+                    setCountry_code(parsed.country_code);
+                    setValue(parsed.value);
+                    
+                    fetchPrayerTimes(parsed.city, parsed.country_code).then(data => {
+                        setPrayerTimes(data);
+                    }).catch(err => {
+                        console.error(err);
+                    });
+                }
+            } catch (e) {
+                console.error(e);
+            }
+        }
+    }, []);
 
     const handleLocateMe = () => {
         if (!navigator.geolocation) {
@@ -60,10 +86,18 @@ export default function Home() {
                 if (currentCity && currentCountryCode) {
                     setCity(currentCity);
                     setCountry_code(currentCountryCode);
-                    setValue(`${currentCity}, ${address.country}`);
+                    const newValue = `${currentCity}, ${address.country}`;
+                    setValue(newValue);
                     
                     const data = await fetchPrayerTimes(currentCity, currentCountryCode);
                     setPrayerTimes(data);
+
+                    localStorage.setItem('last_city_data', JSON.stringify({
+                        city: currentCity,
+                        country_code: currentCountryCode,
+                        value: newValue,
+                        timestamp: new Date().getTime()
+                    }));
                 } else {
                     setError("Impossible de déterminer votre ville.");
                 }
@@ -91,6 +125,13 @@ export default function Home() {
             const data = await fetchPrayerTimes(city, country_code);
             setPrayerTimes(data);
             setLoading(false);
+
+            localStorage.setItem('last_city_data', JSON.stringify({
+                city,
+                country_code,
+                value,
+                timestamp: new Date().getTime()
+            }));
         } catch (err) {
             setError(err.message || "Erreur lors de la récupération des horaires.");
             setLoading(false);
@@ -99,6 +140,7 @@ export default function Home() {
 
     const quickLinks = [
         { title: 'Le Noble Coran', desc: '114 sourates avec récitations audio', path: '/quran', icon: BookOpen },
+        { title: 'Wird Quotidien', desc: 'Programme Juz par jour — Coran en 30 jours', path: '/wird', icon: BookMarked },
         { title: 'Hadiths Authentiques', desc: 'Les 40 Hadiths d\'An-Nawawi expliqués', path: '/hadiths', icon: Scroll },
         { title: 'Arabe Coranique', desc: 'Alphabet, 80% du vocabulaire et Tajweed', path: '/arabic', icon: Languages },
         { title: 'Vos Objectifs', desc: 'Programme quotidien et suivi des actes', path: '/goals', icon: Target },
@@ -223,15 +265,15 @@ export default function Home() {
             </div>
 
             {/* Daily Verse Inspiration Card */}
-            <div className="w-full mt-16 bg-[#0a0a0a] border border-[#333] p-8 rounded-3xl text-center relative overflow-hidden">
-                <div className="text-xs font-semibold text-gray-500 uppercase tracking-widest mb-4">Rappel du Jour</div>
-                <p className="text-2xl sm:text-3xl font-arabic text-white mb-4 leading-loose" dir="rtl">
-                    "أَلَا بِذِكْرِ اللَّهِ تَطْمَئِنُّ الْقُلُوبُ"
+            <div className="w-full mt-16 bg-[#0a0a0a] border border-[#333] p-8 rounded-3xl text-center relative overflow-hidden transition-opacity duration-500 opacity-100">
+                <div className="text-xs font-semibold text-gray-500 uppercase tracking-widest mb-4">Rappel du Jour — {todayDate}</div>
+                <p className="text-2xl sm:text-3xl font-arabic text-white mb-4 leading-loose transition-all duration-500" dir="rtl">
+                    "{arabic}"
                 </p>
-                <p className="text-gray-300 text-sm max-w-lg mx-auto italic mb-2">
-                    "N'est-ce pas par l'évocation d'Allah que les cœurs se tranquillisent ?"
+                <p className="text-gray-300 text-sm max-w-lg mx-auto italic mb-2 transition-all duration-500">
+                    "{translation}"
                 </p>
-                <span className="text-xs text-gray-500 font-mono">(Sourate Ar-Ra'd : Verset 28)</span>
+                <span className="text-xs text-gray-500 font-mono transition-all duration-500">({reference})</span>
             </div>
         </div>
     );

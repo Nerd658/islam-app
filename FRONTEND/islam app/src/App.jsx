@@ -12,6 +12,7 @@ const Chat = lazy(() => import('./pages/Chat'));
 const Names = lazy(() => import('./pages/Names'));
 const Qibla = lazy(() => import('./pages/Qibla'));
 const Hadiths = lazy(() => import('./pages/Hadiths'));
+const Wird = lazy(() => import('./pages/Wird'));
 
 // Dedicated Standalone Arabic Sub-pages
 const ArabicAlphabet = lazy(() => import('./pages/arabic/ArabicAlphabet'));
@@ -41,6 +42,7 @@ function App() {
             <Route path="/names" element={<Names />} />
             <Route path="/qibla" element={<Qibla />} />
             <Route path="/hadiths" element={<Hadiths />} />
+            <Route path="/wird" element={<Wird />} />
 
             {/* Arabic Dedicated Standalone Routes */}
             <Route path="/arabic" element={<Navigate to="/arabic/alphabet" replace />} />
