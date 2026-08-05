@@ -1,17 +1,18 @@
 import React, { useState, useEffect, useRef } from 'react';
 import axios from 'axios';
-import { PlayCircle, PauseCircle, BookOpen, ChevronLeft, Search, Palette, Download, Check, Languages, Bookmark, Gauge, Mic, BookmarkCheck, Settings } from 'lucide-react';
+import { PlayCircle, PauseCircle, BookOpen, ChevronLeft, Search, Palette, Download, Check, Languages, Bookmark, Gauge, Mic, BookmarkCheck, Settings, Info, X } from 'lucide-react';
 import { useQuranOffline } from '../hooks/useQuranOffline';
 import { getSurahMeta } from '../utils/quranOfflineStorage';
 
 const RECITERS = [
     { id: 7, name: 'Mishary Rashid Alafasy' },
-    { id: 1, name: 'Abdul Basit (Murattal)' },
-    { id: 3, name: 'Saad Al-Ghamdi' },
-    { id: 6, name: 'Mahmoud Khalil Al-Husary' }
+    { id: 1, name: 'AbdulBaset AbdulSamad' },
+    { id: 3, name: 'Abdur-Rahman as-Sudais' },
+    { id: 4, name: 'Abu Bakr al-Shatri' },
+    { id: 12, name: 'Mahmoud Khalil Al-Husary' }
 ];
 
-const SPEEDS = [0.75, 1, 1.25, 1.5];
+const SPEEDS = [0.5, 0.75, 1, 1.25, 1.5, 2];
 
 export default function QuranReader() {
     const [chapters, setChapters] = useState([]);
@@ -20,7 +21,8 @@ export default function QuranReader() {
     const [loading, setLoading] = useState(false);
     const [searchQuery, setSearchQuery] = useState('');
     const [searchMode, setSearchMode] = useState('surahs');
-    const [showSettings, setShowSettings] = useState(false); // 'surahs' | 'verses'
+    const [showSettings, setShowSettings] = useState(false);
+    const [showTajweedModal, setShowTajweedModal] = useState(false);
     const [searchResults, setSearchResults] = useState([]);
     const [isSearchingVerses, setIsSearchingVerses] = useState(false);
     
@@ -219,7 +221,6 @@ export default function QuranReader() {
         }
     };
 
-    // Fast Fetch: Tajweed + Official French Translation (Hamidullah ID 31) + Audio
     const fetchVerses = async (chapterId, targetVerseKey = null) => {
         setLoading(true);
         const chapterObj = chapters.find(c => c.id === chapterId);
@@ -318,7 +319,6 @@ export default function QuranReader() {
     const playVerse = async (verseKey) => {
         if (!audioRef.current) return;
         
-        // Save bookmark automatically on verse play
         saveBookmark(verseKey);
 
         if (playingVerse === verseKey) {
@@ -340,6 +340,10 @@ export default function QuranReader() {
         }
     };
 
+    const handleTajweedToggle = () => {
+        setTajweedMode(!tajweedMode);
+    };
+
     const filteredChapters = chapters.filter(chapter => 
         chapter.name_simple.toLowerCase().includes(searchQuery.toLowerCase()) ||
         chapter.name_arabic.includes(searchQuery) ||
@@ -349,17 +353,13 @@ export default function QuranReader() {
 
     return (
         <div className="w-full max-w-5xl mx-auto py-4 px-4 flex flex-col h-[calc(100vh-4rem)] md:h-[calc(100vh-2rem)] overflow-hidden">
-            {/* Page Header */}
             <h2 className="text-2xl sm:text-3xl font-bold text-center mb-4 text-white flex items-center justify-center gap-3 flex-shrink-0">
                 <BookOpen className="text-gray-400" size={26} />
                 Le Noble Coran
             </h2>
             
             {!selectedChapter ? (
-                /* SURAH SELECTION VIEW */
                 <div className="flex flex-col flex-1 overflow-hidden bg-[#0a0a0a] p-4 rounded-2xl border border-[#333] shadow-2xl">
-                    
-                    {/* Resume Reading Bookmark Banner */}
                     {lastRead && (
                         <div className="mb-4 p-3 bg-[#111] border border-[#333] rounded-xl flex items-center justify-between flex-shrink-0">
                             <div className="flex items-center gap-3">
@@ -380,7 +380,6 @@ export default function QuranReader() {
                         </div>
                     )}
 
-                    {/* Search Bar & Mode Switch */}
                     <div className="flex flex-col sm:flex-row gap-3 mb-4 flex-shrink-0">
                         <div className="relative flex-1">
                             <Search className="absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-500" size={18} />
@@ -443,7 +442,6 @@ export default function QuranReader() {
                             </div>
                         )
                     ) : (
-                        /* VERSES GLOBAL SEARCH RESULTS */
                         <div className="flex-1 overflow-y-auto p-2 space-y-4 custom-scrollbar">
                             {isSearchingVerses ? (
                                 <div className="flex justify-center items-center h-48">
@@ -475,11 +473,8 @@ export default function QuranReader() {
                     )}
                 </div>
             ) : (
-                /* SURAH READER VIEW - 2 SEPARATE PHYSICAL CONTAINERS */
                 <div className="flex flex-col flex-1 overflow-hidden">
-                    {/* CONTAINER 1: PHYSICAL SEPARATE FIXED HEADER */}
                     <div className="flex-shrink-0 bg-[#0a0a0a] p-3 sm:p-6 rounded-2xl border border-[#333] mb-3 shadow-xl">
-                        {/* Top Control Bar */}
                         <div className="flex items-center justify-between gap-3 mb-3 relative">
                             <button 
                                 onClick={() => setSelectedChapter(null)}
@@ -488,9 +483,7 @@ export default function QuranReader() {
                                 <ChevronLeft size={16} /> Retour
                             </button>
 
-                            {/* Desktop Controls (hidden on mobile) */}
                             <div className="hidden sm:flex items-center gap-2.5">
-                                {/* Reciter Selector */}
                                 <div className="flex-shrink-0 flex items-center gap-1 bg-[#111] border border-[#333] px-2.5 py-1 rounded-xl text-xs text-gray-300">
                                     <Mic size={14} className="text-gray-400" />
                                     <select
@@ -506,7 +499,6 @@ export default function QuranReader() {
                                     </select>
                                 </div>
 
-                                {/* Speed Control Selector */}
                                 <div className="flex-shrink-0 flex items-center gap-1 bg-[#111] border border-[#333] px-2 py-1 rounded-xl text-xs text-gray-300">
                                     <Gauge size={14} className="text-gray-400" />
                                     {SPEEDS.map(s => (
@@ -522,7 +514,6 @@ export default function QuranReader() {
                                     ))}
                                 </div>
 
-                                {/* Translation FR Toggle */}
                                 <button
                                     onClick={() => setShowTranslation(!showTranslation)}
                                     className={`flex-shrink-0 px-3 py-1.5 rounded-xl text-xs font-semibold transition-all border flex items-center gap-1.5 ${
@@ -535,10 +526,9 @@ export default function QuranReader() {
                                     <span>FR : {showTranslation ? 'Activée' : 'Masquée'}</span>
                                 </button>
 
-                                {/* Tajweed Toggle */}
                                 <button
-                                    onClick={() => setTajweedMode(!tajweedMode)}
-                                    className={`flex-shrink-0 px-3 py-1.5 rounded-xl text-xs font-semibold transition-all border flex items-center gap-1.5 ${
+                                    onClick={handleTajweedToggle}
+                                    className={`px-3 py-1.5 rounded-xl text-xs font-semibold transition-all border flex items-center gap-1.5 ${
                                         tajweedMode 
                                             ? 'bg-white text-black border-white shadow-md' 
                                             : 'bg-[#111] text-gray-400 border-[#333] hover:text-white'
@@ -548,7 +538,14 @@ export default function QuranReader() {
                                     <span>Tajweed : {tajweedMode ? 'Activé' : 'Off'}</span>
                                 </button>
 
-                                {/* Download / Offline Toggle */}
+                                <button
+                                    onClick={() => setShowTajweedModal(true)}
+                                    className="p-1.5 bg-[#111] border border-[#333] rounded-xl text-gray-400 hover:text-white transition-colors"
+                                    title="Règles du Tajweed"
+                                >
+                                    <Info size={18} />
+                                </button>
+
                                 {isDownloading ? (
                                     <div className="flex-shrink-0 flex items-center gap-2 px-3 py-1.5 rounded-xl border border-blue-500 bg-blue-900/30 text-blue-300 text-xs font-semibold">
                                         <span className="animate-pulse">Téléchargement {downloadProgress?.downloaded}/{downloadProgress?.total}...</span>
@@ -569,7 +566,6 @@ export default function QuranReader() {
                                 )}
                             </div>
 
-                            {/* Mobile Settings Button */}
                             <button
                                 onClick={() => setShowSettings(!showSettings)}
                                 className="sm:hidden bg-[#222] hover:bg-[#333] border border-[#444] p-2 rounded-xl text-gray-300 transition-colors"
@@ -578,7 +574,6 @@ export default function QuranReader() {
                             </button>
                         </div>
 
-                        {/* Mobile Settings Dropdown */}
                         {showSettings && (
                             <div className="sm:hidden mb-4 p-3 bg-[#111] border border-[#333] rounded-xl flex flex-col gap-3">
                                 <div className="flex items-center justify-between">
@@ -622,7 +617,7 @@ export default function QuranReader() {
                                         <Languages size={12} /> FR : {showTranslation ? 'Oui' : 'Non'}
                                     </button>
                                     <button
-                                        onClick={() => setTajweedMode(!tajweedMode)}
+                                        onClick={handleTajweedToggle}
                                         className={`px-2 py-1.5 rounded-lg text-xs font-semibold border flex items-center justify-center gap-1.5 ${
                                             tajweedMode ? 'bg-white text-black border-white' : 'bg-[#222] border-[#444] text-gray-400'
                                         }`}
@@ -642,31 +637,18 @@ export default function QuranReader() {
                                         }`}
                                     >
                                         {isDownloaded ? <Check size={14} className="text-emerald-400" /> : <Download size={14} />}
-                                        {isDownloaded ? 'Hors-Ligne OK' : 'Télécharger pour hors-ligne'}
+                                        {isDownloaded ? 'Hors-Ligne OK' : 'Télécharger'}
                                     </button>
                                 )}
                             </div>
                         )}
 
-                        {/* Tajweed Legend Bar */}
-                        {tajweedMode && (
-                            <div className="mb-3 p-2 bg-[#111] border border-[#222] rounded-xl flex flex-wrap items-center justify-center gap-3 text-xs font-medium">
-                                <span className="text-gray-400 font-bold">Règles Tajweed :</span>
-                                <span className="flex items-center gap-1.5"><span className="w-2.5 h-2.5 rounded-full bg-rose-500"></span><span className="text-rose-400 font-bold">Madd (Élongation)</span></span>
-                                <span className="flex items-center gap-1.5"><span className="w-2.5 h-2.5 rounded-full bg-emerald-500"></span><span className="text-emerald-400 font-bold">Ghunna (Nasalisation)</span></span>
-                                <span className="flex items-center gap-1.5"><span className="w-2.5 h-2.5 rounded-full bg-blue-500"></span><span className="text-blue-400 font-bold">Qalqala (Rebond)</span></span>
-                                <span className="flex items-center gap-1.5"><span className="w-2.5 h-2.5 rounded-full bg-orange-500"></span><span className="text-orange-400 font-bold">Ikhfa</span></span>
-                            </div>
-                        )}
-
-                        {/* Surah Title */}
                         <h3 className="text-2xl sm:text-3xl font-bold text-center text-white font-arabic">
                             {selectedChapter.name_arabic}
                             <span className="block text-sm text-gray-500 mt-0.5 font-sans">Sourate {selectedChapter.name_simple} ({selectedChapter.verses_count} versets)</span>
                         </h3>
                     </div>
 
-                    {/* CONTAINER 2: PHYSICAL SEPARATE SCROLLABLE VERSES CONTAINER */}
                     <div className="flex-1 overflow-hidden bg-[#0a0a0a] p-4 sm:p-6 rounded-2xl border border-[#333] shadow-2xl flex flex-col">
                         {loading ? (
                             <div className="flex justify-center items-center h-48">
@@ -716,7 +698,6 @@ export default function QuranReader() {
                                                 </div>
 
                                                 <div className="flex-grow text-right">
-                                                    {/* Word-by-Word sync with preserved Tajweed colors */}
                                                     {isPlaying ? (
                                                         <p className={`tajweed-text font-arabic text-3xl sm:text-4xl leading-[2.5] sm:leading-[2.8] tracking-wide text-white`}>
                                                             {((v.text_tajweed || v.text_uthmani || '').match(/((?:<[^>]+>|[^<>\s])+)/g) || []).map((wHtml, idx) => {
@@ -752,7 +733,6 @@ export default function QuranReader() {
                                                         </p>
                                                     )}
 
-                                                    {/* French Translation Display */}
                                                     {showTranslation && v.translation && (
                                                         <p 
                                                             className="text-gray-300 text-sm sm:text-base leading-relaxed mt-4 font-sans text-left border-t border-[#222] pt-3" 
@@ -767,6 +747,73 @@ export default function QuranReader() {
                                 })}
                             </div>
                         )}
+                    </div>
+                </div>
+            )}
+
+            {/* Tajweed Legend Modal */}
+            {showTajweedModal && (
+                <div className="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 flex items-center justify-center p-4" onClick={() => setShowTajweedModal(false)}>
+                    <div className="bg-[#111] border border-[#333] p-6 rounded-2xl w-full max-w-sm relative shadow-2xl" onClick={e => e.stopPropagation()}>
+                        <button 
+                            onClick={() => setShowTajweedModal(false)}
+                            className="absolute top-4 right-4 text-gray-500 hover:text-white bg-[#222] p-1.5 rounded-full transition-colors"
+                        >
+                            <X size={18} />
+                        </button>
+                        <h4 className="text-lg font-bold text-white mb-6 flex items-center gap-2">
+                            <Palette size={20} className="text-emerald-400" />
+                            Règles du Tajweed
+                        </h4>
+                        
+                        <div className="space-y-4">
+                            <div className="flex items-center justify-between p-3 bg-[#1a1a1a] rounded-xl border border-[#222]">
+                                <div className="flex items-center gap-3">
+                                    <div className="w-4 h-4 rounded-full bg-rose-500 shadow-[0_0_10px_rgba(244,63,94,0.5)]"></div>
+                                    <span className="font-semibold text-white">Madd</span>
+                                </div>
+                                <span className="text-xs text-gray-400">Élongation</span>
+                            </div>
+                            
+                            <div className="flex items-center justify-between p-3 bg-[#1a1a1a] rounded-xl border border-[#222]">
+                                <div className="flex items-center gap-3">
+                                    <div className="w-4 h-4 rounded-full bg-emerald-500 shadow-[0_0_10px_rgba(16,185,129,0.5)]"></div>
+                                    <span className="font-semibold text-white">Ghunna</span>
+                                </div>
+                                <span className="text-xs text-gray-400">Nasalisation</span>
+                            </div>
+                            
+                            <div className="flex items-center justify-between p-3 bg-[#1a1a1a] rounded-xl border border-[#222]">
+                                <div className="flex items-center gap-3">
+                                    <div className="w-4 h-4 rounded-full bg-blue-500 shadow-[0_0_10px_rgba(59,130,246,0.5)]"></div>
+                                    <span className="font-semibold text-white">Qalqala</span>
+                                </div>
+                                <span className="text-xs text-gray-400">Rebond</span>
+                            </div>
+                            
+                            <div className="flex items-center justify-between p-3 bg-[#1a1a1a] rounded-xl border border-[#222]">
+                                <div className="flex items-center gap-3">
+                                    <div className="w-4 h-4 rounded-full bg-orange-500 shadow-[0_0_10px_rgba(249,115,22,0.5)]"></div>
+                                    <span className="font-semibold text-white">Ikhfa</span>
+                                </div>
+                                <span className="text-xs text-gray-400">Dissimulation</span>
+                            </div>
+                            
+                            <div className="flex items-center justify-between p-3 bg-[#1a1a1a] rounded-xl border border-[#222]">
+                                <div className="flex items-center gap-3">
+                                    <div className="w-4 h-4 rounded-full bg-purple-500 shadow-[0_0_10px_rgba(168,85,247,0.5)]"></div>
+                                    <span className="font-semibold text-white">Idgham</span>
+                                </div>
+                                <span className="text-xs text-gray-400">Assimilation</span>
+                            </div>
+                        </div>
+                        
+                        <button 
+                            onClick={() => setShowTajweedModal(false)}
+                            className="w-full mt-6 py-3 bg-white text-black font-bold rounded-xl hover:bg-gray-200 transition-colors"
+                        >
+                            Compris, retourner à la lecture
+                        </button>
                     </div>
                 </div>
             )}
