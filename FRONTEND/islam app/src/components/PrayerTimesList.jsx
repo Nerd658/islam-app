@@ -26,24 +26,6 @@ const ADHAN_URL = 'https://cdn.aladhan.com/audio/adhan/1.mp3';
  */
 export default function PrayerTimesList({ prayerTimes }) {
     const { nextPrayer, timeLeft } = usePrayerCountdown(prayerTimes);
-    const [isPlayingAdhan, setIsPlayingAdhan] = useState(false);
-    const adhanAudioRef = useRef(null);
-
-    const toggleAdhan = () => {
-        if (!adhanAudioRef.current) {
-            adhanAudioRef.current = new Audio(ADHAN_URL);
-            adhanAudioRef.current.onended = () => setIsPlayingAdhan(false);
-        }
-
-        if (isPlayingAdhan) {
-            adhanAudioRef.current.pause();
-            setIsPlayingAdhan(false);
-        } else {
-            adhanAudioRef.current.play();
-            setIsPlayingAdhan(true);
-        }
-    };
-
     if (!prayerTimes) return null;
 
     const { hijriDate, ...times } = prayerTimes;
@@ -65,18 +47,6 @@ export default function PrayerTimesList({ prayerTimes }) {
                         <span className="text-xs font-bold text-emerald-400 uppercase tracking-widest flex items-center gap-1.5">
                             <Sparkles size={14} /> Prochaine Prière
                         </span>
-
-                        <button
-                            onClick={toggleAdhan}
-                            className={`px-3 py-1.5 rounded-xl text-xs font-semibold flex items-center gap-2 transition-all border ${
-                                isPlayingAdhan
-                                    ? 'bg-emerald-950 border-emerald-700 text-emerald-300 animate-pulse'
-                                    : 'bg-[#111] border-[#333] text-gray-300 hover:text-white'
-                            }`}
-                        >
-                            {isPlayingAdhan ? <Pause size={14} /> : <Play size={14} />}
-                            <span>{isPlayingAdhan ? "Adhan en cours..." : "Écouter l'Adhan"}</span>
-                        </button>
                     </div>
 
                     <h3 className="text-3xl font-extrabold text-white mb-2 capitalize">
