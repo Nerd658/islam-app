@@ -1,17 +1,23 @@
-2026-08-05 — Ajout des 25 premiers Noms d'Allah en JSON
+[2026-08-05] — v4.1.0 Release
 
 What changed:
-- Création du fichier contenant les données des Noms d'Allah de 1 à 25 au format JSON.
-- Ajout pour chaque nom de ses attributs : numéro, nom, bienfaits (spirituels et pratiques) et une invocation (dua) d'exemple.
+- Ajout des Bienfaits et Duas (Invocations) détaillés pour les 99 Noms d'Allah
+- Réparation complète du lecteur audio de l'Adhan (changement d'API)
+- Remplacement global de l'icône Sparkles par Gem (diamant)
 
 Why:
-- Fournir les données structurées et détaillées nécessaires pour l'affichage des 25 premiers Noms d'Allah dans l'application.
+- Les détails des Noms d'Allah manquaient d'informations pratiques et profondes.
+- L'ancienne API de l'Adhan (cdn.aladhan.com) renvoyait une erreur 403.
+- L'icône Sparkles donnait une impression d'interface générée par l'IA.
 
 Files affected:
-- /home/bikienga/Desktop/islam-app/FRONTEND/islam app/src/data/names_1_25.json — création du fichier avec les données JSON.
+- src/data/names_details.json — Création des 99 noms
+- src/pages/Names.jsx — Mise à jour de la modale des détails
+- src/components/PrayerTimesList.jsx — Nouvel URL MP3 pour l'Adhan
+- (10 fichiers UI) — Remplacement de <Sparkles> par <Gem>
 
 Breaking changes:
 - None
 
 Notes for review:
-- Les textes ont été rédigés en français, incluant les descriptions des bienfaits et des duas d'exemple pour chaque nom.
+- Le fichier MP3 de l'Adhan est maintenant chargé depuis media.assabile.com

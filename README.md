@@ -3,7 +3,7 @@
 **IslamApp** est une application web moderne, rapide et sécurisée conçue pour accompagner au quotidien la communauté musulmane. Construite sur une architecture stricte de séparation **Frontend (React) / Backend (Express)** et pensée comme une **PWA** (Progressive Web App), elle offre une expérience native sur mobile et une interface de type tableau de bord sur ordinateur.
 
 ## Version
-Version : **4.1.0** (selon le fichier package.json du Frontend).
+Version : **4.1.1** (selon le fichier package.json du Frontend).
 
 ## Fonctionnalités Principales
 

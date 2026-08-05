@@ -18,7 +18,8 @@ export const fetchUpcomingEvents = async () => {
     const yyyy = today.getFullYear();
 
     try {
-        const resDate = await axios.get(`${import.meta.env.VITE_ALADHAN_API_URL}/v1/gToH?date=${dd}-${mm}-${yyyy}`);
+        // Use path parameter instead of ?date= to avoid 301 redirects and CORS errors
+        const resDate = await axios.get(`${import.meta.env.VITE_ALADHAN_API_URL}/v1/gToH/${dd}-${mm}-${yyyy}`);
         const currentHijri = resDate.data.data.hijri;
         const currentHMonth = currentHijri.month.number;
         const currentHYear = parseInt(currentHijri.year);
@@ -35,8 +36,8 @@ export const fetchUpcomingEvents = async () => {
 
             const targetDateStr = `${String(event.day).padStart(2, '0')}-${String(event.month).padStart(2, '0')}-${targetYear}`;
             
-            // 4. Fetch the Gregorian equivalent of the future Hijri date
-            const res = await axios.get(`${import.meta.env.VITE_ALADHAN_API_URL}/v1/hToG?date=${targetDateStr}`);
+            // 4. Fetch the Gregorian equivalent of the future Hijri date using path parameter
+            const res = await axios.get(`${import.meta.env.VITE_ALADHAN_API_URL}/v1/hToG/${targetDateStr}`);
             const gregStr = res.data.data.gregorian.date; // DD-MM-YYYY
             const [gDay, gMonth, gYear] = gregStr.split('-');
             const targetGregorian = new Date(`${gYear}-${gMonth}-${gDay}T00:00:00`);
