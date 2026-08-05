@@ -1,6 +1,7 @@
 import React, { lazy, Suspense } from 'react';
 import { Routes, Route, Navigate } from 'react-router-dom';
 import Navigation from './components/Navigation';
+import ReloadPrompt from './components/ReloadPrompt';
 
 const Home = lazy(() => import('./pages/Home'));
 const Goals = lazy(() => import('./pages/Goals'));
@@ -56,6 +57,7 @@ function App() {
           </Routes>
         </Suspense>
       </div>
+      <ReloadPrompt />
     </div>
   );
 }
