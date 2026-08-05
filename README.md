@@ -3,7 +3,7 @@
 **IslamApp** est une application web moderne, rapide et sécurisée conçue pour accompagner au quotidien la communauté musulmane. Construite sur une architecture stricte de séparation **Frontend (React) / Backend (Express)** et pensée comme une **PWA** (Progressive Web App), elle offre une expérience native sur mobile et une interface de type tableau de bord sur ordinateur.
 
 ## Version
-Version : **0.0.0** (selon le fichier package.json du Frontend).
+Version : **4.1.0** (selon le fichier package.json du Frontend).
 
 ## Fonctionnalités Principales
 
@@ -12,7 +12,7 @@ Version : **0.0.0** (selon le fichier package.json du Frontend).
 - **Hadiths** : Accès à la compilation des 40 hadiths d'An-Nawawi.
 - **Adhkar** : Invocations quotidiennes du matin et du soir.
 - **Tasbih** : Compteur numérique pour faciliter le dhikr.
-- **99 Noms d'Allah** : Liste complète avec translittération et sens.
+- **99 Noms d'Allah** : Liste complète avec translittération, sens, bienfaits et invocations (Duas) recommandés.
 - **Boussole Qibla** : Indication de la direction de la Mecque.
 - **Calendrier des Événements Islamiques** : Suivi des grandes dates islamiques (Ramadan, Aïd, Hajj, Achoura).
 - **Imam Virtuel (Chat IA)** : Un assistant basé sur l'IA répondant à vos questions théologiques.

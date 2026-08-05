@@ -1,7 +1,8 @@
 {
   "name": "islam-app",
   "private": true,
-  "version": "0.0.0",
+  "version": "4.1.0",
+  "description": "Application web et PWA moderne pour accompagner la communauté musulmane : Horaires de Prière, Coran, 99 Noms d'Allah et bien plus.",
   "type": "module",
   "scripts": {
     "dev": "vite --host",
