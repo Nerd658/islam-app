@@ -18,6 +18,7 @@ export default function Memorization() {
     const [feedback, setFeedback] = useState('');
     const [completed, setCompleted] = useState(false);
     const [showHint, setShowHint] = useState(false);
+    const [shouldListen, setShouldListen] = useState(false);
     
     const recognitionRef = useRef(null);
     
@@ -49,6 +50,7 @@ export default function Memorization() {
                 if (event.error === 'not-allowed') {
                     setFeedback('Microphone bloqué. Veuillez autoriser l\'accès.');
                     setListening(false);
+                    setShouldListen(false);
                 } else if (event.error !== 'no-speech') {
                     setFeedback(`Erreur audio: ${event.error}`);
                 }
@@ -111,6 +113,21 @@ export default function Memorization() {
             .finally(() => setLoading(false));
     }, [selectedChapter]);
 
+    // Auto-restart recognition if it stops unexpectedly
+    useEffect(() => {
+        let timer;
+        if (shouldListen && !listening && recognitionRef.current && quizStarted && !completed) {
+            timer = setTimeout(() => {
+                try {
+                    recognitionRef.current.start();
+                } catch (e) {
+                    // Ignore if already started
+                }
+            }, 500);
+        }
+        return () => clearTimeout(timer);
+    }, [shouldListen, listening, quizStarted, completed]);
+
     // Check similarity on transcript change
     useEffect(() => {
         if (!quizStarted || !verses.length || currentVerseIndex >= verses.length || !transcript) return;
@@ -138,6 +155,7 @@ export default function Memorization() {
                     if (recognitionRef.current) {
                         recognitionRef.current.stop();
                     }
+                    setShouldListen(false);
                     setFeedback('Félicitations, vous avez complété cette sourate !');
                 }
             }, 2500); // 2.5 seconds delay for better UX
@@ -151,14 +169,15 @@ export default function Memorization() {
         if (!recognitionRef.current) return;
         
         if (listening) {
+            setShouldListen(false);
             recognitionRef.current.stop();
             setListening(false);
         } else {
+            setShouldListen(true);
             setTranscript('');
             try {
                 recognitionRef.current.start();
             } catch (e) {
-                // If it's already started, this catches the error
                 console.log(e);
             }
         }
@@ -171,15 +190,18 @@ export default function Memorization() {
         setFeedback('Commencez à réciter...');
         setCompleted(false);
         setShowHint(false);
+        setShouldListen(true);
         if (recognitionRef.current && !listening) {
-            recognitionRef.current.start();
+            try { recognitionRef.current.start(); } catch(e) {}
         }
     };
 
     const stopQuiz = () => {
         setQuizStarted(false);
-        if (recognitionRef.current && listening) {
+        setShouldListen(false);
+        if (recognitionRef.current) {
             recognitionRef.current.stop();
+            setListening(false);
         }
     };
 
