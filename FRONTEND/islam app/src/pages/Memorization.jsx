@@ -355,16 +355,16 @@ export default function Memorization() {
                             })}
                         </div>
 
-                        <div className="flex justify-center mb-6">
+                        <div className="fixed bottom-24 md:bottom-10 right-4 md:right-10 z-50">
                             <button 
                                 onClick={toggleListening}
-                                className={`w-16 h-16 sm:w-20 sm:h-20 rounded-full flex items-center justify-center shadow-2xl transition-all duration-300 ${
+                                className={`w-14 h-14 sm:w-16 sm:h-16 rounded-full flex items-center justify-center shadow-[0_0_20px_rgba(0,0,0,0.5)] border-2 transition-all duration-300 ${
                                     listening 
-                                        ? 'bg-red-500/10 border-2 border-red-500 text-red-500' 
-                                        : 'bg-emerald-500 text-white hover:bg-emerald-400 hover:scale-105'
+                                        ? 'bg-red-950/90 border-red-500 text-red-500 animate-pulse' 
+                                        : 'bg-emerald-600 border-emerald-500 text-white hover:bg-emerald-500 hover:scale-105'
                                 }`}
                             >
-                                {listening ? <MicOff size={28} className="sm:w-8 sm:h-8" /> : <Mic size={28} className="sm:w-8 sm:h-8" />}
+                                {listening ? <MicOff size={24} /> : <Mic size={24} />}
                             </button>
                         </div>
 

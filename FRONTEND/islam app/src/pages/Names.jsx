@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import { Star, Search, ChevronLeft, ChevronRight, Heart, X } from 'lucide-react';
+import { Star, Search, ChevronLeft, ChevronRight, Heart, X, Sparkles } from 'lucide-react';
+import namesDetails from '../data/names_details.json';
 
 export default function Names() {
     const [names, setNames] = useState([]);
@@ -177,23 +178,34 @@ export default function Names() {
                         </div>
 
                         <span className="text-gray-600 font-mono font-bold mb-4">#{selectedName.number}</span>
-                        
-                        <h3 className="text-6xl font-arabic text-white mb-6 leading-tight">
-                            {selectedName.name}
-                        </h3>
-                        
-                        <h4 className="text-2xl font-bold text-white mb-3">
-                            {selectedName.transliteration}
-                        </h4>
-                        
-                        <p className="text-gray-400 mb-8 text-lg">
-                            {selectedName.en.meaning}
-                        </p>
-
-                        <div className="bg-[#111] border border-[#222] p-5 rounded-xl w-full">
-                            <p className="text-gray-300 text-sm leading-relaxed">
-                                Contempler ce Nom dans vos prières permet de rapprocher le coeur d'Allah et de renforcer votre connexion spirituelle.
-                            </p>
+                        <div className="text-center">
+                            <h3 className="text-5xl font-arabic text-emerald-400 mb-6 drop-shadow-lg">{selectedName.name}</h3>
+                            <h4 className="text-2xl font-bold text-white mb-2">{selectedName.transliteration}</h4>
+                            <p className="text-emerald-500 font-semibold mb-8">{selectedName.en.meaning}</p>
+                            
+                            <div className="space-y-4 max-h-[40vh] overflow-y-auto pr-2 custom-scrollbar">
+                                <div className="bg-[#1a1a1a] border border-[#333] rounded-xl p-6 text-left">
+                                    <h5 className="text-white font-bold mb-2 flex items-center gap-2">
+                                        <Sparkles size={16} className="text-emerald-500" />
+                                        Bienfaits
+                                    </h5>
+                                    <p className="text-gray-400 text-sm leading-relaxed">
+                                        {namesDetails.find(n => n.number === selectedName.number)?.benefits || "Contempler ce Nom dans vos prières permet de rapprocher le cœur d'Allah et de renforcer votre connexion spirituelle."}
+                                    </p>
+                                </div>
+                                
+                                {namesDetails.find(n => n.number === selectedName.number)?.dua && (
+                                    <div className="bg-emerald-950/20 border border-emerald-900/30 rounded-xl p-6 text-left">
+                                        <h5 className="text-emerald-400 font-bold mb-2 flex items-center gap-2">
+                                            <Heart size={16} className="text-emerald-500" />
+                                            Invocation (Dua)
+                                        </h5>
+                                        <p className="text-emerald-100/90 text-sm leading-relaxed italic">
+                                            "{namesDetails.find(n => n.number === selectedName.number)?.dua}"
+                                        </p>
+                                    </div>
+                                )}
+                            </div>
                         </div>
                     </div>
                 </div>

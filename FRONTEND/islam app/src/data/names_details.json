@@ -1,0 +1,596 @@
+[
+  {
+    "number": 1,
+    "name": "Ar-Rahman",
+    "benefits": "Celui qui le récite obtiendra une bonne mémoire et sera libéré de l'insouciance. Ce nom apporte la grâce divine sur toutes les créatures sans distinction.",
+    "dua": "Ô Ar-Rahman, enveloppe-moi de Ta vaste miséricorde, adoucis mon cœur et accorde-moi la grâce d'être miséricordieux envers les autres."
+  },
+  {
+    "number": 2,
+    "name": "Ar-Rahim",
+    "benefits": "Celui qui le récite sera préservé de toutes les calamités. Ce nom attire la miséricorde spécifique d'Allah envers les croyants et apporte la paix intérieure.",
+    "dua": "Ô Ar-Rahim, fais-moi miséricorde dans cette vie et dans l'au-delà, et pardonne mes faiblesses par Ta clémence infinie."
+  },
+  {
+    "number": 3,
+    "name": "Al-Malik",
+    "benefits": "Celui qui récite ce nom sera respecté et bien traité par les autres. Il aide à se détacher des biens matériels en reconnaissant que la vraie royauté appartient à Allah seul.",
+    "dua": "Ô Al-Malik, Toi qui es le vrai Souverain, accorde-moi la richesse de l'âme et la droiture pour n'être soumis qu'à Toi."
+  },
+  {
+    "number": 4,
+    "name": "Al-Quddus",
+    "benefits": "La récitation de ce nom purifie le cœur de l'anxiété et guérit des maladies de l'âme telles que l'orgueil et l'envie.",
+    "dua": "Ô Al-Quddus, purifie mon cœur de tout ce qui Te déplaît, et sanctifie mon âme par Ta lumière."
+  },
+  {
+    "number": 5,
+    "name": "As-Salam",
+    "benefits": "Celui qui récite ce nom sur une personne malade l'aidera à guérir. Il apporte la paix, la tranquillité et la sécurité contre tout mal.",
+    "dua": "Ô As-Salam, Toi qui es la Source de toute paix, accorde la paix à mon cœur, à mon esprit et à ma vie."
+  },
+  {
+    "number": 6,
+    "name": "Al-Mu'min",
+    "benefits": "Celui qui le récite sera à l'abri du mal et obtiendra la sécurité. Ce nom renforce la foi (Iman) et protège des doutes.",
+    "dua": "Ô Al-Mu'min, Toi qui donnes la sécurité, affermis ma foi, apaise mes peurs et protège-moi de l'égarement."
+  },
+  {
+    "number": 7,
+    "name": "Al-Muhaymin",
+    "benefits": "La récitation purifie l'âme et apporte la lumière dans le cœur. Il aide à se souvenir que Dieu observe tout et protège en toute circonstance.",
+    "dua": "Ô Al-Muhaymin, Toi le Protecteur et Témoin de toute chose, veille sur moi et guide mes actions pour qu'elles Te plaisent."
+  },
+  {
+    "number": 8,
+    "name": "Al-Aziz",
+    "benefits": "Celui qui le récite recevra de l'honneur et ne sera jamais humilié. Il renforce le courage, l'indépendance et la dignité.",
+    "dua": "Ô Al-Aziz, Toi le Tout-Puissant, accorde-moi la force de surmonter mes difficultés et honore-moi par l'obéissance à Tes commandements."
+  },
+  {
+    "number": 9,
+    "name": "Al-Jabbar",
+    "benefits": "Il protège de la violence, de la cruauté et des oppresseurs. Ce nom aide à réparer ce qui est brisé, que ce soit le cœur ou une situation de vie.",
+    "dua": "Ô Al-Jabbar, Toi qui répares toute chose, guéris mon cœur brisé et redresse mes affaires par Ta volonté invincible."
+  },
+  {
+    "number": 10,
+    "name": "Al-Mutakabbir",
+    "benefits": "Celui qui le récite obtiendra respect et grandeur. Il rappelle la grandeur de Dieu, aidant ainsi l'être humain à rester humble et à éviter l'arrogance.",
+    "dua": "Ô Al-Mutakabbir, Toi qui es le seul digne de toute grandeur, purifie mon cœur de l'orgueil et fais-moi réaliser ma faiblesse devant Toi."
+  },
+  {
+    "number": 11,
+    "name": "Al-Khaliq",
+    "benefits": "Ce nom illumine le cœur et le visage. Il apporte la guidance divine dans les nouveaux projets ou lorsque l'on souhaite trouver de nouvelles solutions.",
+    "dua": "Ô Al-Khaliq, Créateur de l'univers, guide-moi dans mes projets et fais éclore en moi la compréhension de Ta création."
+  },
+  {
+    "number": 12,
+    "name": "Al-Bari'",
+    "benefits": "Il aide à la guérison des maladies physiques. La méditation de ce nom rapproche de Dieu en comprenant Son pouvoir créateur parfait.",
+    "dua": "Ô Al-Bari', Toi qui as tout créé de manière harmonieuse, accorde-moi la santé du corps et de l'esprit, et parfais mon caractère."
+  },
+  {
+    "number": 13,
+    "name": "Al-Musawwir",
+    "benefits": "Il est dit que les femmes cherchant à avoir des enfants peuvent trouver un bienfait dans la méditation de ce nom. Il donne forme et beauté à toute chose.",
+    "dua": "Ô Al-Musawwir, Toi qui donnes la meilleure des formes, embellis mon comportement comme Tu as embelli ma création."
+  },
+  {
+    "number": 14,
+    "name": "Al-Ghaffar",
+    "benefits": "Celui qui le récite verra ses péchés pardonnés et dissimulés. Il apporte l'espoir et le soulagement face aux erreurs passées.",
+    "dua": "Ô Al-Ghaffar, Toi qui pardonnes sans cesse, pardonne mes fautes, petites et grandes, et couvre mes défauts ici-bas et dans l'au-delà."
+  },
+  {
+    "number": 15,
+    "name": "Al-Qahhar",
+    "benefits": "Aide à dompter les désirs de l'ego et à vaincre les mauvaises habitudes. Il protège contre les ennemis intérieurs et extérieurs.",
+    "dua": "Ô Al-Qahhar, le Dominateur Suprême, aide-moi à vaincre mon propre ego, mes passions et tout ce qui m'éloigne de Toi."
+  },
+  {
+    "number": 16,
+    "name": "Al-Wahhab",
+    "benefits": "Celui qui le récite verra ses besoins comblés et recevra des bienfaits inattendus. Il ouvre les portes de la subsistance et de la grâce.",
+    "dua": "Ô Al-Wahhab, le Donateur Gracieux, accorde-moi de Ta vaste miséricorde et pourvois à mes besoins de là où je ne m'y attends pas."
+  },
+  {
+    "number": 17,
+    "name": "Ar-Razzaq",
+    "benefits": "La récitation de ce nom apporte l'abondance, la bénédiction dans les moyens de subsistance, et la tranquillité face aux soucis matériels.",
+    "dua": "Ô Ar-Razzaq, Toi qui pourvois à toute créature, accorde-moi une subsistance licite et bénie, et rends-moi satisfait de ce que Tu me donnes."
+  },
+  {
+    "number": 18,
+    "name": "Al-Fattah",
+    "benefits": "Celui qui le récite verra son cœur ouvert à la foi, au savoir et à la lumière. Ce nom débloque les situations difficiles et apporte la réussite.",
+    "dua": "Ô Al-Fattah, Toi qui ouvres toutes les portes, ouvre pour moi les portes de Ta miséricorde, de la connaissance et du succès."
+  },
+  {
+    "number": 19,
+    "name": "Al-Alim",
+    "benefits": "Il illumine l'esprit et le cœur. Celui qui le récite obtiendra la connaissance divine et la sagesse, ainsi qu'une meilleure compréhension des choses.",
+    "dua": "Ô Al-Alim, l'Omniscient, enrichis-moi par le savoir utile, éclaire mon esprit et accorde-moi la sagesse pour faire les bons choix."
+  },
+  {
+    "number": 20,
+    "name": "Al-Qabid",
+    "benefits": "Aide à accepter les périodes de difficulté et de restriction. Il protège contre la famine, le besoin spirituel ou matériel, tout en enseignant la patience.",
+    "dua": "Ô Al-Qabid, Toi qui retiens, aide-moi à patienter dans l'épreuve et protège-moi des châtiments de l'âme et du corps."
+  },
+  {
+    "number": 21,
+    "name": "Al-Basit",
+    "benefits": "La récitation de ce nom apporte la joie, l'élargissement de la subsistance et libère de l'anxiété et du chagrin.",
+    "dua": "Ô Al-Basit, Toi qui étends Tes largesses, élargis ma poitrine par la lumière de la foi et bénis-moi de Tes bienfaits abondants."
+  },
+  {
+    "number": 22,
+    "name": "Al-Khafid",
+    "benefits": "Protège contre les ennemis et les orgueilleux. Méditer sur ce nom rappelle que Dieu peut rabaisser les arrogants, invitant ainsi à la modestie.",
+    "dua": "Ô Al-Khafid, Toi qui abaisses les orgueilleux, protège-moi de l'arrogance et de ceux qui cherchent à me nuire par leur fierté mal placée."
+  },
+  {
+    "number": 23,
+    "name": "Ar-Rafi'",
+    "benefits": "Celui qui le récite sera élevé en statut, en honneur et en degrés spirituels. Il rapproche le cœur des nobles qualités.",
+    "dua": "Ô Ar-Rafi', Toi qui élèves, élève mon rang dans cette vie et dans l'au-delà, et élève mes intentions vers ce qui Te satisfait."
+  },
+  {
+    "number": 24,
+    "name": "Al-Mu'izz",
+    "benefits": "Accorde la force, l'honneur, et le respect. Ce nom libère de la peur des créatures en se reposant entièrement sur l'honneur que Dieu donne.",
+    "dua": "Ô Al-Mu'izz, Toi qui donnes la puissance et l'honneur, honore-moi par l'Islam et ne me laisse jamais être humilié par mes péchés."
+  },
+  {
+    "number": 25,
+    "name": "Al-Mudhill",
+    "benefits": "Protège de ceux qui veulent nuire. Il rappelle la faiblesse humaine et prévient l'attachement excessif au pouvoir mondain, que Dieu peut retirer.",
+    "dua": "Ô Al-Mudhill, Toi qui peux avilir, protège-moi de l'humiliation dans les deux mondes et préserve-moi de tomber dans le péché qui rabaisse l'âme."
+  },
+  {
+    "number": 26,
+    "name": "As-Sami'",
+    "benefits": "Celui qui écoute tout. Réciter ce nom permet d'être écouté et de voir ses invocations exaucées.",
+    "dua": "Ô As-Sami', Toi qui entends tout, écoute mes prières et pardonne mes fautes."
+  },
+  {
+    "number": 27,
+    "name": "Al-Basir",
+    "benefits": "Celui qui voit tout. La récitation de ce nom aide à purifier l'intention et à obtenir la clairvoyance.",
+    "dua": "Ô Al-Basir, guide-moi sur le droit chemin, Toi qui vois tout ce que je cache et tout ce que je montre."
+  },
+  {
+    "number": 28,
+    "name": "Al-Hakam",
+    "benefits": "Le Juge impartial. Évoquer ce nom aide à obtenir la justice et à comprendre les secrets de la création.",
+    "dua": "Ô Al-Hakam, juge en ma faveur avec équité et préserve-moi de l'injustice."
+  },
+  {
+    "number": 29,
+    "name": "Al-'Adl",
+    "benefits": "Le Juste. Réciter ce nom permet de devenir soi-même juste et d'être à l'abri de la tyrannie.",
+    "dua": "Ô Al-'Adl, Toi dont la justice est parfaite, accorde-moi un traitement équitable dans ce monde et dans l'au-delà."
+  },
+  {
+    "number": 30,
+    "name": "Al-Latif",
+    "benefits": "Le Doux, le Subtil. Ce nom apporte douceur et facilité dans les épreuves de la vie.",
+    "dua": "Ô Al-Latif, accorde-moi Ta douceur dans toutes mes affaires et soulage mes peines."
+  },
+  {
+    "number": 31,
+    "name": "Al-Khabir",
+    "benefits": "Le Bien-Informé. Invoquer ce nom aide à comprendre la vérité cachée derrière les événements et à se libérer des mauvaises habitudes.",
+    "dua": "Ô Al-Khabir, Toi qui connais les réalités profondes, éclaire mon chemin et pardonne mes erreurs."
+  },
+  {
+    "number": 32,
+    "name": "Al-Halim",
+    "benefits": "Le Longanime, le Doux. Réciter ce nom apporte sérénité, paix intérieure et calme les colères.",
+    "dua": "Ô Al-Halim, accorde-moi la patience et pardonne-moi par Ta grande indulgence."
+  },
+  {
+    "number": 33,
+    "name": "Al-'Azim",
+    "benefits": "L'Immense, le Magnifique. Ceux qui récitent ce nom verront leur respect et leur honneur augmenter parmi les gens.",
+    "dua": "Ô Al-'Azim, Toi l'Immense, accorde-moi le respect et guéris-moi de mes maux."
+  },
+  {
+    "number": 34,
+    "name": "Al-Ghafur",
+    "benefits": "Le Tout-Pardonnant. Ce nom permet d'effacer les péchés et de soulager la douleur.",
+    "dua": "Ô Al-Ghafur, pardonne mes péchés passés et futurs, et recouvre mes fautes de Ta clémence."
+  },
+  {
+    "number": 35,
+    "name": "Ash-Shakur",
+    "benefits": "Le Très-Reconnaissant. Réciter ce nom apporte la guérison et l'abondance des bienfaits.",
+    "dua": "Ô Ash-Shakur, aide-moi à être reconnaissant pour Tes innombrables bienfaits et augmente-les pour moi."
+  },
+  {
+    "number": 36,
+    "name": "Al-'Ali",
+    "benefits": "Le Très-Haut. La récitation de ce nom élève le rang spirituel et matériel de la personne.",
+    "dua": "Ô Al-'Ali, élève mon rang dans cette vie et dans l'au-delà, et préserve-moi de l'humiliation."
+  },
+  {
+    "number": 37,
+    "name": "Al-Kabir",
+    "benefits": "Le Très Grand. Invoquer ce nom apporte le succès, la célébrité dans le bien et la victoire sur les obstacles.",
+    "dua": "Ô Al-Kabir, Toi le Très Grand, accorde-moi la réussite dans mes entreprises légitimes."
+  },
+  {
+    "number": 38,
+    "name": "Al-Hafiz",
+    "benefits": "Le Protecteur. Celui qui récite ce nom sera protégé de toutes les calamités et dangers.",
+    "dua": "Ô Al-Hafiz, protège-moi, ainsi que ma famille et mes biens, de tout mal."
+  },
+  {
+    "number": 39,
+    "name": "Al-Muqit",
+    "benefits": "Le Nourricier, le Vigilant. Réciter ce nom attire la bénédiction dans la nourriture et assure la subsistance.",
+    "dua": "Ô Al-Muqit, pourvois à mes besoins et nourris-moi de ce qui est licite et pur."
+  },
+  {
+    "number": 40,
+    "name": "Al-Hasib",
+    "benefits": "Celui qui tient compte de tout, le Suffisant. Apporte protection contre les maux et éloigne la peur.",
+    "dua": "Ô Al-Hasib, Tu me suffis comme protecteur, protège-moi de ceux qui me veulent du mal."
+  },
+  {
+    "number": 41,
+    "name": "Al-Jalil",
+    "benefits": "Le Majestueux. La récitation de ce nom inspire le respect et la considération des autres.",
+    "dua": "Ô Al-Jalil, embellis mon caractère par Ta majesté et accorde-moi l'estime de mon entourage."
+  },
+  {
+    "number": 42,
+    "name": "Al-Karim",
+    "benefits": "Le Généreux. Invoquer ce nom attire le respect de tous dans ce monde et la miséricorde dans l'au-delà.",
+    "dua": "Ô Al-Karim, par Ta grande générosité, honore-moi dans ce monde et pardonne-moi dans l'au-delà."
+  },
+  {
+    "number": 43,
+    "name": "Ar-Raqib",
+    "benefits": "L'Observateur. La protection divine est accordée à celui qui évoque souvent ce nom sur lui-même et sur ses biens.",
+    "dua": "Ô Ar-Raqib, Toi qui observes toute chose, veille sur ma foi et sur mes proches."
+  },
+  {
+    "number": 44,
+    "name": "Al-Mujib",
+    "benefits": "Celui qui exauce. Réciter ce nom avec conviction assure l'exaucement des prières par la grâce de Dieu.",
+    "dua": "Ô Al-Mujib, Toi qui réponds aux appels de ceux qui T'invoquent, exauce mes invocations."
+  },
+  {
+    "number": 45,
+    "name": "Al-Wasi'",
+    "benefits": "Le Vaste, l'Omniprésent. Invoquer ce nom apporte abondance dans les moyens de subsistance et tranquillité.",
+    "dua": "Ô Al-Wasi', élargis ma subsistance et ouvre mon cœur à Ta compréhension."
+  },
+  {
+    "number": 46,
+    "name": "Al-Hakim",
+    "benefits": "Le Sage. La sagesse et la connaissance sont accordées à celui qui récite ce nom fréquemment.",
+    "dua": "Ô Al-Hakim, accorde-moi la sagesse dans mes choix et inspire-moi les bonnes actions."
+  },
+  {
+    "number": 47,
+    "name": "Al-Wadud",
+    "benefits": "L'Aimant, le Bien-Aimé. Réciter ce nom favorise l'affection, l'amour mutuel et la résolution des conflits.",
+    "dua": "Ô Al-Wadud, Toi l'Aimant, remplis mon cœur de Ton amour et de l'amour de ceux qui T'aiment."
+  },
+  {
+    "number": 48,
+    "name": "Al-Majid",
+    "benefits": "Le Glorieux. Invoquer ce nom attire la gloire et l'illumination du cœur par la lumière divine.",
+    "dua": "Ô Al-Majid, éclaire mon cœur de Ta lumière et honore-moi par Ta grâce infinie."
+  },
+  {
+    "number": 49,
+    "name": "Al-Ba'ith",
+    "benefits": "Celui qui ressuscite. Réciter ce nom permet de vaincre la peur, d'obtenir le succès et la crainte révérencielle de Dieu.",
+    "dua": "Ô Al-Ba'ith, ressuscite en moi la bonne foi, l'amour du bien et préserve-moi de l'insouciance."
+  },
+  {
+    "number": 50,
+    "name": "Ash-Shahid",
+    "benefits": "Le Témoin. Invoquer ce nom aide à retrouver les choses perdues et à ramener la désobéissance à l'obéissance.",
+    "dua": "Ô Ash-Shahid, Toi qui es témoin de toute chose, aide-moi à rester sur le droit chemin."
+  },
+  {
+    "number": 51,
+    "name": "Al-Haqq (Le Vrai)",
+    "benefits": "Réciter ce nom permet de retrouver quelque chose de perdu ou de faire éclater la vérité.",
+    "dua": "Ô Al-Haqq, fais triompher la vérité dans ma vie et guide-moi vers elle."
+  },
+  {
+    "number": 52,
+    "name": "Al-Wakil (Le Gérant, Le Confident)",
+    "benefits": "Invoquer ce nom apporte la protection divine face à tous les dangers terrestres et célestes, et aide à s'en remettre totalement à Lui.",
+    "dua": "Ô Al-Wakil, je m'en remets entièrement à Toi, sois mon protecteur et mon soutien."
+  },
+  {
+    "number": 53,
+    "name": "Al-Qawiyy (Le Fort)",
+    "benefits": "Celui qui récite ce nom sera protégé contre ses ennemis et obtiendra la force face aux épreuves.",
+    "dua": "Ô Al-Qawiyy, accorde-moi la force de surmonter les difficultés et de vaincre mes faiblesses."
+  },
+  {
+    "number": 54,
+    "name": "Al-Matin (Le Robuste, L'Inébranlable)",
+    "benefits": "Réciter ce nom permet de surmonter les difficultés et donne la force d'accomplir des tâches ardues.",
+    "dua": "Ô Al-Matin, donne-moi la fermeté et la persévérance dans mon cheminement spirituel et terrestre."
+  },
+  {
+    "number": 55,
+    "name": "Al-Waliyy (Le Protecteur, Le Maître)",
+    "benefits": "Celui qui récite ce nom verra son cœur purifié et deviendra l'ami d'Allah.",
+    "dua": "Ô Al-Waliyy, sois mon allié et mon protecteur ici-bas et dans l'au-delà."
+  },
+  {
+    "number": 56,
+    "name": "Al-Hamid (Le Digne de louange)",
+    "benefits": "Celui qui récite ce nom sera aimé et loué par les autres, et sa langue s'habituera à la louange d'Allah.",
+    "dua": "Ô Al-Hamid, aide-moi à Te louer en toute circonstance et purifie mon cœur de toute ingratitude."
+  },
+  {
+    "number": 57,
+    "name": "Al-Muhsi (Celui qui connaît les comptes de tous)",
+    "benefits": "Invoquer ce nom facilite le pardon des péchés et aide à faire un examen de conscience rigoureux.",
+    "dua": "Ô Al-Muhsi, pardonne mes fautes et aide-moi à m'évaluer avant le Jour du Jugement."
+  },
+  {
+    "number": 58,
+    "name": "Al-Mubdi (L'Auteur, Le Créateur originel)",
+    "benefits": "Réciter ce nom facilite le succès dans les nouvelles entreprises et projets.",
+    "dua": "Ô Al-Mubdi, guide mes pas dans chaque nouveau commencement et bénis mes actions."
+  },
+  {
+    "number": 59,
+    "name": "Al-Mu'id (Celui qui redonne la vie)",
+    "benefits": "Ce nom est invoqué pour faire revenir une personne absente ou retrouver ce qui a été perdu.",
+    "dua": "Ô Al-Mu'id, ramène à moi ce que j'ai perdu et ravive la foi dans mon cœur."
+  },
+  {
+    "number": 60,
+    "name": "Al-Muhyi (Celui qui donne la vie)",
+    "benefits": "Réciter ce nom guérit de l'insensibilité spirituelle et apporte la santé du corps et du cœur.",
+    "dua": "Ô Al-Muhyi, vivifie mon cœur par la lumière de Ta connaissance."
+  },
+  {
+    "number": 61,
+    "name": "Al-Mumit (Celui qui donne la mort)",
+    "benefits": "Invoquer ce nom permet de vaincre les désirs égoïstes (nafs) et de triompher des ennemis intérieurs.",
+    "dua": "Ô Al-Mumit, fais mourir en moi les mauvais penchants et l'attachement aux illusions de ce monde."
+  },
+  {
+    "number": 62,
+    "name": "Al-Hayy (Le Vivant)",
+    "benefits": "Réciter ce nom accorde une longue vie remplie de bénédictions et guérit les maladies.",
+    "dua": "Ô Al-Hayy, accorde-moi une vie utile et bénie à Ton service."
+  },
+  {
+    "number": 63,
+    "name": "Al-Qayyum (Le Subsistant par Lui-même)",
+    "benefits": "Celui qui récite ce nom sera respecté, ne sera jamais dans le besoin et trouvera le repos de l'âme.",
+    "dua": "Ô Al-Qayyum, par Ta miséricorde, je T'implore d'améliorer ma situation et de ne pas m'abandonner à moi-même, ne serait-ce que le temps d'un clin d'œil."
+  },
+  {
+    "number": 64,
+    "name": "Al-Wajid (L'Opulent, Celui qui trouve tout ce qu'Il veut)",
+    "benefits": "Invoquer ce nom enrichit le cœur et apporte la plénitude spirituelle et matérielle.",
+    "dua": "Ô Al-Wajid, enrichis mon cœur de Ta présence afin que je ne ressente le besoin de personne d'autre que Toi."
+  },
+  {
+    "number": 65,
+    "name": "Al-Majid (Le Noble, Le Majestueux)",
+    "benefits": "La récitation de ce nom illumine le cœur et apporte la noblesse de caractère et la dignité.",
+    "dua": "Ô Al-Majid, embellis mon caractère par la noblesse et accorde-moi la lumière de Ta guidance."
+  },
+  {
+    "number": 66,
+    "name": "Al-Wahid (L'Unique)",
+    "benefits": "Celui qui récite ce nom sera débarrassé de la peur et des illusions, et son cœur sera purifié pour n'aimer qu'Allah.",
+    "dua": "Ô Al-Wahid, purifie mon cœur de toute association (shirk) et remplis-le de l'amour de Ton Unicité."
+  },
+  {
+    "number": 67,
+    "name": "Al-Ahad (L'Un)",
+    "benefits": "Réciter ce nom protège des maux, révèle les secrets de la création et consolide la foi.",
+    "dua": "Ô Al-Ahad, raffermis ma foi en Ton Unicité absolue et protège-moi de toute déviance."
+  },
+  {
+    "number": 68,
+    "name": "As-Samad (Le Maître absolu, Le Soutien universel)",
+    "benefits": "Celui qui récite ce nom sera indépendant des autres et verra ses besoins satisfaits par Allah seul.",
+    "dua": "Ô As-Samad, Toi de qui tout dépend, satisfais mes besoins et ne me rends dépendant de personne d'autre que Toi."
+  },
+  {
+    "number": 69,
+    "name": "Al-Qadir (Le Puissant, Le Déterminant)",
+    "benefits": "Réciter ce nom permet de surmonter ses ennemis et de voir ses vœux pieux se réaliser.",
+    "dua": "Ô Al-Qadir, par Ta puissance infinie, facilite mes affaires et accorde-moi la victoire sur mes difficultés."
+  },
+  {
+    "number": 70,
+    "name": "Al-Muqtadir (Celui qui a pouvoir sur tout)",
+    "benefits": "Invoquer ce nom donne la capacité d'accomplir des tâches difficiles et de sortir victorieux des épreuves.",
+    "dua": "Ô Al-Muqtadir, accorde-moi la capacité de mener à bien ce qui T'agrée et éloigne-moi de l'incapacité."
+  },
+  {
+    "number": 71,
+    "name": "Al-Muqaddim (Celui qui met en avant)",
+    "benefits": "Celui qui récite ce nom obtiendra l'avancement dans les affaires religieuses et profanes.",
+    "dua": "Ô Al-Muqaddim, fais-moi avancer dans la piété et les bonnes œuvres, et éloigne de moi tout retard préjudiciable."
+  },
+  {
+    "number": 72,
+    "name": "Al-Mu'akhkhir (Celui qui met en arrière)",
+    "benefits": "Réciter ce nom permet de retarder l'avènement des épreuves et éloigne les ennemis.",
+    "dua": "Ô Al-Mu'akhkhir, repousse loin de moi le mal et les épreuves, et retarde les desseins de ceux qui me veulent du tort."
+  },
+  {
+    "number": 73,
+    "name": "Al-Awwal (Le Premier)",
+    "benefits": "Invoquer ce nom facilite l'accomplissement des projets et donne la bénédiction aux nouvelles entreprises.",
+    "dua": "Ô Al-Awwal, Tu es le Premier sans commencement, accorde-moi le succès dans mes entreprises dès leur début."
+  },
+  {
+    "number": 74,
+    "name": "Al-Akhir (Le Dernier)",
+    "benefits": "Celui qui récite ce nom aura une bonne fin de vie et mourra avec une foi sincère.",
+    "dua": "Ô Al-Akhir, Tu es le Dernier sans fin, accorde-moi une belle fin et fais que mes dernières paroles soient la Shahada."
+  },
+  {
+    "number": 75,
+    "name": "Az-Zahir (L'Apparent)",
+    "benefits": "Réciter ce nom illumine le cœur, apporte la compréhension claire des choses et dissipe la confusion.",
+    "dua": "Ô Az-Zahir, fais apparaître la vérité à mes yeux avec clarté et illumine mon cœur par la lumière de la certitude."
+  },
+  {
+    "number": 76,
+    "name": "Al-Baatin",
+    "benefits": "Celui qui récite ce nom trois fois par jour sera capable de voir la vérité dans les choses.",
+    "dua": "Ô Al-Baatin, accorde-nous la capacité de voir au-delà des apparences et de comprendre la vérité cachée."
+  },
+  {
+    "number": 77,
+    "name": "Al-Waali",
+    "benefits": "Celui qui récite ce nom de façon répétée sera protégé contre tous les dangers inattendus.",
+    "dua": "Ô Al-Waali, prends en charge nos affaires et protège-nous de tout mal."
+  },
+  {
+    "number": 78,
+    "name": "Al-Muta'ali",
+    "benefits": "Celui qui récite ce nom de façon répétée obtiendra la bienveillance de Dieu.",
+    "dua": "Ô Al-Muta'ali, élève nos rangs et accorde-nous Ta bienveillance."
+  },
+  {
+    "number": 79,
+    "name": "Al-Barr",
+    "benefits": "Celui qui récite ce nom pour son enfant, ce dernier sera protégé de tout malheur.",
+    "dua": "Ô Al-Barr, sois bon et bienveillant envers nous, et protège nos familles."
+  },
+  {
+    "number": 80,
+    "name": "At-Tawwaab",
+    "benefits": "Celui qui récite ce nom fréquemment, son repentir sera accepté.",
+    "dua": "Ô At-Tawwaab, accepte notre repentir et pardonne nos péchés."
+  },
+  {
+    "number": 81,
+    "name": "Al-Muntaqim",
+    "benefits": "Celui qui récite ce nom fréquemment sera victorieux contre ses ennemis.",
+    "dua": "Ô Al-Muntaqim, protège-nous de l'injustice et accorde-nous la victoire sur nos ennemis."
+  },
+  {
+    "number": 82,
+    "name": "Al-Afuww",
+    "benefits": "Celui qui récite ce nom fréquemment verra ses péchés pardonnés.",
+    "dua": "Ô Al-Afuww, efface nos fautes et pardonne-nous par Ta miséricorde."
+  },
+  {
+    "number": 83,
+    "name": "Ar-Ra'oof",
+    "benefits": "Celui qui récite ce nom fréquemment sera béni avec un cœur tendre et compatissant.",
+    "dua": "Ô Ar-Ra'oof, remplis nos cœurs de douceur, de compassion et de miséricorde."
+  },
+  {
+    "number": 84,
+    "name": "Maalik-ul-Mulk",
+    "benefits": "Celui qui récite ce nom obtiendra l'estime et le respect parmi les gens.",
+    "dua": "Ô Maalik-ul-Mulk, Toi à qui appartient tout royaume, accorde-nous Ta grâce et Ton respect."
+  },
+  {
+    "number": 85,
+    "name": "Dhul-Jalaali Wal-Ikraam",
+    "benefits": "Celui qui récite ce nom fréquemment obtiendra richesse et honneur.",
+    "dua": "Ô Dhul-Jalaali Wal-Ikraam, accorde-nous la réussite dans ce monde et dans l'au-delà."
+  },
+  {
+    "number": 86,
+    "name": "Al-Muqsit",
+    "benefits": "Celui qui récite ce nom sera protégé contre les doutes du diable.",
+    "dua": "Ô Al-Muqsit, rends-nous justes dans nos actions et protège-nous de l'injustice."
+  },
+  {
+    "number": 87,
+    "name": "Al-Jaami",
+    "benefits": "Celui qui récite ce nom trouvera les choses qu'il a perdues.",
+    "dua": "Ô Al-Jaami, rassemble-nous avec ceux que nous aimons dans le bien et la droiture."
+  },
+  {
+    "number": 88,
+    "name": "Al-Ghaniyy",
+    "benefits": "Celui qui récite ce nom sera comblé de contentement et ne convoitera pas ce que les autres possèdent.",
+    "dua": "Ô Al-Ghaniyy, enrichis-nous de Ta grâce pour que nous n'ayons besoin de personne d'autre que Toi."
+  },
+  {
+    "number": 89,
+    "name": "Al-Mughni",
+    "benefits": "Celui qui récite ce nom 1000 fois par jour verra ses besoins satisfaits.",
+    "dua": "Ô Al-Mughni, accorde-nous une subsistance licite et abondante."
+  },
+  {
+    "number": 90,
+    "name": "Al-Maani",
+    "benefits": "Celui qui récite ce nom mènera une vie de famille paisible et heureuse.",
+    "dua": "Ô Al-Maani, protège-nous de tout ce qui pourrait nous nuire ou nous éloigner de Toi."
+  },
+  {
+    "number": 91,
+    "name": "Ad-Daarr",
+    "benefits": "Celui qui récite ce nom obtiendra la paix et la tranquillité dans sa vie.",
+    "dua": "Ô Ad-Daarr, protège-nous des afflictions et donne-nous la patience dans l'épreuve."
+  },
+  {
+    "number": 92,
+    "name": "An-Naafi",
+    "benefits": "Celui qui récite ce nom de façon répétée accomplira de bonnes actions.",
+    "dua": "Ô An-Naafi, fais que nous soyons utiles aux autres et accorde-nous ce qui est bénéfique."
+  },
+  {
+    "number": 93,
+    "name": "An-Noor",
+    "benefits": "Celui qui récite ce nom aura une lumière intérieure et son visage sera radieux.",
+    "dua": "Ô An-Noor, illumine nos cœurs et nos esprits avec la lumière de Ta guidance."
+  },
+  {
+    "number": 94,
+    "name": "Al-Haadi",
+    "benefits": "Celui qui récite ce nom fréquemment acquerra des connaissances spirituelles.",
+    "dua": "Ô Al-Haadi, guide-nous sur le droit chemin et maintiens-nous fermes dans la foi."
+  },
+  {
+    "number": 95,
+    "name": "Al-Badee",
+    "benefits": "Celui qui récite ce nom 1000 fois verra ses problèmes résolus.",
+    "dua": "Ô Al-Badee, crée pour nous des issues favorables dans toutes nos difficultés."
+  },
+  {
+    "number": 96,
+    "name": "Al-Baaqi",
+    "benefits": "Celui qui récite ce nom 100 fois avant le lever du soleil sera protégé contre toutes les calamités.",
+    "dua": "Ô Al-Baaqi, fais que nos bonnes actions durent et sois notre protecteur éternel."
+  },
+  {
+    "number": 97,
+    "name": "Al-Waarith",
+    "benefits": "Celui qui récite ce nom aura une longue vie.",
+    "dua": "Ô Al-Waarith, hérite de nous en nous pardonnant et fais de nous les héritiers du Paradis."
+  },
+  {
+    "number": 98,
+    "name": "Ar-Rasheed",
+    "benefits": "Celui qui récite ce nom 1000 fois entre la prière du Maghrib et de l'Isha verra ses problèmes résolus.",
+    "dua": "Ô Ar-Rasheed, guide-nous vers la droiture et la sagesse dans toutes nos décisions."
+  },
+  {
+    "number": 99,
+    "name": "As-Saboor",
+    "benefits": "Celui qui récite ce nom 3000 fois sera secouru dans la difficulté.",
+    "dua": "Ô As-Saboor, accorde-nous la patience face aux épreuves et la constance dans l'adoration."
+  }
+]
