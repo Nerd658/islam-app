@@ -8,29 +8,43 @@ on:
 
 jobs:
   backend-test:
+    name: Backend CI
     runs-on: ubuntu-latest
     defaults:
       run:
         working-directory: ./BACKEND
     steps:
       - uses: actions/checkout@v4
-      - name: Use Node.js
+      - name: Use Node.js 20.x
         uses: actions/setup-node@v4
         with:
           node-version: '20.x'
-      - run: npm ci || npm install
-      - run: npx jest --passWithNoTests
+          cache: 'npm'
+          cache-dependency-path: './BACKEND/package-lock.json'
+      - name: Install Dependencies
+        run: npm ci || npm install
+      - name: Run Tests
+        run: npx jest --passWithNoTests
 
-  frontend-test:
+  frontend-ci:
+    name: Frontend CI (Test & Build)
     runs-on: ubuntu-latest
     defaults:
       run:
-        working-directory: ./FRONTEND/islam app
+        working-directory: "./FRONTEND/islam app"
     steps:
       - uses: actions/checkout@v4
-      - name: Use Node.js
+      - name: Use Node.js 20.x
         uses: actions/setup-node@v4
         with:
           node-version: '20.x'
-      - run: npm ci || npm install
-      - run: npx vitest run --passWithNoTests
+          cache: 'npm'
+          cache-dependency-path: './FRONTEND/islam app/package-lock.json'
+      - name: Install Dependencies
+        run: npm ci || npm install
+      - name: Lint Code
+        run: npm run lint --if-present
+      - name: Run Tests
+        run: npx vitest run --passWithNoTests
+      - name: Test Build (Production)
+        run: npm run build
