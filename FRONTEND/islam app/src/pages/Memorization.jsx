@@ -272,15 +272,15 @@ export default function Memorization() {
                     </div>
 
                     {/* Recitation Area */}
-                    <div className="bg-[#0a0a0a] border border-[#333] rounded-3xl p-8 relative overflow-hidden">
+                    <div className="bg-[#0a0a0a] border border-[#333] rounded-3xl p-4 sm:p-8 relative overflow-hidden flex flex-col">
                         {/* Audio Wave Animation Effect (Pure CSS) */}
                         {listening && (
                             <div className="absolute inset-0 pointer-events-none opacity-5 flex items-center justify-center z-0">
-                                <div className="w-96 h-96 bg-emerald-500 rounded-full animate-ping"></div>
+                                <div className="w-72 h-72 sm:w-96 sm:h-96 bg-emerald-500 rounded-full animate-ping"></div>
                             </div>
                         )}
 
-                        <div className="mb-10 max-h-[50vh] overflow-y-auto pr-2 relative z-10 space-y-6 scrollbar-thin scrollbar-thumb-[#333] scrollbar-track-transparent">
+                        <div className="mb-6 max-h-[65vh] md:max-h-[60vh] overflow-y-auto pr-2 relative z-10 space-y-4 sm:space-y-6 scrollbar-thin scrollbar-thumb-[#333] scrollbar-track-transparent">
                             {verses.map((verse, idx) => {
                                 const isCompleted = idx < currentVerseIndex;
                                 const isActive = idx === currentVerseIndex;
@@ -289,7 +289,7 @@ export default function Memorization() {
                                 return (
                                     <div 
                                         key={verse.id} 
-                                        className={`p-6 rounded-2xl border transition-all duration-500 ${
+                                        className={`p-4 sm:p-6 rounded-2xl border transition-all duration-500 ${
                                             isActive 
                                                 ? 'bg-[#111] border-emerald-500/50 shadow-[0_0_15px_rgba(16,185,129,0.1)]' 
                                                 : isCompleted 
@@ -298,26 +298,26 @@ export default function Memorization() {
                                         }`}
                                         ref={isActive ? (el) => { if (el) el.scrollIntoView({ behavior: 'smooth', block: 'center' }) } : null}
                                     >
-                                        <div className="flex justify-between items-start mb-4">
+                                        <div className="flex justify-between items-start mb-3 sm:mb-4">
                                             <span className={`text-xs font-bold px-2 py-1 rounded-md ${isActive ? 'bg-emerald-500/20 text-emerald-400' : 'bg-[#222] text-gray-500'}`}>
                                                 Verset {verse.verse_key.split(':')[1]}
                                             </span>
                                             {isCompleted && <CheckCircle2 size={16} className="text-emerald-500" />}
                                         </div>
 
-                                        <div className="min-h-[3rem]" dir="rtl">
+                                        <div className="min-h-[2.5rem] sm:min-h-[3rem]" dir="rtl">
                                             {isCompleted ? (
-                                                <p className="text-2xl sm:text-3xl font-arabic text-emerald-50 leading-loose">
+                                                <p className="text-xl sm:text-3xl font-arabic text-emerald-50 leading-loose">
                                                     {verse.text_uthmani}
                                                 </p>
                                             ) : isActive && showHint ? (
-                                                <p className="text-2xl sm:text-3xl font-arabic text-emerald-400 leading-loose">
+                                                <p className="text-xl sm:text-3xl font-arabic text-emerald-400 leading-loose">
                                                     {verse.text_uthmani}
                                                 </p>
                                             ) : (
-                                                <div className="flex flex-wrap gap-2 justify-start">
+                                                <div className="flex flex-wrap gap-1.5 sm:gap-2 justify-start">
                                                     {verse.text_uthmani.split(' ').map((_, i) => (
-                                                        <span key={i} className={`h-3 bg-[#222] rounded-full inline-block ${isActive ? 'animate-pulse bg-[#333]' : ''}`} style={{ width: `${Math.max(2, Math.random() * 4 + 2)}rem` }}></span>
+                                                        <span key={i} className={`h-2 sm:h-3 bg-[#222] rounded-full inline-block ${isActive ? 'animate-pulse bg-[#333]' : ''}`} style={{ width: `${Math.max(1.5, Math.random() * 3 + 1.5)}rem` }}></span>
                                                     ))}
                                                 </div>
                                             )}
@@ -327,16 +327,16 @@ export default function Memorization() {
                             })}
                         </div>
 
-                        <div className="flex justify-center mb-8">
+                        <div className="flex justify-center mb-6">
                             <button 
                                 onClick={toggleListening}
-                                className={`w-20 h-20 rounded-full flex items-center justify-center shadow-2xl transition-all duration-300 ${
+                                className={`w-16 h-16 sm:w-20 sm:h-20 rounded-full flex items-center justify-center shadow-2xl transition-all duration-300 ${
                                     listening 
                                         ? 'bg-red-500/10 border-2 border-red-500 text-red-500' 
                                         : 'bg-emerald-500 text-white hover:bg-emerald-400 hover:scale-105'
                                 }`}
                             >
-                                {listening ? <MicOff size={32} /> : <Mic size={32} />}
+                                {listening ? <MicOff size={28} className="sm:w-8 sm:h-8" /> : <Mic size={28} className="sm:w-8 sm:h-8" />}
                             </button>
                         </div>
 
