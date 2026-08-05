@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import axios from 'axios';
-import { PlayCircle, PauseCircle, BookOpen, ChevronLeft, Search, Palette, Download, Check, Languages, Bookmark, Gauge, Mic, BookmarkCheck } from 'lucide-react';
+import { PlayCircle, PauseCircle, BookOpen, ChevronLeft, Search, Palette, Download, Check, Languages, Bookmark, Gauge, Mic, BookmarkCheck, Settings } from 'lucide-react';
 import { useQuranOffline } from '../hooks/useQuranOffline';
 import { getSurahMeta } from '../utils/quranOfflineStorage';
 
@@ -19,7 +19,8 @@ export default function QuranReader() {
     const [verses, setVerses] = useState([]);
     const [loading, setLoading] = useState(false);
     const [searchQuery, setSearchQuery] = useState('');
-    const [searchMode, setSearchMode] = useState('surahs'); // 'surahs' | 'verses'
+    const [searchMode, setSearchMode] = useState('surahs');
+    const [showSettings, setShowSettings] = useState(false); // 'surahs' | 'verses'
     const [searchResults, setSearchResults] = useState([]);
     const [isSearchingVerses, setIsSearchingVerses] = useState(false);
     
@@ -479,15 +480,16 @@ export default function QuranReader() {
                     {/* CONTAINER 1: PHYSICAL SEPARATE FIXED HEADER */}
                     <div className="flex-shrink-0 bg-[#0a0a0a] p-3 sm:p-6 rounded-2xl border border-[#333] mb-3 shadow-xl">
                         {/* Top Control Bar */}
-                        <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 mb-3">
+                        <div className="flex items-center justify-between gap-3 mb-3 relative">
                             <button 
                                 onClick={() => setSelectedChapter(null)}
-                                className="bg-[#222] hover:bg-[#333] border border-[#444] px-3.5 py-1.5 rounded-xl text-xs sm:text-sm font-medium transition-all text-white flex items-center gap-2 w-full sm:w-auto justify-center sm:justify-start"
+                                className="bg-[#222] hover:bg-[#333] border border-[#444] px-3.5 py-1.5 rounded-xl text-xs sm:text-sm font-medium transition-all text-white flex items-center gap-2 flex-shrink-0"
                             >
-                                <ChevronLeft size={16} /> Retour aux Sourates
+                                <ChevronLeft size={16} /> Retour
                             </button>
 
-                            <div className="flex overflow-x-auto w-full sm:w-auto pb-1 sm:pb-0 items-center gap-2.5 hide-scrollbar">
+                            {/* Desktop Controls (hidden on mobile) */}
+                            <div className="hidden sm:flex items-center gap-2.5">
                                 {/* Reciter Selector */}
                                 <div className="flex-shrink-0 flex items-center gap-1 bg-[#111] border border-[#333] px-2.5 py-1 rounded-xl text-xs text-gray-300">
                                     <Mic size={14} className="text-gray-400" />
@@ -566,7 +568,85 @@ export default function QuranReader() {
                                     </button>
                                 )}
                             </div>
+
+                            {/* Mobile Settings Button */}
+                            <button
+                                onClick={() => setShowSettings(!showSettings)}
+                                className="sm:hidden bg-[#222] hover:bg-[#333] border border-[#444] p-2 rounded-xl text-gray-300 transition-colors"
+                            >
+                                <Settings size={18} />
+                            </button>
                         </div>
+
+                        {/* Mobile Settings Dropdown */}
+                        {showSettings && (
+                            <div className="sm:hidden mb-4 p-3 bg-[#111] border border-[#333] rounded-xl flex flex-col gap-3">
+                                <div className="flex items-center justify-between">
+                                    <span className="text-xs text-gray-400">Récitateur</span>
+                                    <div className="flex items-center gap-1 bg-[#222] border border-[#444] px-2 py-1 rounded-lg text-xs">
+                                        <Mic size={12} className="text-gray-400" />
+                                        <select
+                                            value={selectedReciter}
+                                            onChange={(e) => setSelectedReciter(Number(e.target.value))}
+                                            className="bg-transparent text-white outline-none"
+                                        >
+                                            {RECITERS.map(r => (
+                                                <option key={r.id} value={r.id} className="bg-[#111]">{r.name}</option>
+                                            ))}
+                                        </select>
+                                    </div>
+                                </div>
+                                <div className="flex items-center justify-between">
+                                    <span className="text-xs text-gray-400">Vitesse</span>
+                                    <div className="flex items-center gap-1 bg-[#222] border border-[#444] px-2 py-1 rounded-lg text-xs">
+                                        {SPEEDS.map(s => (
+                                            <button
+                                                key={s}
+                                                onClick={() => setPlaybackSpeed(s)}
+                                                className={`px-1.5 py-0.5 rounded text-[10px] font-bold ${
+                                                    playbackSpeed === s ? 'bg-white text-black' : 'text-gray-400'
+                                                }`}
+                                            >
+                                                {s}x
+                                            </button>
+                                        ))}
+                                    </div>
+                                </div>
+                                <div className="grid grid-cols-2 gap-2 mt-1">
+                                    <button
+                                        onClick={() => setShowTranslation(!showTranslation)}
+                                        className={`px-2 py-1.5 rounded-lg text-xs font-semibold border flex items-center justify-center gap-1.5 ${
+                                            showTranslation ? 'bg-emerald-900/50 border-emerald-700 text-emerald-300' : 'bg-[#222] border-[#444] text-gray-400'
+                                        }`}
+                                    >
+                                        <Languages size={12} /> FR : {showTranslation ? 'Oui' : 'Non'}
+                                    </button>
+                                    <button
+                                        onClick={() => setTajweedMode(!tajweedMode)}
+                                        className={`px-2 py-1.5 rounded-lg text-xs font-semibold border flex items-center justify-center gap-1.5 ${
+                                            tajweedMode ? 'bg-white text-black border-white' : 'bg-[#222] border-[#444] text-gray-400'
+                                        }`}
+                                    >
+                                        <Palette size={12} /> Tajweed
+                                    </button>
+                                </div>
+                                {isDownloading ? (
+                                    <div className="flex items-center justify-center gap-2 px-3 py-1.5 rounded-lg border border-blue-500 bg-blue-900/30 text-blue-300 text-xs font-semibold w-full mt-1">
+                                        <span className="animate-pulse">Téléchargement {downloadProgress?.downloaded}/{downloadProgress?.total}...</span>
+                                    </div>
+                                ) : (
+                                    <button
+                                        onClick={toggleDownload}
+                                        className={`px-3 py-1.5 rounded-lg text-xs font-semibold border flex items-center justify-center gap-1.5 w-full mt-1 ${
+                                            isDownloaded ? 'bg-emerald-950/60 border-emerald-700 text-emerald-300' : 'bg-[#222] border-[#444] text-gray-300'
+                                        }`}
+                                    >
+                                        {isDownloaded ? <Check size={14} className="text-emerald-400" /> : <Download size={14} />}
+                                        {isDownloaded ? 'Hors-Ligne OK' : 'Télécharger pour hors-ligne'}
+                                    </button>
+                                )}
+                            </div>
+                        )}
 
                         {/* Tajweed Legend Bar */}
                         {tajweedMode && (
