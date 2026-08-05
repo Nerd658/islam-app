@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import { Star, Search, ChevronLeft, ChevronRight, Heart, X, Sparkles } from 'lucide-react';
+import { Star, Search, ChevronLeft, ChevronRight, Heart, X, Gem } from 'lucide-react';
 import namesDetails from '../data/names_details.json';
 
 export default function Names() {
@@ -186,7 +186,7 @@ export default function Names() {
                             <div className="space-y-4 max-h-[40vh] overflow-y-auto pr-2 custom-scrollbar">
                                 <div className="bg-[#1a1a1a] border border-[#333] rounded-xl p-6 text-left">
                                     <h5 className="text-white font-bold mb-2 flex items-center gap-2">
-                                        <Sparkles size={16} className="text-emerald-500" />
+                                        <Gem size={16} className="text-emerald-500" />
                                         Bienfaits
                                     </h5>
                                     <p className="text-gray-400 text-sm leading-relaxed">

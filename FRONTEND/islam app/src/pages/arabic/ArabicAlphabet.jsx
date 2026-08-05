@@ -1,7 +1,7 @@
 import React, { useState, useRef, useEffect } from 'react';
 import arabicData from '../../data/arabic_learning.json';
 import { playArabicAudio } from '../../utils/audio';
-import { BookOpen, Volume2, Sparkles, Layers, Sun, Moon, Edit3, Eraser, VolumeX, Split, Info } from 'lucide-react';
+import { BookOpen, Volume2, Gem, Layers, Sun, Moon, Edit3, Eraser, VolumeX, Split, Info } from 'lucide-react';
 
 export default function ArabicAlphabet() {
     const [level, setLevel] = useState('forms'); // 'forms' | 'short_vowels' | 'long_vowels' | 'tanween' | 'shaddah' | 'compare'
@@ -276,7 +276,7 @@ export default function ArabicAlphabet() {
                         {level === 'short_vowels' && (
                             <div>
                                 <h4 className="text-sm font-bold text-gray-300 mb-3 flex items-center gap-2">
-                                    <Sparkles size={16} className="text-emerald-400" />
+                                    <Gem size={16} className="text-emerald-400" />
                                     Voyelles Courtes (*Al-Harakat*)
                                 </h4>
 
@@ -305,7 +305,7 @@ export default function ArabicAlphabet() {
                         {level === 'long_vowels' && (
                             <div>
                                 <h4 className="text-sm font-bold text-gray-300 mb-3 flex items-center gap-2">
-                                    <Sparkles size={16} className="text-rose-400" />
+                                    <Gem size={16} className="text-rose-400" />
                                     Voyelles Longues (*Al-Madd*)
                                 </h4>
 
@@ -333,7 +333,7 @@ export default function ArabicAlphabet() {
                         {level === 'tanween' && (
                             <div>
                                 <h4 className="text-sm font-bold text-gray-300 mb-3 flex items-center gap-2">
-                                    <Sparkles size={16} className="text-purple-400" />
+                                    <Gem size={16} className="text-purple-400" />
                                     Le Tanween (*Al-Tanween*)
                                 </h4>
 
@@ -361,7 +361,7 @@ export default function ArabicAlphabet() {
                         {level === 'shaddah' && (
                             <div>
                                 <h4 className="text-sm font-bold text-gray-300 mb-3 flex items-center gap-2">
-                                    <Sparkles size={16} className="text-amber-400" />
+                                    <Gem size={16} className="text-amber-400" />
                                     La Shaddah (*Al-Shaddah  ّ *)
                                 </h4>
 

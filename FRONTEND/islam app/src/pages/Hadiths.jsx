@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import hadithsData from '../data/hadiths.json';
-import { Scroll, Search, Bookmark, BookmarkCheck, Share2, Sparkles, Check, X, CheckCircle, BookOpen } from 'lucide-react';
+import { Scroll, Search, Bookmark, BookmarkCheck, Share2, Gem, Check, X, CheckCircle, BookOpen } from 'lucide-react';
 
 const CATEGORY_COLORS = {
     'Foi & Intention': 'bg-emerald-950/60 text-emerald-300 border-emerald-800',
@@ -320,7 +320,7 @@ export default function Hadiths() {
 
                             {selectedHadith.lesson && (
                                 <div className="flex items-start gap-3 text-emerald-400 bg-emerald-950/40 border border-emerald-900/50 p-4 rounded-xl">
-                                    <Sparkles size={20} className="flex-shrink-0 mt-0.5" />
+                                    <Gem size={20} className="flex-shrink-0 mt-0.5" />
                                     <div>
                                         <span className="font-bold text-sm mb-1 block">Leçon à tirer</span>
                                         <p className="text-sm text-emerald-200/80">{selectedHadith.lesson}</p>

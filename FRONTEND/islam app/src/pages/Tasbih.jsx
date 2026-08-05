@@ -1,5 +1,5 @@
 import React, { useRef } from 'react';
-import { RotateCcw, Activity, Volume2, VolumeX, Sparkles, Trash2 } from 'lucide-react';
+import { RotateCcw, Activity, Volume2, VolumeX, Gem, Trash2 } from 'lucide-react';
 import useLocalStorage from '../hooks/useLocalStorage';
 import PageHeader from '../components/PageHeader';
 
@@ -129,7 +129,7 @@ export default function Tasbih() {
                     <span className="text-5xl font-mono text-white font-bold tracking-widest">{count.toString().padStart(4, '0')}</span>
                     {count > 0 && count % 33 === 0 && (
                         <span className="absolute top-2 right-2 text-[10px] bg-emerald-950 text-emerald-300 border border-emerald-700 px-2 py-0.5 rounded-full font-bold flex items-center gap-1">
-                            <Sparkles size={10} /> 33 Requis !
+                            <Gem size={10} /> 33 Requis !
                         </span>
                     )}
                 </div>

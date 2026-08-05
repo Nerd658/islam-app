@@ -1,12 +1,12 @@
 import axios from 'axios';
-import { Moon, Gift, MapPin, HandHeart, Sparkles, BookOpen } from 'lucide-react';
+import { Moon, Gift, MapPin, HandHeart, Gem, BookOpen } from 'lucide-react';
 
 const eventsList = [
     { name: 'Ramadan (Début)', day: 1, month: 9, icon: Moon },
     { name: 'Aïd al-Fitr (Fin du Ramadan)', day: 1, month: 10, icon: Gift },
     { name: 'Arafat (Le grand jour du Hajj)', day: 9, month: 12, icon: MapPin },
     { name: 'Aïd al-Adha (Tabaski)', day: 10, month: 12, icon: HandHeart },
-    { name: 'Nouvel An Hégirien', day: 1, month: 1, icon: Sparkles },
+    { name: 'Nouvel An Hégirien', day: 1, month: 1, icon: Gem },
     { name: 'Achoura', day: 10, month: 1, icon: BookOpen }
 ];
 

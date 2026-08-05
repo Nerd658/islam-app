@@ -1,5 +1,5 @@
 import React, { useState, useRef } from 'react';
-import { Calendar, Clock, Sparkles, Play, Pause } from 'lucide-react';
+import { Calendar, Clock, Gem, Play, Pause } from 'lucide-react';
 import { usePrayerCountdown } from '../hooks/usePrayerCountdown';
 
 const PRAYER_NAMES_FR = {
@@ -63,7 +63,7 @@ export default function PrayerTimesList({ prayerTimes }) {
                 <div className="mb-8 p-6 bg-[#0a0a0a] border border-[#333] rounded-3xl text-center relative overflow-hidden shadow-2xl">
                     <div className="flex items-center justify-between mb-4">
                         <span className="text-xs font-bold text-emerald-400 uppercase tracking-widest flex items-center gap-1.5">
-                            <Sparkles size={14} /> Prochaine Prière
+                            <Gem size={14} /> Prochaine Prière
                         </span>
 
                         <button

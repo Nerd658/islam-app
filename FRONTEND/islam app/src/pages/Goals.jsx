@@ -2,7 +2,7 @@ import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import useLocalStorage from '../hooks/useLocalStorage';
 import PageHeader from '../components/PageHeader';
-import { Target, BookOpen, Heart, Activity, Star, CheckCircle2, Circle, ArrowRight, Sparkles, Award } from 'lucide-react';
+import { Target, BookOpen, Heart, Activity, Star, CheckCircle2, Circle, ArrowRight, Gem, Award } from 'lucide-react';
 
 export default function Goals() {
     const navigate = useNavigate();

@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { NavLink, useLocation } from 'react-router-dom';
-import { Home, BookOpen, Heart, Activity, CalendarDays, MessageCircle, Moon, Star, Compass, Target, Scroll, Languages, ChevronDown, ChevronRight, Layers, Sparkles, HelpCircle, GraduationCap, BookMarked, Mic } from 'lucide-react';
+import { Home, BookOpen, Heart, Activity, CalendarDays, MessageCircle, Moon, Star, Compass, Target, Scroll, Languages, ChevronDown, ChevronRight, Layers, Gem, HelpCircle, GraduationCap, BookMarked, Mic } from 'lucide-react';
 
 export default function Navigation() {
     const location = useLocation();
@@ -22,7 +22,7 @@ export default function Navigation() {
             subItems: [
                 { path: '/arabic/alphabet', label: 'Alphabet', icon: BookOpen },
                 { path: '/arabic/vocabulary', label: 'Vocabulaire', icon: Layers },
-                { path: '/arabic/tajweed', label: 'Tajweed', icon: Sparkles },
+                { path: '/arabic/tajweed', label: 'Tajweed', icon: Gem },
                 { path: '/arabic/quiz', label: 'Quiz Test', icon: HelpCircle },
                 { path: '/arabic/grammar', label: 'Grammaire', icon: GraduationCap }
             ]

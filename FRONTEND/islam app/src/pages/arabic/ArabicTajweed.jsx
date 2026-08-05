@@ -1,7 +1,7 @@
 import React from 'react';
 import arabicData from '../../data/arabic_learning.json';
 import { playArabicAudio } from '../../utils/audio';
-import { Sparkles, Volume2 } from 'lucide-react';
+import { Gem, Volume2 } from 'lucide-react';
 
 export default function ArabicTajweed() {
     const playAudio = (text) => {
@@ -13,7 +13,7 @@ export default function ArabicTajweed() {
             {/* Header */}
             <div className="text-center mb-8">
                 <h2 className="text-3xl sm:text-4xl font-bold text-white mb-3 flex items-center justify-center gap-3">
-                    <Sparkles className="text-gray-400" size={32} />
+                    <Gem className="text-gray-400" size={32} />
                     Guide des Règles de Tajweed
                 </h2>
                 <p className="text-gray-400 text-sm sm:text-base max-w-xl mx-auto">
