@@ -37,26 +37,6 @@ export default function MoreHub() {
                         </Link>
                     )
                 })}
-
-                <div className="bg-[#0a0a0a] border border-[#222] hover:border-[#444] rounded-2xl p-5 flex items-start gap-4 transition-all hover:bg-[#111] opacity-50 cursor-not-allowed">
-                     <div className="p-3 rounded-xl bg-gray-500/10 text-gray-400">
-                         <Settings size={24} />
-                     </div>
-                     <div>
-                         <h3 className="font-bold text-gray-100 text-lg mb-1">Paramètres</h3>
-                         <p className="text-gray-500 text-sm">Bientôt disponible</p>
-                     </div>
-                </div>
-
-                <div className="bg-[#0a0a0a] border border-[#222] hover:border-[#444] rounded-2xl p-5 flex items-start gap-4 transition-all hover:bg-[#111] opacity-50 cursor-not-allowed">
-                     <div className="p-3 rounded-xl bg-rose-500/10 text-rose-400">
-                         <HeartHandshake size={24} />
-                     </div>
-                     <div>
-                         <h3 className="font-bold text-gray-100 text-lg mb-1">Faire un don</h3>
-                         <p className="text-gray-500 text-sm">Bientôt disponible</p>
-                     </div>
-                </div>
             </div>
         </div>
     );

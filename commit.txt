@@ -1,19 +1,23 @@
-[2026-08-07] — Enhancement: Main Navigation 5 Sections
+[2026-08-07] — Enhancement: Home Redesign & Cleanup
 
 What changed:
-- Updated `Navigation.jsx` to display 5 main tabs instead of 4: Accueil, Coran, Apprendre, Pratiquer, Plus.
-- Brought the 'Coran' feature to the main navigation for faster, direct access, given its high priority.
-- Updated `LearnHub.jsx` to change its header icon from `BookOpen` to `GraduationCap` to align with the new main navigation.
+- Completely redesigned the Home page (`Home.jsx`) to feature a modern, responsive 2-column grid layout on desktop.
+- Removed the "Accès Rapide" grid from the Home page since it duplicated the functionality of the new Navigation Hubs.
+- Integrated the `DailySuggestions` (Objectifs du jour) widget directly into the Home page as a standalone card for better visibility.
+- Refined the Daily Verse (Rappel du Jour) card with premium UI styling (glassmorphism accents).
+- Removed the "Paramètres" and "Faire un don" placeholder buttons from `MoreHub.jsx` as requested by the user.
 
 Why:
-- The user requested 5 sections on the main navigation bar. Dedicating a button to the Quran improves UX significantly for a core feature, while 5 tabs remain the optimal standard for mobile bottom navigation bars.
+- The Home page was cluttered and redundant after introducing the Hub-based navigation. The new design focuses on the core utilities: Prayer Times, Daily Goals, and the Verse of the Day, significantly improving UX.
+- The user requested the removal of non-functional "Settings" and "Donation" buttons to keep the interface clean.
 
 Files affected:
-- src/components/Navigation.jsx
-- src/pages/LearnHub.jsx
+- src/pages/Home.jsx
+- src/components/DailySuggestions.jsx
+- src/pages/MoreHub.jsx
 
 Breaking changes:
 - None.
 
 Notes for review:
-- Verify that clicking "Coran" opens the Quran page directly, while "Apprendre" opens the Hub.
+- Verify layout alignment on both Desktop and Mobile views.

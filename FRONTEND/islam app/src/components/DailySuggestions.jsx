@@ -51,10 +51,10 @@ export default function DailySuggestions() {
     const progressPercent = Math.round((completedCount / defaultGoals.length) * 100);
 
     return (
-        <div className="mt-auto pt-6 border-t border-[#222]">
-            <div className="flex items-center justify-between mb-3 px-2">
-                <span className="text-xs font-semibold uppercase tracking-wider text-gray-400">Objectifs du jour</span>
-                <span className="text-xs font-mono font-bold text-gray-300">{completedCount}/{defaultGoals.length}</span>
+        <div className="w-full">
+            <div className="flex items-center justify-between mb-4 px-1">
+                <span className="text-sm font-bold uppercase tracking-wider text-gray-200">Objectifs du jour</span>
+                <span className="text-xs font-mono font-bold text-emerald-400 bg-emerald-400/10 px-2 py-1 rounded-md border border-emerald-400/20">{completedCount}/{defaultGoals.length}</span>
             </div>
 
             {/* Progress Bar */}
