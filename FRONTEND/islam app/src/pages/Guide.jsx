@@ -3,12 +3,13 @@ import { Link } from 'react-router-dom';
 import guideData from '../data/guide.json';
 import { 
     HelpCircle, MapPin, BookOpen, Heart, MessageCircle, 
-    Calculator, Video, ChevronDown, ChevronUp, Play
+    Calculator, Video, ChevronDown, ChevronUp, Play,
+    Target, Languages, ScrollText
 } from 'lucide-react';
 import PageHeader from '../components/PageHeader';
 
 const IconMap = {
-    MapPin, BookOpen, Heart, MessageCircle, Calculator, Video
+    MapPin, BookOpen, Heart, MessageCircle, Calculator, Video, Target, Languages, ScrollText
 };
 
 export default function Guide() {

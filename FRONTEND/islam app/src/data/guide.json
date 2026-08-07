@@ -39,6 +39,19 @@
         "linkText": "Commencer le Dhikr"
     },
     {
+        "id": "objectifs",
+        "title": "Objectifs Spirituels & Wird",
+        "icon": "Target",
+        "description": "Fixez-vous des objectifs quotidiens et suivez votre progression spirituelle.",
+        "steps": [
+            "Allez dans 'Objectifs' pour créer des tâches quotidiennes (ex: lire 2 pages du Coran).",
+            "Cochez vos objectifs au fur et à mesure pour remplir votre barre de progression.",
+            "La section 'Wird' vous permet de structurer votre routine de prières et d'invocations de manière plus avancée."
+        ],
+        "link": "/goals",
+        "linkText": "Mes Objectifs"
+    },
+    {
         "id": "chat",
         "title": "Imam Virtuel (IA)",
         "icon": "MessageCircle",
@@ -51,6 +64,32 @@
         ],
         "link": "/chat",
         "linkText": "Poser une question"
+    },
+    {
+        "id": "arabe",
+        "title": "Apprentissage de l'Arabe",
+        "icon": "Languages",
+        "description": "Apprenez à lire l'arabe, le vocabulaire de base et les règles de Tajweed.",
+        "steps": [
+            "Allez dans le Hub 'Savoir' puis 'Langue Arabe'.",
+            "Suivez les modules dans l'ordre : Alphabet, Vocabulaire, puis Grammaire.",
+            "Testez vos connaissances avec les Quiz interactifs."
+        ],
+        "link": "/arabic",
+        "linkText": "Apprendre l'Arabe"
+    },
+    {
+        "id": "histoires",
+        "title": "Histoires des Prophètes",
+        "icon": "ScrollText",
+        "description": "Lisez les récits passionnants des Prophètes et des Compagnons pour en tirer des leçons.",
+        "steps": [
+            "Allez dans le Hub 'Savoir' puis 'Histoires et Récits'.",
+            "Choisissez une catégorie (Prophètes, Compagnons, Femmes de l'Islam).",
+            "Lisez les histoires au format chapitre avec des temps de lecture estimés."
+        ],
+        "link": "/stories",
+        "linkText": "Lire les Histoires"
     },
     {
         "id": "outils",
