@@ -1,37 +1,82 @@
 [
   {
     "id": 1,
-    "title": "Sourate Al-Fatiha (Exemple)",
-    "artist": "Mishary Alafasy",
-    "audioUrl": "https://server8.mp3quran.net/afs/001.mp3",
-    "isVocalOnly": true
+    "title": "Ya Nabi Salam Alayka",
+    "artist": "Maher Zain",
+    "youtubeId": "Vqfy4ScRXFQ",
+    "category": "Nasheed",
+    "isVocalOnly": false
   },
   {
     "id": 2,
-    "title": "Sourate Al-Ikhlas (Exemple)",
-    "artist": "Saad Al Ghamdi",
-    "audioUrl": "https://server7.mp3quran.net/s_gmd/112.mp3",
-    "isVocalOnly": true
+    "title": "Hasbi Rabbi",
+    "artist": "Sami Yusuf",
+    "youtubeId": "QLPvZ6LordQ",
+    "category": "Nasheed",
+    "isVocalOnly": false
   },
   {
     "id": 3,
-    "title": "Sourate Al-Falaq (Exemple)",
-    "artist": "Abdul Baset",
-    "audioUrl": "https://server7.mp3quran.net/basit/113.mp3",
+    "title": "Rahman Ya Rahman",
+    "artist": "Mishari Alafasy",
+    "youtubeId": "JzzjOXQ-G8I",
+    "category": "Nasheed",
     "isVocalOnly": true
   },
   {
     "id": 4,
-    "title": "Sourate An-Nas (Exemple)",
-    "artist": "Maher Al Muaiqly",
-    "audioUrl": "https://server12.mp3quran.net/maher/114.mp3",
+    "title": "Tala'al Badru 'Alayna",
+    "artist": "Mishari Alafasy",
+    "youtubeId": "gSFWmFZoKkg",
+    "category": "Nasheed",
     "isVocalOnly": true
   },
   {
     "id": 5,
-    "title": "Ayat Al-Kursi (Exemple)",
-    "artist": "Mishary Alafasy",
-    "audioUrl": "https://server8.mp3quran.net/afs/002.mp3",
-    "isVocalOnly": true
+    "title": "Kun Anta",
+    "artist": "Humood AlKhudher",
+    "youtubeId": "qKVW_wJs91Q",
+    "category": "Nasheed",
+    "isVocalOnly": false
+  },
+  {
+    "id": 6,
+    "title": "Comment gérer les épreuves ?",
+    "artist": "Pr. Rachid Eljay",
+    "youtubeId": "jgG21iawv7M",
+    "category": "Rappel",
+    "isVocalOnly": false
+  },
+  {
+    "id": 7,
+    "title": "Un rappel qui touche le coeur",
+    "artist": "Pr. Rachid Eljay",
+    "youtubeId": "lOXmTOUcGNU",
+    "category": "Rappel",
+    "isVocalOnly": false
+  },
+  {
+    "id": 8,
+    "title": "Le comportement du Musulman",
+    "artist": "Pr. Rachid Eljay",
+    "youtubeId": "rKcQ9LQvn8o",
+    "category": "Rappel",
+    "isVocalOnly": false
+  },
+  {
+    "id": 9,
+    "title": "Se rapprocher d'Allah",
+    "artist": "Pr. Rachid Eljay",
+    "youtubeId": "FwNzxDxrdSQ",
+    "category": "Rappel",
+    "isVocalOnly": false
+  },
+  {
+    "id": 10,
+    "title": "L'importance de la Prière (Salat)",
+    "artist": "Pr. Rachid Eljay",
+    "youtubeId": "NKJR6WU6Nuk",
+    "category": "Rappel",
+    "isVocalOnly": false
   }
 ]
