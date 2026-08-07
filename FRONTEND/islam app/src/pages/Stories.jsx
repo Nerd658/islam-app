@@ -51,7 +51,9 @@ const Stories = () => {
           <div className="max-w-prose mx-auto">
             <h3 className="text-2xl font-bold text-white mb-8 text-center">{chapter.title}</h3>
             <div className="text-lg leading-relaxed text-gray-300 space-y-6">
-              <p>{chapter.content_fr}</p>
+              {chapter.content_fr.split('\n').filter(p => p.trim() !== '').map((paragraph, idx) => (
+                <p key={idx}>{paragraph}</p>
+              ))}
             </div>
           </div>
         </div>

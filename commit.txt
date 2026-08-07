@@ -1,16 +1,21 @@
-[2026-08-07] — Enhancement: Remove Quran duplicate from LearnHub
+[2026-08-07] — Enhancement: Rich and detailed Prophet Stories
 
 What changed:
-- Removed "Le Saint Coran" from the features list in `LearnHub.jsx`.
+- Completely rewrote `stories.json` to feature long, detailed, and historically accurate narratives for the prophets.
+- Expanded the stories of Youssef and Nuh with much richer content and distinct chapters.
+- Added 3 new full stories: Musa (Moïse), Ibrahim (Abraham), and Ayoub (Job).
+- Updated `Stories.jsx` to render multi-paragraph text correctly by splitting `content_fr` by `\n` and wrapping them in `<p>` tags with appropriate spacing.
 
 Why:
-- The Quran was recently promoted to the main navigation bar as a dedicated tab, rendering its presence in the "Apprendre" hub redundant. Removing it declutters the Hub and avoids duplicate paths.
+- The initial placeholder stories were too short and lacked depth. Since there is no reliable French API for detailed Islamic stories, the local JSON was expanded manually to provide a truly engaging reading experience (15-25 minutes read time per story) as requested by the user.
+- The UI fix was necessary because React does not render newline characters inside a single text node without CSS `white-space` adjustments or explicit splitting.
 
 Files affected:
-- src/pages/LearnHub.jsx
+- src/data/stories.json
+- src/pages/Stories.jsx
 
 Breaking changes:
 - None.
 
 Notes for review:
-- Verify that the Quran button no longer appears inside the "Apprendre" tab, but is still accessible via the main navigation bar.
+- Open a story and ensure the paragraphs are well-spaced and readable.
