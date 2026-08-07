@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from 'react';
-import { Quote, Loader2 } from 'lucide-react';
+import { Quote, Loader2, X } from 'lucide-react';
 
 export default function QuoteOfTheDay() {
     const [quote, setQuote] = useState(null);
     const [loading, setLoading] = useState(true);
+    const [showModal, setShowModal] = useState(false);
 
     useEffect(() => {
         const fetchQuote = async () => {
@@ -26,9 +27,9 @@ export default function QuoteOfTheDay() {
 
     if (loading) {
         return (
-            <div className="w-full bg-[#0a0a0a] border border-[#333] p-8 rounded-3xl text-center shadow-2xl flex flex-col items-center justify-center min-h-[200px]">
-                <Loader2 className="w-8 h-8 animate-spin text-amber-500 mb-4" />
-                <span className="text-xs text-gray-500 uppercase tracking-widest">Recherche d'une sagesse...</span>
+            <div className="w-full bg-theme-surface border border-theme-border p-8 rounded-3xl text-center shadow-2xl flex flex-col items-center justify-center min-h-[200px]">
+                <Loader2 className="w-8 h-8 animate-spin text-theme-accent mb-4" />
+                <span className="text-xs text-theme-text-muted uppercase tracking-widest">Recherche d'une sagesse...</span>
             </div>
         );
     }
@@ -39,30 +40,79 @@ export default function QuoteOfTheDay() {
     const frenchText = quote.translations?.fr?.text || "Traduction non disponible.";
     const originalText = quote.original?.text || "";
 
+    const TRUNCATE_LENGTH = 160;
+    const isLong = frenchText.length > TRUNCATE_LENGTH || originalText.length > TRUNCATE_LENGTH;
+
+    const displayFrenchText = isLong ? frenchText.substring(0, TRUNCATE_LENGTH) + '...' : frenchText;
+
     return (
-        <div className="w-full bg-[#0a0a0a] border border-[#333] p-8 rounded-3xl text-center relative overflow-hidden shadow-2xl group hover:border-amber-500/50 transition-colors">
-            <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-amber-500 via-amber-400 to-transparent opacity-50"></div>
-            
-            <div className="flex items-center justify-center mb-6">
-                <Quote className="text-amber-500/40 w-10 h-10 transform -scale-x-100" />
-            </div>
+        <>
+            <div className="w-full bg-theme-surface border border-theme-border p-8 rounded-3xl text-center relative overflow-hidden shadow-2xl group hover:border-theme-accent/50 transition-colors">
+                <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-theme-accent via-amber-400 to-transparent opacity-50"></div>
+                
+                <div className="flex items-center justify-center mb-6">
+                    <Quote className="text-theme-accent/40 w-10 h-10 transform -scale-x-100" />
+                </div>
 
-            <p className="text-xl sm:text-2xl font-serif text-white mb-6 leading-relaxed italic">
-                "{frenchText}"
-            </p>
-
-            {originalText && (
-                <p className="text-gray-500 text-sm max-w-lg mx-auto mb-6 leading-relaxed" dir="auto">
-                    "{originalText}"
+                <p className="text-xl sm:text-2xl font-serif text-theme-text mb-6 leading-relaxed italic">
+                    "{displayFrenchText}"
                 </p>
-            )}
 
-            <div className="inline-flex flex-col items-center">
-                <span className="text-xs text-amber-500 font-bold uppercase tracking-wider mb-1">
-                    Citation du Jour
-                </span>
-                <span className="text-[10px] text-gray-600 font-mono">Via Islamic Network API</span>
+                {originalText && (
+                    <p className={`text-theme-text-muted text-sm max-w-lg mx-auto leading-relaxed ${isLong ? 'mb-4 line-clamp-2' : 'mb-6'}`} dir="auto">
+                        "{originalText}"
+                    </p>
+                )}
+
+                {isLong && (
+                    <button 
+                        onClick={() => setShowModal(true)}
+                        className="mb-6 px-5 py-2 bg-theme-bg hover:bg-theme-surface-hover border border-theme-border rounded-full text-xs font-bold text-theme-accent transition-colors"
+                    >
+                        Voir plus
+                    </button>
+                )}
+
+                <div className="inline-flex flex-col items-center">
+                    <span className="text-xs text-theme-accent font-bold uppercase tracking-wider mb-1">
+                        Citation du Jour
+                    </span>
+                    <span className="text-[10px] text-theme-text-muted font-mono">Via Islamic Network API</span>
+                </div>
             </div>
-        </div>
+
+            {/* Modal de Lecture */}
+            {showModal && (
+                <div className="fixed inset-0 bg-black/80 backdrop-blur-sm flex items-center justify-center p-4 z-[100] animate-in fade-in">
+                    <div className="bg-theme-surface border border-theme-border rounded-3xl p-8 max-w-2xl w-full max-h-[85vh] overflow-y-auto relative shadow-2xl animate-in zoom-in-95">
+                        <button 
+                            onClick={() => setShowModal(false)}
+                            className="absolute top-4 right-4 p-2 text-theme-text-muted hover:text-white bg-theme-bg hover:bg-red-500/20 hover:text-red-400 rounded-full transition-colors"
+                        >
+                            <X className="w-5 h-5" />
+                        </button>
+                        <div className="flex items-center justify-center mb-6 mt-4">
+                            <Quote className="text-theme-accent/40 w-12 h-12 transform -scale-x-100" />
+                        </div>
+                        <p className="text-xl sm:text-2xl font-serif text-theme-text mb-8 leading-relaxed italic text-center">
+                            "{frenchText}"
+                        </p>
+                        {originalText && (
+                            <p className="text-theme-text-muted text-base max-w-lg mx-auto mb-6 leading-relaxed text-center" dir="auto">
+                                "{originalText}"
+                            </p>
+                        )}
+                        <div className="flex justify-center mt-8">
+                             <button 
+                                onClick={() => setShowModal(false)}
+                                className="px-6 py-2.5 bg-theme-accent text-black font-bold rounded-xl hover:brightness-110 transition-all"
+                            >
+                                Fermer
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            )}
+        </>
     );
 }
