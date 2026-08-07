@@ -1,25 +1,23 @@
-2026-08-07 — PWA Manifest Updates & Quran Karaoke UX Refinement
+2026-08-07 — Design System Enforcement & UX Enhancements
 
 What changed:
-- Updated `vite.config.js` PWA manifest: set `theme_color` to `#0a0a0a` and `background_color` to `#000000` to match the design system.
-- Added `purpose: 'any maskable'` to PWA SVG icons for better Android adaptive icon support.
-- Refactored `ReloadPrompt.jsx` to use design system tokens (`bg-theme-surface`, `bg-theme-primary`) instead of hardcoded colors.
-- Refined the 3-color palette (Black, Emerald, Gold) on the Quran page: Surah titles, hover states, and bookmarks now utilize `theme-accent` (Gold).
-- Fixed Arabic text layout shifting issues caused by scaling effects during audio playback.
-- Redesigned the karaoke active word highlight to a stable, solid emerald block cursor with white text for maximum readability and layout preservation.
+- **Zakat**: Set default currency to FCFA (XOF). Replaced hardcoded black/gray colors with Design System tokens (`theme-surface`, `theme-border`, `theme-accent`).
+- **Qibla**: Applied Design System tokens. The compass needle now highlights in Gold (`theme-accent`) when precisely aligned with Mecca.
+- **MoreHub**: Added a dedicated App Settings section with a manual "Vérifier la mise à jour (PWA)" button. Included robust UX feedback (loading states, "À jour" toast, disabled states).
+- **Tasbih**: Redesigned the main TAP button and Reset button to be solid white (`bg-white`) to guarantee high contrast and visibility against the dark theme.
 
 Why:
-- PWA manifest colors were still using an older slate-blue theme (`#0f172a`), creating a visual disconnect on mobile.
-- The Quran reader UI was suffering from layout shifts when reading word-by-word due to aggressive CSS scaling. The new solid block cursor is cleaner, stable, and more legible.
-- Exploiting the Gold accent color adds a premium, authentic "Mus'haf" aesthetic to the sacred text metadata.
+- The app needed to fully migrate away from raw Tailwind colors (`bg-[#111]`, `text-gray-400`) to the centralized CSS variable theme (`theme-surface`, `theme-text-muted`) for a cohesive, premium "Mus'haf" aesthetic.
+- The PWA update checking logic needed visual feedback so the user isn't left wondering if their click worked, especially in development environments where Service Workers are inactive.
 
 Files affected:
-- vite.config.js — Manifest colors and maskable icons.
-- src/components/ReloadPrompt.jsx — Applied theme tokens.
-- src/components/QuranReader.jsx — Refined Gold styling and Karaoke block cursor.
+- src/pages/Zakat.jsx — Default currency & theme tokens.
+- src/pages/Qibla.jsx — Theme tokens & compass needle highlighting.
+- src/pages/MoreHub.jsx — PWA update button and feedback UX.
+- src/pages/Tasbih.jsx — White UI for TAP and Reset buttons.
 
 Breaking changes:
 - None.
 
 Notes for review:
-- The karaoke (word-by-word highlight) is now extremely stable. Test the audio playback to see the solid green cursor tracking the text seamlessly.
+- Test the PWA update button on production (Vercel/Firebase) to see the Service Worker swap in action.

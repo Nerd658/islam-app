@@ -108,25 +108,27 @@ export default function Qibla() {
 
     return (
         <div className="pt-8 px-4 max-w-lg mx-auto flex flex-col items-center min-h-[80vh] justify-center">
-            <h2 className="text-3xl font-bold text-center mb-8 text-white flex items-center gap-3">
-                <Compass size={32} /> Boussole Qibla
+            <h2 className="text-3xl font-bold text-center mb-8 text-theme-text flex items-center gap-3">
+                <Compass size={32} className="text-theme-primary" /> Boussole Qibla
             </h2>
 
             {qiblaAngle === null ? (
-                <div className="flex flex-col items-center bg-[#0a0a0a] p-8 rounded-[2rem] border border-[#333] text-center max-w-sm">
-                    <MapPin size={48} className="text-gray-400 mb-6" />
-                    <p className="text-gray-300 mb-8">
+                <div className="flex flex-col items-center bg-theme-surface p-8 rounded-[2rem] border border-theme-border shadow-xl text-center max-w-sm">
+                    <div className="p-4 rounded-full bg-theme-primary/10 mb-6">
+                        <MapPin size={48} className="text-theme-primary" />
+                    </div>
+                    <p className="text-theme-text-muted mb-8">
                         Pour indiquer la direction de la Mecque, nous avons besoin de votre position.
                     </p>
                     <button 
                         onClick={getLocation}
                         disabled={loading}
-                        className="w-full bg-white text-black font-bold py-4 rounded-xl hover:bg-gray-200 transition-colors disabled:opacity-50"
+                        className="w-full bg-theme-primary hover:brightness-110 text-black font-bold py-4 rounded-xl transition-all shadow-md shadow-theme-primary/20 disabled:opacity-50"
                     >
                         {loading ? 'Recherche...' : 'Localiser ma position'}
                     </button>
                     {error && (
-                        <div className="mt-4 text-red-400 flex items-center gap-2 text-sm bg-red-950/30 p-3 rounded-lg">
+                        <div className="mt-4 text-red-400 flex items-center gap-2 text-sm bg-red-950/30 p-3 rounded-lg border border-red-500/20">
                             <AlertTriangle size={16} /> {error}
                         </div>
                     )}
@@ -136,22 +138,22 @@ export default function Qibla() {
                     {needsPermission ? (
                         <button 
                             onClick={requestOrientationPermission}
-                            className="mb-8 bg-blue-600 text-white font-bold py-3 px-6 rounded-xl hover:bg-blue-700 transition-colors"
+                            className="mb-8 bg-theme-accent hover:brightness-110 text-black font-bold py-3 px-6 rounded-xl transition-all shadow-md shadow-theme-accent/20"
                         >
                             Autoriser la boussole
                         </button>
                     ) : (
-                        <p className="text-gray-400 mb-12 text-center text-sm">
+                        <p className="text-theme-text-muted mb-12 text-center text-sm bg-theme-surface border border-theme-border px-4 py-2 rounded-full">
                             Tournez votre téléphone pour aligner la flèche.
                         </p>
                     )}
 
-                    <div className="relative w-72 h-72 rounded-full border-4 border-[#333] bg-[#0a0a0a] flex items-center justify-center shadow-2xl overflow-hidden">
+                    <div className="relative w-72 h-72 rounded-full border-4 border-theme-border bg-theme-surface flex items-center justify-center shadow-2xl overflow-hidden">
                         {/* Direction markers */}
-                        <div className="absolute top-4 font-bold text-gray-500">N</div>
-                        <div className="absolute bottom-4 font-bold text-gray-500">S</div>
-                        <div className="absolute right-4 font-bold text-gray-500">E</div>
-                        <div className="absolute left-4 font-bold text-gray-500">W</div>
+                        <div className="absolute top-4 font-bold text-theme-text-muted">N</div>
+                        <div className="absolute bottom-4 font-bold text-theme-text-muted">S</div>
+                        <div className="absolute right-4 font-bold text-theme-text-muted">E</div>
+                        <div className="absolute left-4 font-bold text-theme-text-muted">W</div>
 
                         {/* Outer Compass Ring Rotating */}
                         <div 
@@ -163,7 +165,7 @@ export default function Qibla() {
                                 className="absolute w-2 h-full py-2"
                                 style={{ transform: `rotate(${qiblaAngle}deg)` }}
                             >
-                                <div className="w-4 h-4 bg-emerald-500 rounded-full mx-auto -mt-2 shadow-[0_0_15px_rgba(16,185,129,0.8)]"></div>
+                                <div className="w-4 h-4 bg-theme-accent rounded-full mx-auto -mt-2 shadow-[0_0_15px_rgba(250,204,21,0.8)]"></div>
                             </div>
                         </div>
 
@@ -172,16 +174,16 @@ export default function Qibla() {
                             className="transition-transform duration-200 ease-out z-10 flex flex-col items-center"
                             style={{ transform: `rotate(${compassRotation}deg)` }}
                         >
-                            <div className={`w-0 h-0 border-l-[20px] border-l-transparent border-r-[20px] border-r-transparent border-b-[60px] ${isAligned ? 'border-b-emerald-500' : 'border-b-white'} mb-1 transition-colors duration-300`}></div>
-                            <div className={`w-8 h-8 ${isAligned ? 'bg-emerald-500' : 'bg-white'} rounded-full shadow-[0_0_20px_rgba(255,255,255,0.2)] transition-colors duration-300`}></div>
+                            <div className={`w-0 h-0 border-l-[20px] border-l-transparent border-r-[20px] border-r-transparent border-b-[60px] ${isAligned ? 'border-b-theme-accent' : 'border-b-theme-primary'} mb-1 transition-colors duration-300`}></div>
+                            <div className={`w-8 h-8 ${isAligned ? 'bg-theme-accent shadow-[0_0_20px_rgba(250,204,21,0.4)]' : 'bg-theme-primary shadow-[0_0_20px_rgba(16,185,129,0.4)]'} rounded-full transition-colors duration-300`}></div>
                         </div>
                     </div>
 
-                    <div className="mt-12 text-center">
-                        <p className="text-4xl font-mono font-bold text-white mb-2">
+                    <div className="mt-12 text-center bg-theme-surface border border-theme-border px-8 py-4 rounded-2xl shadow-lg">
+                        <p className="text-4xl font-mono font-bold text-theme-text mb-2">
                             {Math.round(qiblaAngle)}°
                         </p>
-                        <p className={`font-bold text-lg transition-colors duration-300 ${isAligned ? 'text-emerald-500' : 'text-gray-400'}`}>
+                        <p className={`font-bold text-lg transition-colors duration-300 ${isAligned ? 'text-theme-accent' : 'text-theme-primary'}`}>
                             {isAligned ? "Vous faites face à la Qibla !" : "Direction de la Qibla"}
                         </p>
                     </div>

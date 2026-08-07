@@ -144,15 +144,15 @@ export default function Tasbih() {
                 <div className="flex flex-col items-center gap-8 w-full relative z-10">
                     <button 
                         onClick={handleTap}
-                        className="w-40 h-40 bg-gradient-to-br from-theme-primary to-emerald-700 hover:to-emerald-600 text-theme-bg rounded-full shadow-[0_0_40px_rgba(16,185,129,0.3)] hover:shadow-[0_0_60px_rgba(16,185,129,0.5)] border-4 border-theme-bg flex flex-col items-center justify-center transform active:scale-90 transition-all cursor-pointer select-none"
+                        className="w-40 h-40 bg-white hover:bg-gray-100 text-emerald-600 rounded-full shadow-[0_0_40px_rgba(255,255,255,0.2)] hover:shadow-[0_0_60px_rgba(255,255,255,0.4)] border-4 border-emerald-500/20 flex flex-col items-center justify-center transform active:scale-90 transition-all cursor-pointer select-none"
                     >
-                        <span className="text-4xl font-extrabold tracking-wider">TAP</span>
-                        <span className="text-xs text-emerald-950 font-bold uppercase mt-1 tracking-widest opacity-80">Égrainer</span>
+                        <span className="text-4xl font-extrabold tracking-wider text-black">TAP</span>
+                        <span className="text-xs text-emerald-600 font-bold uppercase mt-1 tracking-widest">Égrainer</span>
                     </button>
 
                     <button 
                         onClick={handleReset}
-                        className="w-14 h-14 bg-theme-surface-hover hover:bg-theme-border border border-theme-border text-theme-text-muted hover:text-theme-text rounded-full flex items-center justify-center shadow-lg transform active:scale-90 transition-all"
+                        className="w-14 h-14 bg-white hover:bg-gray-200 border border-white text-black rounded-full flex items-center justify-center shadow-[0_0_15px_rgba(255,255,255,0.2)] transform active:scale-90 transition-all"
                         title="Réinitialiser le compteur actuel"
                     >
                         <RotateCcw size={20} />
