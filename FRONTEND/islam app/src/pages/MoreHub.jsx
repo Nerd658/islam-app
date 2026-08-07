@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { CalendarDays, Layers, Moon, Calculator, Type, RefreshCw, Smartphone } from 'lucide-react';
+import { CalendarDays, Layers, Moon, Calculator, Type, RefreshCw, Smartphone, HelpCircle } from 'lucide-react';
 import PageHeader from '../components/PageHeader';
 import { useRegisterSW } from 'virtual:pwa-register/react';
 
@@ -10,6 +10,7 @@ export default function MoreHub() {
         { path: '/zakat', label: 'Calculateur de Zakat', icon: Calculator, desc: 'Zakat Al-Maal (Or, Argent) avec cours en direct', color: 'text-amber-400', bg: 'bg-amber-400/10' },
         { path: '/moon', label: 'Observation Lunaire', icon: Moon, desc: 'Phases lunaires et visibilité du croissant', color: 'text-blue-400', bg: 'bg-blue-400/10' },
         { path: '/islamic-names', label: 'Prénoms Islamiques', icon: Type, desc: '210 prénoms authentiques (Filles & Garçons)', color: 'text-rose-400', bg: 'bg-rose-400/10' },
+        { path: '/guide', label: 'Guide d\'Utilisation', icon: HelpCircle, desc: 'Comment utiliser toutes les fonctionnalités', color: 'text-purple-400', bg: 'bg-purple-400/10' },
     ];
 
     const {

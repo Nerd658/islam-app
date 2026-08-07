@@ -27,6 +27,7 @@ const Knowledge = lazy(() => import('./pages/Knowledge'));
 const Zakat = lazy(() => import('./pages/Zakat'));
 const Moon = lazy(() => import('./pages/Moon'));
 const IslamicNames = lazy(() => import('./pages/IslamicNames'));
+const Guide = lazy(() => import('./pages/Guide'));
 
 // Dedicated Standalone Arabic Sub-pages
 const ArabicAlphabet = lazy(() => import('./pages/arabic/ArabicAlphabet'));
@@ -70,6 +71,7 @@ function App() {
             <Route path="/zakat" element={<Zakat />} />
             <Route path="/moon" element={<Moon />} />
             <Route path="/islamic-names" element={<IslamicNames />} />
+            <Route path="/guide" element={<Guide />} />
 
             {/* Arabic Dedicated Standalone Routes */}
             <Route path="/arabic" element={<Navigate to="/arabic/alphabet" replace />} />

@@ -1,0 +1,82 @@
+[
+    {
+        "id": "horaires",
+        "title": "Horaires de Prière & Localisation",
+        "icon": "MapPin",
+        "description": "Consultez les horaires de prière exacts basés sur votre position géographique. La plateforme utilise la géolocalisation pour une précision maximale.",
+        "steps": [
+            "Sur la page d'accueil, cliquez sur 'Me localiser automatiquement' ou tapez le nom de votre ville.",
+            "Les horaires du jour s'affichent instantanément.",
+            "L'application garde votre ville en mémoire pour vos prochaines visites (valide pendant 6 heures)."
+        ],
+        "link": "/",
+        "linkText": "Aller à l'Accueil"
+    },
+    {
+        "id": "quran",
+        "title": "Coran, Mémorisation & Audio",
+        "icon": "BookOpen",
+        "description": "Lisez, écoutez et mémorisez le Saint Coran avec de multiples récitateurs et traductions.",
+        "steps": [
+            "Allez dans le hub 'Pratique' puis 'Saint Coran' pour lire et écouter les sourates.",
+            "Pour apprendre, utilisez le module 'Mémorisation' : vous pourrez répéter des versets en boucle et masquer le texte pour tester votre mémoire.",
+            "Vous pouvez changer de récitateur (Mishary Alafasy, Abdul Baset, etc.) dans les options du lecteur."
+        ],
+        "link": "/practice",
+        "linkText": "Découvrir la Pratique"
+    },
+    {
+        "id": "adhkar",
+        "title": "Adhkar & Tasbih Digital",
+        "icon": "Heart",
+        "description": "Maintenez votre rappel d'Allah (Dhikr) tout au long de la journée.",
+        "steps": [
+            "La page 'Adhkar' vous propose les invocations du matin, du soir, et après la prière, triées par catégorie.",
+            "La page 'Tasbih' est un compteur digital : touchez le grand cercle pour compter. Il vibre légèrement et garde votre score en mémoire.",
+            "Vous pouvez remettre le compteur à zéro en cliquant sur l'icône de rafraîchissement."
+        ],
+        "link": "/practice",
+        "linkText": "Commencer le Dhikr"
+    },
+    {
+        "id": "chat",
+        "title": "Imam Virtuel (IA)",
+        "icon": "MessageCircle",
+        "description": "Posez toutes vos questions sur l'Islam à notre assistant intelligent basé sur l'IA, entraîné sur des sources authentiques.",
+        "steps": [
+            "Allez dans 'Imam Virtuel'.",
+            "Tapez votre question (ex: 'Comment accomplir la prière de consultation ?').",
+            "L'historique de vos conversations est sauvegardé sur votre appareil.",
+            "Note : L'IA est un outil d'aide, pour les questions très complexes, consultez un savant."
+        ],
+        "link": "/chat",
+        "linkText": "Poser une question"
+    },
+    {
+        "id": "outils",
+        "title": "Zakat, Calendrier & Lune",
+        "icon": "Calculator",
+        "description": "Des outils pratiques au quotidien pour le musulman.",
+        "steps": [
+            "Rendez-vous dans la rubrique 'Plus' pour accéder à ces outils.",
+            "Calculateur de Zakat : Entrez le montant de vos économies et le cours de l'or/argent en direct calculera votre impôt obligatoire.",
+            "Dates Islamiques : Visualisez les grands événements de l'année hégirienne (Ramadan, Aïds, etc.).",
+            "Observation Lunaire : Vérifiez la phase actuelle de la lune."
+        ],
+        "link": "/more",
+        "linkText": "Explorer les Outils"
+    },
+    {
+        "id": "savoir",
+        "title": "Médiathèque & Ressources",
+        "icon": "Video",
+        "description": "Éduquez votre âme grâce à des contenus vidéos et des ressources fiables.",
+        "steps": [
+            "La 'Médiathèque Islamique' contient des Nasheeds (Maher Zain, Sami Yusuf) et des Rappels complets (Rachid Eljay, Nader Abou Anas).",
+            "Filtrez par catégorie ou utilisez la barre de recherche pour trouver une vidéo précise.",
+            "Le 'Savoir Hub' centralise des liens vers des sites authentiques (Sunnah.com, Quran.com) pour approfondir votre religion."
+        ],
+        "link": "/learn",
+        "linkText": "Enrichir son Savoir"
+    }
+]
