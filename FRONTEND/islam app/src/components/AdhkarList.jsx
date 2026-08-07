@@ -13,7 +13,8 @@ export default function AdhkarList({ category }) {
                     key={dhikr.id || index} 
                     arabic={dhikr.arabic} 
                     translation={dhikr.translation} 
-                    count={dhikr.count} 
+                    count={dhikr.count}
+                    source={dhikr.source}
                 />
             ))}
         </div>

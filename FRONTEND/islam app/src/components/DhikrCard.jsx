@@ -8,7 +8,7 @@ import { CheckCircle2, RotateCcw } from 'lucide-react';
  *
  * @param {{ arabic: string, translation: string, count: number }} props
  */
-export default function DhikrCard({ arabic, translation, count }) {
+export default function DhikrCard({ arabic, translation, count, source }) {
     const [current, setCurrent] = useState(0);
     const target = parseInt(count, 10) || 1;
     const isDone = current >= target;
@@ -37,9 +37,15 @@ export default function DhikrCard({ arabic, translation, count }) {
             </p>
 
             {/* Translation */}
-            <p className="text-sm sm:text-base text-gray-400 mb-6 leading-relaxed">
+            <p className="text-sm sm:text-base text-gray-400 mb-4 leading-relaxed">
                 {translation}
             </p>
+
+            {source && (
+                <p className="text-xs text-gray-600 mb-5 font-mono">
+                    Source : {source}
+                </p>
+            )}
 
             {/* Progress bar */}
             <div className="w-full bg-[#1a1a1a] rounded-full h-1.5 mb-5 overflow-hidden border border-[#222]">

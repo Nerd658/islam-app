@@ -31,8 +31,7 @@ export default function Navigation() {
         { path: '/tasbih', label: 'Tasbih', icon: Activity },
         { path: '/names', label: '99 Noms', icon: Star },
         { path: '/qibla', label: 'Qibla', icon: Compass },
-        { path: '/events', label: 'Dates', icon: CalendarDays },
-        { path: '/chat', label: 'Imam', icon: MessageCircle }
+        { path: '/events', label: 'Dates', icon: CalendarDays }
     ];
 
     return (
