@@ -40,7 +40,7 @@ export default function QuoteOfTheDay() {
     const frenchText = quote.translations?.fr?.text || "Traduction non disponible.";
     const originalText = quote.original?.text || "";
 
-    const TRUNCATE_LENGTH = 160;
+    const TRUNCATE_LENGTH = 120;
     const isLong = frenchText.length > TRUNCATE_LENGTH || originalText.length > TRUNCATE_LENGTH;
 
     const displayFrenchText = isLong ? frenchText.substring(0, TRUNCATE_LENGTH) + '...' : frenchText;
