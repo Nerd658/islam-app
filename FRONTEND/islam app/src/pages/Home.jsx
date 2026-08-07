@@ -207,7 +207,7 @@ export default function Home() {
                 <span className="text-xs text-theme-primary font-mono bg-theme-primary/10 px-3 py-1 rounded-full border border-theme-primary/20 mt-auto">{reference}</span>
             </div>
 
-            <div className="bg-theme-surface border border-theme-border rounded-3xl p-6 shadow-2xl h-full">
+            <div className="h-full">
                 <QuoteOfTheDay />
             </div>
         </>

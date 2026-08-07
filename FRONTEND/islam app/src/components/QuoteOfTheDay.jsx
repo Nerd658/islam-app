@@ -47,7 +47,7 @@ export default function QuoteOfTheDay() {
 
     return (
         <>
-            <div className="w-full bg-theme-surface border border-theme-border p-8 rounded-3xl text-center relative overflow-hidden shadow-2xl group hover:border-theme-accent/50 transition-colors">
+            <div className="w-full h-full flex flex-col justify-center items-center bg-theme-surface border border-theme-border p-8 rounded-3xl text-center relative overflow-hidden shadow-2xl group hover:border-theme-accent/50 transition-colors">
                 <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-theme-accent via-amber-400 to-transparent opacity-50"></div>
                 
                 <div className="flex items-center justify-center mb-6">
