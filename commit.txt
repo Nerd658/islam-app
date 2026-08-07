@@ -1,23 +1,16 @@
-[2026-08-07] — Enhancement: Home Redesign & Cleanup
+[2026-08-07] — Enhancement: Remove Quran duplicate from LearnHub
 
 What changed:
-- Completely redesigned the Home page (`Home.jsx`) to feature a modern, responsive 2-column grid layout on desktop.
-- Removed the "Accès Rapide" grid from the Home page since it duplicated the functionality of the new Navigation Hubs.
-- Integrated the `DailySuggestions` (Objectifs du jour) widget directly into the Home page as a standalone card for better visibility.
-- Refined the Daily Verse (Rappel du Jour) card with premium UI styling (glassmorphism accents).
-- Removed the "Paramètres" and "Faire un don" placeholder buttons from `MoreHub.jsx` as requested by the user.
+- Removed "Le Saint Coran" from the features list in `LearnHub.jsx`.
 
 Why:
-- The Home page was cluttered and redundant after introducing the Hub-based navigation. The new design focuses on the core utilities: Prayer Times, Daily Goals, and the Verse of the Day, significantly improving UX.
-- The user requested the removal of non-functional "Settings" and "Donation" buttons to keep the interface clean.
+- The Quran was recently promoted to the main navigation bar as a dedicated tab, rendering its presence in the "Apprendre" hub redundant. Removing it declutters the Hub and avoids duplicate paths.
 
 Files affected:
-- src/pages/Home.jsx
-- src/components/DailySuggestions.jsx
-- src/pages/MoreHub.jsx
+- src/pages/LearnHub.jsx
 
 Breaking changes:
 - None.
 
 Notes for review:
-- Verify layout alignment on both Desktop and Mobile views.
+- Verify that the Quran button no longer appears inside the "Apprendre" tab, but is still accessible via the main navigation bar.

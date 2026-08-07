@@ -5,7 +5,6 @@ import PageHeader from '../components/PageHeader';
 
 export default function LearnHub() {
     const features = [
-        { path: '/quran', label: 'Le Saint Coran', icon: BookOpen, desc: 'Lecture et écoute hors-ligne', color: 'text-emerald-400', bg: 'bg-emerald-400/10' },
         { path: '/hadiths', label: 'Hadiths', icon: Scroll, desc: 'Paroles prophétiques authentiques', color: 'text-blue-400', bg: 'bg-blue-400/10' },
         { path: '/names', label: "99 Noms d'Allah", icon: Star, desc: 'Apprentissage et méditation', color: 'text-amber-400', bg: 'bg-amber-400/10' },
         { path: '/stories', label: 'Histoires', icon: BookText, desc: 'Récits des Prophètes et Compagnons', color: 'text-indigo-400', bg: 'bg-indigo-400/10' },
