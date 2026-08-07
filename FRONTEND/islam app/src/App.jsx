@@ -16,6 +16,14 @@ const Hadiths = lazy(() => import('./pages/Hadiths'));
 const Wird = lazy(() => import('./pages/Wird'));
 const Memorization = lazy(() => import('./pages/Memorization'));
 
+// New Hubs & Features
+const LearnHub = lazy(() => import('./pages/LearnHub'));
+const PracticeHub = lazy(() => import('./pages/PracticeHub'));
+const MoreHub = lazy(() => import('./pages/MoreHub'));
+const Nasheeds = lazy(() => import('./pages/Nasheeds'));
+const Stories = lazy(() => import('./pages/Stories'));
+const Knowledge = lazy(() => import('./pages/Knowledge'));
+
 // Dedicated Standalone Arabic Sub-pages
 const ArabicAlphabet = lazy(() => import('./pages/arabic/ArabicAlphabet'));
 const ArabicVocabulary = lazy(() => import('./pages/arabic/ArabicVocabulary'));
@@ -46,6 +54,14 @@ function App() {
             <Route path="/hadiths" element={<Hadiths />} />
             <Route path="/wird" element={<Wird />} />
             <Route path="/memorization" element={<Memorization />} />
+
+            {/* New Hubs & Features */}
+            <Route path="/learn" element={<LearnHub />} />
+            <Route path="/practice" element={<PracticeHub />} />
+            <Route path="/more" element={<MoreHub />} />
+            <Route path="/nasheeds" element={<Nasheeds />} />
+            <Route path="/stories" element={<Stories />} />
+            <Route path="/knowledge" element={<Knowledge />} />
 
             {/* Arabic Dedicated Standalone Routes */}
             <Route path="/arabic" element={<Navigate to="/arabic/alphabet" replace />} />

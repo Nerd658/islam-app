@@ -1,0 +1,37 @@
+[
+  {
+    "id": 1,
+    "title": "Ya Nabi Salam Alayka",
+    "artist": "Maher Zain",
+    "youtubeId": "f4JIGAgaJzI",
+    "isVocalOnly": false
+  },
+  {
+    "id": 2,
+    "title": "Hasbi Rabbi",
+    "artist": "Sami Yusuf",
+    "youtubeId": "GkK6Bf23n74",
+    "isVocalOnly": false
+  },
+  {
+    "id": 3,
+    "title": "Rahman Ya Rahman",
+    "artist": "Mishari Alafasy",
+    "youtubeId": "QkXm9K4eI1I",
+    "isVocalOnly": true
+  },
+  {
+    "id": 4,
+    "title": "Tala'al Badru 'Alayna",
+    "artist": "Mishari Alafasy",
+    "youtubeId": "6mZ0H2sK1A4",
+    "isVocalOnly": true
+  },
+  {
+    "id": 5,
+    "title": "Kun Anta",
+    "artist": "Humood AlKhudher",
+    "youtubeId": "qOceQ2B6J3w",
+    "isVocalOnly": false
+  }
+]

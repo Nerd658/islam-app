@@ -9,29 +9,9 @@ export default function Navigation() {
 
     const navItems = [
         { path: '/', label: 'Accueil', icon: Home },
-        { path: '/goals', label: 'Objectifs', icon: Target },
-        { path: '/quran', label: 'Coran', icon: BookOpen },
-        { path: '/memorization', label: 'Mémorisation', icon: Mic },
-        { path: '/hadiths', label: 'Hadiths', icon: Scroll },
-        { path: '/wird', label: 'Wird', icon: BookMarked },
-        { 
-            path: '/arabic/alphabet', 
-            label: 'Arabe', 
-            icon: Languages,
-            hasSubmenu: true,
-            subItems: [
-                { path: '/arabic/alphabet', label: 'Alphabet', icon: BookOpen },
-                { path: '/arabic/vocabulary', label: 'Vocabulaire', icon: Layers },
-                { path: '/arabic/tajweed', label: 'Tajweed', icon: Gem },
-                { path: '/arabic/quiz', label: 'Quiz Test', icon: HelpCircle },
-                { path: '/arabic/grammar', label: 'Grammaire', icon: GraduationCap }
-            ]
-        },
-        { path: '/adhkar', label: 'Adhkar', icon: Heart },
-        { path: '/tasbih', label: 'Tasbih', icon: Activity },
-        { path: '/names', label: '99 Noms', icon: Star },
-        { path: '/qibla', label: 'Qibla', icon: Compass },
-        { path: '/events', label: 'Dates', icon: CalendarDays }
+        { path: '/learn', label: 'Apprendre', icon: BookOpen },
+        { path: '/practice', label: 'Pratiquer', icon: Heart },
+        { path: '/more', label: 'Plus', icon: Layers }
     ];
 
     return (

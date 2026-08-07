@@ -1,66 +1,35 @@
-2026-08-04 — Quran offline audio (IndexedDB), full test suite, README rewrite
+[2026-08-07] — Feature: UX/UI Refactor and New Modules (Stories, Nasheeds, Knowledge)
 
 What changed:
-- Replaced localStorage-based Quran offline storage with IndexedDB binary audio storage.
-  Audio MP3 files are now fetched as Blob and stored natively; blob:// URLs are served
-  for offline playback instead of unreachable remote URLs.
-- Added per-surah download progress UI (shows "Téléchargement X/Y versets..." during
-  download instead of a simple toggle button).
-- playVerse() now checks IndexedDB (getOfflineAudioUrl) before falling back to the
-  remote URL, making the player truly offline-capable once a surah is downloaded.
-- Added verses.quran.com audio CDN to vite-plugin-pwa Workbox runtimeCaching with
-  CacheFirst strategy (quran-audio-sw-cache, 500 entries, 90 days) as a secondary
-  service worker layer.
-- Created a complete Vitest/RTL test suite covering 10 test files and 34 test cases
-  across all major pages and components.
-- Rewrote README.md: professional tone (no emojis), accurate tech stack (React 19,
-  Vite 6, etc.), documented IndexedDB offline system, all env vars, API integrations,
-  security architecture, PWA, and contributing guidelines. Language: French.
-- Enhanced setupTests.js with global mocks for Howler, AudioContext, geolocation,
-  navigator.vibrate, matchMedia, URL.createObjectURL, and IndexedDB.
+- Completely refactored the sidebar navigation into 4 main categories (Accueil, Apprendre, Pratiquer, Plus) using Hub pages.
+- Created `LearnHub.jsx`, `PracticeHub.jsx`, and `MoreHub.jsx` to organize the many features in a clean, grid-based UI.
+- Implemented the `Stories.jsx` page with a beautiful full-screen zen reading mode and added prophetic stories data in `stories.json`.
+- Implemented the `Nasheeds.jsx` page with YouTube embeds, grid layout, and a mandatory "Vocal Only" filter, backed by `nasheeds.json`.
+- Implemented the `Knowledge.jsx` page featuring step-by-step tutorials for Ablutions (Wudu), Grande Ablution (Ghusl), and Prière (Salat), along with a directory of trusted resources and YouTube channels (`knowledge.json`).
+- Updated `App.jsx` to lazy-load and route to all new features.
+- Cleaned up `Navigation.jsx` to display only the 4 main items.
 
 Why:
-- The previous offline implementation only saved audio URLs to localStorage. When
-  offline, those URLs are unreachable — the feature was non-functional. IndexedDB
-  stores the actual MP3 binary data, enabling genuine offline playback.
-- The test suite was minimal (1 trivial Header test). Expanding to 34 meaningful
-  behavioral tests provides confidence in regressions and documents expected behavior.
-- README was inaccurate (stated React 18 when 19 is used, omitted all new features,
-  no description of the offline system or IndexedDB architecture).
+- The sidebar was becoming too crowded with the growing number of features. The Hub system significantly improves mobile UX and desktop organization.
+- Added the requested new content modules (Songs, Stories, Wazuh/Reminders, Knowledge) based on detailed research, fulfilling the user's specific request for a rich, educational platform.
 
 Files affected:
-- FRONTEND/islam app/src/utils/quranOfflineStorage.js — NEW: IndexedDB CRUD manager
-- FRONTEND/islam app/src/hooks/useQuranOffline.js — NEW: React hook for offline state,
-  download queue, progress, blob URL management, and chapter offline loading
-- FRONTEND/islam app/src/components/QuranReader.jsx — Removed localStorage offline
-  logic, integrated useQuranOffline hook, playVerse() is now async with offline-first
-  URL resolution, download button shows progress
-- FRONTEND/islam app/vite.config.js — Added verses.quran.com CacheFirst workbox rule
-- FRONTEND/islam app/src/setupTests.js — Added global browser API mocks for Vitest
-- FRONTEND/islam app/src/components/Navigation.test.jsx — NEW: 4 tests
-- FRONTEND/islam app/src/components/PrayerTimesList.test.jsx — NEW: 4 tests
-- FRONTEND/islam app/src/components/DhikrCard.test.jsx — NEW: 3 tests
-- FRONTEND/islam app/src/pages/Goals.test.jsx — NEW: 4 tests
-- FRONTEND/islam app/src/pages/Tasbih.test.jsx — NEW: 4 tests
-- FRONTEND/islam app/src/pages/Names.test.jsx — NEW: 4 tests
-- FRONTEND/islam app/src/pages/Hadiths.test.jsx — NEW: 4 tests
-- FRONTEND/islam app/src/pages/Chat.test.jsx — NEW: 4 tests
-- FRONTEND/islam app/src/utils/audio.test.js — NEW: 3 tests
-- README.md — Fully rewritten
+- src/App.jsx — Added new routes and lazy imports.
+- src/components/Navigation.jsx — Refactored to 4 main tabs.
+- src/pages/LearnHub.jsx — New Hub for educational features.
+- src/pages/PracticeHub.jsx — New Hub for daily worship tools.
+- src/pages/MoreHub.jsx — New Hub for extra features and settings.
+- src/pages/Nasheeds.jsx — New page component for Islamic songs.
+- src/data/nasheeds.json — New dataset for nasheeds.
+- src/pages/Stories.jsx — New page component for prophetic stories.
+- src/data/stories.json — New dataset for stories.
+- src/pages/Knowledge.jsx — New page component for tutorials and resources.
+- src/data/knowledge.json — New dataset for knowledge.
 
 Breaking changes:
-- None. The offline storage is additive. Users who had previously "downloaded"
-  surahs via the old localStorage mechanism will lose that cached data (it will
-  not be migrated to IndexedDB), but they can simply re-download.
+- None. All previous routes (e.g. `/adhkar`, `/quran`) remain accessible via the Hubs.
 
 Notes for review:
-- IndexedDB storage for a full surah (audio Blobs) can range from 10-50MB.
-  Ensure users are informed via the progress UI before downloading.
-- Blob URLs created from IndexedDB are revoked on chapter change/unmount via
-  useEffect cleanup in useQuranOffline — no memory leak.
-- The Workbox service worker (SW) acts as a secondary audio cache layer for
-  URLs that were already fetched but not explicitly downloaded via the IndexedDB
-  flow (e.g., verses streamed during online playback will be SW-cached for replay).
-- Test for PrayerTimesList countdown (fake timers + setInterval) uses
-  vi.advanceTimersByTime(1100) inside act(). The exact countdown string is not
-  asserted to avoid brittleness with fake timer synchronization.
+- Verify the "Vocal Only" filter behaves as expected on the Nasheeds page.
+- Check the Reading Mode on the Stories page for mobile responsiveness.
+- The Imam IA link has been commented out in `MoreHub.jsx` as requested ("cache mm la parti imama ia").

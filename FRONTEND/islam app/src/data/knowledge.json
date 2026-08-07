@@ -1,0 +1,80 @@
+{
+  "ablutions": [
+    {
+      "id": "wudu",
+      "title": "Les Petites Ablutions (Wudu)",
+      "steps": [
+        "Avoir l'intention (Niyyah) de faire les ablutions.",
+        "Dire 'Bismillah' (Au nom d'Allah).",
+        "Se laver les mains jusqu'aux poignets 3 fois.",
+        "Se rincer la bouche 3 fois.",
+        "Aspirer l'eau dans les narines et la rejeter 3 fois.",
+        "Se laver le visage 3 fois.",
+        "Se laver les bras jusqu'aux coudes 3 fois (droit puis gauche).",
+        "Passer les mains mouillées sur la tête et les oreilles.",
+        "Se laver les pieds jusqu'aux chevilles 3 fois (droit puis gauche)."
+      ]
+    },
+    {
+      "id": "ghusl",
+      "title": "La Grande Ablution (Ghusl)",
+      "steps": [
+        "Avoir l'intention (Niyyah) de faire le Ghusl.",
+        "Dire 'Bismillah'.",
+        "Se laver les mains 3 fois.",
+        "Laver ses parties intimes.",
+        "Faire les petites ablutions (Wudu) complètes.",
+        "Verser de l'eau sur la tête 3 fois en frictionnant les cheveux.",
+        "Verser de l'eau sur tout le côté droit du corps.",
+        "Verser de l'eau sur tout le côté gauche du corps."
+      ]
+    }
+  ],
+  "priere": [
+    {
+      "id": "salat",
+      "title": "Comment Prier (Salat)",
+      "steps": [
+        "Se tenir debout face à la Qibla avec l'intention de prier.",
+        "Dire 'Allahu Akbar' (Takbirat Al-Ihram).",
+        "Réciter la sourate Al-Fatiha et une autre sourate (dans les 2 premières rakats).",
+        "S'incliner (Ruku) en disant 'Subhana Rabbiyal Adhim' 3 fois.",
+        "Se redresser en disant 'Sami'a Allahu liman hamidah'.",
+        "Se prosterner (Sujud) en disant 'Subhana Rabbiyal A'la' 3 fois.",
+        "S'asseoir entre les deux prosternations en demandant pardon à Allah.",
+        "Faire une deuxième prosternation identique à la première.",
+        "Se relever pour la Rakat suivante, ou s'asseoir pour le Tachahoud selon la rakat."
+      ]
+    }
+  ],
+  "ressources": [
+    {
+      "id": "rachid-eljay",
+      "title": "Pr. Rachid Eljay",
+      "type": "YouTube",
+      "url": "https://www.youtube.com/c/RachidEljay",
+      "description": "Chaîne YouTube éducative sur l'Islam en français."
+    },
+    {
+      "id": "boussole",
+      "title": "Boussole",
+      "type": "YouTube",
+      "url": "https://www.youtube.com/@Boussole-Islam",
+      "description": "Rappels et enseignements islamiques."
+    },
+    {
+      "id": "islamqa",
+      "title": "IslamQA",
+      "type": "Site Web",
+      "url": "https://islamqa.info/fr",
+      "description": "Questions et réponses sur la jurisprudence et la vie musulmane."
+    },
+    {
+      "id": "maison-islam",
+      "title": "Maison-Islam",
+      "type": "Site Web",
+      "url": "https://www.maison-islam.com",
+      "description": "Articles approfondis sur divers sujets de l'Islam."
+    }
+  ]
+}

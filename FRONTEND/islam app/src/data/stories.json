@@ -1,0 +1,42 @@
+[
+  {
+    "id": "1",
+    "title": "L'Histoire du Prophète Youssef (Joseph)",
+    "category": "Prophètes",
+    "read_time_minutes": 15,
+    "chapters": [
+      {
+        "title": "Le rêve de Youssef",
+        "content_fr": "Youssef, fils de Yaqub, fit un rêve étrange où il vit onze étoiles, le soleil et la lune se prosterner devant lui. Son père lui conseilla de ne pas raconter ce rêve à ses frères, craignant leur jalousie. En effet, ses frères ressentaient une profonde animosité envers lui à cause de l'amour particulier que leur portait leur père."
+      },
+      {
+        "title": "Le complot des frères",
+        "content_fr": "Aveuglés par la jalousie, les frères de Youssef complotèrent pour se débarrasser de lui. Ils l'emmenèrent avec eux et le jetèrent au fond d'un puits, faisant croire à leur père qu'un loup l'avait dévoré. Ils tachèrent sa chemise avec le sang d'un animal pour appuyer leur mensonge. Yaqub, bien que dévasté, fit preuve d'une patience admirable (Sabrun Jameel)."
+      },
+      {
+        "title": "L'arrivée en Égypte",
+        "content_fr": "Des voyageurs trouvèrent Youssef dans le puits et l'emmenèrent en Égypte, où il fut vendu comme esclave à un homme de haut rang, Al-Aziz. Il grandit dans cette maison avec sagesse et beauté. Cependant, l'épouse d'Al-Aziz tenta de le séduire. Devant son refus catégorique par crainte d'Allah, il fut injustement jeté en prison."
+      }
+    ]
+  },
+  {
+    "id": "2",
+    "title": "L'Histoire du Prophète Nuh (Noé)",
+    "category": "Prophètes",
+    "read_time_minutes": 12,
+    "chapters": [
+      {
+        "title": "L'appel de Nuh",
+        "content_fr": "Le Prophète Nuh fut envoyé à un peuple égaré qui adorait des idoles. Pendant 950 ans, il les appela inlassablement à adorer Allah seul, de jour comme de nuit, en public comme en secret. Cependant, à l'exception d'un petit nombre, son peuple le rejeta avec arrogance, se bouchant les oreilles et se couvrant de leurs vêtements pour ne pas l'entendre."
+      },
+      {
+        "title": "La construction de l'Arche",
+        "content_fr": "Face à l'obstination de son peuple, Allah ordonna à Nuh de construire une immense arche. Pendant qu'il la construisait, les notables de son peuple se moquaient de lui. Nuh leur répondit que s'ils se moquaient d'eux aujourd'hui, ils se moqueraient d'eux plus tard. Sur ordre d'Allah, Nuh embarqua un couple de chaque espèce animale, ainsi que sa famille et les croyants."
+      },
+      {
+        "title": "Le grand déluge",
+        "content_fr": "Les cieux s'ouvrirent et la terre fit jaillir des sources. L'eau monta rapidement, recouvrant tout sur son passage. Le fils de Nuh, refusant de croire, pensa pouvoir trouver refuge sur une montagne, mais il fut emporté par les vagues. L'arche vogua en toute sécurité sous la protection d'Allah, sauvant les croyants de la destruction."
+      }
+    ]
+  }
+]
