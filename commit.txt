@@ -1,22 +1,21 @@
-[2026-08-07] — Enhancement: Adhkar Search and PWA Layout
+[2026-08-07] — Enhancement: Rich UI for Knowledge Tutorials
 
 What changed:
-- Added a global search bar to the Adhkar page (`Adhkar.jsx`) to filter invocations by Arabic text, French translation, or source reference.
-- Added a "Toutes" (All) category option, selected by default, allowing users to search across the entire dataset of 78 invocations.
-- Updated `AdhkarList.jsx` to process the `searchQuery` prop and perform case-insensitive matching across multiple fields.
-- Improved PWA mobile layout alignment by ensuring inputs use `text-base` (prevents iOS Safari zoom) and adding `pb-32` to the list container for better bottom-nav clearance.
+- Completely rewrote `knowledge.json` to structure tutorial steps as objects rather than plain strings.
+- Added properties to each step: `title`, `description`, `isFard` (boolean), and `repetitions` (number).
+- Updated `Knowledge.jsx` to render a rich, modern timeline UI for the tutorials.
+- Added visual badges for 'Obligatoire (Fard)' (styled in red) and 'Recommandé (Sunnah)' (styled in blue).
+- Added repetition counters (e.g., '3x') for steps like washing hands or face.
 
 Why:
-- The user requested a search feature for the Adhkar page to quickly find specific invocations without manually browsing through 17 categories.
-- PWA layout adjustments were requested to ensure a native-like experience on mobile devices without layout shifts or obscured content.
+- The initial implementation was too basic (plain text list). The user specifically requested a true "step-by-step" tutorial experience with Fard/Sunnah distinctions and repetition counters, as outlined in the earlier research phase. This brings the UI up to the expected standard.
 
 Files affected:
-- src/pages/Adhkar.jsx — UI updates for search input and 'Toutes' category.
-- src/components/AdhkarList.jsx — Filtering logic updated to support search query.
+- src/data/knowledge.json — Restructured data schema.
+- src/pages/Knowledge.jsx — Refactored `TutorialCard` component for rich UI rendering.
 
 Breaking changes:
 - None.
 
 Notes for review:
-- Verify that searching works seamlessly across all categories.
-- Check mobile PWA rendering to ensure the bottom padding (`pb-32`) is sufficient.
+- Check the Ablutions (Wudu) and Salat tabs on `/knowledge` to see the new badges and step formatting.

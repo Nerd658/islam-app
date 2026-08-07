@@ -134,15 +134,43 @@ const TutorialCard = ({ tutorial, isExpanded, onToggle }) => {
       
       {isExpanded && (
         <div className="p-5 pt-2 border-t border-[#222]">
-          <div className="relative border-l-2 border-[#333] ml-3 space-y-6 mt-4">
+          <div className="relative border-l-2 border-[#333] ml-3 space-y-8 mt-4">
             {tutorial.steps.map((step, index) => (
-              <div key={index} className="relative pl-6">
-                <div className="absolute -left-[9px] top-1 w-4 h-4 rounded-full bg-[#111] border-2 border-emerald-500 flex items-center justify-center">
+              <div key={index} className="relative pl-8">
+                {/* Timeline dot */}
+                <div className="absolute -left-[9px] top-1.5 w-4 h-4 rounded-full bg-[#111] border-2 border-emerald-500 flex items-center justify-center">
                   <div className="w-1.5 h-1.5 rounded-full bg-emerald-500"></div>
                 </div>
-                <div className="text-sm md:text-base text-gray-300 bg-[#111] border border-[#222] p-4 rounded-xl shadow-sm">
-                  <span className="font-semibold text-emerald-400 mr-2">Étape {index + 1}:</span>
-                  {step}
+                
+                {/* Step Content */}
+                <div className="bg-[#111] border border-[#222] p-5 rounded-xl shadow-sm hover:border-[#333] transition-colors">
+                  <div className="flex flex-wrap items-center justify-between gap-2 mb-3">
+                    <h4 className="font-bold text-white flex items-center gap-2">
+                        <span className="text-emerald-500 text-sm font-mono bg-emerald-500/10 px-2 py-0.5 rounded-md">
+                            {index + 1}
+                        </span>
+                        {step.title}
+                    </h4>
+                    
+                    <div className="flex items-center gap-2">
+                        {step.repetitions && (
+                            <span className="text-xs font-semibold text-gray-400 bg-gray-800 px-2 py-1 rounded-md border border-gray-700">
+                                {step.repetitions}x
+                            </span>
+                        )}
+                        <span className={`text-xs font-bold px-2 py-1 rounded-md border ${
+                            step.isFard 
+                                ? 'bg-rose-500/10 text-rose-400 border-rose-500/20' 
+                                : 'bg-blue-500/10 text-blue-400 border-blue-500/20'
+                        }`}>
+                            {step.isFard ? 'Obligatoire (Fard)' : 'Recommandé (Sunnah)'}
+                        </span>
+                    </div>
+                  </div>
+                  
+                  <p className="text-sm md:text-base text-gray-300 leading-relaxed">
+                    {step.description}
+                  </p>
                 </div>
               </div>
             ))}

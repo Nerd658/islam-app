@@ -4,29 +4,114 @@
       "id": "wudu",
       "title": "Les Petites Ablutions (Wudu)",
       "steps": [
-        "Avoir l'intention (Niyyah) de faire les ablutions.",
-        "Dire 'Bismillah' (Au nom d'Allah).",
-        "Se laver les mains jusqu'aux poignets 3 fois.",
-        "Se rincer la bouche 3 fois.",
-        "Aspirer l'eau dans les narines et la rejeter 3 fois.",
-        "Se laver le visage 3 fois.",
-        "Se laver les bras jusqu'aux coudes 3 fois (droit puis gauche).",
-        "Passer les mains mouillées sur la tête et les oreilles.",
-        "Se laver les pieds jusqu'aux chevilles 3 fois (droit puis gauche)."
+        {
+          "title": "L'Intention (Niyyah)",
+          "description": "Formuler l'intention de faire les ablutions dans son cœur (sans la prononcer à voix haute).",
+          "isFard": true,
+          "repetitions": 1
+        },
+        {
+          "title": "Dire Bismillah",
+          "description": "Prononcer 'Bismillah' (Au nom d'Allah) avant de commencer.",
+          "isFard": false,
+          "repetitions": 1
+        },
+        {
+          "title": "Se laver les mains",
+          "description": "Laver les deux mains jusqu'aux poignets, en veillant à faire passer l'eau entre les doigts.",
+          "isFard": false,
+          "repetitions": 3
+        },
+        {
+          "title": "Se rincer la bouche",
+          "description": "Prendre de l'eau dans la main droite, la mettre dans la bouche, la rincer et la recracher.",
+          "isFard": false,
+          "repetitions": 3
+        },
+        {
+          "title": "Lavage du nez",
+          "description": "Aspirer légèrement de l'eau dans les narines (Istinshaq) et la rejeter (Istinthar).",
+          "isFard": false,
+          "repetitions": 3
+        },
+        {
+          "title": "Se laver le visage",
+          "description": "Laver le visage entier, du haut du front jusqu'au bas du menton, et d'une oreille à l'autre.",
+          "isFard": true,
+          "repetitions": 3
+        },
+        {
+          "title": "Se laver les bras",
+          "description": "Laver le bras droit jusqu'au coude inclus, puis le bras gauche.",
+          "isFard": true,
+          "repetitions": 3
+        },
+        {
+          "title": "Essuyer la tête et les oreilles",
+          "description": "Passer les mains mouillées de l'avant de la tête vers l'arrière puis revenir à l'avant, et essuyer l'intérieur et l'extérieur des oreilles.",
+          "isFard": true,
+          "repetitions": 1
+        },
+        {
+          "title": "Se laver les pieds",
+          "description": "Laver le pied droit jusqu'à la cheville incluse en passant entre les orteils, puis le pied gauche.",
+          "isFard": true,
+          "repetitions": 3
+        },
+        {
+          "title": "Invocation finale",
+          "description": "Dire : 'Ash-hadu an la ilaha illallah, wa ash-hadu anna Muhammadan 'abduhu wa rasuluh.'",
+          "isFard": false,
+          "repetitions": 1
+        }
       ]
     },
     {
       "id": "ghusl",
       "title": "La Grande Ablution (Ghusl)",
       "steps": [
-        "Avoir l'intention (Niyyah) de faire le Ghusl.",
-        "Dire 'Bismillah'.",
-        "Se laver les mains 3 fois.",
-        "Laver ses parties intimes.",
-        "Faire les petites ablutions (Wudu) complètes.",
-        "Verser de l'eau sur la tête 3 fois en frictionnant les cheveux.",
-        "Verser de l'eau sur tout le côté droit du corps.",
-        "Verser de l'eau sur tout le côté gauche du corps."
+        {
+          "title": "L'Intention (Niyyah)",
+          "description": "Formuler l'intention de faire le Ghusl pour se purifier.",
+          "isFard": true,
+          "repetitions": 1
+        },
+        {
+          "title": "Dire Bismillah",
+          "description": "Prononcer 'Bismillah'.",
+          "isFard": false,
+          "repetitions": 1
+        },
+        {
+          "title": "Laver les parties intimes",
+          "description": "Laver soigneusement ses parties intimes avec la main gauche pour enlever toute impureté.",
+          "isFard": true,
+          "repetitions": 1
+        },
+        {
+          "title": "Faire le Wudu",
+          "description": "Accomplir les petites ablutions (Wudu) complètes (on peut retarder le lavage des pieds à la toute fin).",
+          "isFard": false,
+          "repetitions": 1
+        },
+        {
+          "title": "Laver la tête",
+          "description": "Verser de l'eau sur la tête en frictionnant bien pour que l'eau atteigne les racines des cheveux.",
+          "isFard": true,
+          "repetitions": 3
+        },
+        {
+          "title": "Laver le côté droit",
+          "description": "Verser de l'eau sur tout le côté droit du corps, de haut en bas.",
+          "isFard": true,
+          "repetitions": 1
+        },
+        {
+          "title": "Laver le côté gauche",
+          "description": "Verser de l'eau sur tout le côté gauche du corps, de haut en bas.",
+          "isFard": true,
+          "repetitions": 1
+        }
       ]
     }
   ],
@@ -35,15 +120,54 @@
       "id": "salat",
       "title": "Comment Prier (Salat)",
       "steps": [
-        "Se tenir debout face à la Qibla avec l'intention de prier.",
-        "Dire 'Allahu Akbar' (Takbirat Al-Ihram).",
-        "Réciter la sourate Al-Fatiha et une autre sourate (dans les 2 premières rakats).",
-        "S'incliner (Ruku) en disant 'Subhana Rabbiyal Adhim' 3 fois.",
-        "Se redresser en disant 'Sami'a Allahu liman hamidah'.",
-        "Se prosterner (Sujud) en disant 'Subhana Rabbiyal A'la' 3 fois.",
-        "S'asseoir entre les deux prosternations en demandant pardon à Allah.",
-        "Faire une deuxième prosternation identique à la première.",
-        "Se relever pour la Rakat suivante, ou s'asseoir pour le Tachahoud selon la rakat."
+        {
+          "title": "Orientation et Intention",
+          "description": "Se tenir debout face à la Qibla avec l'intention de prier la prière spécifique (ex: Fajr).",
+          "isFard": true
+        },
+        {
+          "title": "Takbirat Al-Ihram",
+          "description": "Lever les mains au niveau des épaules ou des oreilles et dire 'Allahu Akbar' (Allah est le plus grand).",
+          "isFard": true
+        },
+        {
+          "title": "Récitation (Qiyam)",
+          "description": "Réciter la sourate Al-Fatiha, suivie d'une autre sourate (dans les 2 premières Rakats uniquement).",
+          "isFard": true
+        },
+        {
+          "title": "L'Inclinaison (Ruku)",
+          "description": "S'incliner en gardant le dos droit, les mains sur les genoux, et dire 'Subhana Rabbiyal Adhim' (Gloire à mon Seigneur l'Immense).",
+          "isFard": true,
+          "repetitions": 3
+        },
+        {
+          "title": "Le Redressement (I'tidal)",
+          "description": "Se redresser en disant 'Sami'a Allahu liman hamidah' (Allah entend celui qui Le loue), puis debout dire 'Rabbana wa lakal hamd'.",
+          "isFard": true
+        },
+        {
+          "title": "La Prosternation (Sujud)",
+          "description": "Se prosterner (front, nez, deux mains, deux genoux, et bouts des orteils au sol) en disant 'Subhana Rabbiyal A'la' (Gloire à mon Seigneur le Très-Haut).",
+          "isFard": true,
+          "repetitions": 3
+        },
+        {
+          "title": "L'Assise entre les prosternations",
+          "description": "S'asseoir et dire 'Rabbighfir li' (Seigneur pardonne-moi).",
+          "isFard": true
+        },
+        {
+          "title": "Deuxième Prosternation",
+          "description": "Faire une deuxième prosternation identique à la première.",
+          "isFard": true,
+          "repetitions": 3
+        },
+        {
+          "title": "Tachahoud et Salutations (Taslim)",
+          "description": "À la dernière Rakat, s'asseoir pour réciter le Tachahoud, la prière sur le Prophète, puis terminer en tournant la tête à droite et à gauche en disant 'Assalamu Alaykum wa Rahmatullah'.",
+          "isFard": true
+        }
       ]
     }
   ],
