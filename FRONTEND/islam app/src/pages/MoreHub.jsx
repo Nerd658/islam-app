@@ -110,28 +110,28 @@ export default function MoreHub() {
                             <p className="text-theme-text-muted text-sm">Vérifier manuellement s'il y a une nouvelle version de l'application disponible.</p>
                         </div>
                     </div>
-                    <div className="flex flex-col items-center sm:items-end gap-2 w-full sm:w-auto">
+                    <div className="flex flex-col items-center sm:items-end gap-2 w-full sm:w-auto relative z-50">
                         <button 
                             onClick={handleUpdateCheck}
                             disabled={isChecking}
                             className={
                                 needRefresh 
-                                    ? "bg-theme-accent text-black font-bold py-2.5 px-6 rounded-xl flex items-center justify-center gap-2 transition-all shadow-md shadow-theme-accent/20 animate-pulse w-full sm:w-auto" 
-                                    : "bg-theme-primary text-black font-bold py-2.5 px-6 rounded-xl flex items-center justify-center gap-2 transition-all hover:brightness-110 shadow-md shadow-theme-primary/20 w-full sm:w-auto disabled:opacity-70"
+                                    ? "bg-amber-500 hover:bg-amber-400 text-black font-bold py-3 px-8 rounded-xl flex items-center justify-center gap-2 transition-all shadow-xl shadow-amber-500/20 animate-pulse w-full sm:w-auto cursor-pointer pointer-events-auto" 
+                                    : "bg-emerald-500 hover:bg-emerald-400 text-black font-bold py-3 px-8 rounded-xl flex items-center justify-center gap-2 transition-all shadow-xl shadow-emerald-500/20 w-full sm:w-auto disabled:opacity-70 disabled:cursor-not-allowed cursor-pointer pointer-events-auto"
                             }
                         >
-                            <RefreshCw size={18} className={isChecking ? "animate-spin" : ""} /> 
-                            {needRefresh ? "Installer la mise à jour" : isChecking ? "Vérification..." : "Vérifier"}
+                            <RefreshCw size={20} className={isChecking ? "animate-spin" : ""} /> 
+                            {needRefresh ? "Installer la mise à jour" : isChecking ? "Vérification..." : "Vérifier la mise à jour"}
                         </button>
                         
                         {/* Feedback messages */}
                         {updateStatus === 'up_to_date' && !needRefresh && (
-                            <span className="text-xs font-medium text-theme-primary animate-in fade-in slide-in-from-top-1">
-                                ✓ L'application est à jour
+                            <span className="text-sm font-bold text-emerald-500 animate-in fade-in slide-in-from-top-2 mt-2">
+                                ✓ L'application est déjà à jour !
                             </span>
                         )}
                         {updateStatus === 'error' && (
-                            <span className="text-xs font-medium text-red-400 animate-in fade-in slide-in-from-top-1">
+                            <span className="text-sm font-bold text-red-500 animate-in fade-in slide-in-from-top-2 mt-2">
                                 ✗ Impossible de vérifier
                             </span>
                         )}

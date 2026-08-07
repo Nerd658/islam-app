@@ -173,6 +173,20 @@
   ],
   "ressources": [
     {
+      "id": "quran-com",
+      "title": "Quran.com",
+      "type": "Site Web",
+      "url": "https://quran.com",
+      "description": "Lisez, écoutez et étudiez le Noble Coran."
+    },
+    {
+      "id": "sunnah-com",
+      "title": "Sunnah.com",
+      "type": "Site Web",
+      "url": "https://sunnah.com",
+      "description": "Encyclopédie des Hadiths prophétiques."
+    },
+    {
       "id": "rachid-eljay",
       "title": "Pr. Rachid Eljay",
       "type": "YouTube",

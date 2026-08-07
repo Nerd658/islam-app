@@ -1,37 +1,37 @@
 [
   {
     "id": 1,
-    "title": "Ya Nabi Salam Alayka",
-    "artist": "Maher Zain",
-    "youtubeId": "Vqfy4ScRXFQ",
-    "isVocalOnly": false
+    "title": "Sourate Al-Fatiha (Exemple)",
+    "artist": "Mishary Alafasy",
+    "audioUrl": "https://server8.mp3quran.net/afs/001.mp3",
+    "isVocalOnly": true
   },
   {
     "id": 2,
-    "title": "Hasbi Rabbi",
-    "artist": "Sami Yusuf",
-    "youtubeId": "QLPvZ6LordQ",
-    "isVocalOnly": false
+    "title": "Sourate Al-Ikhlas (Exemple)",
+    "artist": "Saad Al Ghamdi",
+    "audioUrl": "https://server7.mp3quran.net/s_gmd/112.mp3",
+    "isVocalOnly": true
   },
   {
     "id": 3,
-    "title": "Rahman Ya Rahman",
-    "artist": "Mishari Alafasy",
-    "youtubeId": "JzzjOXQ-G8I",
+    "title": "Sourate Al-Falaq (Exemple)",
+    "artist": "Abdul Baset",
+    "audioUrl": "https://server7.mp3quran.net/basit/113.mp3",
     "isVocalOnly": true
   },
   {
     "id": 4,
-    "title": "Tala'al Badru 'Alayna",
-    "artist": "Mishari Alafasy",
-    "youtubeId": "gSFWmFZoKkg",
+    "title": "Sourate An-Nas (Exemple)",
+    "artist": "Maher Al Muaiqly",
+    "audioUrl": "https://server12.mp3quran.net/maher/114.mp3",
     "isVocalOnly": true
   },
   {
     "id": 5,
-    "title": "Kun Anta",
-    "artist": "Humood AlKhudher",
-    "youtubeId": "qKVW_wJs91Q",
-    "isVocalOnly": false
+    "title": "Ayat Al-Kursi (Exemple)",
+    "artist": "Mishary Alafasy",
+    "audioUrl": "https://server8.mp3quran.net/afs/002.mp3",
+    "isVocalOnly": true
   }
 ]
