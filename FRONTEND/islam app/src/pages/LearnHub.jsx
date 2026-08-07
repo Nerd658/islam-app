@@ -17,7 +17,7 @@ export default function LearnHub() {
     return (
         <div className="pt-8 px-4 max-w-5xl mx-auto pb-24">
             <PageHeader 
-                icon={<BookOpen size={32} />} 
+                icon={<GraduationCap size={32} />} 
                 title="Apprendre" 
                 subtitle="Enrichissez vos connaissances religieuses à votre rythme." 
             />

@@ -9,7 +9,8 @@ export default function Navigation() {
 
     const navItems = [
         { path: '/', label: 'Accueil', icon: Home },
-        { path: '/learn', label: 'Apprendre', icon: BookOpen },
+        { path: '/quran', label: 'Coran', icon: BookOpen },
+        { path: '/learn', label: 'Apprendre', icon: GraduationCap },
         { path: '/practice', label: 'Pratiquer', icon: Heart },
         { path: '/more', label: 'Plus', icon: Layers }
     ];

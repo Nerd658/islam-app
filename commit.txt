@@ -1,21 +1,19 @@
-[2026-08-07] — Enhancement: Rich UI for Knowledge Tutorials
+[2026-08-07] — Enhancement: Main Navigation 5 Sections
 
 What changed:
-- Completely rewrote `knowledge.json` to structure tutorial steps as objects rather than plain strings.
-- Added properties to each step: `title`, `description`, `isFard` (boolean), and `repetitions` (number).
-- Updated `Knowledge.jsx` to render a rich, modern timeline UI for the tutorials.
-- Added visual badges for 'Obligatoire (Fard)' (styled in red) and 'Recommandé (Sunnah)' (styled in blue).
-- Added repetition counters (e.g., '3x') for steps like washing hands or face.
+- Updated `Navigation.jsx` to display 5 main tabs instead of 4: Accueil, Coran, Apprendre, Pratiquer, Plus.
+- Brought the 'Coran' feature to the main navigation for faster, direct access, given its high priority.
+- Updated `LearnHub.jsx` to change its header icon from `BookOpen` to `GraduationCap` to align with the new main navigation.
 
 Why:
-- The initial implementation was too basic (plain text list). The user specifically requested a true "step-by-step" tutorial experience with Fard/Sunnah distinctions and repetition counters, as outlined in the earlier research phase. This brings the UI up to the expected standard.
+- The user requested 5 sections on the main navigation bar. Dedicating a button to the Quran improves UX significantly for a core feature, while 5 tabs remain the optimal standard for mobile bottom navigation bars.
 
 Files affected:
-- src/data/knowledge.json — Restructured data schema.
-- src/pages/Knowledge.jsx — Refactored `TutorialCard` component for rich UI rendering.
+- src/components/Navigation.jsx
+- src/pages/LearnHub.jsx
 
 Breaking changes:
 - None.
 
 Notes for review:
-- Check the Ablutions (Wudu) and Salat tabs on `/knowledge` to see the new badges and step formatting.
+- Verify that clicking "Coran" opens the Quran page directly, while "Apprendre" opens the Hub.
