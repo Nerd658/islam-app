@@ -74,10 +74,9 @@ export default function QuoteOfTheDay() {
                 )}
 
                 <div className="inline-flex flex-col items-center">
-                    <span className="text-xs text-theme-accent font-bold uppercase tracking-wider mb-1">
+                    <span className="text-xs text-theme-accent font-bold uppercase tracking-wider">
                         Citation du Jour
                     </span>
-                    <span className="text-[10px] text-theme-text-muted font-mono">Via Islamic Network API</span>
                 </div>
             </div>
 
