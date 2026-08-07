@@ -77,36 +77,39 @@ export default function Tasbih() {
                 title="Tasbih Numérique"
             />
             
-            <div className="bg-[#0a0a0a] border border-[#333] p-8 rounded-[3rem] shadow-2xl flex flex-col items-center w-full max-w-sm">
+            <div className="bg-theme-surface border border-theme-border p-8 rounded-[3rem] shadow-2xl flex flex-col items-center w-full max-w-sm relative overflow-hidden">
                 
+                {/* Subtle Glow Background */}
+                <div className="absolute top-0 left-1/2 -translate-x-1/2 w-32 h-32 bg-theme-primary/20 rounded-full blur-[80px] pointer-events-none"></div>
+
                 {/* Sound & Milestone Controls Header */}
-                <div className="w-full flex items-center justify-between mb-6">
+                <div className="w-full flex items-center justify-between mb-8 relative z-10">
                     <div className="flex items-center gap-2">
-                        <span className="text-xs text-gray-400 font-mono">Total session : {total}</span>
+                        <span className="text-xs text-theme-text-muted font-mono tracking-widest">Total session : {total}</span>
                         {total > 0 && (
                             <button 
                                 onClick={handleReset}
-                                className="text-gray-600 hover:text-red-400 transition-colors p-1" 
+                                className="text-theme-text-muted hover:text-red-400 transition-colors p-1" 
                                 title="Réinitialiser la session complète"
                             >
-                                <Trash2 size={12} />
+                                <Trash2 size={14} />
                             </button>
                         )}
                     </div>
                     
                     <button
                         onClick={() => setSoundEnabled(!soundEnabled)}
-                        className={`p-2 rounded-xl border transition-all ${
-                            soundEnabled ? 'bg-[#111] border-[#444] text-white' : 'bg-[#111] border-[#222] text-gray-600'
+                        className={`p-2 rounded-xl border transition-all shadow-sm ${
+                            soundEnabled ? 'bg-theme-primary/10 border-theme-primary/30 text-theme-primary' : 'bg-theme-surface-hover border-theme-border text-theme-text-muted'
                         }`}
                         title="Son du clic"
                     >
-                        {soundEnabled ? <Volume2 size={16} /> : <VolumeX size={16} />}
+                        {soundEnabled ? <Volume2 size={18} /> : <VolumeX size={18} />}
                     </button>
                 </div>
 
                 {/* Phrase Selection */}
-                <div className="mb-6 w-full">
+                <div className="mb-8 w-full relative z-10">
                     <select 
                         value={phrase}
                         onChange={(e) => { 
@@ -115,7 +118,7 @@ export default function Tasbih() {
                             setCount(0); 
                             setTotal(0);
                         }}
-                        className="w-full bg-[#111] border border-[#333] text-white p-3 rounded-xl outline-none font-semibold text-sm cursor-pointer"
+                        className="w-full bg-theme-bg border border-theme-border focus:border-theme-primary focus:ring-1 focus:ring-theme-primary text-theme-text p-3.5 rounded-2xl outline-none font-semibold text-sm cursor-pointer shadow-inner appearance-none text-center"
                     >
                         {phrases.map(p => (
                             <option key={p.text} value={p.text}>{p.text}</option>
@@ -124,29 +127,32 @@ export default function Tasbih() {
                 </div>
 
                 {/* Digital Counter Display */}
-                <div className="bg-[#111] border border-[#444] w-full h-36 rounded-2xl mb-8 flex flex-col items-center justify-center shadow-inner relative overflow-hidden p-4">
-                    <h3 className="text-2xl sm:text-3xl font-arabic text-gray-300 mb-1">{currentArabic}</h3>
-                    <span className="text-5xl font-mono text-white font-bold tracking-widest">{count.toString().padStart(4, '0')}</span>
+                <div className="bg-theme-bg border-2 border-theme-border w-full h-40 rounded-3xl mb-10 flex flex-col items-center justify-center shadow-inner relative overflow-hidden p-4 group">
+                    <div className="absolute inset-0 bg-gradient-to-b from-theme-surface-hover to-transparent opacity-50 pointer-events-none"></div>
+                    <h3 className="text-2xl sm:text-3xl font-arabic text-theme-text-muted mb-2 relative z-10">{currentArabic}</h3>
+                    <span className="text-6xl font-mono text-theme-primary font-bold tracking-widest relative z-10 drop-shadow-[0_0_8px_rgba(16,185,129,0.5)]">
+                        {count.toString().padStart(4, '0')}
+                    </span>
                     {count > 0 && count % 33 === 0 && (
-                        <span className="absolute top-2 right-2 text-[10px] bg-emerald-950 text-emerald-300 border border-emerald-700 px-2 py-0.5 rounded-full font-bold flex items-center gap-1">
-                            <Gem size={10} /> 33 Requis !
+                        <span className="absolute top-3 right-3 text-xs bg-theme-accent text-theme-bg px-3 py-1 rounded-full font-extrabold flex items-center gap-1.5 shadow-lg shadow-theme-accent/20 animate-in zoom-in duration-300">
+                            <Gem size={12} /> 33 Atteints !
                         </span>
                     )}
                 </div>
 
                 {/* Tap & Reset Buttons */}
-                <div className="flex flex-col items-center gap-6 w-full">
+                <div className="flex flex-col items-center gap-8 w-full relative z-10">
                     <button 
                         onClick={handleTap}
-                        className="w-36 h-36 bg-white hover:bg-gray-200 text-black rounded-full shadow-2xl flex flex-col items-center justify-center transform active:scale-95 transition-all cursor-pointer select-none"
+                        className="w-40 h-40 bg-gradient-to-br from-theme-primary to-emerald-700 hover:to-emerald-600 text-theme-bg rounded-full shadow-[0_0_40px_rgba(16,185,129,0.3)] hover:shadow-[0_0_60px_rgba(16,185,129,0.5)] border-4 border-theme-bg flex flex-col items-center justify-center transform active:scale-90 transition-all cursor-pointer select-none"
                     >
-                        <span className="text-3xl font-extrabold tracking-wide">TAP</span>
-                        <span className="text-[10px] text-gray-500 font-mono uppercase mt-0.5">Égrainer</span>
+                        <span className="text-4xl font-extrabold tracking-wider">TAP</span>
+                        <span className="text-xs text-emerald-950 font-bold uppercase mt-1 tracking-widest opacity-80">Égrainer</span>
                     </button>
 
                     <button 
                         onClick={handleReset}
-                        className="w-14 h-14 bg-[#111] hover:bg-[#222] border border-[#444] text-gray-300 hover:text-white rounded-full flex items-center justify-center shadow-md transform active:scale-90 transition-all"
+                        className="w-14 h-14 bg-theme-surface-hover hover:bg-theme-border border border-theme-border text-theme-text-muted hover:text-theme-text rounded-full flex items-center justify-center shadow-lg transform active:scale-90 transition-all"
                         title="Réinitialiser le compteur actuel"
                     >
                         <RotateCcw size={20} />

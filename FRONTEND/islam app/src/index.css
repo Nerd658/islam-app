@@ -87,6 +87,24 @@
 
 @layer base {
   :root {
+    /* --- TOKEN DESIGN SYSTEM --- */
+    /* 1. Black (Backgrounds) */
+    --theme-bg: 0 0% 0%;          
+    --theme-surface: 0 0% 4%;     
+    --theme-surface-hover: 0 0% 8%; 
+    
+    /* 2. Green (Primary Brand) */
+    --theme-primary: 158 64% 52%; 
+    
+    /* 3. Gold/Amber (Accent) */
+    --theme-accent: 43 96% 56%;   
+    
+    /* Utilities */
+    --theme-text: 0 0% 98%;       
+    --theme-text-muted: 0 0% 60%; 
+    --theme-border: 0 0% 15%;     
+    /* --------------------------- */
+
     --background: 0 0% 0%;
     --foreground: 0 0% 95%;
     --card: 0 0% 4%;

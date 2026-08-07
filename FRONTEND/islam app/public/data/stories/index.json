@@ -1,0 +1,42 @@
+[
+  {
+    "id": "1",
+    "slug": "lhistoire-du-prophte-youssef-joseph",
+    "title": "L'Histoire du Prophète Youssef (Joseph)",
+    "category": "Prophètes",
+    "read_time_minutes": 25,
+    "chapter_count": 5
+  },
+  {
+    "id": "2",
+    "slug": "lhistoire-du-prophte-nuh-no",
+    "title": "L'Histoire du Prophète Nuh (Noé)",
+    "category": "Prophètes",
+    "read_time_minutes": 20,
+    "chapter_count": 5
+  },
+  {
+    "id": "3",
+    "slug": "lhistoire-de-musa-mose-et-le-pharaon",
+    "title": "L'Histoire de Musa (Moïse) et le Pharaon",
+    "category": "Prophètes",
+    "read_time_minutes": 22,
+    "chapter_count": 5
+  },
+  {
+    "id": "4",
+    "slug": "lhistoire-du-prophte-ibrahim-abraham",
+    "title": "L'Histoire du Prophète Ibrahim (Abraham)",
+    "category": "Prophètes",
+    "read_time_minutes": 18,
+    "chapter_count": 5
+  },
+  {
+    "id": "5",
+    "slug": "lhistoire-du-prophte-ayoub-job",
+    "title": "L'Histoire du Prophète Ayoub (Job)",
+    "category": "Prophètes",
+    "read_time_minutes": 10,
+    "chapter_count": 3
+  }
+]

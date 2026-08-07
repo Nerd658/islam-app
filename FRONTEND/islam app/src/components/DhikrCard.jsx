@@ -25,32 +25,32 @@ export default function DhikrCard({ arabic, translation, count, source }) {
     }, []);
 
     return (
-        <div className={`bg-[#0a0a0a] p-6 sm:p-8 rounded-2xl border transition-all duration-300 ${
-            isDone ? 'border-emerald-700/60' : 'border-[#333] hover:border-gray-500'
+        <div className={`bg-theme-surface p-6 sm:p-8 rounded-2xl border transition-all duration-300 ${
+            isDone ? 'border-theme-primary/60' : 'border-theme-border hover:border-theme-text-muted'
         }`}>
             {/* Arabic text */}
             <p
-                className="text-2xl sm:text-3xl text-right font-arabic leading-[2.4] sm:leading-[2.6] tracking-wide mb-6 text-white"
+                className="text-2xl sm:text-3xl text-right font-arabic leading-[2.4] sm:leading-[2.6] tracking-wide mb-6 text-theme-text"
                 dir="rtl"
             >
                 {arabic}
             </p>
 
             {/* Translation */}
-            <p className="text-sm sm:text-base text-gray-400 mb-4 leading-relaxed">
+            <p className="text-sm sm:text-base text-theme-text-muted mb-4 leading-relaxed">
                 {translation}
             </p>
 
             {source && (
-                <p className="text-xs text-gray-600 mb-5 font-mono">
+                <p className="text-xs text-theme-text-muted/60 mb-5 font-mono">
                     Source : {source}
                 </p>
             )}
 
             {/* Progress bar */}
-            <div className="w-full bg-[#1a1a1a] rounded-full h-1.5 mb-5 overflow-hidden border border-[#222]">
+            <div className="w-full bg-theme-bg rounded-full h-1.5 mb-5 overflow-hidden border border-theme-border">
                 <div
-                    className={`h-full rounded-full transition-all duration-300 ${isDone ? 'bg-emerald-500' : 'bg-white'}`}
+                    className={`h-full rounded-full transition-all duration-300 ${isDone ? 'bg-theme-primary' : 'bg-theme-text'}`}
                     style={{ width: `${progressPercent}%` }}
                 />
             </div>
@@ -62,8 +62,8 @@ export default function DhikrCard({ arabic, translation, count, source }) {
                     disabled={isDone}
                     className={`flex-1 py-3 px-4 rounded-xl font-semibold text-sm transition-all border flex items-center justify-center gap-2 ${
                         isDone
-                            ? 'bg-emerald-950/30 border-emerald-700/40 text-emerald-400 cursor-default'
-                            : 'bg-[#111] border-[#333] text-white hover:bg-[#1a1a1a] active:scale-95'
+                            ? 'bg-theme-primary/10 border-theme-primary/40 text-theme-primary cursor-default'
+                            : 'bg-theme-surface-hover border-theme-border text-theme-text hover:bg-theme-border active:scale-95'
                     }`}
                 >
                     {isDone
@@ -75,7 +75,7 @@ export default function DhikrCard({ arabic, translation, count, source }) {
                 {current > 0 && (
                     <button
                         onClick={handleReset}
-                        className="p-3 rounded-xl bg-[#111] border border-[#222] text-gray-600 hover:text-gray-300 hover:border-[#444] transition-all"
+                        className="p-3 rounded-xl bg-theme-surface-hover border border-theme-border text-theme-text-muted hover:text-theme-text hover:border-theme-text-muted transition-all"
                         title="Recommencer"
                     >
                         <RotateCcw size={14} />

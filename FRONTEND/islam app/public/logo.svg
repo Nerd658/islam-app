@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" fill="none">
+  <!-- Background -->
+  <rect width="512" height="512" rx="112" fill="#0a0a0a"/>
+  <rect width="512" height="512" rx="112" fill="url(#grad)" opacity="0.1"/>
+  
+  <!-- Outer Glow -->
+  <circle cx="256" cy="256" r="160" fill="#10b981" opacity="0.15" filter="url(#blur)"/>
+  
+  <!-- Crescent Moon -->
+  <path d="M344 256C344 326.692 286.692 384 216 384C183.023 384 153.111 371.503 130.643 350.817C159.206 373.176 195.421 385 232.5 385C305.678 385 365 325.678 365 252.5C365 194.025 327.279 144.153 274.685 125.127C315.656 145.474 344 197.234 344 256Z" fill="url(#moon-grad)"/>
+  
+  <!-- Star -->
+  <path d="M296 200L303.111 216.889L320 224L303.111 231.111L296 248L288.889 231.111L272 224L288.889 216.889L296 200Z" fill="#f59e0b"/>
+  
+  <defs>
+    <linearGradient id="grad" x1="0" y1="0" x2="512" y2="512" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#10b981"/>
+      <stop offset="1" stop-color="#052e16"/>
+    </linearGradient>
+    <linearGradient id="moon-grad" x1="130" y1="125" x2="365" y2="385" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#34d399"/>
+      <stop offset="1" stop-color="#059669"/>
+    </linearGradient>
+    <filter id="blur" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="30"/>
+    </filter>
+  </defs>
+</svg>

@@ -6,10 +6,13 @@ export default function cleanLocationResults(data) {
     
         .map(item => {
             const {city, town, village, state, country, province} =  item.address;
+            const locationName = city || town || village || province || '';
+            const displayParts = [locationName, state, country].filter(Boolean);
+            
             return {
-                display : `${city || town || village || province || ''} , ${state || ''} ,  ${country}`,	 
+                display: displayParts.join(', '),	 
                 importance: item.importance, 
-                city : city || town || village || province || '',
+                city: locationName,
                 state: state || '',
                 country: country,
                 country_code: item.address.country_code ? item.address.country_code.toUpperCase() : '',

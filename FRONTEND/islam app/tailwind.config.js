@@ -13,6 +13,16 @@ export default {
   			sm: 'calc(var(--radius) - 4px)'
   		},
   		colors: {
+            theme: {
+                bg: 'hsl(var(--theme-bg) / <alpha-value>)',
+                surface: 'hsl(var(--theme-surface) / <alpha-value>)',
+                'surface-hover': 'hsl(var(--theme-surface-hover) / <alpha-value>)',
+                primary: 'hsl(var(--theme-primary) / <alpha-value>)',
+                accent: 'hsl(var(--theme-accent) / <alpha-value>)',
+                text: 'hsl(var(--theme-text) / <alpha-value>)',
+                muted: 'hsl(var(--theme-text-muted) / <alpha-value>)',
+                border: 'hsl(var(--theme-border) / <alpha-value>)',
+            },
   			background: 'hsl(var(--background))',
   			foreground: 'hsl(var(--foreground))',
   			card: {

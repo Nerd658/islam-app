@@ -22,7 +22,11 @@ const PracticeHub = lazy(() => import('./pages/PracticeHub'));
 const MoreHub = lazy(() => import('./pages/MoreHub'));
 const Nasheeds = lazy(() => import('./pages/Nasheeds'));
 const Stories = lazy(() => import('./pages/Stories'));
+const StoryReader = lazy(() => import('./pages/StoryReader'));
 const Knowledge = lazy(() => import('./pages/Knowledge'));
+const Zakat = lazy(() => import('./pages/Zakat'));
+const Moon = lazy(() => import('./pages/Moon'));
+const IslamicNames = lazy(() => import('./pages/IslamicNames'));
 
 // Dedicated Standalone Arabic Sub-pages
 const ArabicAlphabet = lazy(() => import('./pages/arabic/ArabicAlphabet'));
@@ -61,7 +65,11 @@ function App() {
             <Route path="/more" element={<MoreHub />} />
             <Route path="/nasheeds" element={<Nasheeds />} />
             <Route path="/stories" element={<Stories />} />
+            <Route path="/stories/:type/:slug" element={<StoryReader />} />
             <Route path="/knowledge" element={<Knowledge />} />
+            <Route path="/zakat" element={<Zakat />} />
+            <Route path="/moon" element={<Moon />} />
+            <Route path="/islamic-names" element={<IslamicNames />} />
 
             {/* Arabic Dedicated Standalone Routes */}
             <Route path="/arabic" element={<Navigate to="/arabic/alphabet" replace />} />

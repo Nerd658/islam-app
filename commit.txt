@@ -1,21 +1,27 @@
-[2026-08-07] — Enhancement: Rich and detailed Prophet Stories
+2026-08-07 — Refactor Stories UI, Add StoryReader, and Update App Logo
 
 What changed:
-- Completely rewrote `stories.json` to feature long, detailed, and historically accurate narratives for the prophets.
-- Expanded the stories of Youssef and Nuh with much richer content and distinct chapters.
-- Added 3 new full stories: Musa (Moïse), Ibrahim (Abraham), and Ayoub (Job).
-- Updated `Stories.jsx` to render multi-paragraph text correctly by splitting `content_fr` by `\n` and wrapping them in `<p>` tags with appropriate spacing.
+- Overhauled Tasbih UI with premium design tokens (emerald glow, LED drop-shadows, gold milestone badge).
+- Implemented pagination for the Stories list (6 items per page).
+- Extracted the story reading modal into a dedicated `StoryReader` route (`/stories/:type/:slug`).
+- Replaced the default React/Vite logo with a custom Islamic SVG logo (crescent and star).
 
 Why:
-- The initial placeholder stories were too short and lacked depth. Since there is no reliable French API for detailed Islamic stories, the local JSON was expanded manually to provide a truly engaging reading experience (15-25 minutes read time per story) as requested by the user.
-- The UI fix was necessary because React does not render newline characters inside a single text node without CSS `white-space` adjustments or explicit splitting.
+- Deep linking support and improved mobile UX for long-form reading (avoids `fixed bottom-0` navigation bar conflicts).
+- Consistent branding and aesthetics (SVG logo and tokenized colors in Tasbih and Stories).
 
 Files affected:
-- src/data/stories.json
-- src/pages/Stories.jsx
+- FRONTEND/islam app/src/pages/Tasbih.jsx — Applied `theme-primary` gradients and glow filters.
+- FRONTEND/islam app/src/pages/Stories.jsx — Removed modal logic, added pagination and routing.
+- FRONTEND/islam app/src/pages/StoryReader.jsx — Created dedicated reading component.
+- FRONTEND/islam app/src/App.jsx — Registered `StoryReader` route.
+- FRONTEND/islam app/index.html — Replaced `vite.svg` with `logo.svg`.
+- FRONTEND/islam app/vite.config.js — Updated PWA manifest icon paths.
+- FRONTEND/islam app/public/logo.svg — Created custom SVG logo.
+- FRONTEND/islam app/public/vite.svg — Deleted default logo.
 
 Breaking changes:
 - None.
 
 Notes for review:
-- Open a story and ensure the paragraphs are well-spaced and readable.
+- Verify deep linking to stories (e.g., `/stories/prophets/yusuf`) works correctly when the app is installed as a PWA.
