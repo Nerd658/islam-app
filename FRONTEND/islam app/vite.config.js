@@ -17,18 +17,21 @@ export default defineConfig({
       manifest: {
         name: 'Islam App',
         short_name: 'IslamApp',
-        description: 'Horaires de prières, Adhkar et Qibla',
-        theme_color: '#0f172a',
+        description: 'Horaires de prières, Adhkar, Coran et Qibla',
+        theme_color: '#0a0a0a',
+        background_color: '#000000',
         icons: [
           {
             src: 'logo.svg',
             sizes: '192x192',
-            type: 'image/svg+xml'
+            type: 'image/svg+xml',
+            purpose: 'any maskable'
           },
           {
             src: 'logo.svg',
             sizes: '512x512',
-            type: 'image/svg+xml'
+            type: 'image/svg+xml',
+            purpose: 'any maskable'
           }
         ]
       },

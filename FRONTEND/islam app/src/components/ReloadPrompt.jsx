@@ -31,21 +31,21 @@ function ReloadPrompt() {
   }
 
   return (
-    <div className="fixed bottom-20 md:bottom-6 right-4 md:right-6 z-[100] bg-[#1a1a1a] border border-[#333] shadow-2xl rounded-xl p-4 flex flex-col gap-3 max-w-sm animate-in slide-in-from-bottom-5">
-      <div className="flex items-start justify-between gap-4 text-gray-200 text-sm font-medium">
+    <div className="fixed bottom-20 md:bottom-6 right-4 md:right-6 z-[100] bg-theme-surface border border-theme-border shadow-[0_10px_40px_rgba(16,185,129,0.15)] rounded-2xl p-5 flex flex-col gap-4 max-w-sm animate-in slide-in-from-bottom-5">
+      <div className="flex items-start justify-between gap-4 text-theme-text text-sm font-medium">
         <span>
           {offlineReady
             ? 'L\'application est prête à fonctionner hors-ligne.'
             : 'Une nouvelle mise à jour est disponible !'}
         </span>
-        <button onClick={close} className="text-gray-500 hover:text-white transition-colors">
+        <button onClick={close} className="text-theme-text-muted hover:text-white transition-colors bg-theme-bg p-1 rounded-full">
           <X size={16} />
         </button>
       </div>
       
       {needRefresh && (
         <button
-          className="bg-emerald-600 hover:bg-emerald-500 text-white text-xs font-bold py-2 px-4 rounded-lg flex items-center justify-center gap-2 transition-colors"
+          className="bg-theme-primary hover:brightness-110 text-white text-xs font-bold py-2.5 px-4 rounded-xl flex items-center justify-center gap-2 transition-all shadow-md shadow-theme-primary/20"
           onClick={() => updateServiceWorker(true)}
         >
           <RefreshCw size={14} /> Mettre à jour et recharger

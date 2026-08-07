@@ -1,24 +1,25 @@
-2026-08-07 — Apply Premium Design System to Quran Page & Global Layout
+2026-08-07 — PWA Manifest Updates & Quran Karaoke UX Refinement
 
 What changed:
-- Removed hardcoded `bg-black` and `text-gray-100` from `App.jsx` layout, replacing them with global CSS variables `bg-theme-bg` and `text-theme-text`.
-- Refactored `QuranReader.jsx` Surah list cards: added `bg-theme-surface-hover`, inner gradients, emerald box-shadow on hover, and smooth scaling effects.
-- Replaced hardcoded `text-white` in Quran verses with `text-theme-text` for softer contrast.
-- Replaced `bg-[#0a0a0a]` and `bg-[#111]` with `bg-theme-surface` across the reader.
-- Audio playback UI: Currently playing verse gets a green inner gradient `from-theme-primary/10`, and the active recited word highlights in emerald.
-- Replaced the hardcoded 'text-white' Arabic text rendering in the reader with softer `text-theme-text` and emerald borders for verse numbers.
+- Updated `vite.config.js` PWA manifest: set `theme_color` to `#0a0a0a` and `background_color` to `#000000` to match the design system.
+- Added `purpose: 'any maskable'` to PWA SVG icons for better Android adaptive icon support.
+- Refactored `ReloadPrompt.jsx` to use design system tokens (`bg-theme-surface`, `bg-theme-primary`) instead of hardcoded colors.
+- Refined the 3-color palette (Black, Emerald, Gold) on the Quran page: Surah titles, hover states, and bookmarks now utilize `theme-accent` (Gold).
+- Fixed Arabic text layout shifting issues caused by scaling effects during audio playback.
+- Redesigned the karaoke active word highlight to a stable, solid emerald block cursor with white text for maximum readability and layout preservation.
 
 Why:
-- The app layout was forcing a pure black background that prevented pages from inheriting the softer `theme-bg` variable.
-- The Quran page had legacy hardcoded colors (`#111`, `#222`, `text-white`) which felt flat and lacked the premium depth created in recent components like Tasbih and Adhkar.
-- Contrast issues on pure black backgrounds made the pure white text aggressive to read.
+- PWA manifest colors were still using an older slate-blue theme (`#0f172a`), creating a visual disconnect on mobile.
+- The Quran reader UI was suffering from layout shifts when reading word-by-word due to aggressive CSS scaling. The new solid block cursor is cleaner, stable, and more legible.
+- Exploiting the Gold accent color adds a premium, authentic "Mus'haf" aesthetic to the sacred text metadata.
 
 Files affected:
-- FRONTEND/islam app/src/App.jsx — Global background layout tokens updated.
-- FRONTEND/islam app/src/components/QuranReader.jsx — Complete UI token overhaul for cards, verses, and controls.
+- vite.config.js — Manifest colors and maskable icons.
+- src/components/ReloadPrompt.jsx — Applied theme tokens.
+- src/components/QuranReader.jsx — Refined Gold styling and Karaoke block cursor.
 
 Breaking changes:
 - None.
 
 Notes for review:
-- Check the Quran page (`/quran`) to experience the new hover animations on the Surah list and the word-by-word emerald highlight during audio playback.
+- The karaoke (word-by-word highlight) is now extremely stable. Test the audio playback to see the solid green cursor tracking the text seamlessly.

@@ -428,16 +428,15 @@ export default function QuranReader() {
                                         <button 
                                             key={chapter.id}
                                             onClick={() => fetchVerses(chapter.id)}
-                                            className="relative flex flex-col items-center justify-center p-6 bg-theme-surface-hover hover:bg-[#1a1a1a] border border-theme-border/60 hover:border-theme-primary/50 rounded-3xl transition-all shadow-md group hover:shadow-[0_10px_30px_rgba(16,185,129,0.15)] hover:-translate-y-1.5"
+                                            className="relative flex flex-col items-center justify-center p-6 bg-theme-surface-hover hover:bg-[#1a1a1a] border border-theme-border/60 hover:border-theme-primary/50 rounded-3xl transition-all shadow-md group hover:-translate-y-1"
                                         >
-                                            <div className="absolute inset-0 bg-gradient-to-br from-theme-primary/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity rounded-3xl pointer-events-none" />
                                             {isSavedOffline && (
                                                 <span className="absolute top-3 right-3 p-1.5 bg-theme-primary/10 text-theme-primary rounded-full border border-theme-primary/20" title="Disponible Hors-Ligne">
                                                     <Check size={14} />
                                                 </span>
                                             )}
-                                            <span className="absolute top-4 left-4 text-theme-text-muted/40 font-mono font-bold text-xs group-hover:text-theme-primary/50 transition-colors">{chapter.id}</span>
-                                            <p className="text-4xl text-theme-primary font-arabic mb-3 mt-4 group-hover:scale-110 transition-transform duration-300">{chapter.name_arabic}</p>
+                                            <span className="absolute top-4 left-4 text-theme-text-muted/40 font-mono font-bold text-xs group-hover:text-theme-accent transition-colors">{chapter.id}</span>
+                                            <p className="text-4xl text-theme-primary group-hover:text-theme-accent font-arabic mb-3 mt-4 transition-colors duration-300">{chapter.name_arabic}</p>
                                             <h3 className="font-bold text-base text-theme-text">{chapter.name_simple}</h3>
                                         </button>
                                     );
@@ -649,7 +648,7 @@ export default function QuranReader() {
                             </div>
                         )}
 
-                        <h3 className="text-3xl sm:text-4xl font-bold text-center text-theme-primary font-arabic mt-4 mb-2">
+                        <h3 className="text-3xl sm:text-4xl font-bold text-center text-theme-accent font-arabic mt-4 mb-2 drop-shadow-[0_0_15px_rgba(252,211,77,0.2)]">
                             {selectedChapter.name_arabic}
                             <span className="block text-sm text-theme-text-muted mt-2 font-sans tracking-wide">Sourate {selectedChapter.name_simple} ({selectedChapter.verses_count} versets)</span>
                         </h3>
@@ -676,19 +675,19 @@ export default function QuranReader() {
                                             ref={el => verseRefs.current[v.verse_key] = el}
                                             className={`p-6 sm:p-8 rounded-3xl transition-all duration-500 relative overflow-hidden ${
                                                 isPlaying 
-                                                    ? 'bg-[#151515] border border-theme-primary/50 shadow-[0_0_40px_rgba(16,185,129,0.15)]' 
+                                                    ? 'bg-[#111] border-2 border-theme-primary shadow-[0_0_15px_rgba(16,185,129,0.1)] z-10' 
                                                     : 'bg-theme-surface-hover hover:bg-[#1a1a1a] border border-theme-border/60 hover:border-theme-primary/30 shadow-md'
                                             }`}
                                         >
                                             {isPlaying && (
-                                                <div className="absolute inset-0 bg-gradient-to-l from-theme-primary/10 to-transparent pointer-events-none" />
+                                                <div className="absolute inset-0 bg-gradient-to-l from-theme-primary/5 to-transparent pointer-events-none" />
                                             )}
-                                            <div className="flex items-start gap-4 sm:gap-6">
+                                            <div className="flex items-start gap-4 sm:gap-6 relative z-10">
                                                 <div className="flex flex-col items-center gap-4 flex-shrink-0 mt-3">
                                                     <button 
                                                         onClick={() => playVerse(v.verse_key)}
                                                         className={`transition-all duration-300 ${
-                                                            isPlaying ? 'text-theme-primary scale-110 drop-shadow-[0_0_10px_rgba(16,185,129,0.5)]' : 'text-theme-text-muted hover:text-theme-primary'
+                                                            isPlaying ? 'text-theme-primary drop-shadow-[0_0_8px_rgba(16,185,129,0.5)]' : 'text-theme-text-muted hover:text-theme-primary'
                                                         }`}
                                                         title="Écouter le verset"
                                                     >
@@ -698,7 +697,7 @@ export default function QuranReader() {
                                                     <button
                                                         onClick={() => saveBookmark(v.verse_key)}
                                                         className={`transition-all ${
-                                                            isBookmarked ? 'text-emerald-400' : 'text-gray-700 hover:text-gray-400'
+                                                            isBookmarked ? 'text-theme-accent' : 'text-theme-text-muted hover:text-theme-accent'
                                                         }`}
                                                         title={isBookmarked ? "Marque-page actuel" : "Marquer comme dernier verset lu"}
                                                     >
@@ -715,16 +714,16 @@ export default function QuranReader() {
                                                                 return (
                                                                     <span 
                                                                         key={idx} 
-                                                                        className={`mx-1.5 px-1.5 py-0.5 rounded-xl transition-all duration-200 inline-block ${
+                                                                        className={`mx-1 px-1.5 py-0.5 rounded-lg transition-colors duration-200 inline-block ${
                                                                             isCurrentWord 
-                                                                                ? 'bg-theme-primary/20 border-b-2 border-theme-primary text-theme-primary' 
+                                                                                ? 'bg-theme-primary text-white font-medium shadow-[0_0_10px_rgba(16,185,129,0.4)]' 
                                                                                 : ''
                                                                         }`}
                                                                         dangerouslySetInnerHTML={{ __html: wordContent }}
                                                                     />
                                                                 );
                                                             })}
-                                                            <span className="inline-flex items-center justify-center text-xs w-7 h-7 rounded-full mx-2 font-mono border bg-theme-primary/20 text-theme-primary border-theme-primary">
+                                                            <span className="inline-flex items-center justify-center text-xs w-7 h-7 rounded-full mx-2 font-mono border bg-theme-accent/20 text-theme-accent font-bold border-theme-accent">
                                                                 {v.verse_key.split(':')[1]}
                                                             </span>
                                                         </p>
@@ -736,7 +735,7 @@ export default function QuranReader() {
                                                     ) : (
                                                         <p className="font-arabic text-3xl sm:text-4xl leading-[2.5] sm:leading-[2.8] tracking-wide text-theme-text">
                                                             {(v.text_uthmani || v.text_tajweed || '').replace(/<[^>]+>/g, '')}
-                                                            <span className="inline-flex items-center justify-center text-xs w-7 h-7 rounded-full mx-2 font-mono border bg-theme-surface border-theme-border text-theme-text-muted">
+                                                            <span className="inline-flex items-center justify-center text-xs w-7 h-7 rounded-full mx-2 font-mono border bg-transparent border-theme-accent/50 text-theme-accent">
                                                                 {v.verse_key.split(':')[1]}
                                                             </span>
                                                         </p>
@@ -744,7 +743,9 @@ export default function QuranReader() {
 
                                                     {showTranslation && v.translation && (
                                                         <p 
-                                                            className="text-theme-text-muted text-sm sm:text-base leading-relaxed mt-4 font-sans text-left border-t border-theme-border/50 pt-4" 
+                                                            className={`text-sm sm:text-base leading-relaxed mt-4 font-sans text-left border-t pt-4 transition-colors ${
+                                                                isPlaying ? 'text-theme-primary/90 border-theme-primary/30' : 'text-theme-text-muted border-theme-border/50'
+                                                            }`} 
                                                             dir="ltr"
                                                             dangerouslySetInnerHTML={{ __html: v.translation }}
                                                         />
