@@ -1,82 +1,37 @@
 [
-  {
-    "id": 1,
-    "title": "Ya Nabi Salam Alayka",
-    "artist": "Maher Zain",
-    "youtubeId": "Vqfy4ScRXFQ",
-    "category": "Nasheed",
-    "isVocalOnly": false
-  },
-  {
-    "id": 2,
-    "title": "Hasbi Rabbi",
-    "artist": "Sami Yusuf",
-    "youtubeId": "QLPvZ6LordQ",
-    "category": "Nasheed",
-    "isVocalOnly": false
-  },
-  {
-    "id": 3,
-    "title": "Rahman Ya Rahman",
-    "artist": "Mishari Alafasy",
-    "youtubeId": "JzzjOXQ-G8I",
-    "category": "Nasheed",
-    "isVocalOnly": true
-  },
-  {
-    "id": 4,
-    "title": "Tala'al Badru 'Alayna",
-    "artist": "Mishari Alafasy",
-    "youtubeId": "gSFWmFZoKkg",
-    "category": "Nasheed",
-    "isVocalOnly": true
-  },
-  {
-    "id": 5,
-    "title": "Kun Anta",
-    "artist": "Humood AlKhudher",
-    "youtubeId": "qKVW_wJs91Q",
-    "category": "Nasheed",
-    "isVocalOnly": false
-  },
-  {
-    "id": 6,
-    "title": "Comment gérer les épreuves ?",
-    "artist": "Pr. Rachid Eljay",
-    "youtubeId": "jgG21iawv7M",
-    "category": "Rappel",
-    "isVocalOnly": false
-  },
-  {
-    "id": 7,
-    "title": "Un rappel qui touche le coeur",
-    "artist": "Pr. Rachid Eljay",
-    "youtubeId": "lOXmTOUcGNU",
-    "category": "Rappel",
-    "isVocalOnly": false
-  },
-  {
-    "id": 8,
-    "title": "Le comportement du Musulman",
-    "artist": "Pr. Rachid Eljay",
-    "youtubeId": "rKcQ9LQvn8o",
-    "category": "Rappel",
-    "isVocalOnly": false
-  },
-  {
-    "id": 9,
-    "title": "Se rapprocher d'Allah",
-    "artist": "Pr. Rachid Eljay",
-    "youtubeId": "FwNzxDxrdSQ",
-    "category": "Rappel",
-    "isVocalOnly": false
-  },
-  {
-    "id": 10,
-    "title": "L'importance de la Prière (Salat)",
-    "artist": "Pr. Rachid Eljay",
-    "youtubeId": "NKJR6WU6Nuk",
-    "category": "Rappel",
-    "isVocalOnly": false
-  }
+  { "id": 1, "title": "Le Jour du Jugement", "artist": "Pr. Rachid Eljay", "youtubeId": "Hpc06yWO9no", "category": "Rappel", "isVocalOnly": false },
+  { "id": 2, "title": "L'importance de la Prière", "artist": "Pr. Rachid Eljay", "youtubeId": "2tlyccWf3ww", "category": "Rappel", "isVocalOnly": false },
+  { "id": 3, "title": "Gérer les épreuves", "artist": "Pr. Rachid Eljay", "youtubeId": "V0lzN0Sc9t4", "category": "Rappel", "isVocalOnly": false },
+  { "id": 4, "title": "Le bon comportement", "artist": "Pr. Rachid Eljay", "youtubeId": "zIdB9IsYRcI", "category": "Rappel", "isVocalOnly": false },
+  { "id": 5, "title": "Comment se rapprocher d'Allah", "artist": "Pr. Rachid Eljay", "youtubeId": "lmhiOAaBMrQ", "category": "Rappel", "isVocalOnly": false },
+  { "id": 6, "title": "Les signes de la fin des temps", "artist": "Pr. Rachid Eljay", "youtubeId": "oDrOxXHMv_4", "category": "Rappel", "isVocalOnly": false },
+  { "id": 7, "title": "L'amour en Islam", "artist": "Pr. Rachid Eljay", "youtubeId": "HQ1T0jAp2ug", "category": "Rappel", "isVocalOnly": false },
+  { "id": 8, "title": "Pardonner aux autres", "artist": "Pr. Rachid Eljay", "youtubeId": "NWAhllriDSk", "category": "Rappel", "isVocalOnly": false },
+  
+  { "id": 9, "title": "L'éducation des enfants", "artist": "Nader Abou Anas", "youtubeId": "yNnC5WwINkI", "category": "Rappel", "isVocalOnly": false },
+  { "id": 10, "title": "Les ruses du diable", "artist": "Nader Abou Anas", "youtubeId": "Ij_3VeD_tjg", "category": "Rappel", "isVocalOnly": false },
+  { "id": 11, "title": "L'importance de la science", "artist": "Nader Abou Anas", "youtubeId": "TCUuRC8PDps", "category": "Rappel", "isVocalOnly": false },
+  { "id": 12, "title": "La mort, une réalité", "artist": "Nader Abou Anas", "youtubeId": "6gR5yuLEaFY", "category": "Rappel", "isVocalOnly": false },
+  { "id": 13, "title": "L'expiation des péchés", "artist": "Nader Abou Anas", "youtubeId": "k5q5U9Imny0", "category": "Rappel", "isVocalOnly": false },
+  { "id": 14, "title": "Les bienfaits du Coran", "artist": "Nader Abou Anas", "youtubeId": "Ja_5AkB9n38", "category": "Rappel", "isVocalOnly": false },
+  { "id": 15, "title": "Garder espoir", "artist": "Nader Abou Anas", "youtubeId": "cwQRcD5CLqg", "category": "Rappel", "isVocalOnly": false },
+  { "id": 16, "title": "L'Enfer et le Paradis", "artist": "Nader Abou Anas", "youtubeId": "nMOQ7NHhFSY", "category": "Rappel", "isVocalOnly": false },
+  
+  { "id": 17, "title": "Ya Nabi Salam Alayka", "artist": "Maher Zain", "youtubeId": "Vqfy4ScRXFQ", "category": "Nasheed", "isVocalOnly": false },
+  { "id": 18, "title": "Insha Allah", "artist": "Maher Zain", "youtubeId": "f4J7-WR1QOY", "category": "Nasheed", "isVocalOnly": false },
+  { "id": 19, "title": "Assalamu Alayka", "artist": "Maher Zain", "youtubeId": "2VLqZtded_0", "category": "Nasheed", "isVocalOnly": false },
+  { "id": 20, "title": "For The Rest Of My Life", "artist": "Maher Zain", "youtubeId": "_WDubgYMFEk", "category": "Nasheed", "isVocalOnly": false },
+  { "id": 21, "title": "Number One For Me", "artist": "Maher Zain", "youtubeId": "Y5yybEnl7ro", "category": "Nasheed", "isVocalOnly": false },
+  { "id": 22, "title": "Rahmatun Lil'Alameen", "artist": "Maher Zain", "youtubeId": "1iWTl8DM7Rg", "category": "Nasheed", "isVocalOnly": true },
+  { "id": 23, "title": "Peace Be Upon You", "artist": "Maher Zain", "youtubeId": "wjJ_3DQ7qCU", "category": "Nasheed", "isVocalOnly": false },
+  { "id": 24, "title": "Radhitu Billahi Rabba", "artist": "Maher Zain", "youtubeId": "tBbdSzwxqyY", "category": "Nasheed", "isVocalOnly": true },
+  
+  { "id": 25, "title": "Hasbi Rabbi", "artist": "Sami Yusuf", "youtubeId": "QLPvZ6LordQ", "category": "Nasheed", "isVocalOnly": false },
+  { "id": 26, "title": "You Came To Me", "artist": "Sami Yusuf", "youtubeId": "i3lqPUbYyTM", "category": "Nasheed", "isVocalOnly": false },
+  { "id": 27, "title": "Al Mu'allim", "artist": "Sami Yusuf", "youtubeId": "mWXPvyEaApY", "category": "Nasheed", "isVocalOnly": true },
+  { "id": 28, "title": "Healing", "artist": "Sami Yusuf", "youtubeId": "OcT7wllJc9g", "category": "Nasheed", "isVocalOnly": false },
+  { "id": 29, "title": "Make Me Strong", "artist": "Sami Yusuf", "youtubeId": "dZEQosTBRKc", "category": "Nasheed", "isVocalOnly": false },
+  { "id": 30, "title": "Wherever You Are", "artist": "Sami Yusuf", "youtubeId": "z2_2cFityc4", "category": "Nasheed", "isVocalOnly": false },
+  { "id": 31, "title": "Ya Mustafa", "artist": "Sami Yusuf", "youtubeId": "1PNhiHxtuKQ", "category": "Nasheed", "isVocalOnly": true },
+  { "id": 32, "title": "Sari Gelin", "artist": "Sami Yusuf", "youtubeId": "FKV2oeS4vw8", "category": "Nasheed", "isVocalOnly": false }
 ]
