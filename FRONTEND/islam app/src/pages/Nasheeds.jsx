@@ -5,7 +5,6 @@ import PageHeader from '../components/PageHeader';
 
 export default function Nasheeds() {
   const [activeCategory, setActiveCategory] = useState('Tous');
-  const [vocalOnly, setVocalOnly] = useState(false);
   const [searchQuery, setSearchQuery] = useState('');
   const [currentPage, setCurrentPage] = useState(1);
   const [activeNasheed, setActiveNasheed] = useState(null);
@@ -17,8 +16,6 @@ export default function Nasheeds() {
     return nasheedsData.filter(n => {
       // Filtre catégorie
       if (activeCategory !== 'Tous' && n.category !== activeCategory) return false;
-      // Filtre a cappella
-      if (vocalOnly && !n.isVocalOnly) return false;
       // Filtre recherche (titre ou artiste)
       if (searchQuery.trim()) {
         const query = searchQuery.toLowerCase();
@@ -28,7 +25,7 @@ export default function Nasheeds() {
       }
       return true;
     });
-  }, [activeCategory, vocalOnly, searchQuery]);
+  }, [activeCategory, searchQuery]);
 
   // Pagination
   const totalPages = Math.max(1, Math.ceil(filteredNasheeds.length / ITEMS_PER_PAGE));
@@ -44,10 +41,6 @@ export default function Nasheeds() {
   };
   const handleSearchChange = (e) => {
     setSearchQuery(e.target.value);
-    setCurrentPage(1);
-  };
-  const handleVocalToggle = () => {
-    setVocalOnly(!vocalOnly);
     setCurrentPage(1);
   };
 
@@ -107,20 +100,6 @@ export default function Nasheeds() {
                 <BookOpen size={16} /> Rappels
             </button>
             </div>
-
-            {(activeCategory === 'Tous' || activeCategory === 'Nasheed') && (
-                <button
-                onClick={handleVocalToggle}
-                className={`flex items-center px-4 py-2.5 rounded-xl border transition-all font-bold text-sm shadow-sm ${
-                    vocalOnly 
-                        ? 'bg-theme-surface border-theme-primary text-theme-primary' 
-                        : 'bg-theme-surface border-theme-border text-theme-text-muted hover:text-theme-text'
-                }`}
-                >
-                {vocalOnly ? <CheckCircle className="w-4 h-4 mr-2" /> : <Music className="w-4 h-4 mr-2" />}
-                Vocal Only
-                </button>
-            )}
         </div>
       </div>
 
@@ -153,11 +132,6 @@ export default function Nasheeds() {
                     }`}>
                         {nasheed.category}
                     </span>
-                    {nasheed.isVocalOnly && (
-                        <span className="inline-block text-xs font-bold bg-theme-bg border border-theme-border text-theme-text-muted px-3 py-1 rounded-full">
-                        Sans instruments
-                        </span>
-                    )}
                 </div>
             </div>
             ))}
