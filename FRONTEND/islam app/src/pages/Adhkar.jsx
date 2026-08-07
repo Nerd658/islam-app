@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import AdhkarList from '../components/AdhkarList';
 import adhkarData from '../data/adhkar.json';
 import { BookOpen, ChevronDown, Search } from 'lucide-react';
+import PageHeader from '../components/PageHeader';
 
 export default function Adhkar() {
     const categories = ['Toutes', ...new Set(adhkarData.map(a => a.category))];
@@ -10,38 +11,41 @@ export default function Adhkar() {
     const [searchQuery, setSearchQuery] = useState('');
 
     return (
-        <div className="pt-8 px-4 max-w-3xl mx-auto">
-            <h2 className="text-3xl font-bold text-center mb-8 text-theme-text flex justify-center items-center gap-3">
-                <BookOpen size={28} className="text-theme-primary" /> Invocations
-            </h2>
+        <div className="min-h-screen pb-24 p-6 md:p-8">
+            <div className="max-w-4xl mx-auto">
+                <PageHeader 
+                    icon={<BookOpen size={32} />} 
+                    title="Adhkar & Invocations" 
+                    subtitle="Protégez-vous avec les évocations du matin, du soir et d'après la prière." 
+                />
             
-            <div className="w-full max-w-sm mx-auto mb-8 flex flex-col gap-4">
+                <div className="w-full max-w-xl mx-auto mb-10 flex flex-col sm:flex-row gap-4">
                 {/* Search Bar */}
-                <div className="relative">
+                <div className="relative flex-1">
                     <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
-                        <Search size={20} className="text-gray-400" />
+                        <Search size={20} className="text-theme-primary" />
                     </div>
                     <input
                         type="text"
                         value={searchQuery}
                         onChange={(e) => setSearchQuery(e.target.value)}
-                        placeholder="Rechercher une invocation..."
-                        className="w-full bg-theme-surface border border-theme-border hover:border-theme-text-muted focus:border-theme-primary focus:ring-1 focus:ring-theme-primary text-theme-text py-4 pl-12 pr-4 rounded-xl transition-all shadow-lg text-base"
+                        placeholder="Chercher (ex: matin, protection...)"
+                        className="w-full bg-theme-surface border border-theme-border hover:border-theme-primary/50 focus:border-theme-primary focus:ring-1 focus:ring-theme-primary text-theme-text py-3.5 pl-12 pr-4 rounded-xl transition-all shadow-lg text-sm"
                     />
                 </div>
 
                 {/* Category Dropdown */}
-                <div className="relative z-20">
+                <div className="relative z-20 sm:w-56">
                     <button 
                         onClick={() => setIsDropdownOpen(!isDropdownOpen)}
-                        className="w-full flex items-center justify-between bg-theme-surface border border-theme-border hover:border-theme-text-muted text-theme-text py-4 px-6 rounded-xl transition-all shadow-lg"
+                        className="w-full flex items-center justify-between bg-theme-surface border border-theme-border hover:border-theme-primary/50 focus:border-theme-primary text-theme-text py-3.5 px-5 rounded-xl transition-all shadow-lg"
                     >
-                        <span className="font-bold text-lg">{selectedCategory}</span>
-                        <ChevronDown size={20} className={`text-gray-400 transition-transform duration-300 ${isDropdownOpen ? 'rotate-180' : ''}`} />
+                        <span className="font-bold text-sm truncate">{selectedCategory}</span>
+                        <ChevronDown size={18} className={`text-theme-primary transition-transform duration-300 ml-2 ${isDropdownOpen ? 'rotate-180' : ''}`} />
                     </button>
                     
                     {isDropdownOpen && (
-                        <div className="absolute top-full left-0 w-full mt-2 bg-theme-surface border border-theme-border rounded-xl overflow-hidden shadow-2xl z-30 max-h-64 overflow-y-auto custom-scrollbar">
+                        <div className="absolute top-full right-0 w-full sm:w-72 mt-3 bg-theme-surface/95 backdrop-blur-xl border border-theme-primary/30 rounded-2xl shadow-[0_20px_60px_rgba(0,0,0,0.8)] z-50 max-h-72 overflow-y-auto custom-scrollbar ring-1 ring-white/10 overflow-hidden">
                             {categories.map(cat => (
                                 <button
                                     key={cat}
@@ -49,7 +53,7 @@ export default function Adhkar() {
                                         setSelectedCategory(cat); 
                                         setIsDropdownOpen(false); 
                                     }}
-                                    className={`w-full text-left px-6 py-4 hover:bg-theme-surface-hover transition-colors border-b border-theme-border last:border-0 ${selectedCategory === cat ? 'bg-theme-surface-hover font-bold text-theme-primary' : 'text-theme-text-muted'}`}
+                                    className={`w-full text-left px-5 py-4 hover:bg-theme-surface-hover transition-colors border-b border-theme-border/50 last:border-0 text-sm ${selectedCategory === cat ? 'bg-theme-primary/10 font-bold text-theme-primary' : 'text-theme-text'}`}
                                 >
                                     {cat}
                                 </button>
@@ -60,6 +64,7 @@ export default function Adhkar() {
             </div>
             
             <AdhkarList category={selectedCategory} searchQuery={searchQuery} />
+            </div>
         </div>
     );
 }

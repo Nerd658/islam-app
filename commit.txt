@@ -1,27 +1,25 @@
-2026-08-07 — Refactor Stories UI, Add StoryReader, and Update App Logo
+2026-08-07 — Refactor Adhkar UI to Premium Design System
 
 What changed:
-- Overhauled Tasbih UI with premium design tokens (emerald glow, LED drop-shadows, gold milestone badge).
-- Implemented pagination for the Stories list (6 items per page).
-- Extracted the story reading modal into a dedicated `StoryReader` route (`/stories/:type/:slug`).
-- Replaced the default React/Vite logo with a custom Islamic SVG logo (crescent and star).
+- Added PageHeader to Adhkar for consistency with Tasbih and Stories.
+- Implemented a "Glassmorphism" effect for the filter dropdown to improve contrast against the dark background.
+- Redesigned `DhikrCard` with `rounded-3xl` corners, soft drop-shadows, and a responsive layout.
+- Added a "glow" and "gradient" effect when an Adhkar repetition is completed (isDone state).
+- Added pagination (4 items per page) to the Adhkar list to optimize performance on mobile.
+- Removed forced black background (`bg-theme-bg`) to inherit the natural dark theme surface.
 
 Why:
-- Deep linking support and improved mobile UX for long-form reading (avoids `fixed bottom-0` navigation bar conflicts).
-- Consistent branding and aesthetics (SVG logo and tokenized colors in Tasbih and Stories).
+- The Adhkar page lacked the premium feel introduced in Tasbih.
+- Long lists of Adhkar caused rendering issues on mobile, which is solved by pagination.
+- The filter dropdown was previously blending into the background, making it hard to see.
 
 Files affected:
-- FRONTEND/islam app/src/pages/Tasbih.jsx — Applied `theme-primary` gradients and glow filters.
-- FRONTEND/islam app/src/pages/Stories.jsx — Removed modal logic, added pagination and routing.
-- FRONTEND/islam app/src/pages/StoryReader.jsx — Created dedicated reading component.
-- FRONTEND/islam app/src/App.jsx — Registered `StoryReader` route.
-- FRONTEND/islam app/index.html — Replaced `vite.svg` with `logo.svg`.
-- FRONTEND/islam app/vite.config.js — Updated PWA manifest icon paths.
-- FRONTEND/islam app/public/logo.svg — Created custom SVG logo.
-- FRONTEND/islam app/public/vite.svg — Deleted default logo.
+- FRONTEND/islam app/src/pages/Adhkar.jsx — UI layout, PageHeader, dropdown redesign.
+- FRONTEND/islam app/src/components/AdhkarList.jsx — Pagination logic (4/page).
+- FRONTEND/islam app/src/components/DhikrCard.jsx — Premium UI styling and completed states.
 
 Breaking changes:
 - None.
 
 Notes for review:
-- Verify deep linking to stories (e.g., `/stories/prophets/yusuf`) works correctly when the app is installed as a PWA.
+- Deployed to Firebase. Check the Adhkar UI on a mobile device for the pagination and filter dropdown experience.
