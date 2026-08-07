@@ -1,35 +1,22 @@
-[2026-08-07] — Feature: UX/UI Refactor and New Modules (Stories, Nasheeds, Knowledge)
+[2026-08-07] — Enhancement: Adhkar Search and PWA Layout
 
 What changed:
-- Completely refactored the sidebar navigation into 4 main categories (Accueil, Apprendre, Pratiquer, Plus) using Hub pages.
-- Created `LearnHub.jsx`, `PracticeHub.jsx`, and `MoreHub.jsx` to organize the many features in a clean, grid-based UI.
-- Implemented the `Stories.jsx` page with a beautiful full-screen zen reading mode and added prophetic stories data in `stories.json`.
-- Implemented the `Nasheeds.jsx` page with YouTube embeds, grid layout, and a mandatory "Vocal Only" filter, backed by `nasheeds.json`.
-- Implemented the `Knowledge.jsx` page featuring step-by-step tutorials for Ablutions (Wudu), Grande Ablution (Ghusl), and Prière (Salat), along with a directory of trusted resources and YouTube channels (`knowledge.json`).
-- Updated `App.jsx` to lazy-load and route to all new features.
-- Cleaned up `Navigation.jsx` to display only the 4 main items.
+- Added a global search bar to the Adhkar page (`Adhkar.jsx`) to filter invocations by Arabic text, French translation, or source reference.
+- Added a "Toutes" (All) category option, selected by default, allowing users to search across the entire dataset of 78 invocations.
+- Updated `AdhkarList.jsx` to process the `searchQuery` prop and perform case-insensitive matching across multiple fields.
+- Improved PWA mobile layout alignment by ensuring inputs use `text-base` (prevents iOS Safari zoom) and adding `pb-32` to the list container for better bottom-nav clearance.
 
 Why:
-- The sidebar was becoming too crowded with the growing number of features. The Hub system significantly improves mobile UX and desktop organization.
-- Added the requested new content modules (Songs, Stories, Wazuh/Reminders, Knowledge) based on detailed research, fulfilling the user's specific request for a rich, educational platform.
+- The user requested a search feature for the Adhkar page to quickly find specific invocations without manually browsing through 17 categories.
+- PWA layout adjustments were requested to ensure a native-like experience on mobile devices without layout shifts or obscured content.
 
 Files affected:
-- src/App.jsx — Added new routes and lazy imports.
-- src/components/Navigation.jsx — Refactored to 4 main tabs.
-- src/pages/LearnHub.jsx — New Hub for educational features.
-- src/pages/PracticeHub.jsx — New Hub for daily worship tools.
-- src/pages/MoreHub.jsx — New Hub for extra features and settings.
-- src/pages/Nasheeds.jsx — New page component for Islamic songs.
-- src/data/nasheeds.json — New dataset for nasheeds.
-- src/pages/Stories.jsx — New page component for prophetic stories.
-- src/data/stories.json — New dataset for stories.
-- src/pages/Knowledge.jsx — New page component for tutorials and resources.
-- src/data/knowledge.json — New dataset for knowledge.
+- src/pages/Adhkar.jsx — UI updates for search input and 'Toutes' category.
+- src/components/AdhkarList.jsx — Filtering logic updated to support search query.
 
 Breaking changes:
-- None. All previous routes (e.g. `/adhkar`, `/quran`) remain accessible via the Hubs.
+- None.
 
 Notes for review:
-- Verify the "Vocal Only" filter behaves as expected on the Nasheeds page.
-- Check the Reading Mode on the Stories page for mobile responsiveness.
-- The Imam IA link has been commented out in `MoreHub.jsx` as requested ("cache mm la parti imama ia").
+- Verify that searching works seamlessly across all categories.
+- Check mobile PWA rendering to ensure the bottom padding (`pb-32`) is sufficient.
