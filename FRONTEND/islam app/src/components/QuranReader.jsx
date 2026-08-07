@@ -353,59 +353,61 @@ export default function QuranReader() {
 
     return (
         <div className="w-full max-w-5xl mx-auto py-4 px-4 flex flex-col h-[calc(100vh-4rem)] md:h-[calc(100vh-2rem)] overflow-hidden">
-            <h2 className="text-2xl sm:text-3xl font-bold text-center mb-4 text-white flex items-center justify-center gap-3 flex-shrink-0">
-                <BookOpen className="text-gray-400" size={26} />
+            <h2 className="text-2xl sm:text-3xl font-bold text-center mb-4 text-theme-text flex items-center justify-center gap-3 flex-shrink-0">
+                <BookOpen className="text-theme-primary" size={28} />
                 Le Noble Coran
             </h2>
             
             {!selectedChapter ? (
-                <div className="flex flex-col flex-1 overflow-hidden bg-[#0a0a0a] p-4 rounded-2xl border border-[#333] shadow-2xl">
+                <div className="flex flex-col flex-1 overflow-hidden bg-theme-surface p-4 sm:p-6 rounded-3xl border border-theme-border shadow-2xl">
                     {lastRead && (
-                        <div className="mb-4 p-3 bg-[#111] border border-[#333] rounded-xl flex items-center justify-between flex-shrink-0">
-                            <div className="flex items-center gap-3">
-                                <Bookmark className="text-emerald-400" size={20} />
+                        <div className="mb-6 p-4 bg-theme-surface-hover border border-theme-primary/30 rounded-2xl flex items-center justify-between flex-shrink-0 shadow-lg shadow-theme-primary/5">
+                            <div className="flex items-center gap-4">
+                                <div className="p-2.5 bg-theme-primary/10 rounded-xl hidden sm:block">
+                                    <Bookmark className="text-theme-primary" size={24} />
+                                </div>
                                 <div>
-                                    <p className="text-xs text-gray-400 font-bold">Reprendre la lecture</p>
-                                    <p className="text-sm font-bold text-white">
+                                    <p className="text-xs text-theme-text-muted font-bold uppercase tracking-wider mb-1">Reprendre la lecture</p>
+                                    <p className="text-sm sm:text-base font-bold text-theme-text">
                                         Sourate {lastRead.chapterName} ({lastRead.chapterNameArabic}) — Verset {lastRead.verseKey.split(':')[1]}
                                     </p>
                                 </div>
                             </div>
                             <button
                                 onClick={() => fetchVerses(lastRead.chapterId, lastRead.verseKey)}
-                                className="px-3 py-1.5 bg-emerald-950 border border-emerald-700 text-emerald-300 text-xs font-semibold rounded-lg hover:bg-emerald-900 transition-colors"
+                                className="px-4 py-2 bg-theme-primary text-white text-sm font-bold rounded-xl hover:shadow-[0_0_15px_rgba(16,185,129,0.4)] transition-all flex items-center gap-2"
                             >
-                                Continuer ➔
+                                Continuer <span className="hidden sm:inline">➔</span>
                             </button>
                         </div>
                     )}
 
-                    <div className="flex flex-col sm:flex-row gap-3 mb-4 flex-shrink-0">
+                    <div className="flex flex-col sm:flex-row gap-4 mb-6 flex-shrink-0">
                         <div className="relative flex-1">
-                            <Search className="absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-500" size={18} />
+                            <Search className="absolute left-4 top-1/2 transform -translate-y-1/2 text-theme-primary" size={18} />
                             <input 
                                 type="text" 
-                                placeholder={searchMode === 'surahs' ? "Rechercher une sourate (Nom, N°)..." : "Rechercher un mot/verset dans tout le Coran..."}
-                                className="w-full bg-[#111] border border-[#333] text-white py-2.5 pl-11 pr-4 rounded-xl outline-none focus:border-gray-500 transition-colors shadow-lg text-sm"
+                                placeholder={searchMode === 'surahs' ? "Rechercher une sourate..." : "Rechercher un mot/verset..."}
+                                className="w-full bg-theme-bg border border-theme-border text-theme-text py-3.5 pl-11 pr-4 rounded-xl outline-none focus:border-theme-primary focus:ring-1 focus:ring-theme-primary transition-all shadow-inner text-sm"
                                 value={searchQuery}
                                 onChange={(e) => setSearchQuery(e.target.value)}
                                 onKeyDown={(e) => e.key === 'Enter' && searchMode === 'verses' && handleSearchVerses()}
                             />
                         </div>
 
-                        <div className="flex items-center bg-[#111] p-1 rounded-xl border border-[#333]">
+                        <div className="flex items-center bg-theme-bg p-1.5 rounded-xl border border-theme-border shadow-inner">
                             <button
                                 onClick={() => setSearchMode('surahs')}
-                                className={`px-3 py-1.5 rounded-lg text-xs font-semibold transition-all ${
-                                    searchMode === 'surahs' ? 'bg-white text-black' : 'text-gray-400 hover:text-white'
+                                className={`px-4 py-2 rounded-lg text-xs font-bold transition-all ${
+                                    searchMode === 'surahs' ? 'bg-theme-surface shadow-md text-theme-primary border border-theme-border' : 'text-theme-text-muted hover:text-theme-text'
                                 }`}
                             >
                                 Sourates
                             </button>
                             <button
                                 onClick={() => { setSearchMode('verses'); handleSearchVerses(); }}
-                                className={`px-3 py-1.5 rounded-lg text-xs font-semibold transition-all ${
-                                    searchMode === 'verses' ? 'bg-white text-black' : 'text-gray-400 hover:text-white'
+                                className={`px-4 py-2 rounded-lg text-xs font-bold transition-all ${
+                                    searchMode === 'verses' ? 'bg-theme-surface shadow-md text-theme-primary border border-theme-border' : 'text-theme-text-muted hover:text-theme-text'
                                 }`}
                             >
                                 Versets
@@ -426,16 +428,17 @@ export default function QuranReader() {
                                         <button 
                                             key={chapter.id}
                                             onClick={() => fetchVerses(chapter.id)}
-                                            className="relative flex flex-col items-center justify-center p-4 bg-[#111] hover:bg-[#222] border border-[#333] hover:border-gray-500 rounded-xl transition-all shadow-sm group"
+                                            className="relative flex flex-col items-center justify-center p-6 bg-theme-surface-hover hover:bg-[#1a1a1a] border border-theme-border/60 hover:border-theme-primary/50 rounded-3xl transition-all shadow-md group hover:shadow-[0_10px_30px_rgba(16,185,129,0.15)] hover:-translate-y-1.5"
                                         >
+                                            <div className="absolute inset-0 bg-gradient-to-br from-theme-primary/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity rounded-3xl pointer-events-none" />
                                             {isSavedOffline && (
-                                                <span className="absolute top-2 right-2 p-1 bg-emerald-950/80 text-emerald-400 rounded-full border border-emerald-800" title="Disponible Hors-Ligne">
-                                                    <Check size={12} />
+                                                <span className="absolute top-3 right-3 p-1.5 bg-theme-primary/10 text-theme-primary rounded-full border border-theme-primary/20" title="Disponible Hors-Ligne">
+                                                    <Check size={14} />
                                                 </span>
                                             )}
-                                            <span className="text-gray-500 font-bold mb-1 text-xs">N° {chapter.id}</span>
-                                            <h3 className="font-bold text-lg mb-1 text-white">{chapter.name_simple}</h3>
-                                            <p className="text-2xl text-white font-arabic">{chapter.name_arabic}</p>
+                                            <span className="absolute top-4 left-4 text-theme-text-muted/40 font-mono font-bold text-xs group-hover:text-theme-primary/50 transition-colors">{chapter.id}</span>
+                                            <p className="text-4xl text-theme-primary font-arabic mb-3 mt-4 group-hover:scale-110 transition-transform duration-300">{chapter.name_arabic}</p>
+                                            <h3 className="font-bold text-base text-theme-text">{chapter.name_simple}</h3>
                                         </button>
                                     );
                                 })}
@@ -474,13 +477,13 @@ export default function QuranReader() {
                 </div>
             ) : (
                 <div className="flex flex-col flex-1 overflow-hidden">
-                    <div className="flex-shrink-0 bg-[#0a0a0a] p-3 sm:p-6 rounded-2xl border border-[#333] mb-3 shadow-xl">
-                        <div className="flex items-center justify-between gap-3 mb-3 relative">
+                    <div className="flex-shrink-0 bg-theme-surface p-4 sm:p-6 rounded-3xl border border-theme-border mb-4 shadow-xl">
+                        <div className="flex items-center justify-between gap-3 mb-4 relative">
                             <button 
                                 onClick={() => setSelectedChapter(null)}
-                                className="bg-[#222] hover:bg-[#333] border border-[#444] px-3.5 py-1.5 rounded-xl text-xs sm:text-sm font-medium transition-all text-white flex items-center gap-2 flex-shrink-0"
+                                className="bg-theme-bg hover:bg-theme-surface-hover border border-theme-border px-4 py-2 rounded-xl text-sm font-bold transition-all text-theme-text flex items-center gap-2 flex-shrink-0 shadow-sm"
                             >
-                                <ChevronLeft size={16} /> Retour
+                                <ChevronLeft size={18} /> <span className="hidden sm:inline">Retour</span>
                             </button>
 
                             <div className="hidden sm:flex items-center gap-2.5">
@@ -646,16 +649,16 @@ export default function QuranReader() {
                             </div>
                         )}
 
-                        <h3 className="text-2xl sm:text-3xl font-bold text-center text-white font-arabic">
+                        <h3 className="text-3xl sm:text-4xl font-bold text-center text-theme-primary font-arabic mt-4 mb-2">
                             {selectedChapter.name_arabic}
-                            <span className="block text-sm text-gray-500 mt-0.5 font-sans">Sourate {selectedChapter.name_simple} ({selectedChapter.verses_count} versets)</span>
+                            <span className="block text-sm text-theme-text-muted mt-2 font-sans tracking-wide">Sourate {selectedChapter.name_simple} ({selectedChapter.verses_count} versets)</span>
                         </h3>
                     </div>
 
-                    <div className="flex-1 overflow-hidden bg-[#0a0a0a] p-4 sm:p-6 rounded-2xl border border-[#333] shadow-2xl flex flex-col">
+                    <div className="flex-1 overflow-hidden bg-theme-surface p-4 sm:p-6 rounded-3xl border border-theme-border shadow-2xl flex flex-col">
                         {loading ? (
                             <div className="flex justify-center items-center h-48">
-                                <p className="text-xl text-gray-300">Chargement des versets...</p>
+                                <p className="text-xl text-theme-text-muted">Chargement des versets...</p>
                             </div>
                         ) : (
                             <div 
@@ -671,22 +674,25 @@ export default function QuranReader() {
                                         <div 
                                             key={v.id} 
                                             ref={el => verseRefs.current[v.verse_key] = el}
-                                            className={`p-6 sm:p-8 rounded-2xl transition-all duration-300 relative overflow-hidden ${
+                                            className={`p-6 sm:p-8 rounded-3xl transition-all duration-500 relative overflow-hidden ${
                                                 isPlaying 
-                                                    ? 'bg-[#121212] border border-gray-700 shadow-lg' 
-                                                    : 'hover:bg-[#111] border border-[#222]'
+                                                    ? 'bg-[#151515] border border-theme-primary/50 shadow-[0_0_40px_rgba(16,185,129,0.15)]' 
+                                                    : 'bg-theme-surface-hover hover:bg-[#1a1a1a] border border-theme-border/60 hover:border-theme-primary/30 shadow-md'
                                             }`}
                                         >
+                                            {isPlaying && (
+                                                <div className="absolute inset-0 bg-gradient-to-l from-theme-primary/10 to-transparent pointer-events-none" />
+                                            )}
                                             <div className="flex items-start gap-4 sm:gap-6">
-                                                <div className="flex flex-col items-center gap-3 flex-shrink-0 mt-3">
+                                                <div className="flex flex-col items-center gap-4 flex-shrink-0 mt-3">
                                                     <button 
                                                         onClick={() => playVerse(v.verse_key)}
                                                         className={`transition-all duration-300 ${
-                                                            isPlaying ? 'text-white scale-110' : 'text-gray-600 hover:text-gray-300'
+                                                            isPlaying ? 'text-theme-primary scale-110 drop-shadow-[0_0_10px_rgba(16,185,129,0.5)]' : 'text-theme-text-muted hover:text-theme-primary'
                                                         }`}
                                                         title="Écouter le verset"
                                                     >
-                                                        {isPlaying ? <PauseCircle size={34} /> : <PlayCircle size={34} />}
+                                                        {isPlaying ? <PauseCircle size={40} /> : <PlayCircle size={40} />}
                                                     </button>
 
                                                     <button
@@ -702,7 +708,7 @@ export default function QuranReader() {
 
                                                 <div className="flex-grow text-right">
                                                     {isPlaying ? (
-                                                        <p className={`tajweed-text font-arabic text-3xl sm:text-4xl leading-[2.5] sm:leading-[2.8] tracking-wide text-white`}>
+                                                        <p className={`tajweed-text font-arabic text-3xl sm:text-4xl leading-[2.5] sm:leading-[2.8] tracking-wide text-theme-text`}>
                                                             {((v.text_tajweed || v.text_uthmani || '').match(/((?:<[^>]+>|[^<>\s])+)/g) || []).map((wHtml, idx) => {
                                                                 const isCurrentWord = isPlaying && idx === audioProgress.currentWordIndex;
                                                                 const wordContent = tajweedMode ? wHtml : wHtml.replace(/<[^>]+>/g, '');
@@ -711,26 +717,26 @@ export default function QuranReader() {
                                                                         key={idx} 
                                                                         className={`mx-1.5 px-1.5 py-0.5 rounded-xl transition-all duration-200 inline-block ${
                                                                             isCurrentWord 
-                                                                                ? 'bg-white/10 border-b-2 border-white' 
+                                                                                ? 'bg-theme-primary/20 border-b-2 border-theme-primary text-theme-primary' 
                                                                                 : ''
                                                                         }`}
                                                                         dangerouslySetInnerHTML={{ __html: wordContent }}
                                                                     />
                                                                 );
                                                             })}
-                                                            <span className="inline-flex items-center justify-center text-xs w-7 h-7 rounded-full mx-2 font-mono border bg-emerald-900/50 text-emerald-200 border-emerald-700">
+                                                            <span className="inline-flex items-center justify-center text-xs w-7 h-7 rounded-full mx-2 font-mono border bg-theme-primary/20 text-theme-primary border-theme-primary">
                                                                 {v.verse_key.split(':')[1]}
                                                             </span>
                                                         </p>
                                                     ) : tajweedMode ? (
                                                         <p 
-                                                            className="tajweed-text font-arabic text-3xl sm:text-4xl leading-[2.5] sm:leading-[2.8] tracking-wide text-white"
+                                                            className="tajweed-text font-arabic text-3xl sm:text-4xl leading-[2.5] sm:leading-[2.8] tracking-wide text-theme-text"
                                                             dangerouslySetInnerHTML={{ __html: v.text_tajweed || v.text_uthmani }}
                                                         />
                                                     ) : (
-                                                        <p className="font-arabic text-3xl sm:text-4xl leading-[2.5] sm:leading-[2.8] tracking-wide text-white">
+                                                        <p className="font-arabic text-3xl sm:text-4xl leading-[2.5] sm:leading-[2.8] tracking-wide text-theme-text">
                                                             {(v.text_uthmani || v.text_tajweed || '').replace(/<[^>]+>/g, '')}
-                                                            <span className="inline-flex items-center justify-center text-xs w-7 h-7 rounded-full mx-2 font-mono border bg-[#222] text-gray-400 border-[#444]">
+                                                            <span className="inline-flex items-center justify-center text-xs w-7 h-7 rounded-full mx-2 font-mono border bg-theme-surface border-theme-border text-theme-text-muted">
                                                                 {v.verse_key.split(':')[1]}
                                                             </span>
                                                         </p>
@@ -738,7 +744,7 @@ export default function QuranReader() {
 
                                                     {showTranslation && v.translation && (
                                                         <p 
-                                                            className="text-gray-300 text-sm sm:text-base leading-relaxed mt-4 font-sans text-left border-t border-[#222] pt-3" 
+                                                            className="text-theme-text-muted text-sm sm:text-base leading-relaxed mt-4 font-sans text-left border-t border-theme-border/50 pt-4" 
                                                             dir="ltr"
                                                             dangerouslySetInnerHTML={{ __html: v.translation }}
                                                         />

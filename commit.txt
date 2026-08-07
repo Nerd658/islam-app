@@ -1,25 +1,24 @@
-2026-08-07 — Refactor Adhkar UI to Premium Design System
+2026-08-07 — Apply Premium Design System to Quran Page & Global Layout
 
 What changed:
-- Added PageHeader to Adhkar for consistency with Tasbih and Stories.
-- Implemented a "Glassmorphism" effect for the filter dropdown to improve contrast against the dark background.
-- Redesigned `DhikrCard` with `rounded-3xl` corners, soft drop-shadows, and a responsive layout.
-- Added a "glow" and "gradient" effect when an Adhkar repetition is completed (isDone state).
-- Added pagination (4 items per page) to the Adhkar list to optimize performance on mobile.
-- Removed forced black background (`bg-theme-bg`) to inherit the natural dark theme surface.
+- Removed hardcoded `bg-black` and `text-gray-100` from `App.jsx` layout, replacing them with global CSS variables `bg-theme-bg` and `text-theme-text`.
+- Refactored `QuranReader.jsx` Surah list cards: added `bg-theme-surface-hover`, inner gradients, emerald box-shadow on hover, and smooth scaling effects.
+- Replaced hardcoded `text-white` in Quran verses with `text-theme-text` for softer contrast.
+- Replaced `bg-[#0a0a0a]` and `bg-[#111]` with `bg-theme-surface` across the reader.
+- Audio playback UI: Currently playing verse gets a green inner gradient `from-theme-primary/10`, and the active recited word highlights in emerald.
+- Replaced the hardcoded 'text-white' Arabic text rendering in the reader with softer `text-theme-text` and emerald borders for verse numbers.
 
 Why:
-- The Adhkar page lacked the premium feel introduced in Tasbih.
-- Long lists of Adhkar caused rendering issues on mobile, which is solved by pagination.
-- The filter dropdown was previously blending into the background, making it hard to see.
+- The app layout was forcing a pure black background that prevented pages from inheriting the softer `theme-bg` variable.
+- The Quran page had legacy hardcoded colors (`#111`, `#222`, `text-white`) which felt flat and lacked the premium depth created in recent components like Tasbih and Adhkar.
+- Contrast issues on pure black backgrounds made the pure white text aggressive to read.
 
 Files affected:
-- FRONTEND/islam app/src/pages/Adhkar.jsx — UI layout, PageHeader, dropdown redesign.
-- FRONTEND/islam app/src/components/AdhkarList.jsx — Pagination logic (4/page).
-- FRONTEND/islam app/src/components/DhikrCard.jsx — Premium UI styling and completed states.
+- FRONTEND/islam app/src/App.jsx — Global background layout tokens updated.
+- FRONTEND/islam app/src/components/QuranReader.jsx — Complete UI token overhaul for cards, verses, and controls.
 
 Breaking changes:
 - None.
 
 Notes for review:
-- Deployed to Firebase. Check the Adhkar UI on a mobile device for the pagination and filter dropdown experience.
+- Check the Quran page (`/quran`) to experience the new hover animations on the Surah list and the word-by-word emerald highlight during audio playback.

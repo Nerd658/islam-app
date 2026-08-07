@@ -37,7 +37,7 @@ const ArabicGrammar = lazy(() => import('./pages/arabic/ArabicGrammar'));
 
 function App() {
   return (
-    <div className='flex flex-col md:flex-row min-h-screen bg-black text-gray-100 font-sans selection:bg-gray-800 selection:text-white'>
+    <div className='flex flex-col md:flex-row min-h-screen bg-theme-bg text-theme-text font-sans selection:bg-theme-primary/30 selection:text-white'>
       <Navigation />
       <div className="flex-grow overflow-y-auto pb-24 md:pb-0 md:ml-64 custom-scrollbar w-full">
         <Suspense fallback={
