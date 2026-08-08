@@ -5,14 +5,18 @@ import { useQuranOffline } from '../hooks/useQuranOffline';
 import { getSurahMeta } from '../utils/quranOfflineStorage';
 
 const RECITERS = [
-    { id: 7, name: 'Mishary Rashid Alafasy' },
+    { id: 7, name: 'Mishari Rashid al-`Afasy' },
     { id: 1, name: 'AbdulBaset AbdulSamad' },
+    { id: 2, name: 'AbdulBaset AbdulSamad (Mujawwad)' },
     { id: 3, name: 'Abdur-Rahman as-Sudais' },
     { id: 4, name: 'Abu Bakr al-Shatri' },
+    { id: 5, name: 'Hani ar-Rifai' },
     { id: 12, name: 'Mahmoud Khalil Al-Husary' },
+    { id: 6, name: 'Mahmoud Khalil Al-Husary (Muallim)' },
     { id: 8, name: 'Mohamed Siddiq al-Minshawi' },
-    { id: 10, name: 'Saud ash-Shuraym' },
-    { id: 5, name: 'Hani ar-Rifai' }
+    { id: 9, name: 'Mohamed Siddiq al-Minshawi (Mujawwad)' },
+    { id: 10, name: 'Sa`ud ash-Shuraym' },
+    { id: 11, name: 'Mohamed al-Tablawi' }
 ];
 
 const SPEEDS = [0.5, 0.75, 1, 1.25, 1.5, 2];
