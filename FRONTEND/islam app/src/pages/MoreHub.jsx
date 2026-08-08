@@ -13,6 +13,13 @@ export default function MoreHub() {
         { path: '/guide', label: 'Guide d\'Utilisation', icon: HelpCircle, desc: 'Comment utiliser toutes les fonctionnalités', color: 'text-purple-400', bg: 'bg-purple-400/10' },
     ];
 
+    const [loading, setLoading] = React.useState(true);
+
+    React.useEffect(() => {
+        const timer = setTimeout(() => setLoading(false), 300);
+        return () => clearTimeout(timer);
+    }, []);
+
     const {
         needRefresh: [needRefresh],
         updateServiceWorker,
@@ -79,24 +86,37 @@ export default function MoreHub() {
             />
 
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mt-8">
-                {features.map((item) => {
-                    const Icon = item.icon;
-                    return (
-                        <Link 
-                            key={item.path} 
-                            to={item.path}
-                            className="bg-theme-surface border border-theme-border hover:border-theme-text-muted/50 rounded-2xl p-5 flex items-start gap-4 transition-all hover:bg-theme-surface-hover shadow-lg group"
-                        >
-                            <div className={`p-3 rounded-xl ${item.bg} ${item.color} transition-transform group-hover:scale-110`}>
-                                <Icon size={24} />
+                {loading ? (
+                    Array.from({ length: 4 }).map((_, idx) => (
+                        <div key={idx} className="bg-theme-surface border border-theme-border rounded-2xl p-5 flex items-start gap-4 animate-pulse">
+                            <div className="w-12 h-12 rounded-xl bg-[#222]"></div>
+                            <div className="flex-1 mt-1">
+                                <div className="h-5 bg-[#222] rounded w-24 mb-2"></div>
+                                <div className="h-3 bg-[#222] rounded w-full"></div>
+                                <div className="h-3 bg-[#222] rounded w-3/4 mt-1"></div>
                             </div>
-                            <div>
-                                <h3 className="font-bold text-theme-text text-lg mb-1">{item.label}</h3>
-                                <p className="text-theme-text-muted text-sm">{item.desc}</p>
-                            </div>
-                        </Link>
-                    )
-                })}
+                        </div>
+                    ))
+                ) : (
+                    features.map((item) => {
+                        const Icon = item.icon;
+                        return (
+                            <Link 
+                                key={item.path} 
+                                to={item.path}
+                                className="bg-theme-surface border border-theme-border hover:border-theme-text-muted/50 rounded-2xl p-5 flex items-start gap-4 transition-all hover:bg-theme-surface-hover shadow-lg group"
+                            >
+                                <div className={`p-3 rounded-xl ${item.bg} ${item.color} transition-transform group-hover:scale-110`}>
+                                    <Icon size={24} />
+                                </div>
+                                <div>
+                                    <h3 className="font-bold text-theme-text text-lg mb-1">{item.label}</h3>
+                                    <p className="text-theme-text-muted text-sm">{item.desc}</p>
+                                </div>
+                            </Link>
+                        )
+                    })
+                )}
             </div>
 
             <div className="mt-12">
