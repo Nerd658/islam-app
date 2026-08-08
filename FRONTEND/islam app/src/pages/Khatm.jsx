@@ -47,13 +47,16 @@ export default function Khatm() {
   const getTodayStr = () => new Date().toISOString().split('T')[0];
 
   const handleSaveNewPlan = (startPage = currentPage, days = targetDays) => {
+    const finalStart = Number(startPage) || 1;
+    const finalDays = Number(days) || 30;
+    
     const start = new Date();
     const end = new Date();
-    end.setDate(start.getDate() + days);
+    end.setDate(start.getDate() + finalDays);
     
     const plan = {
-      currentPage: startPage,
-      targetDays: days,
+      currentPage: finalStart,
+      targetDays: finalDays,
       startDate: start.toISOString(),
       endDate: end.toISOString(),
       history: {}
@@ -102,8 +105,9 @@ export default function Khatm() {
   };
 
   // Calculations
-  const remainingPages = TOTAL_PAGES - currentPage + 1;
-  let remainingDays = targetDays;
+  const validCurrentPage = Number(currentPage) || 1;
+  const remainingPages = TOTAL_PAGES - validCurrentPage + 1;
+  let remainingDays = Number(targetDays) || 30;
   
   if (endDate) {
     const end = new Date(endDate);
@@ -177,7 +181,10 @@ export default function Khatm() {
                     min="1" 
                     max="604" 
                     value={currentPage}
-                    onChange={(e) => setCurrentPage(Math.min(604, Math.max(1, Number(e.target.value))))}
+                    onChange={(e) => {
+                      const val = e.target.value;
+                      setCurrentPage(val === '' ? '' : Math.min(604, Number(val)));
+                    }}
                     className="w-24 bg-theme-bg border border-theme-border rounded-xl px-4 py-3 text-theme-text focus:outline-none focus:border-theme-primary transition-colors text-center"
                     title="Page exacte"
                   />
@@ -205,7 +212,10 @@ export default function Khatm() {
                   type="number" 
                   min="1" 
                   value={targetDays}
-                  onChange={(e) => setTargetDays(Math.max(1, Number(e.target.value)))}
+                  onChange={(e) => {
+                    const val = e.target.value;
+                    setTargetDays(val === '' ? '' : Number(val));
+                  }}
                   className="w-full bg-theme-bg border border-theme-border rounded-xl px-4 py-3 text-theme-text focus:outline-none focus:border-theme-primary transition-colors"
                   placeholder="Ou saisissez un nombre libre"
                 />
@@ -215,10 +225,10 @@ export default function Khatm() {
             <div className="mt-8 p-6 bg-theme-bg border border-theme-border rounded-2xl text-center">
               <h3 className="text-lg font-bold text-theme-text mb-2">Votre rythme idéal :</h3>
               <div className="text-4xl font-black text-theme-primary mb-2">
-                {Math.ceil((TOTAL_PAGES - currentPage + 1) / targetDays)} <span className="text-xl text-theme-text-muted">pages / jour</span>
+                {Math.ceil((TOTAL_PAGES - (Number(currentPage) || 1) + 1) / (Number(targetDays) || 30))} <span className="text-xl text-theme-text-muted">pages / jour</span>
               </div>
               <p className="text-sm text-theme-text-muted font-medium">
-                Soit environ <strong className="text-theme-text">{Math.ceil(Math.ceil((TOTAL_PAGES - currentPage + 1) / targetDays) / 5)} pages</strong> après chaque prière obligatoire.
+                Soit environ <strong className="text-theme-text">{Math.ceil(Math.ceil((TOTAL_PAGES - (Number(currentPage) || 1) + 1) / (Number(targetDays) || 30)) / 5)} pages</strong> après chaque prière obligatoire.
               </p>
             </div>
 
@@ -323,8 +333,8 @@ export default function Khatm() {
                   max="604" 
                   value={currentPage}
                   onChange={(e) => {
-                    const val = Math.min(604, Math.max(1, Number(e.target.value)));
-                    setCurrentPage(val);
+                    const val = e.target.value;
+                    setCurrentPage(val === '' ? '' : Math.min(604, Number(val)));
                   }}
                   className="w-full bg-theme-bg border border-theme-border rounded-xl px-4 py-3 text-theme-text focus:outline-none focus:border-theme-primary"
                 />
