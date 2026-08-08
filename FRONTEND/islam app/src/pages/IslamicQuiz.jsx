@@ -11,6 +11,18 @@ export default function IslamicQuiz() {
   const [selectedOption, setSelectedOption] = useState(null);
   const [isAnswered, setIsAnswered] = useState(false);
   const [isFinished, setIsFinished] = useState(false);
+  const [level, setLevel] = useState('Tous');
+
+  // Auto advance to next question after 4 seconds
+  useEffect(() => {
+    let timer;
+    if (isAnswered && currentIdx < questions.length - 1) {
+      timer = setTimeout(() => {
+        nextQuestion();
+      }, 4000);
+    }
+    return () => clearTimeout(timer);
+  }, [isAnswered, currentIdx, questions.length]);
 
   // Initialize and shuffle questions on mount
   useEffect(() => {
@@ -18,7 +30,11 @@ export default function IslamicQuiz() {
   }, []);
 
   const startNewGame = () => {
-    const shuffled = [...quizData].sort(() => 0.5 - Math.random()).slice(0, 10); // Play with 10 random questions
+    let filtered = quizData;
+    if (level !== 'Tous') {
+      filtered = quizData.filter(q => q.difficulty === level);
+    }
+    const shuffled = [...filtered].sort(() => 0.5 - Math.random()).slice(0, 10);
     setQuestions(shuffled);
     setCurrentIdx(0);
     setScore(0);
@@ -60,9 +76,29 @@ export default function IslamicQuiz() {
         <div className="mt-12 bg-theme-surface border border-theme-border rounded-3xl p-8 max-w-md mx-auto shadow-xl">
           <Award size={64} className="text-theme-primary mx-auto mb-6" />
           <h2 className="text-2xl font-bold text-theme-text mb-4">Prêt à tester votre savoir ?</h2>
-          <p className="text-theme-text-muted mb-8">
-            Vous aurez 10 questions aléatoires. Répondez correctement pour obtenir le meilleur score possible in sha Allah !
+          <p className="text-theme-text-muted mb-6">
+            Vous aurez {level === 'Tous' ? '10' : 'des'} questions aléatoires. Répondez correctement pour obtenir le meilleur score possible !
           </p>
+          
+          <div className="mb-8">
+            <label className="block text-sm font-bold text-theme-text-muted mb-3 text-left">Choisir le niveau :</label>
+            <div className="flex flex-wrap gap-2">
+              {['Tous', 'Facile', 'Moyen', 'Difficile'].map(lvl => (
+                <button
+                  key={lvl}
+                  onClick={() => setLevel(lvl)}
+                  className={`flex-1 min-w-[80px] py-2 rounded-lg font-bold text-sm transition-all border ${
+                    level === lvl 
+                      ? 'bg-theme-primary text-black border-theme-primary' 
+                      : 'bg-theme-bg text-theme-text border-theme-border hover:border-theme-primary/50'
+                  }`}
+                >
+                  {lvl}
+                </button>
+              ))}
+            </div>
+          </div>
+
           <button 
             onClick={startNewGame}
             className="w-full bg-theme-primary text-black font-bold py-4 rounded-xl hover:scale-[1.02] transition-transform shadow-lg shadow-theme-primary/20"
@@ -190,7 +226,7 @@ export default function IslamicQuiz() {
               onClick={nextQuestion}
               className="w-full mt-6 flex justify-center items-center gap-2 bg-theme-primary text-black font-bold py-4 rounded-xl hover:scale-[1.01] transition-transform shadow-lg"
             >
-              {currentIdx < questions.length - 1 ? 'Question Suivante' : 'Voir les Résultats'}
+              {currentIdx < questions.length - 1 ? 'Question Suivante (Auto...)' : 'Voir les Résultats'}
               <ChevronRight size={20} />
             </button>
           </div>
