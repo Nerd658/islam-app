@@ -1,0 +1,94 @@
+{
+  "islam_pillars": [
+    {
+      "id": 1,
+      "arabic": "الشَّهَادَتَان",
+      "title": "La Profession de Foi (Chahada)",
+      "description": "C'est l'attestation qu'il n'y a de divinité digne d'être adorée qu'Allah et que Muhammad (ﷺ) est Son messager. C'est la clé d'entrée dans l'Islam et le fondement de toutes les autres adorations.",
+      "source": "« Il n'y a de divinité digne d'adoration qu'Allah et Muhammad est le Messager d'Allah. » (Hadith rapporté par Al-Bukhari)",
+      "icon": "Key"
+    },
+    {
+      "id": 2,
+      "arabic": "الصَّلَاة",
+      "title": "La Prière (Salat)",
+      "description": "L'accomplissement des 5 prières quotidiennes (Fajr, Dhuhr, 'Asr, Maghrib, 'Isha). C'est le lien direct et quotidien entre le croyant et son Créateur, et la première chose sur laquelle l'être humain sera interrogé le Jour de la Résurrection.",
+      "source": "« Accomplissez la prière. La prière demeure, pour les croyants, une prescription, à des temps déterminés. » (Coran 4:103)",
+      "icon": "Clock"
+    },
+    {
+      "id": 3,
+      "arabic": "الزَّكَاة",
+      "title": "L'Aumône Légale (Zakat)",
+      "description": "Un impôt purificateur prélevé annuellement sur les biens des riches (lorsqu'ils atteignent un certain seuil, le Nissab) pour être redistribué aux pauvres et aux nécessiteux. Elle purifie l'âme de l'avarice.",
+      "source": "« Prélevez de leurs biens une aumône par laquelle tu les purifies et les bénis. » (Coran 9:103)",
+      "icon": "Coins"
+    },
+    {
+      "id": 4,
+      "arabic": "الصَّوْم",
+      "title": "Le Jeûne du Ramadan (Sawm)",
+      "description": "L'abstention de manger, de boire et de relations intimes depuis l'aube jusqu'au coucher du soleil, durant tout le mois de Ramadan. C'est une école de piété, de patience et d'empathie envers les démunis.",
+      "source": "« Ô les croyants ! On vous a prescrit le jeûne comme on l'a prescrit à ceux d'avant vous, ainsi atteindrez-vous la piété. » (Coran 2:183)",
+      "icon": "Moon"
+    },
+    {
+      "id": 5,
+      "arabic": "الْحَجّ",
+      "title": "Le Pèlerinage (Hajj)",
+      "description": "Le pèlerinage à La Mecque au moins une fois dans sa vie, pour quiconque en a la capacité physique et financière. Il rassemble les musulmans du monde entier dans l'égalité et la soumission.",
+      "source": "« Et c'est un devoir envers Allah pour les gens qui ont les moyens, d'aller faire le pèlerinage de la Maison. » (Coran 3:97)",
+      "icon": "Globe"
+    }
+  ],
+  "iman_pillars": [
+    {
+      "id": 1,
+      "arabic": "الْإِيمَانُ بِاللَّهِ",
+      "title": "La Croyance en Allah",
+      "description": "La certitude ferme qu'Allah est le Créateur, le Pourvoyeur, l'Unique, qu'Il n'a ni associé, ni enfant. Cela inclut l'affirmation de Ses plus beaux noms et Ses attributs parfaits.",
+      "source": "« Dis : Il est Allah, Unique. Allah, Le Seul à être imploré pour ce que nous désirons. Il n'a jamais engendré, n'a pas été engendré non plus. Et nul n'est égal à Lui. » (Coran, Sourate 112)",
+      "icon": "Heart"
+    },
+    {
+      "id": 2,
+      "arabic": "الْإِيمَانُ بِالْمَلَائِكَةِ",
+      "title": "La Croyance aux Anges",
+      "description": "Croire en l'existence des anges, créés de lumière, qui obéissent parfaitement à Allah sans jamais se rebeller. Parmi eux, Jibril (Gabriel), chargé de transmettre la révélation.",
+      "source": "« Tout ont cru en Allah, en Ses anges, à Ses livres et en Ses messagers. » (Coran 2:285)",
+      "icon": "Feather"
+    },
+    {
+      "id": 3,
+      "arabic": "الْإِيمَانُ بِالْكُتُبِ",
+      "title": "La Croyance aux Livres",
+      "description": "Croire aux livres qu'Allah a révélés à Ses messagers (la Torah à Moussa, l'Évangile à 'Isa, les Psaumes à Dawoud) et que le Coran, révélé à Muhammad (ﷺ), est le dernier message, inaltérable.",
+      "source": "« Nous avons fait descendre sur toi le Livre avec la vérité, pour confirmer le Livre qui était là avant lui et pour prévaloir sur lui. » (Coran 5:48)",
+      "icon": "Book"
+    },
+    {
+      "id": 4,
+      "arabic": "الْإِيمَانُ بِالرُّسُلِ",
+      "title": "La Croyance aux Messagers",
+      "description": "Croire qu'Allah a envoyé des prophètes et messagers (de Adam jusqu'à Muhammad) pour guider l'humanité vers l'adoration exclusive de Dieu. Muhammad (ﷺ) est le sceau des prophètes.",
+      "source": "« Nous ne faisons aucune distinction entre Ses messagers. » (Coran 2:285)",
+      "icon": "Users"
+    },
+    {
+      "id": 5,
+      "arabic": "الْإِيمَانُ بِالْيَوْمِ الْآخِرِ",
+      "title": "La Croyance au Jour Dernier",
+      "description": "La certitude qu'il y aura une résurrection après la mort. Que chaque être humain sera jugé avec une justice absolue sur ses actes, menant soit au Paradis soit à l'Enfer.",
+      "source": "« Quiconque fait un bien fût-ce du poids d'un atome, le verra, et quiconque fait un mal fût-ce du poids d'un atome, le verra. » (Coran 99:7-8)",
+      "icon": "Scale"
+    },
+    {
+      "id": 6,
+      "arabic": "الْإِيمَانُ بِالْقَدَرِ",
+      "title": "La Croyance au Destin (Al-Qadar)",
+      "description": "Croire que tout ce qui arrive (en bien comme en mal) a été décrété et su par Allah de toute éternité, selon Sa sagesse infinie, tout en préservant le libre arbitre de l'homme dans ses choix.",
+      "source": "« Nous avons créé toute chose avec mesure (Qadar). » (Coran 54:49)",
+      "icon": "Compass"
+    }
+  ]
+}
