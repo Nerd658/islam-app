@@ -1,23 +1,27 @@
-[2026-08-05] — v4.1.0 Release
+[2026-08-08] — v4.2.0 Release
 
 What changed:
-- Ajout des Bienfaits et Duas (Invocations) détaillés pour les 99 Noms d'Allah
-- Réparation complète du lecteur audio de l'Adhan (changement d'API)
-- Remplacement global de l'icône Sparkles par Gem (diamant)
+- Ajout du Planificateur de Khatm Coran (Calcul de rythme, Mode Ramadan, Système de série).
+- Ajout de la page "Fondements de la Foi" (Tawhid, Piliers).
+- Amélioration du Quiz Islamique (Sélection de niveaux, minuteur auto-suivant).
+- Amélioration de la sélection des Récitateurs du Coran (Nouveau Modal UI avec 12 récitateurs).
+- Sécurisation du localStorage : Ajout de blocs try/catch sur JSON.parse().
+- Ajout d'un ErrorBoundary global pour intercepter les crashs React.
 
 Why:
-- Les détails des Noms d'Allah manquaient d'informations pratiques et profondes.
-- L'ancienne API de l'Adhan (cdn.aladhan.com) renvoyait une erreur 403.
-- L'icône Sparkles donnait une impression d'interface générée par l'IA.
+- Enrichissement des sections "Apprentissage" et "Pratique" pour un usage quotidien.
+- Amélioration de l'UX des selects natifs (Récitateurs) vers un design Premium.
+- Prévention du White Screen of Death (WSOD) causé par la corruption des données locales.
 
 Files affected:
-- src/data/names_details.json — Création des 99 noms
-- src/pages/Names.jsx — Mise à jour de la modale des détails
-- src/components/PrayerTimesList.jsx — Nouvel URL MP3 pour l'Adhan
-- (10 fichiers UI) — Remplacement de <Sparkles> par <Gem>
+- src/pages/Khatm.jsx (Création)
+- src/pages/Fundamentals.jsx (Création)
+- src/pages/IslamicQuiz.jsx (Maj UX et Timer)
+- src/components/QuranReader.jsx (Maj Modal Récitateurs)
+- src/App.jsx & ErrorBoundary.jsx (Sécurisation React)
 
 Breaking changes:
-- None
+- Migration du plan Khatm local de 'khatm_plan' vers 'khatm_plan_v2'. Les anciennes données sont auto-migrées.
 
 Notes for review:
-- Le fichier MP3 de l'Adhan est maintenant chargé depuis media.assabile.com
+- Le nouveau Khatm gère dynamiquement la vitesse de lecture requise chaque jour.
