@@ -1,12 +1,24 @@
-# React + Vite
+# Islam App
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Une application web progressive (PWA) islamique moderne, belle et riche en fonctionnalités, conçue pour accompagner les musulmans dans leur pratique et apprentissage quotidiens.
 
-Currently, two official plugins are available:
+## Fonctionnalités Principales
+- **Coran & Tajweed** : Lecteur complet avec règles de Tajweed interactives, traductions, et 12 récitateurs audios. Support hors-ligne.
+- **Planificateur de Khatm** : Suivi de lecture personnalisé avec mode Ramadan et calcul dynamique du rythme.
+- **Outils Pratiques** : Horaires de prière, Boussole Qibla, Chapelet (Tasbih), Calculateur de Zakat.
+- **Apprentissage** : Quiz islamique (plusieurs niveaux), guide des 99 Noms d'Allah, Hadiths, et Fondements de la foi.
+- **Langue Arabe** : Module complet d'apprentissage de l'alphabet, du vocabulaire et de la grammaire.
+- **Assistant Virtuel** : Chat "Imam Virtuel" propulsé par l'IA (Gemini) pour répondre aux questions.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Stack Technique
+- React (Vite)
+- Tailwind CSS (Interface moderne, Dark Theme natif, animations fluides)
+- Lucide React (Icônes)
+- React Router DOM
+- LocalStorage & IndexedDB (pour un usage PWA déconnecté)
 
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+## Lancement
+```bash
+npm install
+npm run dev
+```

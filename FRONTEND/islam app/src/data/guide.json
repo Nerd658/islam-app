@@ -13,6 +13,20 @@
         "linkText": "Aller à l'Accueil"
     },
     {
+        "id": "khatm",
+        "title": "Khatm Coran (Planificateur)",
+        "icon": "Target",
+        "description": "Planifiez votre lecture du Coran pour le terminer dans un temps donné (ex: 30 jours pour le Ramadan).",
+        "steps": [
+            "Allez dans le hub 'Pratique' puis 'Khatm Coran'.",
+            "Indiquez votre page actuelle (ou utilisez le menu Juz) et votre objectif en jours.",
+            "L'application calcule combien de pages vous devez lire chaque jour.",
+            "Actualisez votre page actuelle chaque jour pour voir votre progression et maintenir votre série (streak)."
+        ],
+        "link": "/practice",
+        "linkText": "Démarrer un Khatm"
+    },
+    {
         "id": "quran",
         "title": "Coran, Mémorisation & Audio",
         "icon": "BookOpen",
@@ -20,7 +34,7 @@
         "steps": [
             "Allez dans le hub 'Pratique' puis 'Saint Coran' pour lire et écouter les sourates.",
             "Pour apprendre, utilisez le module 'Mémorisation' : vous pourrez répéter des versets en boucle et masquer le texte pour tester votre mémoire.",
-            "Vous pouvez changer de récitateur (Mishary Alafasy, Abdul Baset, etc.) dans les options du lecteur."
+            "Vous pouvez changer de récitateur (Mishary Alafasy, Al-Husary, etc.) via le menu stylisé dans les options du lecteur."
         ],
         "link": "/practice",
         "linkText": "Découvrir la Pratique"
@@ -39,17 +53,17 @@
         "linkText": "Commencer le Dhikr"
     },
     {
-        "id": "objectifs",
-        "title": "Objectifs Spirituels & Wird",
-        "icon": "Target",
-        "description": "Fixez-vous des objectifs quotidiens et suivez votre progression spirituelle.",
+        "id": "fondements",
+        "title": "Fondements de la Foi & Quiz",
+        "icon": "ScrollText",
+        "description": "Apprenez les bases de l'Islam et testez vos connaissances.",
         "steps": [
-            "Allez dans 'Objectifs' pour créer des tâches quotidiennes (ex: lire 2 pages du Coran).",
-            "Cochez vos objectifs au fur et à mesure pour remplir votre barre de progression.",
-            "La section 'Wird' vous permet de structurer votre routine de prières et d'invocations de manière plus avancée."
+            "Allez dans le hub 'Apprendre' puis 'Fondements' pour lire les piliers de l'Islam et de la Foi (Tawhid).",
+            "Une fois prêt, lancez le 'Quiz Islamique'.",
+            "Sélectionnez un niveau (Facile, Moyen, Difficile) et répondez aux questions chronométrées pour apprendre en vous amusant."
         ],
-        "link": "/goals",
-        "linkText": "Mes Objectifs"
+        "link": "/knowledge",
+        "linkText": "Apprendre les bases"
     },
     {
         "id": "chat",
@@ -77,19 +91,6 @@
         ],
         "link": "/arabic",
         "linkText": "Apprendre l'Arabe"
-    },
-    {
-        "id": "histoires",
-        "title": "Histoires des Prophètes",
-        "icon": "ScrollText",
-        "description": "Lisez les récits passionnants des Prophètes et des Compagnons pour en tirer des leçons.",
-        "steps": [
-            "Allez dans le Hub 'Savoir' puis 'Histoires et Récits'.",
-            "Choisissez une catégorie (Prophètes, Compagnons, Femmes de l'Islam).",
-            "Lisez les histoires au format chapitre avec des temps de lecture estimés."
-        ],
-        "link": "/stories",
-        "linkText": "Lire les Histoires"
     },
     {
         "id": "outils",

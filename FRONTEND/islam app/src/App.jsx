@@ -24,6 +24,9 @@ const Nasheeds = lazy(() => import('./pages/Nasheeds'));
 const Stories = lazy(() => import('./pages/Stories'));
 const StoryReader = lazy(() => import('./pages/StoryReader'));
 const Knowledge = lazy(() => import('./pages/Knowledge'));
+const Fundamentals = lazy(() => import('./pages/Fundamentals'));
+const IslamicQuiz = lazy(() => import('./pages/IslamicQuiz'));
+const Khatm = lazy(() => import('./pages/Khatm'));
 const Zakat = lazy(() => import('./pages/Zakat'));
 const Moon = lazy(() => import('./pages/Moon'));
 const IslamicNames = lazy(() => import('./pages/IslamicNames'));
@@ -36,17 +39,25 @@ const ArabicTajweed = lazy(() => import('./pages/arabic/ArabicTajweed'));
 const ArabicQuiz = lazy(() => import('./pages/arabic/ArabicQuiz'));
 const ArabicGrammar = lazy(() => import('./pages/arabic/ArabicGrammar'));
 
+import ErrorBoundary from './components/ErrorBoundary';
+
 function App() {
   return (
     <div className='flex flex-col md:flex-row min-h-screen bg-theme-bg text-theme-text font-sans selection:bg-theme-primary/30 selection:text-white'>
       <Navigation />
       <div className="flex-grow overflow-y-auto pb-24 md:pb-0 md:ml-64 custom-scrollbar w-full">
-        <Suspense fallback={
-          <div className="flex justify-center items-center h-screen text-gray-400 font-medium">
-            Chargement...
-          </div>
-        }>
-          <Routes>
+        <ErrorBoundary>
+          <Suspense fallback={
+            <div className="flex justify-center items-center h-[80vh]">
+              <div className="flex flex-col items-center gap-4 animate-pulse">
+                <div className="w-16 h-16 rounded-full bg-theme-surface border border-theme-border flex items-center justify-center shadow-lg">
+                   <div className="w-8 h-8 rounded-full bg-theme-primary/30"></div>
+                </div>
+                <div className="h-4 w-32 bg-theme-surface border border-theme-border rounded-md"></div>
+              </div>
+            </div>
+          }>
+            <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/goals" element={<Goals />} />
             <Route path="/adhkar" element={<Adhkar />} />
@@ -68,6 +79,9 @@ function App() {
             <Route path="/stories" element={<Stories />} />
             <Route path="/stories/:type/:slug" element={<StoryReader />} />
             <Route path="/knowledge" element={<Knowledge />} />
+            <Route path="/fundamentals" element={<Fundamentals />} />
+            <Route path="/islamic-quiz" element={<IslamicQuiz />} />
+            <Route path="/khatm" element={<Khatm />} />
             <Route path="/zakat" element={<Zakat />} />
             <Route path="/moon" element={<Moon />} />
             <Route path="/islamic-names" element={<IslamicNames />} />
@@ -81,7 +95,8 @@ function App() {
             <Route path="/arabic/quiz" element={<ArabicQuiz />} />
             <Route path="/arabic/grammar" element={<ArabicGrammar />} />
           </Routes>
-        </Suspense>
+          </Suspense>
+        </ErrorBoundary>
       </div>
       <ReloadPrompt />
     </div>

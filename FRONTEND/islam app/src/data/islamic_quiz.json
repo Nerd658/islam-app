@@ -1,0 +1,137 @@
+[
+  {
+    "id": 1,
+    "category": "Coran",
+    "difficulty": "Facile",
+    "question": "Quelle est la plus longue sourate du Coran ?",
+    "options": ["Al-Fatiha", "Al-Baqara", "Al-Imran", "An-Nisa"],
+    "correctAnswer": 1,
+    "explanation": "La sourate Al-Baqara (La Vache) est la plus longue avec 286 versets."
+  },
+  {
+    "id": 2,
+    "category": "Coran",
+    "difficulty": "Facile",
+    "question": "Combien de chapitres (sourates) y a-t-il dans le Coran ?",
+    "options": ["114", "99", "120", "30"],
+    "correctAnswer": 0,
+    "explanation": "Le Coran contient exactement 114 sourates, allant de Al-Fatiha à An-Nas."
+  },
+  {
+    "id": 3,
+    "category": "Prophètes",
+    "difficulty": "Facile",
+    "question": "Quel prophète a construit l'Arche pour survivre au déluge ?",
+    "options": ["Moussa (Moïse)", "Ibrahim (Abraham)", "Nouh (Noé)", "Dawoud (David)"],
+    "correctAnswer": 2,
+    "explanation": "Nouh (Noé) a construit l'Arche sur ordre d'Allah pour sauver les croyants et les animaux du déluge."
+  },
+  {
+    "id": 4,
+    "category": "Seerah",
+    "difficulty": "Facile",
+    "question": "Dans quelle ville est né le Prophète Muhammad (ﷺ) ?",
+    "options": ["Médine", "Jérusalem", "Ta'if", "La Mecque"],
+    "correctAnswer": 3,
+    "explanation": "Le Prophète Muhammad (ﷺ) est né à La Mecque (Makkah) en l'an 570 de l'ère chrétienne."
+  },
+  {
+    "id": 5,
+    "category": "Croyance",
+    "difficulty": "Moyen",
+    "question": "Quel ange est chargé de transmettre la révélation aux Prophètes ?",
+    "options": ["Mika'il", "Israfil", "Jibril (Gabriel)", "Malik"],
+    "correctAnswer": 2,
+    "explanation": "L'ange Jibril (Gabriel) est le messager d'Allah chargé d'apporter la révélation divine aux Prophètes."
+  },
+  {
+    "id": 6,
+    "category": "Prophètes",
+    "difficulty": "Moyen",
+    "question": "À quel prophète Allah a-t-Il parlé directement, sans intermédiaire ?",
+    "options": ["'Isa (Jésus)", "Moussa (Moïse)", "Ibrahim (Abraham)", "Youssouf (Joseph)"],
+    "correctAnswer": 1,
+    "explanation": "Moussa (Moïse) est surnommé 'Kalimoullah', celui à qui Allah a parlé directement, notamment sur le Mont Sinaï."
+  },
+  {
+    "id": 7,
+    "category": "Coran",
+    "difficulty": "Moyen",
+    "question": "Quelle sourate équivaut au tiers du Coran en termes de récompense lors de sa lecture ?",
+    "options": ["Al-Fatiha", "Al-Ikhlas", "Yasin", "Al-Kahf"],
+    "correctAnswer": 1,
+    "explanation": "Le Prophète (ﷺ) a dit que la sourate Al-Ikhlas (Dis : Il est Allah Unique...) équivaut au tiers du Coran (Bukhari)."
+  },
+  {
+    "id": 8,
+    "category": "Seerah",
+    "difficulty": "Moyen",
+    "question": "Comment s'appelait la première épouse du Prophète Muhammad (ﷺ) ?",
+    "options": ["Aïcha", "Khadija", "Hafsa", "Fatima"],
+    "correctAnswer": 1,
+    "explanation": "Khadija bint Khuwaylid fut sa première épouse et la toute première personne à croire en sa prophétie."
+  },
+  {
+    "id": 9,
+    "category": "Croyance",
+    "difficulty": "Moyen",
+    "question": "Lequel de ces actes n'est PAS un des 5 piliers de l'Islam ?",
+    "options": ["Le jeûne du Ramadan", "La prière", "L'aumône (Zakat)", "La croyance aux anges"],
+    "correctAnswer": 3,
+    "explanation": "La croyance aux anges fait partie des 6 piliers de la FOI (Iman), et non des 5 piliers de l'Islam (les actes)."
+  },
+  {
+    "id": 10,
+    "category": "Prophètes",
+    "difficulty": "Difficile",
+    "question": "Quel prophète a été avalé par une baleine ?",
+    "options": ["Younous (Jonas)", "Ayyoub (Job)", "Ilyas (Élie)", "Lout (Lot)"],
+    "correctAnswer": 0,
+    "explanation": "Younous (Jonas) fut avalé par un grand poisson, où il invoqua Allah dans les ténèbres jusqu'à être sauvé."
+  },
+  {
+    "id": 11,
+    "category": "Seerah",
+    "difficulty": "Difficile",
+    "question": "Lors de la bataille de Badr, combien y avait-il de compagnons face à l'armée quraychite ?",
+    "options": ["Environ 100", "Environ 313", "Environ 1000", "Environ 3000"],
+    "correctAnswer": 1,
+    "explanation": "Les musulmans étaient environ 313 face à une armée de près de 1000 hommes, et ont remporté la victoire grâce à l'aide d'Allah."
+  },
+  {
+    "id": 12,
+    "category": "Coran",
+    "difficulty": "Difficile",
+    "question": "Quelle est la seule sourate du Coran qui ne commence pas par la 'Basmalah' (Bismillah...) ?",
+    "options": ["At-Tawbah (Le Repentir)", "Al-Anfal (Le Butin)", "Maryam (Marie)", "An-Nour (La Lumière)"],
+    "correctAnswer": 0,
+    "explanation": "At-Tawbah (sourate 9) est la seule à ne pas commencer par Bismillah, car elle évoque le désaveu d'Allah envers les associateurs."
+  },
+  {
+    "id": 13,
+    "category": "Coran",
+    "difficulty": "Moyen",
+    "question": "Quel est le plus grand verset du Coran ?",
+    "options": ["Ayat An-Nour (La Lumière)", "Ayat Al-Kursi (Le Trône)", "Le dernier verset de Al-Baqara", "Le premier verset de Al-Fatiha"],
+    "correctAnswer": 1,
+    "explanation": "Ayat Al-Kursi (Verset du Trône, 2:255) est le verset le plus immense du Coran, protégeant celui qui le récite."
+  },
+  {
+    "id": 14,
+    "category": "Prophètes",
+    "difficulty": "Moyen",
+    "question": "Qui a été jeté dans un feu immense par son peuple, mais qu'Allah a rendu frais et salutaire ?",
+    "options": ["Ibrahim (Abraham)", "Moussa (Moïse)", "Yahya (Jean)", "Zakariya (Zacharie)"],
+    "correctAnswer": 0,
+    "explanation": "Le prophète Ibrahim a été jeté au feu, mais Allah a dit : 'Ô feu, sois pour Ibrahim une fraîcheur salutaire' (Coran 21:69)."
+  },
+  {
+    "id": 15,
+    "category": "Seerah",
+    "difficulty": "Difficile",
+    "question": "Quelle mosquée le Prophète (ﷺ) a-t-il construite en premier après son émigration (Hégire) ?",
+    "options": ["Al-Masjid Al-Haram", "Al-Masjid An-Nabawi", "La Mosquée de Quba", "Al-Masjid Al-Aqsa"],
+    "correctAnswer": 2,
+    "explanation": "La Mosquée de Quba, située juste avant l'entrée de Médine, fut le premier lieu de culte construit par le Prophète en arrivant de La Mecque."
+  }
+]
