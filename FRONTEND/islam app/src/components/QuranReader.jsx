@@ -30,6 +30,7 @@ export default function QuranReader() {
     const [searchMode, setSearchMode] = useState('surahs');
     const [showSettings, setShowSettings] = useState(false);
     const [showTajweedModal, setShowTajweedModal] = useState(false);
+    const [showReciterModal, setShowReciterModal] = useState(false);
     const [searchResults, setSearchResults] = useState([]);
     const [isSearchingVerses, setIsSearchingVerses] = useState(false);
     
@@ -495,17 +496,12 @@ export default function QuranReader() {
                             <div className="hidden sm:flex items-center gap-2.5">
                                 <div className="flex-shrink-0 flex items-center gap-1 bg-[#111] border border-[#333] px-2.5 py-1 rounded-xl text-xs text-gray-300">
                                     <Mic size={14} className="text-gray-400" />
-                                    <select
-                                        value={selectedReciter}
-                                        onChange={(e) => setSelectedReciter(Number(e.target.value))}
-                                        className="bg-transparent text-white outline-none cursor-pointer text-xs"
+                                    <button
+                                        onClick={() => setShowReciterModal(true)}
+                                        className="bg-transparent text-white outline-none cursor-pointer text-xs text-left truncate max-w-[120px] hover:text-emerald-400 transition-colors"
                                     >
-                                        {RECITERS.map(r => (
-                                            <option key={r.id} value={r.id} className="bg-[#111] text-white">
-                                                {r.name}
-                                            </option>
-                                        ))}
-                                    </select>
+                                        {RECITERS.find(r => r.id === selectedReciter)?.name || "Récitateur"}
+                                    </button>
                                 </div>
 
                                 <div className="flex-shrink-0 flex items-center gap-1 bg-[#111] border border-[#333] px-2 py-1 rounded-xl text-xs text-gray-300">
@@ -589,18 +585,15 @@ export default function QuranReader() {
                                     <span className="text-xs text-gray-400">Récitateur</span>
                                     <div className="flex items-center gap-1 bg-[#222] border border-[#444] px-2 py-1 rounded-lg text-xs">
                                         <Mic size={12} className="text-gray-400" />
-                                        <select
-                                            value={selectedReciter}
-                                            onChange={(e) => {
-                                                setSelectedReciter(Number(e.target.value));
+                                        <button
+                                            onClick={() => {
                                                 setShowSettings(false);
+                                                setShowReciterModal(true);
                                             }}
-                                            className="bg-transparent text-white outline-none"
+                                            className="bg-transparent text-white outline-none text-left truncate max-w-[200px]"
                                         >
-                                            {RECITERS.map(r => (
-                                                <option key={r.id} value={r.id} className="bg-[#111]">{r.name}</option>
-                                            ))}
-                                        </select>
+                                            {RECITERS.find(r => r.id === selectedReciter)?.name || "Récitateur"}
+                                        </button>
                                     </div>
                                 </div>
                                 <div className="flex items-center justify-between">
@@ -831,6 +824,47 @@ export default function QuranReader() {
                         >
                             Compris, retourner à la lecture
                         </button>
+                    </div>
+                </div>
+            )}
+
+            {/* MODAL RECITEURS */}
+            {showReciterModal && (
+                <div className="fixed inset-0 bg-black/80 z-50 flex items-center justify-center p-4 backdrop-blur-sm animate-in fade-in duration-200">
+                    <div className="bg-[#111] border border-[#333] rounded-3xl w-full max-w-md overflow-hidden shadow-2xl flex flex-col max-h-[85vh]">
+                        <div className="p-5 border-b border-[#222] flex justify-between items-center bg-[#0a0a0a]">
+                            <h3 className="text-xl font-bold text-white flex items-center gap-2">
+                                <Mic className="text-emerald-500" /> Choisir un récitateur
+                            </h3>
+                            <button 
+                                onClick={() => setShowReciterModal(false)}
+                                className="p-2 bg-[#222] rounded-full text-gray-400 hover:text-white transition-colors"
+                            >
+                                <X size={20} />
+                            </button>
+                        </div>
+                        <div className="p-4 overflow-y-auto custom-scrollbar flex-1 space-y-2">
+                            {RECITERS.map(r => {
+                                const isSelected = r.id === selectedReciter;
+                                return (
+                                    <button
+                                        key={r.id}
+                                        onClick={() => {
+                                            setSelectedReciter(r.id);
+                                            setShowReciterModal(false);
+                                        }}
+                                        className={`w-full flex items-center justify-between p-4 rounded-2xl transition-all border ${
+                                            isSelected 
+                                                ? 'bg-emerald-500/10 border-emerald-500/50 text-emerald-400' 
+                                                : 'bg-[#1a1a1a] border-[#222] text-gray-300 hover:bg-[#222] hover:border-[#444]'
+                                        }`}
+                                    >
+                                        <span className="font-semibold">{r.name}</span>
+                                        {isSelected && <Check className="w-5 h-5 text-emerald-400" />}
+                                    </button>
+                                );
+                            })}
+                        </div>
                     </div>
                 </div>
             )}
