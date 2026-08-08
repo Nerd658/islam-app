@@ -12,16 +12,26 @@ export default function IslamicQuiz() {
   const [isAnswered, setIsAnswered] = useState(false);
   const [isFinished, setIsFinished] = useState(false);
   const [level, setLevel] = useState('Tous');
+  const [timeLeft, setTimeLeft] = useState(4);
 
-  // Auto advance to next question after 4 seconds
+  // Auto advance to next question with a visual timer
   useEffect(() => {
-    let timer;
+    let interval;
     if (isAnswered && currentIdx < questions.length - 1) {
-      timer = setTimeout(() => {
-        nextQuestion();
-      }, 4000);
+      interval = setInterval(() => {
+        setTimeLeft((prev) => {
+          if (prev <= 1) {
+            clearInterval(interval);
+            nextQuestion();
+            return 4;
+          }
+          return prev - 1;
+        });
+      }, 1000);
     }
-    return () => clearTimeout(timer);
+    return () => {
+      if (interval) clearInterval(interval);
+    };
   }, [isAnswered, currentIdx, questions.length]);
 
   // Initialize and shuffle questions on mount
@@ -42,6 +52,7 @@ export default function IslamicQuiz() {
     setIsAnswered(false);
     setIsFinished(false);
     setHasStarted(true);
+    setTimeLeft(4);
   };
 
   const handleSelectOption = (idx) => {
@@ -60,6 +71,7 @@ export default function IslamicQuiz() {
       setCurrentIdx(currentIdx + 1);
       setSelectedOption(null);
       setIsAnswered(false);
+      setTimeLeft(4);
     } else {
       setIsFinished(true);
     }
@@ -235,7 +247,7 @@ export default function IslamicQuiz() {
           }`}
         >
           {currentIdx < questions.length - 1 
-            ? (isAnswered ? 'Question Suivante (Auto...)' : 'Choisissez une réponse') 
+            ? (isAnswered ? `Question Suivante (${timeLeft}s)` : 'Choisissez une réponse') 
             : 'Voir les Résultats'}
           {isAnswered && <ChevronRight size={20} />}
         </button>
