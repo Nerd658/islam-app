@@ -1,16 +1,26 @@
 import React, { useState } from 'react';
-import { BookOpen, Key, Clock, Coins, Moon, Globe, Heart, Feather, Book, Users, Scale, Compass } from 'lucide-react';
+import { 
+  BookOpen, Key, Clock, Coins, Moon, Globe, Heart, 
+  Feather, Book, Users, Scale, Compass, Star, 
+  Handshake, ArrowDownCircle, CheckSquare, Gem, ShieldCheck 
+} from 'lucide-react';
 import PageHeader from '../components/PageHeader';
 import fundamentalsData from '../data/fundamentals.json';
 
 const iconMap = {
-  Key, Clock, Coins, Moon, Globe, Heart, Feather, Book, Users, Scale, Compass
+  Key, Clock, Coins, Moon, Globe, Heart, Feather, Book, 
+  Users, Scale, Compass, Star, Handshake, ArrowDownCircle, 
+  CheckSquare, Gem, ShieldCheck, BookOpen
 };
 
 export default function Fundamentals() {
-  const [activeTab, setActiveTab] = useState('islam'); // 'islam' or 'iman'
+  const [activeTab, setActiveTab] = useState('islam'); // 'islam', 'iman', 'ihsan', 'shahada'
 
-  const currentData = activeTab === 'islam' ? fundamentalsData.islam_pillars : fundamentalsData.iman_pillars;
+  const currentData = 
+    activeTab === 'islam' ? fundamentalsData.islam_pillars :
+    activeTab === 'iman' ? fundamentalsData.iman_pillars :
+    activeTab === 'ihsan' ? fundamentalsData.ihsan_pillars :
+    fundamentalsData.shahada_conditions;
 
   return (
     <div className="pt-8 px-4 max-w-6xl mx-auto pb-24">
@@ -21,26 +31,38 @@ export default function Fundamentals() {
       />
 
       {/* Tabs */}
-      <div className="flex bg-theme-surface border border-theme-border rounded-xl p-1 mb-8 max-w-md mx-auto">
+      <div className="flex flex-col sm:flex-row flex-wrap bg-theme-surface border border-theme-border rounded-xl p-1 mb-8 max-w-4xl mx-auto gap-1">
         <button
           onClick={() => setActiveTab('islam')}
-          className={`flex-1 py-3 text-sm font-bold rounded-lg transition-all ${
-            activeTab === 'islam' 
-              ? 'bg-theme-primary text-black shadow-md' 
-              : 'text-theme-text-muted hover:text-theme-text'
+          className={`flex-1 min-w-[140px] py-3 text-sm font-bold rounded-lg transition-all ${
+            activeTab === 'islam' ? 'bg-theme-primary text-black shadow-md' : 'text-theme-text-muted hover:text-theme-text'
           }`}
         >
-          Les 5 Piliers de l'Islam
+          L'Islam (5)
         </button>
         <button
           onClick={() => setActiveTab('iman')}
-          className={`flex-1 py-3 text-sm font-bold rounded-lg transition-all ${
-            activeTab === 'iman' 
-              ? 'bg-theme-primary text-black shadow-md' 
-              : 'text-theme-text-muted hover:text-theme-text'
+          className={`flex-1 min-w-[140px] py-3 text-sm font-bold rounded-lg transition-all ${
+            activeTab === 'iman' ? 'bg-theme-primary text-black shadow-md' : 'text-theme-text-muted hover:text-theme-text'
           }`}
         >
-          Les 6 Piliers de la Foi
+          La Foi (6)
+        </button>
+        <button
+          onClick={() => setActiveTab('ihsan')}
+          className={`flex-1 min-w-[140px] py-3 text-sm font-bold rounded-lg transition-all ${
+            activeTab === 'ihsan' ? 'bg-theme-primary text-black shadow-md' : 'text-theme-text-muted hover:text-theme-text'
+          }`}
+        >
+          L'Excellence (1)
+        </button>
+        <button
+          onClick={() => setActiveTab('shahada')}
+          className={`flex-1 min-w-[140px] py-3 text-sm font-bold rounded-lg transition-all ${
+            activeTab === 'shahada' ? 'bg-theme-primary text-black shadow-md' : 'text-theme-text-muted hover:text-theme-text'
+          }`}
+        >
+          Conditions Chahada (7)
         </button>
       </div>
 

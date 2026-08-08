@@ -90,5 +90,73 @@
       "source": "« Nous avons créé toute chose avec mesure (Qadar). » (Coran 54:49)",
       "icon": "Compass"
     }
+  ],
+  "ihsan_pillars": [
+    {
+      "id": 1,
+      "arabic": "الْإِحْسَان",
+      "title": "L'Excellence (Al-Ihsan)",
+      "description": "C'est le plus haut degré de la religion. Il consiste à adorer Allah avec une telle perfection, conscience et sincérité que l'on ressent Sa présence constante.",
+      "source": "« L'Ihsan, c'est que tu adores Allah comme si tu Le voyais, car si tu ne Le vois pas, certes, Lui te voit. » (Hadith Jibril, rapporté par Muslim)",
+      "icon": "Star"
+    }
+  ],
+  "shahada_conditions": [
+    {
+      "id": 1,
+      "arabic": "الْعِلْم",
+      "title": "Le Savoir (Al-'Ilm)",
+      "description": "Connaître le sens de 'La Ilaha Illa Allah', ce qu'elle affirme (l'adoration exclusive d'Allah) et ce qu'elle renie (l'adoration de tout autre), ce qui dissipe l'ignorance.",
+      "source": "« Sache donc qu'en vérité, il n'y a point de divinité à part Allah. » (Coran 47:19)",
+      "icon": "BookOpen"
+    },
+    {
+      "id": 2,
+      "arabic": "الْيَقِين",
+      "title": "La Certitude (Al-Yaqin)",
+      "description": "Une foi ferme et absolue dans le cœur, sans le moindre doute ou hésitation concernant ce témoignage.",
+      "source": "« Les vrais croyants sont seulement ceux qui croient en Allah et en Son messager, qui par la suite ne doutent point. » (Coran 49:15)",
+      "icon": "ShieldCheck"
+    },
+    {
+      "id": 3,
+      "arabic": "الْقَبُول",
+      "title": "L'Acceptation (Al-Qaboul)",
+      "description": "Accepter de bon cœur et par la langue tout ce qu'implique cette attestation, sans orgueil ni rejet.",
+      "source": "« Quand on leur disait : 'Point de divinité à part Allah', ils se gonflaient d'orgueil. » (Coran 37:35)",
+      "icon": "Handshake"
+    },
+    {
+      "id": 4,
+      "arabic": "الِانْقِيَاد",
+      "title": "La Soumission (Al-Inqiyad)",
+      "description": "Se soumettre pleinement aux commandements d'Allah et à Ses lois avec satisfaction, en délaissant ce qu'Il a interdit.",
+      "source": "« Et quiconque soumet son être à Allah, tout en étant bienfaisant, s'accroche réellement à l'anse la plus ferme. » (Coran 31:22)",
+      "icon": "ArrowDownCircle"
+    },
+    {
+      "id": 5,
+      "arabic": "الصِّدْق",
+      "title": "La Véracité (As-Sidq)",
+      "description": "Prononcer la Chahada en étant sincère du fond du cœur, de sorte que la langue soit en accord parfait avec le cœur (l'inverse de l'hypocrisie).",
+      "source": "« Il n'y a personne qui témoigne qu'il n'y a de divinité digne d'adoration qu'Allah... sincèrement de son cœur, sans qu'Allah ne le préserve du Feu. » (Al-Bukhari)",
+      "icon": "CheckSquare"
+    },
+    {
+      "id": 6,
+      "arabic": "الْإِخْلَاص",
+      "title": "La Sincérité (Al-Ikhlas)",
+      "description": "Vouer ses actes d'adoration uniquement à Allah, en purifiant ses intentions de toute forme d'association (Chirk) ou d'ostentation.",
+      "source": "« Il ne leur a été commandé, cependant, que d'adorer Allah, Lui vouant un culte exclusif. » (Coran 98:5)",
+      "icon": "Gem"
+    },
+    {
+      "id": 7,
+      "arabic": "الْمَحَبَّة",
+      "title": "L'Amour (Al-Mahabbah)",
+      "description": "Aimer cette attestation, ce qu'elle implique, aimer Allah, Son Messager, et aimer ceux qui se soumettent à Lui, tout en détestant ce qui s'y oppose.",
+      "source": "« Parmi les hommes, il en est qui prennent, en dehors d'Allah, des égaux à Lui... Or les croyants sont les plus ardents en l'amour d'Allah. » (Coran 2:165)",
+      "icon": "Heart"
+    }
   ]
 }
