@@ -22,25 +22,31 @@ export default function Khatm() {
 
   // Load from local storage
   useEffect(() => {
-    const saved = localStorage.getItem('khatm_plan_v2');
-    if (saved) {
-      const parsed = JSON.parse(saved);
-      setCurrentPage(parsed.currentPage || 1);
-      setTargetDays(parsed.targetDays || 30);
-      setStartDate(parsed.startDate);
-      setEndDate(parsed.endDate);
-      setHistory(parsed.history || {});
-      setSavedPlan(true);
-    } else {
-      // Migrate old data if exists
-      const oldSaved = localStorage.getItem('khatm_plan');
-      if (oldSaved) {
-        const parsed = JSON.parse(oldSaved);
+    try {
+      const saved = localStorage.getItem('khatm_plan_v2');
+      if (saved) {
+        const parsed = JSON.parse(saved);
         setCurrentPage(parsed.currentPage || 1);
         setTargetDays(parsed.targetDays || 30);
-        handleSaveNewPlan(parsed.currentPage || 1, parsed.targetDays || 30);
-        localStorage.removeItem('khatm_plan');
+        setStartDate(parsed.startDate);
+        setEndDate(parsed.endDate);
+        setHistory(parsed.history || {});
+        setSavedPlan(true);
+      } else {
+        // Migrate old data if exists
+        const oldSaved = localStorage.getItem('khatm_plan');
+        if (oldSaved) {
+          const parsed = JSON.parse(oldSaved);
+          setCurrentPage(parsed.currentPage || 1);
+          setTargetDays(parsed.targetDays || 30);
+          handleSaveNewPlan(parsed.currentPage || 1, parsed.targetDays || 30);
+          localStorage.removeItem('khatm_plan');
+        }
       }
+    } catch (e) {
+      console.error("Erreur lors du chargement du plan Khatm", e);
+      localStorage.removeItem('khatm_plan_v2');
+      localStorage.removeItem('khatm_plan');
     }
   }, []);
 
@@ -73,24 +79,28 @@ export default function Khatm() {
     const today = getTodayStr();
     
     // Save to local storage
-    const saved = localStorage.getItem('khatm_plan_v2');
-    if (saved) {
-      const parsed = JSON.parse(saved);
-      const pagesReadToday = currentPage > parsed.currentPage ? currentPage - parsed.currentPage : 0;
-      
-      const newHistory = { ...parsed.history };
-      if (pagesReadToday > 0) {
-        newHistory[today] = (newHistory[today] || 0) + pagesReadToday;
-      }
+    try {
+      const saved = localStorage.getItem('khatm_plan_v2');
+      if (saved) {
+        const parsed = JSON.parse(saved);
+        const pagesReadToday = currentPage > parsed.currentPage ? currentPage - parsed.currentPage : 0;
+        
+        const newHistory = { ...parsed.history };
+        if (pagesReadToday > 0) {
+          newHistory[today] = (newHistory[today] || 0) + pagesReadToday;
+        }
 
-      const updatedPlan = {
-        ...parsed,
-        currentPage: currentPage,
-        history: newHistory
-      };
-      
-      localStorage.setItem('khatm_plan_v2', JSON.stringify(updatedPlan));
-      setHistory(newHistory);
+        const updatedPlan = {
+          ...parsed,
+          currentPage: currentPage,
+          history: newHistory
+        };
+        
+        localStorage.setItem('khatm_plan_v2', JSON.stringify(updatedPlan));
+        setHistory(newHistory);
+      }
+    } catch (e) {
+      console.error("Erreur mise à jour plan", e);
     }
   };
 

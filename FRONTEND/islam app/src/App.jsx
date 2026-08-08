@@ -39,17 +39,20 @@ const ArabicTajweed = lazy(() => import('./pages/arabic/ArabicTajweed'));
 const ArabicQuiz = lazy(() => import('./pages/arabic/ArabicQuiz'));
 const ArabicGrammar = lazy(() => import('./pages/arabic/ArabicGrammar'));
 
+import ErrorBoundary from './components/ErrorBoundary';
+
 function App() {
   return (
     <div className='flex flex-col md:flex-row min-h-screen bg-theme-bg text-theme-text font-sans selection:bg-theme-primary/30 selection:text-white'>
       <Navigation />
       <div className="flex-grow overflow-y-auto pb-24 md:pb-0 md:ml-64 custom-scrollbar w-full">
-        <Suspense fallback={
-          <div className="flex justify-center items-center h-screen text-gray-400 font-medium">
-            Chargement...
-          </div>
-        }>
-          <Routes>
+        <ErrorBoundary>
+          <Suspense fallback={
+            <div className="flex justify-center items-center h-screen text-gray-400 font-medium">
+              Chargement...
+            </div>
+          }>
+            <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/goals" element={<Goals />} />
             <Route path="/adhkar" element={<Adhkar />} />
@@ -87,7 +90,8 @@ function App() {
             <Route path="/arabic/quiz" element={<ArabicQuiz />} />
             <Route path="/arabic/grammar" element={<ArabicGrammar />} />
           </Routes>
-        </Suspense>
+          </Suspense>
+        </ErrorBoundary>
       </div>
       <ReloadPrompt />
     </div>

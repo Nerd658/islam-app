@@ -11,7 +11,15 @@ export default function Names() {
     
     const [favorites, setFavorites] = useState(() => {
         const saved = localStorage.getItem('asma_favorites');
-        return saved ? JSON.parse(saved) : [];
+        if (saved) {
+            try {
+                return JSON.parse(saved);
+            } catch (e) {
+                console.error("Erreur parsing asma_favorites", e);
+                return [];
+            }
+        }
+        return [];
     });
     const [showFavoritesOnly, setShowFavoritesOnly] = useState(false);
     
