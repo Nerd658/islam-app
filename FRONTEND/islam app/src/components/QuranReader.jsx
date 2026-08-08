@@ -656,8 +656,26 @@ export default function QuranReader() {
 
                     <div className="flex-1 overflow-hidden bg-theme-surface p-4 sm:p-6 rounded-3xl border border-theme-border shadow-2xl flex flex-col">
                         {loading ? (
-                            <div className="flex justify-center items-center h-48">
-                                <p className="text-xl text-theme-text-muted">Chargement des versets...</p>
+                            <div className="flex-1 overflow-hidden space-y-6">
+                                {[1, 2, 3].map(i => (
+                                    <div key={i} className="p-6 sm:p-8 rounded-3xl bg-theme-surface-hover border border-theme-border/60 animate-pulse flex flex-col gap-6">
+                                        <div className="flex justify-between items-center w-full">
+                                            <div className="flex gap-2">
+                                                <div className="w-8 h-8 rounded-full bg-[#222]"></div>
+                                                <div className="w-8 h-8 rounded-full bg-[#222]"></div>
+                                            </div>
+                                            <div className="w-10 h-10 rounded-full bg-[#222]"></div>
+                                        </div>
+                                        <div className="flex flex-col items-end gap-3 w-full">
+                                            <div className="h-10 bg-[#222] rounded-lg w-full md:w-3/4"></div>
+                                            <div className="h-10 bg-[#222] rounded-lg w-full md:w-1/2"></div>
+                                        </div>
+                                        <div className="flex flex-col items-start gap-2 w-full mt-4">
+                                            <div className="h-4 bg-[#222] rounded w-full md:w-3/4"></div>
+                                            <div className="h-4 bg-[#222] rounded w-full md:w-1/2"></div>
+                                        </div>
+                                    </div>
+                                ))}
                             </div>
                         ) : (
                             <div 
