@@ -6,6 +6,7 @@ import Header from '../components/Header';
 import PrayerTimesList from '../components/PrayerTimesList';
 import DailySuggestions from '../components/DailySuggestions';
 import QuoteOfTheDay from '../components/QuoteOfTheDay';
+import PrayerTimesSkeleton from '../components/PrayerTimesSkeleton';
 import useLocationSearch from '../hooks/useLocationSearch';
 import useDailyVerse from '../hooks/useDailyVerse';
 import { fetchPrayerTimes } from '../api/fetchPrayerTimes';
@@ -227,7 +228,7 @@ export default function Home() {
                 </p>
             </div>
 
-            {!prayerTimes ? (
+            {!prayerTimes && !loading ? (
                 <div className="w-full flex flex-col gap-10">
                     <div className="w-full max-w-lg mx-auto">
                         {renderSearchCard()}
@@ -243,7 +244,7 @@ export default function Home() {
                         {renderSearchCard()}
                         
                         <div className="w-full">
-                            <PrayerTimesList prayerTimes={prayerTimes} />
+                            {loading ? <PrayerTimesSkeleton /> : <PrayerTimesList prayerTimes={prayerTimes} />}
                         </div>
                     </div>
 
