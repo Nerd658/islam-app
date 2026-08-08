@@ -1,6 +1,12 @@
 import React, { useState, useEffect } from 'react';
-import { BookOpen, Calendar, Target, CheckCircle2, RotateCcw, ChevronRight } from 'lucide-react';
+import { BookOpen, Calendar, Target, CheckCircle2, RotateCcw, ChevronRight, Moon, Flame } from 'lucide-react';
 import PageHeader from '../components/PageHeader';
+
+const JUZ_START_PAGES = [
+  1, 22, 42, 62, 82, 102, 122, 142, 162, 182, 
+  202, 222, 242, 262, 282, 302, 322, 342, 362, 382, 
+  402, 422, 442, 462, 482, 502, 522, 542, 562, 582
+];
 
 export default function Khatm() {
   const TOTAL_PAGES = 604;
@@ -8,45 +14,120 @@ export default function Khatm() {
   // States
   const [currentPage, setCurrentPage] = useState(1);
   const [targetDays, setTargetDays] = useState(30);
-  const [pagesPerDay, setPagesPerDay] = useState(0);
   const [savedPlan, setSavedPlan] = useState(false);
+  const [startDate, setStartDate] = useState(null);
+  const [endDate, setEndDate] = useState(null);
+  const [history, setHistory] = useState({}); // { 'YYYY-MM-DD': pagesRead }
+  const [juzSelect, setJuzSelect] = useState(1);
 
+  // Load from local storage
   useEffect(() => {
-    // Load from local storage
-    const saved = localStorage.getItem('khatm_plan');
+    const saved = localStorage.getItem('khatm_plan_v2');
     if (saved) {
       const parsed = JSON.parse(saved);
       setCurrentPage(parsed.currentPage || 1);
       setTargetDays(parsed.targetDays || 30);
+      setStartDate(parsed.startDate);
+      setEndDate(parsed.endDate);
+      setHistory(parsed.history || {});
       setSavedPlan(true);
+    } else {
+      // Migrate old data if exists
+      const oldSaved = localStorage.getItem('khatm_plan');
+      if (oldSaved) {
+        const parsed = JSON.parse(oldSaved);
+        setCurrentPage(parsed.currentPage || 1);
+        setTargetDays(parsed.targetDays || 30);
+        handleSaveNewPlan(parsed.currentPage || 1, parsed.targetDays || 30);
+        localStorage.removeItem('khatm_plan');
+      }
     }
   }, []);
 
-  useEffect(() => {
-    // Calculate pages per day
-    const remainingPages = TOTAL_PAGES - currentPage + 1;
-    if (targetDays > 0) {
-      setPagesPerDay(Math.ceil(remainingPages / targetDays));
-    } else {
-      setPagesPerDay(0);
-    }
-  }, [currentPage, targetDays]);
+  const getTodayStr = () => new Date().toISOString().split('T')[0];
 
-  const handleSave = () => {
-    localStorage.setItem('khatm_plan', JSON.stringify({ currentPage, targetDays }));
+  const handleSaveNewPlan = (startPage = currentPage, days = targetDays) => {
+    const start = new Date();
+    const end = new Date();
+    end.setDate(start.getDate() + days);
+    
+    const plan = {
+      currentPage: startPage,
+      targetDays: days,
+      startDate: start.toISOString(),
+      endDate: end.toISOString(),
+      history: {}
+    };
+    
+    localStorage.setItem('khatm_plan_v2', JSON.stringify(plan));
+    setStartDate(plan.startDate);
+    setEndDate(plan.endDate);
+    setHistory(plan.history);
     setSavedPlan(true);
+  };
+
+  const handleUpdateProgress = () => {
+    const today = getTodayStr();
+    
+    // Save to local storage
+    const saved = localStorage.getItem('khatm_plan_v2');
+    if (saved) {
+      const parsed = JSON.parse(saved);
+      const pagesReadToday = currentPage > parsed.currentPage ? currentPage - parsed.currentPage : 0;
+      
+      const newHistory = { ...parsed.history };
+      if (pagesReadToday > 0) {
+        newHistory[today] = (newHistory[today] || 0) + pagesReadToday;
+      }
+
+      const updatedPlan = {
+        ...parsed,
+        currentPage: currentPage,
+        history: newHistory
+      };
+      
+      localStorage.setItem('khatm_plan_v2', JSON.stringify(updatedPlan));
+      setHistory(newHistory);
+    }
   };
 
   const handleReset = () => {
     if (window.confirm('Voulez-vous réinitialiser votre plan actuel ?')) {
-      localStorage.removeItem('khatm_plan');
+      localStorage.removeItem('khatm_plan_v2');
       setCurrentPage(1);
       setTargetDays(30);
       setSavedPlan(false);
+      setHistory({});
     }
   };
 
+  // Calculations
+  const remainingPages = TOTAL_PAGES - currentPage + 1;
+  let remainingDays = targetDays;
+  
+  if (endDate) {
+    const end = new Date(endDate);
+    const today = new Date();
+    const diffTime = end - today;
+    remainingDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+    if (remainingDays < 1) remainingDays = 1; // avoid division by zero
+  }
+
+  const pagesPerDay = Math.ceil(remainingPages / remainingDays);
   const progressPercentage = Math.round((currentPage / TOTAL_PAGES) * 100);
+
+  // Generate last 7 days array for streak
+  const last7Days = Array.from({ length: 7 }).map((_, i) => {
+    const d = new Date();
+    d.setDate(d.getDate() - (6 - i));
+    return d.toISOString().split('T')[0];
+  });
+
+  const formatDate = (isoString) => {
+    if (!isoString) return '';
+    const d = new Date(isoString);
+    return d.toLocaleDateString('fr-FR', { day: 'numeric', month: 'long', year: 'numeric' });
+  };
 
   return (
     <div className="pt-8 px-4 max-w-3xl mx-auto pb-24">
@@ -59,24 +140,53 @@ export default function Khatm() {
       <div className="mt-8 bg-theme-surface border border-theme-border rounded-3xl p-6 sm:p-8 shadow-xl">
         {!savedPlan ? (
           <div className="space-y-6 animate-in fade-in">
-            <h2 className="text-2xl font-bold text-theme-text mb-6">Créer un nouveau plan</h2>
+            <div className="flex justify-between items-center mb-6">
+              <h2 className="text-2xl font-bold text-theme-text">Nouveau plan</h2>
+              <button 
+                onClick={() => {
+                  setTargetDays(30);
+                  setCurrentPage(1);
+                  setJuzSelect(1);
+                }}
+                className="flex items-center gap-2 px-3 py-1.5 bg-indigo-500/10 text-indigo-400 border border-indigo-500/30 rounded-lg text-sm font-bold hover:bg-indigo-500/20 transition-colors"
+              >
+                <Moon size={16} /> Mode Ramadan
+              </button>
+            </div>
             
-            <div className="space-y-4">
+            <div className="space-y-6">
+              {/* Juz Selection */}
               <div>
-                <label className="block text-sm font-bold text-theme-text-muted mb-2">Page actuelle (1 à 604)</label>
-                <input 
-                  type="number" 
-                  min="1" 
-                  max="604" 
-                  value={currentPage}
-                  onChange={(e) => setCurrentPage(Math.min(604, Math.max(1, Number(e.target.value))))}
-                  className="w-full bg-theme-bg border border-theme-border rounded-xl px-4 py-3 text-theme-text focus:outline-none focus:border-theme-primary transition-colors"
-                />
+                <label className="block text-sm font-bold text-theme-text-muted mb-2">Où en êtes-vous ? (Sélection par Juz)</label>
+                <div className="flex gap-2">
+                  <select 
+                    value={juzSelect}
+                    onChange={(e) => {
+                      const juz = Number(e.target.value);
+                      setJuzSelect(juz);
+                      setCurrentPage(JUZ_START_PAGES[juz - 1]);
+                    }}
+                    className="flex-1 bg-theme-bg border border-theme-border rounded-xl px-4 py-3 text-theme-text focus:outline-none focus:border-theme-primary transition-colors"
+                  >
+                    {JUZ_START_PAGES.map((page, idx) => (
+                      <option key={idx} value={idx + 1}>Juz {idx + 1}</option>
+                    ))}
+                  </select>
+                  <input 
+                    type="number" 
+                    min="1" 
+                    max="604" 
+                    value={currentPage}
+                    onChange={(e) => setCurrentPage(Math.min(604, Math.max(1, Number(e.target.value))))}
+                    className="w-24 bg-theme-bg border border-theme-border rounded-xl px-4 py-3 text-theme-text focus:outline-none focus:border-theme-primary transition-colors text-center"
+                    title="Page exacte"
+                  />
+                </div>
               </div>
 
               <div>
-                <label className="block text-sm font-bold text-theme-text-muted mb-2">Objectif (en jours)</label>
-                <div className="flex gap-2">
+                <label className="block text-sm font-bold text-theme-text-muted mb-2">Objectif de fin (en jours)</label>
+                <div className="flex gap-2 mb-3">
                   {[15, 30, 60, 90].map(days => (
                     <button
                       key={days}
@@ -96,7 +206,7 @@ export default function Khatm() {
                   min="1" 
                   value={targetDays}
                   onChange={(e) => setTargetDays(Math.max(1, Number(e.target.value)))}
-                  className="w-full bg-theme-bg border border-theme-border rounded-xl px-4 py-3 mt-3 text-theme-text focus:outline-none focus:border-theme-primary transition-colors"
+                  className="w-full bg-theme-bg border border-theme-border rounded-xl px-4 py-3 text-theme-text focus:outline-none focus:border-theme-primary transition-colors"
                   placeholder="Ou saisissez un nombre libre"
                 />
               </div>
@@ -105,16 +215,16 @@ export default function Khatm() {
             <div className="mt-8 p-6 bg-theme-bg border border-theme-border rounded-2xl text-center">
               <h3 className="text-lg font-bold text-theme-text mb-2">Votre rythme idéal :</h3>
               <div className="text-4xl font-black text-theme-primary mb-2">
-                {pagesPerDay} <span className="text-xl text-theme-text-muted">pages / jour</span>
+                {Math.ceil((TOTAL_PAGES - currentPage + 1) / targetDays)} <span className="text-xl text-theme-text-muted">pages / jour</span>
               </div>
               <p className="text-sm text-theme-text-muted font-medium">
-                Soit environ <strong className="text-theme-text">{Math.ceil(pagesPerDay / 5)} pages</strong> après chaque prière obligatoire.
+                Soit environ <strong className="text-theme-text">{Math.ceil(Math.ceil((TOTAL_PAGES - currentPage + 1) / targetDays) / 5)} pages</strong> après chaque prière obligatoire.
               </p>
             </div>
 
             <button 
-              onClick={handleSave}
-              className="w-full mt-4 flex justify-center items-center gap-2 bg-theme-primary text-black font-bold py-4 rounded-xl hover:scale-[1.01] transition-transform shadow-lg"
+              onClick={() => handleSaveNewPlan(currentPage, targetDays)}
+              className="w-full flex justify-center items-center gap-2 bg-theme-primary text-black font-bold py-4 rounded-xl hover:scale-[1.01] transition-transform shadow-lg"
             >
               <Target size={20} /> Démarrer ce plan
             </button>
@@ -122,7 +232,14 @@ export default function Khatm() {
         ) : (
           <div className="space-y-8 animate-in zoom-in duration-300">
             <div className="flex justify-between items-start">
-              <h2 className="text-2xl font-bold text-theme-text">Votre Suivi</h2>
+              <div>
+                <h2 className="text-2xl font-bold text-theme-text flex items-center gap-2">
+                  Votre Suivi <Flame className="text-orange-500" />
+                </h2>
+                <p className="text-sm text-theme-text-muted mt-1">
+                  Fin prévue le <strong className="text-theme-text">{formatDate(endDate)}</strong>
+                </p>
+              </div>
               <button 
                 onClick={handleReset}
                 className="text-theme-text-muted hover:text-red-400 transition-colors p-2"
@@ -132,10 +249,49 @@ export default function Khatm() {
               </button>
             </div>
 
+            {/* Streak Calendar */}
+            <div className="bg-theme-bg border border-theme-border rounded-2xl p-4">
+              <h3 className="text-xs font-bold text-theme-text-muted uppercase mb-3 flex items-center justify-between">
+                Série (7 derniers jours)
+              </h3>
+              <div className="flex justify-between items-center gap-1">
+                {last7Days.map((dayStr, idx) => {
+                  const pagesRead = history[dayStr] || 0;
+                  const isToday = dayStr === getTodayStr();
+                  const dateObj = new Date(dayStr);
+                  const dayName = dateObj.toLocaleDateString('fr-FR', { weekday: 'short' });
+                  
+                  let bg = "bg-[#222] border-[#333]"; // Not read
+                  let text = "text-gray-500";
+                  if (pagesRead > 0) {
+                    if (pagesRead >= pagesPerDay) {
+                      bg = "bg-emerald-500/20 border-emerald-500"; // Reached goal
+                      text = "text-emerald-400";
+                    } else {
+                      bg = "bg-yellow-500/20 border-yellow-500"; // Partial
+                      text = "text-yellow-400";
+                    }
+                  }
+
+                  return (
+                    <div key={dayStr} className="flex flex-col items-center gap-1">
+                      <div 
+                        className={`w-8 h-8 sm:w-10 sm:h-10 rounded-lg border flex items-center justify-center font-bold text-xs sm:text-sm ${bg} ${text} ${isToday ? 'ring-2 ring-theme-primary ring-offset-2 ring-offset-theme-surface' : ''}`}
+                        title={`${pagesRead} pages lues`}
+                      >
+                        {pagesRead > 0 ? '✓' : ''}
+                      </div>
+                      <span className="text-[10px] text-theme-text-muted capitalize">{dayName.charAt(0)}</span>
+                    </div>
+                  );
+                })}
+              </div>
+            </div>
+
             <div className="grid grid-cols-2 gap-4">
               <div className="p-4 bg-theme-bg border border-theme-border rounded-2xl flex flex-col items-center justify-center text-center">
                 <Calendar className="text-theme-primary mb-2" size={24} />
-                <span className="text-2xl font-black text-theme-text">{targetDays}</span>
+                <span className="text-2xl font-black text-theme-text">{remainingDays}</span>
                 <span className="text-xs font-bold text-theme-text-muted uppercase">Jours restants</span>
               </div>
               <div className="p-4 bg-theme-bg border border-theme-border rounded-2xl flex flex-col items-center justify-center text-center">
@@ -159,11 +315,11 @@ export default function Khatm() {
             </div>
 
             <div className="p-5 bg-theme-primary/10 border border-theme-primary/20 rounded-2xl">
-              <h3 className="font-bold text-theme-text mb-4">Mettre à jour ma progression</h3>
+              <h3 className="font-bold text-theme-text mb-4">Actualiser ma lecture</h3>
               <div className="flex items-center gap-3">
                 <input 
                   type="number" 
-                  min="1" 
+                  min={currentPage} 
                   max="604" 
                   value={currentPage}
                   onChange={(e) => {
@@ -173,7 +329,7 @@ export default function Khatm() {
                   className="w-full bg-theme-bg border border-theme-border rounded-xl px-4 py-3 text-theme-text focus:outline-none focus:border-theme-primary"
                 />
                 <button 
-                  onClick={handleSave}
+                  onClick={handleUpdateProgress}
                   className="px-6 py-3 bg-theme-primary text-black font-bold rounded-xl hover:scale-105 transition-transform shrink-0"
                 >
                   Valider
