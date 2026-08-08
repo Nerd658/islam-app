@@ -7,17 +7,27 @@ export default function IslamicNames() {
     const [names, setNames] = useState(namesData);
     const [searchTerm, setSearchTerm] = useState('');
     const [filterGender, setFilterGender] = useState('all'); // all, male, female
+    const [loading, setLoading] = useState(true);
+    const [debouncedSearch, setDebouncedSearch] = useState('');
 
-
+    // Debounce search and trigger skeleton
+    React.useEffect(() => {
+        setLoading(true);
+        const timer = setTimeout(() => {
+            setDebouncedSearch(searchTerm);
+            setLoading(false);
+        }, 300);
+        return () => clearTimeout(timer);
+    }, [searchTerm, filterGender]);
 
     const filteredNames = useMemo(() => {
         return names.filter(n => {
             const matchesGender = filterGender === 'all' || n.gender === filterGender;
-            const matchesSearch = n.name.toLowerCase().includes(searchTerm.toLowerCase()) || 
-                                  n.meaning.toLowerCase().includes(searchTerm.toLowerCase());
+            const matchesSearch = n.name.toLowerCase().includes(debouncedSearch.toLowerCase()) || 
+                                  n.meaning.toLowerCase().includes(debouncedSearch.toLowerCase());
             return matchesGender && matchesSearch;
         });
-    }, [names, searchTerm, filterGender]);
+    }, [names, debouncedSearch, filterGender]);
 
     return (
         <div className="pt-8 px-4 max-w-5xl mx-auto pb-24">
@@ -62,7 +72,24 @@ export default function IslamicNames() {
             </div>
 
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 mt-8">
-                {filteredNames.length > 0 ? filteredNames.map(name => (
+                {loading ? (
+                    Array.from({ length: 9 }).map((_, idx) => (
+                        <div key={idx} className="bg-theme-surface border border-theme-border rounded-3xl p-6 flex flex-col h-[180px] animate-pulse">
+                            <div className="flex justify-between items-start mb-4">
+                                <div className="h-6 bg-[#222] rounded-md w-1/3"></div>
+                                <div className="h-8 bg-[#222] rounded-md w-1/4"></div>
+                            </div>
+                            <div className="space-y-2 mb-6 flex-1 mt-2">
+                                <div className="h-4 bg-[#222] rounded w-full"></div>
+                                <div className="h-4 bg-[#222] rounded w-5/6"></div>
+                            </div>
+                            <div className="flex items-center justify-between pt-4 border-t border-theme-border">
+                                <div className="h-5 bg-[#222] rounded w-16"></div>
+                                <div className="h-4 bg-[#222] rounded w-12"></div>
+                            </div>
+                        </div>
+                    ))
+                ) : filteredNames.length > 0 ? filteredNames.map(name => (
                         <div key={name.id} className="bg-theme-surface border border-theme-border hover:border-theme-primary/50 transition-all rounded-3xl p-6 flex flex-col h-full group shadow-lg hover:shadow-theme-primary/5">
                             <div className="flex justify-between items-start mb-3">
                                 <h3 className="text-xl font-bold text-theme-text group-hover:text-theme-primary transition-colors">{name.name}</h3>
