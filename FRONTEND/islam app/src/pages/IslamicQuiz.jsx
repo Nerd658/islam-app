@@ -221,16 +221,24 @@ export default function IslamicQuiz() {
               </h3>
               <p className="text-sm opacity-90 leading-relaxed">{currentQ.explanation}</p>
             </div>
-            
-            <button 
-              onClick={nextQuestion}
-              className="w-full mt-6 flex justify-center items-center gap-2 bg-theme-primary text-black font-bold py-4 rounded-xl hover:scale-[1.01] transition-transform shadow-lg"
-            >
-              {currentIdx < questions.length - 1 ? 'Question Suivante (Auto...)' : 'Voir les Résultats'}
-              <ChevronRight size={20} />
-            </button>
           </div>
         )}
+
+        {/* Next Button always visible */}
+        <button 
+          onClick={nextQuestion}
+          disabled={!isAnswered}
+          className={`w-full mt-6 flex justify-center items-center gap-2 font-bold py-4 rounded-xl transition-all ${
+            isAnswered 
+              ? 'bg-theme-primary text-black hover:scale-[1.01] shadow-lg cursor-pointer' 
+              : 'bg-theme-bg border border-theme-border text-theme-text-muted opacity-50 cursor-not-allowed'
+          }`}
+        >
+          {currentIdx < questions.length - 1 
+            ? (isAnswered ? 'Question Suivante (Auto...)' : 'Choisissez une réponse') 
+            : 'Voir les Résultats'}
+          {isAnswered && <ChevronRight size={20} />}
+        </button>
       </div>
     </div>
   );
