@@ -1,11 +1,12 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { BookOpen, Scroll, Star, Mic, Languages, BookText, GraduationCap, ShieldCheck } from 'lucide-react';
+import { BookOpen, Scroll, Star, Mic, Languages, BookText, GraduationCap, ShieldCheck, Gamepad2 } from 'lucide-react';
 import PageHeader from '../components/PageHeader';
 
 export default function LearnHub() {
     const features = [
         { path: '/fundamentals', label: 'Fondements', icon: ShieldCheck, desc: 'Piliers de l\'Islam et de la Foi', color: 'text-emerald-400', bg: 'bg-emerald-400/10' },
+        { path: '/islamic-quiz', label: 'Quiz Islamique', icon: Gamepad2, desc: 'Testez vos connaissances', color: 'text-pink-400', bg: 'bg-pink-400/10' },
         { path: '/hadiths', label: 'Hadiths', icon: Scroll, desc: 'Paroles prophétiques authentiques', color: 'text-blue-400', bg: 'bg-blue-400/10' },
         { path: '/names', label: "99 Noms d'Allah", icon: Star, desc: 'Apprentissage et méditation', color: 'text-amber-400', bg: 'bg-amber-400/10' },
         { path: '/stories', label: 'Histoires', icon: BookText, desc: 'Récits des Prophètes et Compagnons', color: 'text-indigo-400', bg: 'bg-indigo-400/10' },

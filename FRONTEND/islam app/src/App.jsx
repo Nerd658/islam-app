@@ -25,6 +25,7 @@ const Stories = lazy(() => import('./pages/Stories'));
 const StoryReader = lazy(() => import('./pages/StoryReader'));
 const Knowledge = lazy(() => import('./pages/Knowledge'));
 const Fundamentals = lazy(() => import('./pages/Fundamentals'));
+const IslamicQuiz = lazy(() => import('./pages/IslamicQuiz'));
 const Zakat = lazy(() => import('./pages/Zakat'));
 const Moon = lazy(() => import('./pages/Moon'));
 const IslamicNames = lazy(() => import('./pages/IslamicNames'));
@@ -70,6 +71,7 @@ function App() {
             <Route path="/stories/:type/:slug" element={<StoryReader />} />
             <Route path="/knowledge" element={<Knowledge />} />
             <Route path="/fundamentals" element={<Fundamentals />} />
+            <Route path="/islamic-quiz" element={<IslamicQuiz />} />
             <Route path="/zakat" element={<Zakat />} />
             <Route path="/moon" element={<Moon />} />
             <Route path="/islamic-names" element={<IslamicNames />} />
