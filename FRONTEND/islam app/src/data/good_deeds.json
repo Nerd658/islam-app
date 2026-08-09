@@ -1,0 +1,47 @@
+[
+    {
+        "id": 1,
+        "title": "Sourire à son frère",
+        "arabic": "تبسمك في وجه أخيك",
+        "description": "Le simple fait de sourire à une autre personne avec sincérité est compté comme une aumône en Islam.",
+        "reward": "Récompense d'une Sadaqah",
+        "reference": "Hadith (Tirmidhi)",
+        "category": "Social"
+    },
+    {
+        "id": 2,
+        "title": "Prier la nuit (Qiyam Al-Layl)",
+        "arabic": "قيام الليل",
+        "description": "Se lever une partie de la nuit pour prier alors que les autres dorment est la meilleure prière après les prières obligatoires.",
+        "reward": "Élévation en degrés au Paradis",
+        "reference": "Hadith (Muslim)",
+        "category": "Spirituel"
+    },
+    {
+        "id": 3,
+        "title": "Nourrir les nécessiteux",
+        "arabic": "إطعام الطعام",
+        "description": "Partager son repas, donner à manger à ceux qui ont faim et inviter les gens.",
+        "reward": "Entrée au Paradis en paix",
+        "reference": "Hadith (Ibn Majah)",
+        "category": "Générosité"
+    },
+    {
+        "id": 4,
+        "title": "Garder les liens de parenté",
+        "arabic": "صلة الرحم",
+        "description": "Maintenir de bonnes relations avec sa famille, les visiter, les aider et prendre de leurs nouvelles.",
+        "reward": "Allongement de la vie et abondance",
+        "reference": "Hadith (Bukhari)",
+        "category": "Famille"
+    },
+    {
+        "id": 5,
+        "title": "Dire de bonnes paroles",
+        "arabic": "الكلمة الطيبة",
+        "description": "Utiliser des mots doux, encourager les autres et éviter la vulgarité.",
+        "reward": "Protection contre le Feu",
+        "reference": "Hadith (Bukhari)",
+        "category": "Social"
+    }
+]
