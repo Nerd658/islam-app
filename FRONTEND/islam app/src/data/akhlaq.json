@@ -1,0 +1,47 @@
+[
+    {
+        "id": 1,
+        "title": "La Véracité (As-Sidq)",
+        "arabic": "الصدق",
+        "description": "Être honnête dans ses paroles et ses actions, éviter le mensonge même pour plaisanter.",
+        "benefits": "Mène à la piété et au Paradis.",
+        "reference": "Hadith (Bukhari)",
+        "category": "Comportement Personnel"
+    },
+    {
+        "id": 2,
+        "title": "La Patience (As-Sabr)",
+        "arabic": "الصبر",
+        "description": "Faire preuve de constance face aux épreuves, persévérer dans l'obéissance et s'abstenir de l'interdit.",
+        "benefits": "Une récompense sans limites de la part d'Allah.",
+        "reference": "Coran (Az-Zumar 39:10)",
+        "category": "Épreuves"
+    },
+    {
+        "id": 3,
+        "title": "La Modestie et Pudeur (Al-Haya')",
+        "arabic": "الحياء",
+        "description": "La retenue morale qui empêche de commettre des actes indécents et pousse à honorer les droits des autres.",
+        "benefits": "La pudeur n'apporte que du bien.",
+        "reference": "Hadith (Bukhari)",
+        "category": "Comportement Personnel"
+    },
+    {
+        "id": 4,
+        "title": "L'Humilité (At-Tawadu')",
+        "arabic": "التواضع",
+        "description": "Ne pas se sentir supérieur aux autres et accepter la vérité peu importe d'où elle vient.",
+        "benefits": "Celui qui s'humilie pour Allah, Allah l'élève.",
+        "reference": "Hadith (Muslim)",
+        "category": "Social"
+    },
+    {
+        "id": 5,
+        "title": "Le Pardon (Al-Afw)",
+        "arabic": "العفو",
+        "description": "Pardonner à ceux qui nous ont fait du tort alors qu'on a la capacité de se venger.",
+        "benefits": "Allah augmente la noblesse de celui qui pardonne.",
+        "reference": "Coran (Ash-Shura 42:40)",
+        "category": "Relationnel"
+    }
+]
