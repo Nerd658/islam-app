@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { Heart, Activity, Target, Compass, BookMarked, Music, BookOpen } from 'lucide-react';
+import { Heart, Activity, Target, Compass, BookMarked, Music, BookOpen, HandHeart } from 'lucide-react';
 import PageHeader from '../components/PageHeader';
 
 export default function PracticeHub() {
@@ -10,6 +10,7 @@ export default function PracticeHub() {
         { path: '/tasbih', label: 'Tasbih', icon: Activity, desc: 'Chapelet numérique', color: 'text-blue-400', bg: 'bg-blue-400/10' },
         { path: '/wird', label: 'Wird', icon: BookMarked, desc: 'Votre programme de lecture', color: 'text-purple-400', bg: 'bg-purple-400/10' },
         { path: '/goals', label: 'Objectifs', icon: Target, desc: 'Suivi de vos objectifs journaliers', color: 'text-rose-400', bg: 'bg-rose-400/10' },
+        { path: '/deeds', label: 'Bonnes Actions', icon: HandHeart, desc: 'Des actes pour se rapprocher d\'Allah', color: 'text-rose-400', bg: 'bg-rose-400/10' },
         { path: '/qibla', label: 'Qibla', icon: Compass, desc: 'Direction de la prière', color: 'text-amber-400', bg: 'bg-amber-400/10' },
         { path: '/nasheeds', label: 'Nasheeds', icon: Music, desc: 'Chants islamiques (Vocal Only)', color: 'text-indigo-400', bg: 'bg-indigo-400/10' }
     ];
