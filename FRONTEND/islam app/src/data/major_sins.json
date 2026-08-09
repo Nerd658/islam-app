@@ -1,0 +1,58 @@
+[
+    {
+        "id": 1,
+        "title": "Le Shirk (Associer à Allah)",
+        "arabic": "الشرك بالله",
+        "description": "Le plus grand de tous les péchés. C'est le fait d'associer un partenaire à Allah dans l'adoration, l'amour ou la crainte. C'est le seul péché qu'Allah ne pardonne pas si la personne meurt sans s'en repentir.",
+        "reference": "Coran (An-Nisa 4:48)",
+        "category": "Croyance"
+    },
+    {
+        "id": 2,
+        "title": "Négliger la Prière (As-Salat)",
+        "arabic": "ترك الصلاة",
+        "description": "L'abandon de la prière obligatoire est l'un des plus grands péchés. La prière est le pilier central de l'Islam et la première chose sur laquelle le serviteur sera interrogé le Jour du Jugement.",
+        "reference": "Hadith (Tirmidhi)",
+        "category": "Pratique"
+    },
+    {
+        "id": 3,
+        "title": "La Magie et la Sorcellerie",
+        "arabic": "السحر",
+        "description": "Apprendre, pratiquer ou consulter ceux qui pratiquent la magie (sorciers, voyants, astrologues) est strictement interdit et fait partie des péchés destructeurs.",
+        "reference": "Coran (Al-Baqarah 2:102)",
+        "category": "Croyance"
+    },
+    {
+        "id": 4,
+        "title": "L'Usure (Ar-Riba)",
+        "arabic": "الربا",
+        "description": "Consommer l'usure ou les intérêts bancaires. Allah a déclaré la guerre à ceux qui pratiquent l'usure, car cela exploite les plus vulnérables.",
+        "reference": "Coran (Al-Baqarah 2:275)",
+        "category": "Finance"
+    },
+    {
+        "id": 5,
+        "title": "Manquer de respect aux Parents",
+        "arabic": "عقوق الوالدين",
+        "description": "La désobéissance ou le mauvais traitement envers les parents est un péché majeur. Allah place la bonté envers les parents juste après Son adoration.",
+        "reference": "Coran (Al-Isra 17:23)",
+        "category": "Social"
+    },
+    {
+        "id": 6,
+        "title": "Manger l'argent de l'orphelin",
+        "arabic": "أكل مال اليتيم",
+        "description": "Prendre injustement ou gaspiller les biens d'un orphelin qui a été confié à notre garde.",
+        "reference": "Coran (An-Nisa 4:10)",
+        "category": "Finance"
+    },
+    {
+        "id": 7,
+        "title": "La Calomnie et la Médisance",
+        "arabic": "الغيبة والنميمة",
+        "description": "Parler en mal d'une personne dans son dos (Ghibah) ou colporter des rumeurs pour semer la discorde entre les gens (Namimah).",
+        "reference": "Coran (Al-Hujurat 49:12)",
+        "category": "Social"
+    }
+]
