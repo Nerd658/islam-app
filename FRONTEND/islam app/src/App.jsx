@@ -16,6 +16,8 @@ const Hadiths = lazy(() => import('./pages/Hadiths'));
 const Wird = lazy(() => import('./pages/Wird'));
 const Memorization = lazy(() => import('./pages/Memorization'));
 const MajorSins = lazy(() => import('./pages/MajorSins'));
+const GoodDeeds = lazy(() => import('./pages/GoodDeeds'));
+const Akhlaq = lazy(() => import('./pages/Akhlaq'));
 
 // New Hubs & Features
 const LearnHub = lazy(() => import('./pages/LearnHub'));
@@ -72,6 +74,8 @@ function App() {
             <Route path="/wird" element={<Wird />} />
             <Route path="/memorization" element={<Memorization />} />
             <Route path="/sins" element={<MajorSins />} />
+            <Route path="/deeds" element={<GoodDeeds />} />
+            <Route path="/akhlaq" element={<Akhlaq />} />
 
             {/* New Hubs & Features */}
             <Route path="/learn" element={<LearnHub />} />
