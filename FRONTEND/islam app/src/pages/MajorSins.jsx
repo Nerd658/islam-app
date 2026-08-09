@@ -24,26 +24,26 @@ export default function MajorSins() {
                 {loading ? (
                     <MajorSinsSkeleton />
                 ) : (
-                    <div className="space-y-6">
+                    <div className="flex overflow-x-auto snap-x snap-mandatory gap-6 pb-8 -mx-4 px-4 sm:mx-0 sm:px-0 hide-scrollbar">
                         {majorSinsData.map((sin) => (
-                            <div key={sin.id} className="bg-theme-surface border border-theme-border hover:border-red-900/50 rounded-2xl p-6 shadow-lg transition-all hover:shadow-red-900/10 group relative overflow-hidden">
+                            <div key={sin.id} className="snap-center shrink-0 w-[85%] sm:w-[350px] bg-theme-surface border border-theme-border hover:border-red-900/50 rounded-2xl p-6 shadow-lg transition-all hover:shadow-red-900/10 group relative overflow-hidden flex flex-col">
                                 <div className="absolute top-0 right-0 w-2 h-full bg-red-500/20 group-hover:bg-red-500/80 transition-colors"></div>
                                 
                                 <div className="flex flex-col sm:flex-row justify-between items-start gap-4 mb-4">
                                     <div className="flex items-center gap-3">
-                                        <div className="flex items-center justify-center w-10 h-10 rounded-full bg-red-950/30 border border-red-900/50 text-red-500 font-bold">
+                                        <div className="flex shrink-0 items-center justify-center w-10 h-10 rounded-full bg-red-950/30 border border-red-900/50 text-red-500 font-bold">
                                             {sin.id}
                                         </div>
-                                        <h3 className="font-bold text-theme-text text-xl">{sin.title}</h3>
+                                        <h3 className="font-bold text-theme-text text-xl leading-tight">{sin.title}</h3>
                                     </div>
-                                    <span className="text-2xl font-arabic text-theme-text-muted" dir="rtl">{sin.arabic}</span>
+                                    <span className="text-2xl font-arabic text-theme-text-muted shrink-0" dir="rtl">{sin.arabic}</span>
                                 </div>
                                 
-                                <p className="text-theme-text-muted leading-relaxed mb-6">
+                                <p className="text-theme-text-muted leading-relaxed mb-6 flex-1">
                                     {sin.description}
                                 </p>
                                 
-                                <div className="flex items-center gap-4 border-t border-theme-border pt-4">
+                                <div className="flex flex-wrap items-center gap-2 border-t border-theme-border pt-4 mt-auto">
                                     <div className="flex items-center gap-1.5 text-xs text-theme-text-muted/70 bg-theme-bg px-2.5 py-1 rounded-md border border-theme-border">
                                         <BookOpen size={14} />
                                         <span>{sin.reference}</span>

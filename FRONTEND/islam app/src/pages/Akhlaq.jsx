@@ -23,34 +23,34 @@ export default function Akhlaq() {
             {loading ? (
                 <ActionSkeleton />
             ) : (
-                <div className="mt-8 space-y-6">
+                <div className="flex overflow-x-auto snap-x snap-mandatory gap-6 pb-8 -mx-4 px-4 sm:mx-0 sm:px-0 mt-8 hide-scrollbar">
                     {akhlaqData.map((item) => (
-                        <div key={item.id} className="bg-theme-surface border border-theme-border hover:border-blue-400/50 rounded-2xl p-6 shadow-lg transition-all hover:shadow-blue-500/10 group">
+                        <div key={item.id} className="snap-center shrink-0 w-[85%] sm:w-[350px] bg-theme-surface border border-theme-border hover:border-blue-400/50 rounded-2xl p-6 shadow-lg transition-all hover:shadow-blue-500/10 group flex flex-col">
                             
                             <div className="flex flex-col sm:flex-row justify-between items-start gap-4 mb-4">
                                 <div className="flex items-center gap-3">
-                                    <div className="flex items-center justify-center w-10 h-10 rounded-full bg-blue-500/10 text-blue-400 font-bold group-hover:scale-110 transition-transform">
+                                    <div className="flex shrink-0 items-center justify-center w-10 h-10 rounded-full bg-blue-500/10 text-blue-400 font-bold group-hover:scale-110 transition-transform">
                                         <HeartHandshake size={20} />
                                     </div>
-                                    <h3 className="font-bold text-theme-text text-xl">{item.title}</h3>
+                                    <h3 className="font-bold text-theme-text text-xl leading-tight">{item.title}</h3>
                                 </div>
-                                <span className="text-2xl font-arabic text-theme-text-muted" dir="rtl">{item.arabic}</span>
+                                <span className="text-2xl font-arabic text-theme-text-muted shrink-0" dir="rtl">{item.arabic}</span>
                             </div>
                             
-                            <p className="text-theme-text-muted leading-relaxed mb-6">
+                            <p className="text-theme-text-muted leading-relaxed mb-6 flex-1">
                                 {item.description}
                             </p>
                             
-                            <div className="flex flex-wrap items-center gap-3 border-t border-theme-border pt-4">
-                                <div className="flex items-center gap-1.5 text-xs text-theme-text-muted/80 bg-theme-bg px-3 py-1.5 rounded-md border border-theme-border">
+                            <div className="flex flex-wrap items-center gap-2 border-t border-theme-border pt-4 mt-auto">
+                                <div className="flex items-center gap-1.5 text-xs text-theme-text-muted/80 bg-theme-bg px-2.5 py-1 rounded-md border border-theme-border">
                                     <Sparkles size={14} className="text-yellow-400" />
                                     <span>{item.benefits}</span>
                                 </div>
-                                <div className="flex items-center gap-1.5 text-xs text-theme-text-muted/80 bg-theme-bg px-3 py-1.5 rounded-md border border-theme-border">
+                                <div className="flex items-center gap-1.5 text-xs text-theme-text-muted/80 bg-theme-bg px-2.5 py-1 rounded-md border border-theme-border">
                                     <BookOpen size={14} className="text-emerald-500" />
                                     <span>{item.reference}</span>
                                 </div>
-                                <div className="flex items-center gap-1.5 text-xs text-theme-text-muted/80 bg-theme-bg px-3 py-1.5 rounded-md border border-theme-border">
+                                <div className="flex items-center gap-1.5 text-xs text-theme-text-muted/80 bg-theme-bg px-2.5 py-1 rounded-md border border-theme-border">
                                     <Tag size={14} className="text-purple-400" />
                                     <span>{item.category}</span>
                                 </div>
