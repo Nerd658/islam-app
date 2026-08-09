@@ -23,9 +23,9 @@ export default function GoodDeeds() {
             {loading ? (
                 <ActionSkeleton />
             ) : (
-                <div className="flex overflow-x-auto snap-x snap-mandatory gap-6 pb-8 -mx-4 px-4 sm:mx-0 sm:px-0 mt-8 hide-scrollbar">
+                <div className="flex sm:grid sm:grid-cols-2 lg:grid-cols-3 overflow-x-auto sm:overflow-visible snap-x snap-mandatory sm:snap-none gap-6 pb-8 sm:pb-0 -mx-4 px-4 sm:mx-0 sm:px-0 mt-8 hide-scrollbar">
                     {goodDeedsData.map((deed) => (
-                        <div key={deed.id} className="snap-center shrink-0 w-[85%] sm:w-[350px] bg-theme-surface border border-theme-border hover:border-emerald-500/50 rounded-2xl p-6 shadow-lg transition-all hover:shadow-emerald-500/10 group flex flex-col">
+                        <div key={deed.id} className="snap-center shrink-0 w-[85%] sm:w-auto bg-theme-surface border border-theme-border hover:border-emerald-500/50 rounded-2xl p-6 shadow-lg transition-all hover:shadow-emerald-500/10 group flex flex-col">
                             
                             <div className="flex flex-col sm:flex-row justify-between items-start gap-4 mb-4">
                                 <div className="flex items-center gap-3">

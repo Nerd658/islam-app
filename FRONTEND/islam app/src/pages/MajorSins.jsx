@@ -24,9 +24,9 @@ export default function MajorSins() {
                 {loading ? (
                     <MajorSinsSkeleton />
                 ) : (
-                    <div className="flex overflow-x-auto snap-x snap-mandatory gap-6 pb-8 -mx-4 px-4 sm:mx-0 sm:px-0 hide-scrollbar">
+                    <div className="flex sm:grid sm:grid-cols-2 lg:grid-cols-3 overflow-x-auto sm:overflow-visible snap-x snap-mandatory sm:snap-none gap-6 pb-8 sm:pb-0 -mx-4 px-4 sm:mx-0 sm:px-0 hide-scrollbar">
                         {majorSinsData.map((sin) => (
-                            <div key={sin.id} className="snap-center shrink-0 w-[85%] sm:w-[350px] bg-theme-surface border border-theme-border hover:border-red-900/50 rounded-2xl p-6 shadow-lg transition-all hover:shadow-red-900/10 group relative overflow-hidden flex flex-col">
+                            <div key={sin.id} className="snap-center shrink-0 w-[85%] sm:w-auto bg-theme-surface border border-theme-border hover:border-red-900/50 rounded-2xl p-6 shadow-lg transition-all hover:shadow-red-900/10 group relative overflow-hidden flex flex-col">
                                 <div className="absolute top-0 right-0 w-2 h-full bg-red-500/20 group-hover:bg-red-500/80 transition-colors"></div>
                                 
                                 <div className="flex flex-col sm:flex-row justify-between items-start gap-4 mb-4">
